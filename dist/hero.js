@@ -34,3 +34,29 @@ pathwayTabs.forEach((tab, index) => {
 });
 
 requestAnimationFrame(() => hero?.classList.add('hero-ready'));
+
+const knowledgeRail = document.querySelector('#knowledge-rail');
+const railButtons = [...document.querySelectorAll('[data-rail-direction]')];
+
+function updateRailButtons() {
+  if (!knowledgeRail) return;
+  const maxScroll = knowledgeRail.scrollWidth - knowledgeRail.clientWidth;
+  railButtons.forEach((button) => {
+    const direction = Number(button.dataset.railDirection);
+    button.disabled = direction < 0 ? knowledgeRail.scrollLeft <= 4 : knowledgeRail.scrollLeft >= maxScroll - 4;
+  });
+}
+
+railButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    knowledgeRail?.scrollBy({
+      left: Number(button.dataset.railDirection) * Math.min(knowledgeRail.clientWidth * 0.8, 720),
+      behavior: reducedMotion ? 'auto' : 'smooth'
+    });
+  });
+});
+
+knowledgeRail?.addEventListener('scroll', updateRailButtons, { passive: true });
+window.addEventListener('resize', updateRailButtons);
+updateRailButtons();
