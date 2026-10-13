@@ -1,39 +1,104 @@
-const hero = document.querySelector('.hero-router');
-const pathwayTabs = [...document.querySelectorAll('.pathway-tab')];
-const pathwayPanels = [...document.querySelectorAll('.pathway-panel')];
+const heroExplorer = document.querySelector('.hero-explorer');
+const heroChoices = [...document.querySelectorAll('.hero-path-choice')];
+const heroStories = [...document.querySelectorAll('.hero-story')];
+const motionToggle = document.querySelector('.hero-motion-toggle');
+const motionLabel = document.querySelector('.motion-label');
+const motionIcon = document.querySelector('.motion-icon');
+const signalTitle = document.querySelector('[data-signal-title]');
+const signalCopy = document.querySelector('[data-signal-copy]');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const heroSignals = {
+  data: {
+    title: 'Consumer · MSME · Analytics',
+    copy: 'Comparable evidence, specialist analysis and the skills to apply it.'
+  },
+  programmes: {
+    title: 'Five dedicated platforms',
+    copy: 'Regional convening, livelihoods, gender, digitalisation and eKYC.'
+  }
+};
+let activePathway = 'data';
+let rotationPaused = reducedMotion;
+let rotationTimer;
 
-function activatePathway(name, focus = false) {
-  pathwayTabs.forEach((tab) => {
-    const selected = tab.dataset.pathway === name;
-    tab.classList.toggle('is-active', selected);
-    tab.setAttribute('aria-selected', String(selected));
-    tab.tabIndex = selected ? 0 : -1;
-    if (selected && focus) tab.focus();
-  });
-
-  pathwayPanels.forEach((panel) => {
-    const selected = panel.dataset.panel === name;
-    panel.hidden = !selected;
-    panel.classList.remove('is-active');
-    if (selected) {
-      void panel.offsetWidth;
-      panel.classList.add('is-active');
-    }
-  });
+function restartProgress() {
+  const progress = document.querySelector('.hero-progress i');
+  if (!progress) return;
+  progress.classList.remove('is-running');
+  void progress.offsetWidth;
+  if (!rotationPaused) progress.classList.add('is-running');
 }
 
-pathwayTabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => activatePathway(tab.dataset.pathway));
-  tab.addEventListener('keydown', (event) => {
+function activateHeroPathway(name, focus = false) {
+  if (!heroSignals[name]) return;
+  activePathway = name;
+  heroExplorer.dataset.activePathway = name;
+
+  heroChoices.forEach((choice) => {
+    const selected = choice.dataset.heroPath === name;
+    choice.classList.toggle('is-active', selected);
+    choice.setAttribute('aria-selected', String(selected));
+    choice.tabIndex = selected ? 0 : -1;
+    if (selected && focus) choice.focus();
+  });
+
+  heroStories.forEach((story) => {
+    const selected = story.dataset.heroPanel === name;
+    story.hidden = !selected;
+    story.classList.remove('is-active');
+    if (selected) {
+      void story.offsetWidth;
+      story.classList.add('is-active');
+    }
+  });
+
+  signalTitle.textContent = heroSignals[name].title;
+  signalCopy.textContent = heroSignals[name].copy;
+  restartProgress();
+}
+
+function startRotation() {
+  clearInterval(rotationTimer);
+  if (rotationPaused) return;
+  rotationTimer = setInterval(() => {
+    activateHeroPathway(activePathway === 'data' ? 'programmes' : 'data');
+  }, 7000);
+  restartProgress();
+}
+
+heroChoices.forEach((choice, index) => {
+  choice.addEventListener('click', () => {
+    activateHeroPathway(choice.dataset.heroPath);
+    startRotation();
+  });
+  choice.addEventListener('pointerenter', (event) => {
+    if (event.pointerType === 'mouse') activateHeroPathway(choice.dataset.heroPath);
+  });
+  choice.addEventListener('keydown', (event) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
     event.preventDefault();
     const direction = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1;
-    const next = pathwayTabs[(index + direction + pathwayTabs.length) % pathwayTabs.length];
-    activatePathway(next.dataset.pathway, true);
+    const next = heroChoices[(index + direction + heroChoices.length) % heroChoices.length];
+    activateHeroPathway(next.dataset.heroPath, true);
+    startRotation();
   });
 });
 
-requestAnimationFrame(() => hero?.classList.add('hero-ready'));
+motionToggle?.addEventListener('click', () => {
+  rotationPaused = !rotationPaused;
+  motionToggle.setAttribute('aria-pressed', String(rotationPaused));
+  motionLabel.textContent = rotationPaused ? 'Resume rotation' : 'Pause rotation';
+  motionIcon.textContent = rotationPaused ? '▶' : 'Ⅱ';
+  startRotation();
+});
+
+heroExplorer?.addEventListener('focusin', () => clearInterval(rotationTimer));
+heroExplorer?.addEventListener('focusout', () => startRotation());
+heroExplorer?.addEventListener('mouseenter', () => clearInterval(rotationTimer));
+heroExplorer?.addEventListener('mouseleave', () => startRotation());
+
+requestAnimationFrame(() => heroExplorer?.classList.add('hero-ready'));
+startRotation();
 
 const knowledgeRail = document.querySelector('#knowledge-rail');
 const railButtons = [...document.querySelectorAll('[data-rail-direction]')];
@@ -49,7 +114,6 @@ function updateRailButtons() {
 
 railButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     knowledgeRail?.scrollBy({
       left: Number(button.dataset.railDirection) * Math.min(knowledgeRail.clientWidth * 0.8, 720),
       behavior: reducedMotion ? 'auto' : 'smooth'

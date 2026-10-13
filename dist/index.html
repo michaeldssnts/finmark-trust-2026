@@ -14,37 +14,39 @@
 <body data-page="home">
   <div id="site-header"></div>
   <main id="main">
-    <section class="hero hero-router">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow light">Two pathways. One shared purpose.</p>
-          <h1>Find your way into <span>our work.</span></h1>
-          <p>Explore the two connected areas of work that drive financial and economic inclusion across the region.</p>
-          <div class="hero-actions">
-            <button class="primary-btn open-search">Search across all our work</button>
-            <a class="secondary-btn" href="#pathways">Choose a pathway</a>
-          </div>
-        </div>
-        <div class="hero-media"><img src="hero-financial-inclusion.png" alt="Researchers and entrepreneurs examining financial inclusion evidence together"></div>
-      </div>
-      <div class="container hero-switcher" id="pathways">
-        <div class="pathway-tabs" role="tablist" aria-label="Choose a FinMark Trust pathway">
-          <button class="pathway-tab is-active" id="tab-data" type="button" role="tab" aria-selected="true" aria-controls="path-data" data-pathway="data"><span>01</span><strong>Data &amp; Analytics</strong><small>Evidence, insight and skills</small></button>
-          <button class="pathway-tab" id="tab-programmes" type="button" role="tab" aria-selected="false" aria-controls="path-programmes" data-pathway="programmes" tabindex="-1"><span>02</span><strong>Programmes &amp; Research</strong><small>Themes, projects and impact</small></button>
-        </div>
-        <div class="pathway-stage">
-          <article class="pathway-panel is-active" id="path-data" role="tabpanel" aria-labelledby="tab-data" data-panel="data">
-            <div class="panel-intro"><small>Data &amp; Analytics</small><h2>Turn evidence into better decisions.</h2><p>Explore demand-side data, analytical services and practical capacity building.</p></div>
-            <div class="panel-links"><a href="data/index.html">FinScope Consumer</a><a href="data/index.html">FinScope MSME</a><a href="data/index.html">Analytics &amp; advisory</a><a href="https://finmark.org.za/Training/">Training</a></div>
-            <a class="panel-cta" href="data/index.html">Explore Data &amp; Analytics</a>
+    <section class="hero hero-explorer" data-active-pathway="data" id="pathways">
+      <div class="hero-explorer-media" aria-hidden="true"><img src="hero-financial-inclusion.png" alt=""><div class="hero-explorer-shade"></div></div>
+      <div class="container hero-explorer-inner">
+        <nav class="hero-path-menu" role="tablist" aria-label="Explore FinMark Trust pathways">
+          <p>Choose a pathway</p>
+          <button class="hero-path-choice is-active" id="hero-tab-data" type="button" role="tab" aria-selected="true" aria-controls="hero-panel-data" data-hero-path="data"><span>01</span><span><strong>Data &amp; Analytics</strong><small>Evidence, insight and skills</small></span></button>
+          <button class="hero-path-choice" id="hero-tab-programmes" type="button" role="tab" aria-selected="false" aria-controls="hero-panel-programmes" data-hero-path="programmes" tabindex="-1"><span>02</span><span><strong>Programmes &amp; Research</strong><small>Themes, projects and impact</small></span></button>
+          <button class="hero-search-trigger open-search" type="button"><span aria-hidden="true">⌕</span> Search everything</button>
+        </nav>
+        <div class="hero-story-stage" aria-live="polite">
+          <article class="hero-story is-active" id="hero-panel-data" role="tabpanel" aria-labelledby="hero-tab-data" data-hero-panel="data">
+            <p class="eyebrow light">Data &amp; Analytics</p>
+            <h1>See financial markets <span>more clearly.</span></h1>
+            <p>Explore FinScope Consumer and MSME evidence, bespoke analytics and practical training that turn complex data into better decisions.</p>
+            <div class="hero-context-links"><a href="data/index.html">FinScope Consumer</a><a href="data/index.html">FinScope MSME</a><a href="data/index.html">Analytics</a><a href="https://finmark.org.za/Training/">Training</a></div>
+            <a class="primary-btn hero-primary-action" href="data/index.html">Explore Data &amp; Analytics</a>
           </article>
-          <article class="pathway-panel" id="path-programmes" role="tabpanel" aria-labelledby="tab-programmes" data-panel="programmes" hidden>
-            <div class="panel-intro"><small>Programmes &amp; Research</small><h2>Follow ideas from research to impact.</h2><p>Discover active programmes, changing themes and regional platforms.</p></div>
-            <div class="panel-links"><a href="https://finmark.org.za/SADC_FI_Forum/">SADC FI Forum</a><a href="programmes/generating-better-livelihoods/index.html">GBL</a><a href="https://finmark.org.za/Gender/">Gender</a><a href="https://finmark.org.za/Community_digitalisation/">Community Digitalisation</a><a href="https://finmark.org.za/eKYC/Index.html">eKYC</a></div>
-            <a class="panel-cta" href="#landing-pages">Explore programme platforms</a>
+          <article class="hero-story" id="hero-panel-programmes" role="tabpanel" aria-labelledby="hero-tab-programmes" data-hero-panel="programmes" hidden>
+            <p class="eyebrow light">Programmes &amp; Research</p>
+            <h1>Turn research into <span>practical change.</span></h1>
+            <p>Follow evolving themes, implementation programmes and regional platforms from evidence through to impact.</p>
+            <div class="hero-context-links"><a href="https://finmark.org.za/SADC_FI_Forum/">SADC FI Forum</a><a href="programmes/generating-better-livelihoods/index.html">GBL</a><a href="https://finmark.org.za/Gender/">Gender</a><a href="https://finmark.org.za/Community_digitalisation/">Community Digitalisation</a><a href="https://finmark.org.za/eKYC/Index.html">eKYC</a></div>
+            <a class="primary-btn hero-primary-action" href="#landing-pages">Explore programme platforms</a>
           </article>
         </div>
+        <aside class="hero-signal" aria-live="polite">
+          <span>Inside this pathway</span>
+          <strong data-signal-title>Consumer · MSME · Analytics</strong>
+          <p data-signal-copy>Comparable evidence, specialist analysis and the skills to apply it.</p>
+          <div class="hero-progress"><i></i></div>
+        </aside>
       </div>
+      <button class="hero-motion-toggle" type="button" aria-pressed="false"><span class="motion-icon" aria-hidden="true">Ⅱ</span><span class="motion-label">Pause rotation</span></button>
       <div class="diagonal" aria-hidden="true"></div>
     </section>
     <section class="section landing-pages" id="landing-pages">
