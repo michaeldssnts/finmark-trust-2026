@@ -21,3 +21,12 @@
 @media(max-width:1100px){.hero-explorer-inner{grid-template-columns:245px minmax(0,1fr)}.hero-signal{display:none}.hero-explorer-media{left:52%}.hero-story h1{font-size:clamp(2.8rem,6vw,4.5rem)}}
 @media(max-width:760px){.hero-explorer{min-height:auto}.hero-explorer-media{inset:0}.hero-explorer-shade{background:linear-gradient(90deg,rgba(20,32,68,.98),rgba(20,32,68,.78)),linear-gradient(0deg,rgba(7,15,38,.8),transparent)}.hero-explorer-inner{min-height:auto;grid-template-columns:1fr;gap:26px;padding-top:34px;padding-bottom:72px}.hero-path-menu{display:grid;grid-template-columns:1fr 1fr;order:2}.hero-path-menu>p{grid-column:1/-1}.hero-path-choice{padding:15px 13px;grid-template-columns:1fr;gap:3px}.hero-path-choice>span:first-child{display:none}.hero-path-choice+ .hero-path-choice{border-top:0;border-left:1px solid rgba(255,255,255,.12)}.hero-path-choice:hover,.hero-path-choice.is-active{padding-left:13px;border-left-color:var(--hero-accent);border-bottom:3px solid var(--hero-accent)}.hero-path-choice small{display:none}.hero-search-trigger{grid-column:1/-1;justify-content:center}.hero-story-stage{order:1}.hero-story h1{font-size:clamp(2.65rem,12vw,4rem)}.hero-story>p:not(.eyebrow){font-size:.94rem}.hero-context-links{gap:6px}.hero-context-links a{font-size:.66rem}.hero-motion-toggle{right:14px;bottom:14px}.hero-explorer .diagonal{right:8%;opacity:.35}}
 @media(prefers-reduced-motion:reduce){.hero-explorer-media img,.hero-path-menu,.hero-signal{opacity:1;transform:none;transition:none}.hero-story.is-active{animation:none}.hero-progress i.is-running{animation:none;width:100%}}
+
+/* Full-height pathway selector */
+@media(min-width:761px){
+  .hero-explorer-inner{grid-template-columns:280px minmax(430px,1fr);padding-top:0;padding-bottom:0}
+  .hero-path-menu{align-self:stretch;display:flex;flex-direction:column}
+  .hero-path-choice{flex:1;align-items:center}
+  .hero-story-stage{padding-top:54px;padding-bottom:76px}
+}
+@media(min-width:761px) and (max-width:1100px){.hero-explorer-inner{grid-template-columns:245px minmax(0,1fr)}}

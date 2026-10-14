@@ -4,33 +4,14 @@ const heroStories = [...document.querySelectorAll('.hero-story')];
 const motionToggle = document.querySelector('.hero-motion-toggle');
 const motionLabel = document.querySelector('.motion-label');
 const motionIcon = document.querySelector('.motion-icon');
-const signalTitle = document.querySelector('[data-signal-title]');
-const signalCopy = document.querySelector('[data-signal-copy]');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const heroSignals = {
-  data: {
-    title: 'Consumer · MSME · Analytics',
-    copy: 'Comparable evidence, specialist analysis and the skills to apply it.'
-  },
-  programmes: {
-    title: 'Five dedicated platforms',
-    copy: 'Regional convening, livelihoods, gender, digitalisation and eKYC.'
-  }
-};
+const heroPathways = new Set(['data', 'programmes']);
 let activePathway = 'data';
 let rotationPaused = reducedMotion;
 let rotationTimer;
 
-function restartProgress() {
-  const progress = document.querySelector('.hero-progress i');
-  if (!progress) return;
-  progress.classList.remove('is-running');
-  void progress.offsetWidth;
-  if (!rotationPaused) progress.classList.add('is-running');
-}
-
 function activateHeroPathway(name, focus = false) {
-  if (!heroSignals[name]) return;
+  if (!heroPathways.has(name)) return;
   activePathway = name;
   heroExplorer.dataset.activePathway = name;
 
@@ -52,9 +33,6 @@ function activateHeroPathway(name, focus = false) {
     }
   });
 
-  signalTitle.textContent = heroSignals[name].title;
-  signalCopy.textContent = heroSignals[name].copy;
-  restartProgress();
 }
 
 function startRotation() {
@@ -63,7 +41,6 @@ function startRotation() {
   rotationTimer = setInterval(() => {
     activateHeroPathway(activePathway === 'data' ? 'programmes' : 'data');
   }, 7000);
-  restartProgress();
 }
 
 heroChoices.forEach((choice, index) => {
