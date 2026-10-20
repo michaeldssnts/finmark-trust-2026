@@ -137,8 +137,8 @@ updateRailButtons();
 /* ---- Latest content on each slide: chosen in the content manager (Featured content), else the newest ----
    The cards in the HTML stay as a fallback if the feed cannot load. */
 (function fillSlideCards() {
-  const asides = { data: document.querySelector('#hx-panel-data .hx-latest'), programmes: document.querySelector('#hx-panel-programmes .hx-latest') };
-  if (!asides.data && !asides.programmes) return;
+  const asides = { gbl: document.querySelector('#hx-panel-gbl .hx-latest'), data: document.querySelector('#hx-panel-data .hx-latest'), programmes: document.querySelector('#hx-panel-programmes .hx-latest') };
+  if (!asides.gbl && !asides.data && !asides.programmes) return;
   const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fmt = (d) => { const [y, m, dd] = (d || '').split('-'); return y ? `${dd ? String(+dd).padStart(2, '0') + ' ' : ''}${m ? M[+m - 1] + ' ' : ''}${y}` : ''; };
@@ -166,8 +166,15 @@ updateRailButtons();
     const pickFor = (key, sec) => {
       const chosen = (f[key] || []).map((id) => byId.get(id)).filter(Boolean);
       const fill = feed.items.filter((i) => (i.sec === sec || i.sec === 'both') && !chosen.includes(i));
-      return chosen.concat(fill).slice(0, 2);
+      return chosen.concat(fill).slice(0, 1);
     };
+    // GBL slide: the newest GBL piece with a thumbnail
+    if (asides.gbl) {
+      const g = feed.items.filter((i) => (i.pg || []).includes('gbl'));
+      const picks = g.filter((i) => i.img).concat(g.filter((i) => !i.img)).slice(0, 1);
+      const label = asides.gbl.querySelector('.hx-latest-label');
+      if (picks.length) asides.gbl.innerHTML = (label ? label.outerHTML : '') + picks.map(card).join('');
+    }
     [['data', 'home_data'], ['programmes', 'home_programmes']].forEach(([sec, key]) => {
       const aside = asides[sec]; if (!aside) return;
       const label = aside.querySelector('.hx-latest-label');
