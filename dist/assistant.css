@@ -46,3 +46,4 @@
 .fg:not(.on) .fg-btn:hover,.fg:not(.on) .fg-btn:focus-visible{width:auto;padding:0 18px 0 12px;gap:9px}
 .fg:not(.on) .fg-btn:hover span,.fg:not(.on) .fg-btn:focus-visible span{max-width:260px;opacity:1}
 .fg-btn[aria-expanded="false"]{}
+.fg{transition:bottom .25s ease}.fg.lift{bottom:104px}@media(max-width:760px){.fg.lift{bottom:12px}}

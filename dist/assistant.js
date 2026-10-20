@@ -39,6 +39,9 @@
       <button type="button" class="fg-btn" id="fgBtn" aria-expanded="false" aria-controls="fgPanel" aria-label="Site guide: need help finding something?" title="Need help finding something?"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Need help finding something?</span></button>
     </div>`);
   const $ = id => document.getElementById(id);
+  // Lift the button while the homepage slider's controls are on screen, so it never covers them
+  const heroBar = document.querySelector('.hx-bar');
+  if (heroBar && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => document.getElementById('fmtGuide').classList.toggle('lift', e.isIntersecting)).observe(heroBar);
   const panel = $('fgPanel'), btn = $('fgBtn'), log = $('fgLog'), input = $('fgInput'), chips = $('fgChips');
   const START = ['Latest research', 'FinScope data', 'Programmes', 'Blogs', 'Gender', 'Remittances', 'How can I donate?'];
   let greeted = false;
