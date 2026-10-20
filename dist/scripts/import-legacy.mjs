@@ -11,9 +11,10 @@
  *   content/knowledge/<date>-<slug>.json  one file per item
  *   legacy/migration-report.csv       every item with what was changed and what needs review
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { guessSection, guessProgrammes } from './classify.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -25,6 +26,8 @@ const OUT_T = join(ROOT, 'content/themes');
 const MAP = JSON.parse(readFileSync(join(ROOT, 'scripts/theme-map.json'), 'utf8'));
 const raw = JSON.parse(readFileSync(input, 'utf8'));
 const items = Array.isArray(raw) ? raw : raw.items;
+const PROG_DIR = join(ROOT, 'content/programmes');
+const PROGRAMMES = existsSync(PROG_DIR) ? readdirSync(PROG_DIR).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(join(PROG_DIR, f), 'utf8'))) : [];
 
 if (args.includes('--clean')) { rmSync(OUT_K, { recursive: true, force: true }); rmSync(OUT_T, { recursive: true, force: true }); }
 mkdirSync(OUT_K, { recursive: true }); mkdirSync(OUT_T, { recursive: true }); mkdirSync(join(ROOT, 'legacy'), { recursive: true });
@@ -115,6 +118,9 @@ for (const it of items) {
     file: isFile ? url : '', link: isFile ? '' : url,
     featured: false, review: source !== 'legacy tags', legacy_url: url, legacy_type: it.type || ''
   };
+  entry.programmes = guessProgrammes(entry, PROGRAMMES);
+  entry.section = guessSection(themes, MAP.themes, entry.programmes);
+  if (entry.programmes.length) entry.review = true;
   writeFileSync(join(OUT_K, `${slug}.json`), JSON.stringify(entry, null, 2) + '\n');
   written++;
   report.push([title, date, url, source === 'legacy tags' ? 'imported' : 'imported, needs review', [`themes ${source}: ${themes.join(', ') || '—'}`, ...notes].join(' | ')]);

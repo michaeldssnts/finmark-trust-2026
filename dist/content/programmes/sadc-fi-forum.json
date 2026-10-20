@@ -1,0 +1,15 @@
+{
+  "name": "SADC Financial Inclusion Forum",
+  "slug": "sadc-fi-forum",
+  "pathway": "sadc",
+  "status": "current",
+  "order": 1,
+  "description": "Regional convening of regulators, providers and partners on financial inclusion.",
+  "site_url": "https://finmark.org.za/SADC_FI_Forum/",
+  "theme": "sadc",
+  "keywords": [
+    "fi forum",
+    "financial inclusion forum",
+    "sadc forum"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "eKYC and Digital Identity",
+  "slug": "ekyc-digital-identity",
+  "pathway": "sadc",
+  "status": "current",
+  "order": 2,
+  "description": "Lower-friction, interoperable identity and customer checks across SADC.",
+  "site_url": "https://finmark.org.za/eKYC/Index.html",
+  "theme": "digital-identity",
+  "keywords": [
+    "ekyc",
+    "e-kyc",
+    "digital identity",
+    "digital id"
+  ]
+}

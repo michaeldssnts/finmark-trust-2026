@@ -31,6 +31,7 @@
   var DIR = mode === 'live' ? SITE_DIR : '';
   var KFOLDER = mode === 'demo' ? 'knowledge' : DIR + 'content/knowledge';
   var TFOLDER = mode === 'demo' ? 'themes' : DIR + 'content/themes';
+  var PFOLDER = mode === 'demo' ? 'programmes' : DIR + 'content/programmes';
 
   // Live and staging: editors sign in with GitHub. Netlify handles the GitHub sign-in (Site configuration > Access & security > OAuth).
   var backend = mode === 'demo' ? { name: 'test-repo' } : { name: 'github', repo: REPO, branch: 'main' };
@@ -62,17 +63,22 @@
           { label: 'Drafts (hidden from site)', field: 'draft', pattern: true },
           { label: 'Reports', field: 'type', pattern: 'Report' },
           { label: 'Blogs and articles', field: 'type', pattern: '^(Blog|Article)$' },
-          { label: 'Videos and podcasts', field: 'type', pattern: '^(Video|Podcast)$' }
+          { label: 'Videos and podcasts', field: 'type', pattern: '^(Video|Podcast)$' },
+          { label: 'Section: Data', field: 'section', pattern: '^(data|both)$' },
+          { label: 'Section: Programmes', field: 'section', pattern: '^(programmes|both)$' }
         ],
         view_groups: [
           { label: 'Year', field: 'date', pattern: '\\d{4}' },
-          { label: 'Type', field: 'type' }
+          { label: 'Type', field: 'type' },
+          { label: 'Section', field: 'section' }
         ],
         fields: [
           { name: 'title', label: 'Title', widget: 'string' },
           { name: 'date', label: 'Publication date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'DD MMM YYYY', time_format: false, picker_utc: true, default: '{{now}}' },
           { name: 'type', label: 'Content type', widget: 'select', options: TYPES, default: 'Report' },
           { name: 'summary', label: 'Summary', widget: 'text', required: false, hint: 'One or two sentences shown on the card and in search results.' },
+          { name: 'section', label: 'Section', widget: 'select', default: 'programmes', options: [{ label: 'Programmes (programmatic research)', value: 'programmes' }, { label: 'Data (surveys, analytics, FinScope)', value: 'data' }, { label: 'Both', value: 'both' }], hint: 'Where this belongs on the site: the Knowledge Hub can be filtered to Data or Programmes, and programme research also feeds the Programmes page.' },
+          { name: 'programmes', label: 'Programme', widget: 'relation', collection: 'programmes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], multiple: true, required: false, max: 3, options_length: 40, hint: 'Optional. The programme(s) this came out of, e.g. GBL or the SADC FI Forum. Leave empty for general research.' },
           { name: 'themes', label: 'Themes', widget: 'relation', collection: 'themes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], multiple: true, min: 1, max: 4, options_length: 40, hint: 'Pick 1–4. Archived themes still work; their items are hidden by default on the site.' },
           { name: 'countries', label: 'Countries', widget: 'select', multiple: true, required: false, options: COUNTRIES },
           { name: 'language', label: 'Language', widget: 'select', options: [{ label: 'English', value: 'en' }, { label: 'Portuguese', value: 'pt' }, { label: 'French', value: 'fr' }], default: 'en' },
@@ -104,6 +110,25 @@
           { name: 'pathway', label: 'Pathway', widget: 'select', options: [{ label: 'Data & Analytics', value: 'data' }, { label: 'Programmes & Research', value: 'programmes' }] },
           { name: 'description', label: 'Description', widget: 'text', required: false },
           { name: 'legacy_labels', label: 'Old site tags merged into this theme', widget: 'list', required: false }
+        ]
+      },
+      {
+        name: 'programmes', label: 'Programmes', label_singular: 'Programme',
+        description: 'The programmes shown on the Programmes page and offered in the "Programme" field of each Knowledge Hub item. Set one to "Archived" when it ends; its research stays in the Knowledge Hub.',
+        folder: PFOLDER, create: true, format: 'json', extension: 'json',
+        identifier_field: 'name', slug: '{{fields.slug}}', summary: '{{name}} ({{pathway}}, {{status}})',
+        sortable_fields: ['order', 'name', 'pathway'],
+        view_groups: [{ label: 'Pathway', field: 'pathway' }],
+        fields: [
+          { name: 'name', label: 'Name', widget: 'string' },
+          { name: 'slug', label: 'Short name for links', widget: 'string', pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and hyphens only'], hint: 'Do not change once items use this programme.' },
+          { name: 'pathway', label: 'Pathway', widget: 'select', options: [{ label: 'SADC region', value: 'sadc' }, { label: 'South Africa', value: 'za' }, { label: 'Cross-cutting (both)', value: 'cross' }] },
+          { name: 'status', label: 'Status', widget: 'select', options: [{ label: 'Current', value: 'current' }, { label: 'Archived', value: 'archived' }], default: 'current' },
+          { name: 'order', label: 'Order on the Programmes page', widget: 'number', value_type: 'int', default: 50, required: false },
+          { name: 'description', label: 'One-line description', widget: 'text', required: false },
+          { name: 'site_url', label: 'Programme website (if it has its own)', widget: 'string', required: false },
+          { name: 'theme', label: 'Main Knowledge Hub theme', widget: 'relation', collection: 'themes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], required: false },
+          { name: 'keywords', label: 'Words that suggest this programme', widget: 'list', required: false, hint: 'Used only to suggest this programme for imported items.' }
         ]
       }
     ]

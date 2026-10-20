@@ -18,14 +18,14 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fmtDate = d => { const [y, m, dd] = (d || '').split('-'); return y ? `${+dd} ${MONTHS[+m - 1]} ${y}` : 'Undated'; };
 
-  const S = { q: '', path: '', themes: new Set(), types: new Set(), country: '', from: '', to: '', langs: new Set(), archived: false, sort: 'new', view: 'grid', shown: PAGE };
-  let THEMES = [], TH = {}, ITEMS = [];
+  const S = { q: '', path: '', prog: '', themes: new Set(), types: new Set(), country: '', from: '', to: '', langs: new Set(), archived: false, sort: 'new', view: 'grid', shown: PAGE };
+  let THEMES = [], TH = {}, ITEMS = [], PROGS = [], PG = {};
 
   // ---------- URL state (works on the live site; ignored where query strings are unavailable) ----------
   function readUrl() {
     try {
       const p = new URLSearchParams(location.search);
-      S.q = p.get('q') || ''; S.path = p.get('pathway') || ''; S.country = p.get('country') || '';
+      S.q = p.get('q') || ''; S.path = p.get('pathway') || p.get('section') || ''; S.prog = p.get('programme') || ''; S.country = p.get('country') || '';
       S.from = p.get('from') || ''; S.to = p.get('to') || ''; S.archived = p.get('archived') === '1'; S.sort = p.get('sort') || 'new';
       (p.get('theme') || '').split(',').filter(Boolean).forEach(t => S.themes.add(t));
       (p.get('type') || '').split(',').filter(Boolean).forEach(t => S.types.add(t));
@@ -36,7 +36,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   function writeUrl() {
     try {
       const p = new URLSearchParams();
-      if (S.q) p.set('q', S.q); if (S.path) p.set('pathway', S.path); if (S.themes.size) p.set('theme', [...S.themes].join(','));
+      if (S.q) p.set('q', S.q); if (S.path) p.set('section', S.path); if (S.prog) p.set('programme', S.prog); if (S.themes.size) p.set('theme', [...S.themes].join(','));
       if (S.types.size) p.set('type', [...S.types].join(',')); if (S.country) p.set('country', S.country);
       if (S.from) p.set('from', S.from); if (S.to) p.set('to', S.to); if (S.langs.size) p.set('lang', [...S.langs].join(','));
       if (S.archived) p.set('archived', '1'); if (S.sort !== 'new') p.set('sort', S.sort);
@@ -49,8 +49,10 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   function prep(it) {
     it.year = it.d ? it.d.slice(0, 4) : '';
     it.isArch = it.th.length > 0 && it.th.every(s => TH[s] && TH[s].status === 'archived');
-    it.paths = new Set(it.th.map(s => TH[s] && TH[s].pathway).filter(Boolean));
-    it.hay = norm([it.t, it.s || '', it.y, it.year, ...it.th.map(s => TH[s] ? TH[s].name : ''), ...it.c.map(c => PLACES[c] || c)].join(' '));
+    // Section comes from the item itself (set in the content manager); older feeds fall back to the themes' pathway.
+    it.pg = it.pg || [];
+    it.paths = it.sec ? new Set(it.sec === 'both' ? ['data', 'programmes'] : [it.sec]) : new Set(it.th.map(s => TH[s] && TH[s].pathway).filter(Boolean));
+    it.hay = norm([it.t, it.s || '', it.y, it.year, ...it.th.map(s => TH[s] ? TH[s].name : ''), ...it.c.map(c => PLACES[c] || c), ...it.pg.map(s => PG[s] ? PG[s].name : '')].join(' '));
     it.titleN = norm(it.t);
   }
   const terms = () => norm(S.q).split(/\s+/).filter(t => t.length > 1);
@@ -60,6 +62,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   function passes(it, skip, ts) {
     if (!S.archived && it.isArch) return false;
     if (skip !== 'path' && S.path && !it.paths.has(S.path)) return false;
+    if (skip !== 'prog' && S.prog && !it.pg.includes(S.prog)) return false;
     if (skip !== 'themes' && S.themes.size && !it.th.some(t => S.themes.has(t))) return false;
     if (skip !== 'types' && S.types.size && !S.types.has(it.y)) return false;
     if (skip !== 'country' && S.country && !(S.country === 'SADC-ALL' ? it.c.some(c => SADC.includes(c)) : it.c.includes(S.country))) return false;
@@ -81,7 +84,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   }
   function renderFilters() {
     const pc = count('path', it => [...it.paths, 'all']);
-    $('fPath').innerHTML = `<div class="kh-radio">${[['', 'All'], ['data', 'Data & Analytics'], ['programmes', 'Programmes & Research']].map(([v, l]) =>
+    $('fPath').innerHTML = `<div class="kh-radio">${[['', 'All'], ['data', 'Data'], ['programmes', 'Programmes']].map(([v, l]) =>
       `<label><input type="radio" name="path" value="${v}"${S.path === v ? ' checked' : ''}><span>${l}${v ? ` <small style="font-weight:600;opacity:.7">${pc.get(v) || 0}</small>` : ''}</span></label>`).join('')}</div>`;
     const tc = count('themes', it => it.th);
     const cur = THEMES.filter(t => t.status === 'current'), arc = THEMES.filter(t => t.status === 'archived');
@@ -98,12 +101,19 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     $('fCountry').innerHTML = opt('', 'All countries') + opt('SADC-ALL', 'Any SADC country', sadcN)
       + `<optgroup label="SADC">${SADC.filter(c => c !== 'SADC' && (cc.get(c) || S.country === c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b])).map(c => opt(c, PLACES[c], cc.get(c) || 0)).join('')}${cc.get('SADC') ? opt('SADC', 'Regional (SADC-wide)', cc.get('SADC')) : ''}</optgroup>`
       + (others.length ? `<optgroup label="Beyond SADC">${others.map(c => opt(c, PLACES[c], cc.get(c))).join('')}</optgroup>` : '');
+    const prc = count('prog', it => it.pg);
+    const popt = p => `<option value="${esc(p.slug)}"${S.prog === p.slug ? ' selected' : ''}>${esc(p.name)} (${prc.get(p.slug) || 0})</option>`;
+    const GROUPS = [['sadc', 'SADC region'], ['za', 'South Africa'], ['cross', 'Cross-cutting']];
+    $('fProgramme').innerHTML = `<option value="">All programmes</option>` + GROUPS.map(([k, l]) => {
+      const list = PROGS.filter(p => p.pathway === k && p.status !== 'archived' && (prc.get(p.slug) || S.prog === p.slug));
+      return list.length ? `<optgroup label="${l}">${list.map(popt).join('')}</optgroup>` : '';
+    }).join('') + (PROGS.some(p => p.status === 'archived' && prc.get(p.slug)) ? `<optgroup label="Past programmes">${PROGS.filter(p => p.status === 'archived' && prc.get(p.slug)).map(popt).join('')}</optgroup>` : '');
     const years = [...new Set(ITEMS.map(i => i.year).filter(Boolean))].sort().reverse();
     $('fFrom').innerHTML = `<option value="">Any</option>` + years.slice().reverse().map(y => `<option${S.from === y ? ' selected' : ''}>${y}</option>`).join('');
     $('fTo').innerHTML = `<option value="">Any</option>` + years.map(y => `<option${S.to === y ? ' selected' : ''}>${y}</option>`).join('');
     const lc = count('langs', it => [it.l || 'en']);
     $('fLang').innerHTML = Object.entries(LANGS).filter(([k]) => ITEMS.some(i => (i.l || 'en') === k)).map(([k, l]) => check('lang', k, l, lc.get(k), S.langs.has(k))).join('');
-    const n = (S.path ? 1 : 0) + S.themes.size + S.types.size + (S.country ? 1 : 0) + (S.from || S.to ? 1 : 0) + S.langs.size;
+    const n = (S.path ? 1 : 0) + (S.prog ? 1 : 0) + S.themes.size + S.types.size + (S.country ? 1 : 0) + (S.from || S.to ? 1 : 0) + S.langs.size;
     $('khFilterCount').textContent = n || '';
   }
 
@@ -140,7 +150,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     else if (sort === 'rel') { list.forEach(i => (i._s = score(i, ts))); list.sort((a, b) => b._s - a._s || (b.d || '').localeCompare(a.d || '')); }
     return { list, ts };
   }
-  const filtered = () => !!(S.q || S.path || S.themes.size || S.types.size || S.country || S.from || S.to || S.langs.size);
+  const filtered = () => !!(S.q || S.path || S.prog || S.themes.size || S.types.size || S.country || S.from || S.to || S.langs.size);
 
   function renderResults() {
     const { list, ts } = results();
@@ -159,7 +169,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     // Active filter chips
     const chips = [];
     if (S.q) chips.push(['q', '', `“${S.q}”`]);
-    if (S.path) chips.push(['path', '', S.path === 'data' ? 'Data & Analytics' : 'Programmes & Research']);
+    if (S.path) chips.push(['path', '', S.path === 'data' ? 'Data' : 'Programmes']);
+    if (S.prog) chips.push(['prog', '', PG[S.prog] ? PG[S.prog].name : S.prog]);
     S.themes.forEach(t => chips.push(['theme', t, TH[t] ? TH[t].name : t]));
     S.types.forEach(t => chips.push(['type', t, t]));
     if (S.country) chips.push(['country', '', S.country === 'SADC-ALL' ? 'Any SADC country' : PLACES[S.country] || S.country]);
@@ -170,7 +181,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   }
 
   function render(resetPage = true) { if (resetPage) S.shown = PAGE; renderFilters(); renderRail(); renderResults(); writeUrl(); }
-  function clearAll() { S.q = ''; $('khQ').value = ''; S.path = ''; S.themes.clear(); S.types.clear(); S.country = ''; S.from = ''; S.to = ''; S.langs.clear(); render(); }
+  function clearAll() { S.q = ''; $('khQ').value = ''; S.path = ''; S.prog = ''; S.themes.clear(); S.types.clear(); S.country = ''; S.from = ''; S.to = ''; S.langs.clear(); render(); }
 
   // ---------- Events ----------
   function wire() {
@@ -183,6 +194,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
       else if (el.name === 'type') el.checked ? S.types.add(el.value) : S.types.delete(el.value);
       else if (el.name === 'lang') el.checked ? S.langs.add(el.value) : S.langs.delete(el.value);
       else if (el.id === 'fCountry') S.country = el.value;
+      else if (el.id === 'fProgramme') S.prog = el.value;
       else if (el.id === 'fFrom') S.from = el.value;
       else if (el.id === 'fTo') S.to = el.value;
       else if (el.id === 'fArchived') { S.archived = el.checked; if (!S.archived) [...S.themes].forEach(s => TH[s] && TH[s].status === 'archived' && S.themes.delete(s)); }
@@ -193,7 +205,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
       if (e.target.closest('[data-clear]')) return clearAll();
       const c = e.target.closest('.kh-chip'); if (!c) return;
       const k = c.dataset.k, v = c.dataset.v;
-      if (k === 'q') { S.q = ''; $('khQ').value = ''; } else if (k === 'path') S.path = ''; else if (k === 'theme') S.themes.delete(v); else if (k === 'type') S.types.delete(v);
+      if (k === 'q') { S.q = ''; $('khQ').value = ''; } else if (k === 'path') S.path = ''; else if (k === 'prog') S.prog = ''; else if (k === 'theme') S.themes.delete(v); else if (k === 'type') S.types.delete(v);
       else if (k === 'country') S.country = ''; else if (k === 'year') { S.from = ''; S.to = ''; } else if (k === 'lang') S.langs.delete(v);
       render();
     });
@@ -216,6 +228,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
 
   fetch('knowledge.json').then(r => r.json()).then(feed => {
     THEMES = feed.themes; THEMES.forEach(t => (TH[t.slug] = t));
+    PROGS = feed.programmes || []; PROGS.forEach(p => (PG[p.slug] = p));
     ITEMS = feed.items; ITEMS.forEach(prep);
     readUrl();
     try { const v = localStorage.getItem('kh-view'); if (v === 'list' || v === 'grid') S.view = v; } catch (e) {}

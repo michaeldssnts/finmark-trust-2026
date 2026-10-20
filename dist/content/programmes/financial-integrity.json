@@ -1,0 +1,17 @@
+{
+  "name": "Financial integrity",
+  "slug": "financial-integrity",
+  "pathway": "sadc",
+  "status": "current",
+  "order": 5,
+  "description": "Anti-money laundering rules that protect the system without shutting people out.",
+  "site_url": "",
+  "theme": "integrity",
+  "keywords": [
+    "aml",
+    "cft",
+    "money laundering",
+    "de-risking",
+    "integrity"
+  ]
+}

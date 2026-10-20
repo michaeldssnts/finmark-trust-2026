@@ -5,6 +5,7 @@ The Knowledge Hub (`knowledge-hub/`) reads one feed, `knowledge-hub/knowledge.js
 ```
 content/themes/<slug>.json            one file per theme (current or archived)
 content/knowledge/<date>-<slug>.json  one file per report, article, video, etc.
+content/programmes/<slug>.json        one file per programme (SADC, South Africa, cross-cutting)
 ```
 
 Editors never touch these files directly; they use the content manager at `/admin/`.
@@ -46,3 +47,13 @@ Opened anywhere other than localhost, finmark.org.za or a Netlify address (for e
 | `npm run import:legacy` | Re-import the legacy export into `content/` (overwrites it) |
 
 `scripts/theme-map.json` holds the theme list and how old site tags fold into the new themes. `legacy/migration-report.csv` lists every imported item with anything an editor should check.
+
+## Section, programme and themes
+
+Every Knowledge Hub item has three ways of being grouped:
+
+- **Section**: Data, Programmes or Both. The Knowledge Hub's Section filter uses it.
+- **Programme**: optional, up to three, picked from the Programmes collection (e.g. GBL, SADC FI Forum). The Knowledge Hub's Programme filter and the "Research" links on the Programmes page use it.
+- **Themes**: 1–4 research topics, as before.
+
+Programmes are managed in the content manager like themes: add one, or set it to Archived when it ends. `node scripts/backfill-programmes.mjs` filled in Section and Programme for items that existed before these fields; the rules live in `scripts/classify.mjs` and are also used by the importer.

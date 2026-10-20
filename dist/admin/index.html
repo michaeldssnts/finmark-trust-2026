@@ -27,6 +27,21 @@
     window.initCMS({ config: cfg });
     if (window.CMS) {
       window.CMS.registerPreviewStyle('../styles.css');
+      // Items saved before the Section and Programme fields existed: when an editor saves one and leaves those
+      // fields empty, keep the site's automatic suggestion (from the published feed) instead of blanking it.
+      var SUGGEST = {};
+      fetch('../knowledge-hub/knowledge.json').then(function (r) { return r.json(); }).then(function (f) { (f.items || []).forEach(function (i) { SUGGEST[i.id] = i; }); }).catch(function () {});
+      window.CMS.registerEventListener({ name: 'preSave', handler: function (ev) {
+        var entry = ev.entry, data = entry.get('data');
+        if (entry.get('collection') !== 'knowledge') return data;
+        var slug = entry.get('slug'), g = SUGGEST[slug];
+        if (!g) return data;
+        if (!data.get('section') && g.sec) data = data.set('section', g.sec);
+        // Only fill programmes when the field was never set (absent); an editor who clears it keeps it cleared.
+        var list = data.get('themes');
+        if (!data.has('programmes') && g.pg && g.pg.length && list && list.clear) data = data.set('programmes', list.clear().concat(g.pg));
+        return data;
+      } });
       if (window.h && window.createClass) {
         window.CMS.registerPreviewTemplate('knowledge', window.createClass({
           render: function () {
@@ -65,9 +80,11 @@
     var rel = function (p) { return p && p.indexOf('/uploads/') === 0 ? '..' + p : (p || ''); };
     feed.items.filter(function (i, n) { return n < 40 || i.img; }).forEach(function (i) {
       var isFile = /\.(pdf|zip|xlsx?|docx?|pptx?)(\?|$)/i.test(i.u);
-      knowledge[i.id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', file: isFile ? rel(i.u) : '', link: isFile ? '' : i.u, thumbnail: rel(i.img), featured: !!i.f, draft: false, review: false, legacy_url: i.u }, null, 2) };
+      knowledge[i.id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', section: i.sec || 'programmes', programmes: i.pg || [], file: isFile ? rel(i.u) : '', link: isFile ? '' : i.u, thumbnail: rel(i.img), featured: !!i.f, draft: false, review: false, legacy_url: i.u }, null, 2) };
     });
-    window.repoFiles = { knowledge: knowledge, themes: themes };
+    var programmes = {};
+    (feed.programmes || []).forEach(function (p) { programmes[p.slug + '.json'] = { content: JSON.stringify({ name: p.name, slug: p.slug, pathway: p.pathway, status: p.status, order: p.order, description: p.description, site_url: p.site }, null, 2) }; });
+    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes };
     start();
   }).catch(function () { window.repoFiles = {}; start(); });
 })();

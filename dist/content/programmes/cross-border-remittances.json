@@ -1,0 +1,15 @@
+{
+  "name": "Cross-border remittances",
+  "slug": "cross-border-remittances",
+  "pathway": "sadc",
+  "status": "current",
+  "order": 3,
+  "description": "Cheaper, safer ways to send money between South Africa and the region.",
+  "site_url": "",
+  "theme": "remittances",
+  "keywords": [
+    "remittance",
+    "cross-border",
+    "cross border"
+  ]
+}
