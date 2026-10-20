@@ -1,1 +1,87 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Knowledge Hub — FinMark Trust</title><meta name="description" content="Find FinMark Trust research, publications, articles and practical tools."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23213265'/%3E%3Cpath d='M15 14h18v8H23v8h9v8h-9v13h-8V14Zm22 0h12v37h-8V23h-4v-9Z' fill='white'/%3E%3C/svg%3E"><link rel="stylesheet" href="../styles.css"></head><body data-page="hub"><div id="site-header"></div><main id="main"><header class="page-hero"><div class="container page-title"><div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><span>Knowledge Hub</span></div><p class="eyebrow light">Research and learning</p><h1>Knowledge that travels further.</h1><p>Find evidence from across FinMark Trust’s data, programmes and partnerships—all connected by topic, place and purpose.</p></div></header><section class="section tight alt"><div class="container"><div class="filters"><div class="search-box"><input data-filter="query" type="search" placeholder="Search publications, articles and tools" aria-label="Search Knowledge Hub"></div><select data-filter="type" aria-label="Content type"><option value="all">All content types</option><option value="publication">Publications</option><option value="article">Articles &amp; blogs</option><option value="video">Videos</option></select><select data-filter="country" aria-label="Country"><option value="all">All locations</option><option value="south-africa">South Africa</option><option value="sadc">SADC region</option></select><select aria-label="Topic"><option>All topics</option><option>Digitalisation</option><option>Gender</option><option>Livelihoods</option></select><button type="button">Apply filters</button></div><div class="result-summary"><strong id="result-count">6 results</strong><span>Newest first</span></div><div class="hub-grid"><article class="hub-card" data-item data-type="publication" data-country="south-africa"><div class="meta">Publication · South Africa</div><h2>When the Clipboard Becomes a Threat: Rethinking M&amp;E</h2><p>Why community trust, ethical data practice and meaningful feedback loops matter for better evidence.</p><footer><span>17 Sep 2026</span><a href="#">Read more</a></footer></article><article class="hub-card" data-item data-type="publication" data-country="sadc"><div class="meta">Report · SADC region</div><h2>2026 SADC Financial Inclusion Forum Report</h2><p>Reviewing a decade of progress and priorities for digital public infrastructure and financial health.</p><footer><span>06 Jul 2026</span><a href="#">Download</a></footer></article><article class="hub-card" data-item data-type="article" data-country="sadc"><div class="meta">Article · Gender</div><h2>Beyond Counting Women: Why Better Gender Data Matters</h2><p>Moving beyond access to understand agency, control of resources and meaningful financial use.</p><footer><span>25 Aug 2026</span><a href="#">Read article</a></footer></article><article class="hub-card" data-item data-type="video" data-country="south-africa"><div class="meta">Video · Digitalisation</div><h2>Leaving no one behind in the digital economy</h2><p>South Africa’s evolving tipping landscape, informed by FinScope data and two pilot projects.</p><footer><span>01 Oct 2026</span><a href="#">Watch video</a></footer></article><article class="hub-card" data-item data-type="article" data-country="south-africa"><div class="meta">Article · Livelihoods</div><h2>From Knowledge to Practice: Lessons in Financial Literacy</h2><p>How practical learning, trusted support and digital tools can encourage meaningful behaviour change.</p><footer><span>25 Aug 2026</span><a href="#">Read article</a></footer></article><article class="hub-card" data-item data-type="publication" data-country="south-africa"><div class="meta">Annual report · South Africa</div><h2>2025 Annual Report: Building on progress for lasting impact</h2><p>FinMark Trust’s work across data, inclusive digital payments, livelihoods and regional policy.</p><footer><span>18 May 2026</span><a href="#">Download</a></footer></article></div></div></section></main><div id="site-footer"></div><script src="../site.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Knowledge Hub — FinMark Trust</title>
+<meta name="description" content="Search and filter FinMark Trust research: reports, pocket guides, articles, blogs, videos and more, by theme, country and year.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23213265'/%3E%3Cpath d='M15 14h18v8H23v8h9v8h-9v13h-8V14Zm22 0h12v37h-8V23h-4v-9Z' fill='white'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="hub.css">
+</head>
+<body data-page="hub">
+<div id="site-header"></div>
+<main id="main">
+  <header class="kh-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><span>Knowledge Hub</span></div>
+      <div class="kh-hero-grid">
+        <div>
+          <p class="eyebrow light">Research and learning</p>
+          <h1>Knowledge Hub</h1>
+          <p class="kh-lede">Reports, pocket guides, articles, videos and tools from FinMark Trust's data and programme work, searchable by theme, country and year.</p>
+        </div>
+        <form class="kh-search" id="khSearch" role="search">
+          <label for="khQ">Search the Knowledge Hub</label>
+          <div class="kh-search-row"><input id="khQ" type="search" placeholder="Try “remittances Lesotho” or “FinScope 2023”" autocomplete="off"><button type="submit">Search</button></div>
+          <p class="kh-stats" id="khStats">Loading the library…</p>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <section class="kh-themes" aria-labelledby="khThemesTitle">
+    <div class="container">
+      <h2 class="kh-sr" id="khThemesTitle">Browse by theme</h2>
+      <div class="kh-theme-rail" id="khThemeRail"></div>
+    </div>
+  </section>
+
+  <section class="kh-body">
+    <div class="container kh-layout">
+      <aside class="kh-filters" id="khFilters" aria-label="Filters">
+        <div class="kh-filters-head"><h2>Filter</h2><button type="button" class="kh-link" id="khClear">Clear all</button><button type="button" class="kh-close" id="khCloseFilters" aria-label="Close filters">×</button></div>
+        <fieldset class="kh-group"><legend>Pathway</legend><div id="fPath"></div></fieldset>
+        <fieldset class="kh-group"><legend>Theme</legend><div id="fThemes" class="kh-checks"></div>
+          <label class="kh-switch"><input type="checkbox" id="fArchived"><span class="kh-track" aria-hidden="true"></span><span>Include archived themes <small id="fArchivedN"></small></span></label>
+          <div id="fThemesArchived" class="kh-checks kh-archived" hidden></div>
+        </fieldset>
+        <fieldset class="kh-group"><legend>Content type</legend><div id="fTypes" class="kh-checks"></div></fieldset>
+        <fieldset class="kh-group"><legend>Country</legend><label class="kh-sr" for="fCountry">Country</label><select id="fCountry"></select></fieldset>
+        <fieldset class="kh-group"><legend>Year</legend><div class="kh-years"><label>From<select id="fFrom"></select></label><label>To<select id="fTo"></select></label></div></fieldset>
+        <fieldset class="kh-group"><legend>Language</legend><div id="fLang" class="kh-checks"></div></fieldset>
+        <button type="button" class="kh-apply" id="khApply">Show results</button>
+      </aside>
+
+      <div class="kh-main">
+        <div class="kh-featured" id="khFeatured"></div>
+        <div class="kh-toolbar">
+          <button type="button" class="kh-open-filters" id="khOpenFilters">Filters <span id="khFilterCount"></span></button>
+          <p class="kh-count" id="khCount" aria-live="polite"></p>
+          <div class="kh-tools">
+            <label for="khSort" class="kh-sr">Sort by</label>
+            <select id="khSort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="az">Title A–Z</option><option value="rel">Best match</option></select>
+            <div class="kh-view" role="group" aria-label="Layout"><button type="button" id="vGrid" aria-pressed="true" aria-label="Grid view">▦</button><button type="button" id="vList" aria-pressed="false" aria-label="List view">☰</button></div>
+          </div>
+        </div>
+        <div class="kh-chips" id="khChips"></div>
+        <ul class="kh-results" id="khResults"></ul>
+        <div class="kh-more"><button type="button" class="kh-more-btn" id="khMore" hidden>Show more</button><p class="kh-paging" id="khPaging"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kh-cms">
+    <div class="container kh-cms-inner">
+      <div><p class="eyebrow">For FinMark Trust staff</p><h2>Add research to the hub</h2><p>New reports, blogs and videos are added through the content manager. Pick themes, countries and a file, and the piece appears here with its filters.</p></div>
+      <a class="primary-btn" href="../admin/index.html">Open the content manager</a>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="hub.js"></script>
+<script src="../site.js"></script>
+</body>
+</html>

@@ -10,38 +10,138 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23213265'/%3E%3Cpath d='M15 14h18v8H23v8h9v8h-9v13h-8V14Zm22 0h12v37h-8V23h-4v-9Z' fill='white'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="hero.css">
 </head>
 <body data-page="home">
   <div id="site-header"></div>
   <main id="main">
-    <section class="hero hero-explorer" data-active-pathway="data" id="pathways">
-      <div class="hero-explorer-media" aria-hidden="true"><img src="hero-financial-inclusion.png" alt=""><div class="hero-explorer-shade"></div></div>
-      <div class="container hero-explorer-inner">
-        <nav class="hero-path-menu" role="tablist" aria-label="Explore FinMark Trust pathways">
-          <p>Choose a pathway</p>
-          <button class="hero-path-choice is-active" id="hero-tab-data" type="button" role="tab" aria-selected="true" aria-controls="hero-panel-data" data-hero-path="data"><span>01</span><span><strong>Data &amp; Analytics</strong><small>Evidence, insight and skills</small></span></button>
-          <button class="hero-path-choice" id="hero-tab-programmes" type="button" role="tab" aria-selected="false" aria-controls="hero-panel-programmes" data-hero-path="programmes" tabindex="-1"><span>02</span><span><strong>Programmes &amp; Research</strong><small>Themes, projects and impact</small></span></button>
-          <button class="hero-search-trigger open-search" type="button"><span aria-hidden="true">⌕</span> Search everything</button>
-        </nav>
-        <div class="hero-story-stage" aria-live="polite">
-          <article class="hero-story is-active" id="hero-panel-data" role="tabpanel" aria-labelledby="hero-tab-data" data-hero-panel="data">
-            <p class="eyebrow light">Data &amp; Analytics</p>
-            <h1>See financial markets <span>more clearly.</span></h1>
-            <p>Explore FinScope Consumer and MSME evidence, bespoke analytics and practical training that turn complex data into better decisions.</p>
-            <div class="hero-context-links"><a href="data/index.html">FinScope Consumer</a><a href="data/index.html">FinScope MSME</a><a href="data/index.html">Analytics</a><a href="https://finmark.org.za/Training/">Training</a></div>
-            <a class="primary-btn hero-primary-action" href="data/index.html">Explore Data &amp; Analytics</a>
+    <section class="hx" id="pathways" aria-roledescription="carousel" aria-label="Explore FinMark Trust pathways" data-active="0">
+      <div class="hx-viewport" aria-live="off">
+        <div class="hx-track">
+
+          <article class="hx-slide hx-slide--data is-active" id="hx-panel-data" role="tabpanel" aria-roledescription="slide" aria-labelledby="hx-tab-data">
+            <div class="hx-media" aria-hidden="true"><img src="hero-data-analytics.jpg" alt=""></div>
+            <span class="hx-diagonal" aria-hidden="true"></span>
+            <div class="container hx-grid">
+              <div class="hx-copy">
+                <p class="hx-kicker"><span>01</span>Data &amp; Analytics</p>
+                <h1 class="hx-title">See financial markets <span>more clearly.</span></h1>
+                <p class="hx-lead">Explore FinScope Consumer and MSME evidence, bespoke analytics and practical training that turn complex data into better decisions.</p>
+                <ul class="hx-chips" aria-label="Data &amp; Analytics topics">
+                  <li><a href="data/finscope-consumer.html#MWI-2023">FinScope Consumer</a></li>
+                  <li><a href="countries/index.html">FinScope MSME</a></li>
+                  <li><a href="countries/index.html">Analytics</a></li>
+                  <li><a href="https://finmark.org.za/Training/">Training</a></li>
+                </ul>
+                <div class="hx-actions">
+                  <a class="hx-btn" href="countries/index.html">Explore Data &amp; Analytics <span aria-hidden="true">&#8594;</span></a>
+                  <button class="hx-ghost open-search" type="button">Search everything</button>
+                </div>
+              </div>
+              <aside class="hx-latest" aria-label="Latest in Data &amp; Analytics">
+                <p class="hx-latest-label">Latest in Data &amp; Analytics</p>
+                <a class="hx-card" href="knowledge-hub/index.html">
+                  <span class="hx-thumb thumb-video" aria-hidden="true"><i></i></span>
+                  <span class="hx-card-body">
+                    <small>Video <b aria-hidden="true">·</b> 01 Oct 2026</small>
+                    <strong>Leaving no one behind in the digital economy</strong>
+                    <span class="hx-card-text">South Africa’s evolving tipping landscape, informed by FinScope data and two pilot projects.</span>
+                    <span class="hx-card-cta">Watch video <span aria-hidden="true">&#8594;</span></span>
+                  </span>
+                </a>
+                <a class="hx-card" href="knowledge-hub/index.html">
+                  <span class="hx-thumb thumb-publication" aria-hidden="true"></span>
+                  <span class="hx-card-body">
+                    <small>Publication <b aria-hidden="true">·</b> 17 Sep 2026</small>
+                    <strong>When the Clipboard Becomes a Threat: Rethinking M&amp;E</strong>
+                    <span class="hx-card-text">Why community trust, ethical data practice and meaningful feedback loops matter for better evidence.</span>
+                    <span class="hx-card-cta">Read more <span aria-hidden="true">&#8594;</span></span>
+                  </span>
+                </a>
+              </aside>
+            </div>
           </article>
-          <article class="hero-story" id="hero-panel-programmes" role="tabpanel" aria-labelledby="hero-tab-programmes" data-hero-panel="programmes" hidden>
-            <p class="eyebrow light">Programmes &amp; Research</p>
-            <h1>Turn research into <span>practical change.</span></h1>
-            <p>Follow evolving themes, implementation programmes and regional platforms from evidence through to impact.</p>
-            <div class="hero-context-links"><a href="https://finmark.org.za/SADC_FI_Forum/">SADC FI Forum</a><a href="programmes/generating-better-livelihoods/index.html">GBL</a><a href="https://finmark.org.za/Gender/">Gender</a><a href="https://finmark.org.za/Community_digitalisation/">Community Digitalisation</a><a href="https://finmark.org.za/eKYC/Index.html">eKYC</a></div>
-            <a class="primary-btn hero-primary-action" href="#landing-pages">Explore programme platforms</a>
+
+          <article class="hx-slide hx-slide--programmes" id="hx-panel-programmes" role="tabpanel" aria-roledescription="slide" aria-labelledby="hx-tab-programmes" aria-hidden="true" inert>
+            <div class="hx-media" aria-hidden="true"><img src="hero-financial-inclusion.png" alt=""></div>
+            <span class="hx-diagonal" aria-hidden="true"></span>
+            <div class="container hx-grid">
+              <div class="hx-copy">
+                <p class="hx-kicker"><span>02</span>Programmes &amp; Research</p>
+                <h2 class="hx-title">Turn research into <span>practical change.</span></h2>
+                <p class="hx-lead">Follow evolving themes, implementation programmes and regional platforms from evidence through to impact.</p>
+                <ul class="hx-chips" aria-label="Programmes &amp; Research platforms">
+                  <li><a href="https://finmark.org.za/SADC_FI_Forum/">SADC FI Forum</a></li>
+                  <li><a href="programmes/generating-better-livelihoods/index.html">GBL</a></li>
+                  <li><a href="https://finmark.org.za/Gender/">Gender</a></li>
+                  <li><a href="https://finmark.org.za/Community_digitalisation/">Community Digitalisation</a></li>
+                  <li><a href="https://finmark.org.za/eKYC/Index.html">eKYC</a></li>
+                </ul>
+                <div class="hx-actions">
+                  <a class="hx-btn" href="programmes/index.html">Explore programme platforms <span aria-hidden="true">&#8594;</span></a>
+                  <button class="hx-ghost open-search" type="button">Search everything</button>
+                </div>
+              </div>
+              <aside class="hx-latest" aria-label="Latest in Programmes &amp; Research">
+                <p class="hx-latest-label">Latest in Programmes &amp; Research</p>
+                <a class="hx-card" href="knowledge-hub/index.html">
+                  <span class="hx-thumb thumb-article" aria-hidden="true"></span>
+                  <span class="hx-card-body">
+                    <small>Article <b aria-hidden="true">·</b> Gender <b aria-hidden="true">·</b> 25 Aug 2026</small>
+                    <strong>Beyond Counting Women: Why Better Gender Data Matters</strong>
+                    <span class="hx-card-text">Moving beyond access to understand agency, control of resources and meaningful financial use.</span>
+                    <span class="hx-card-cta">Read article <span aria-hidden="true">&#8594;</span></span>
+                  </span>
+                </a>
+                <a class="hx-card" href="knowledge-hub/index.html">
+                  <span class="hx-thumb thumb-blog" aria-hidden="true"></span>
+                  <span class="hx-card-body">
+                    <small>Blog <b aria-hidden="true">·</b> Livelihoods <b aria-hidden="true">·</b> 25 Aug 2026</small>
+                    <strong>From Knowledge to Practice: Lessons in Financial Literacy</strong>
+                    <span class="hx-card-text">How practical learning, trusted support and digital tools can encourage meaningful behaviour change.</span>
+                    <span class="hx-card-cta">Read article <span aria-hidden="true">&#8594;</span></span>
+                  </span>
+                </a>
+              </aside>
+            </div>
           </article>
+
         </div>
       </div>
-      <button class="hero-motion-toggle" type="button" aria-pressed="false"><span class="motion-icon" aria-hidden="true">Ⅱ</span><span class="motion-label">Pause rotation</span></button>
-      <div class="diagonal" aria-hidden="true"></div>
+
+      <div class="hx-bar">
+        <div class="container hx-bar-inner">
+          <div class="hx-tabs" role="tablist" aria-label="Choose a pathway">
+            <button class="hx-tab is-active" id="hx-tab-data" type="button" role="tab" aria-selected="true" aria-controls="hx-panel-data" data-index="0">
+              <span class="hx-tab-progress" aria-hidden="true"><i></i></span>
+              <span class="hx-tab-num">01</span>
+              <span class="hx-tab-text"><strong>Data &amp; Analytics</strong><small>Evidence, insight and skills</small></span>
+            </button>
+            <button class="hx-tab" id="hx-tab-programmes" type="button" role="tab" aria-selected="false" aria-controls="hx-panel-programmes" data-index="1" tabindex="-1">
+              <span class="hx-tab-progress" aria-hidden="true"><i></i></span>
+              <span class="hx-tab-num">02</span>
+              <span class="hx-tab-text"><strong>Programmes &amp; Research</strong><small>Themes, projects and impact</small></span>
+            </button>
+          </div>
+          <div class="hx-controls">
+            <button class="hx-ctrl" type="button" data-hx-step="-1" aria-label="Previous pathway">&#8592;</button>
+            <button class="hx-ctrl" type="button" data-hx-step="1" aria-label="Next pathway">&#8594;</button>
+            <button class="hx-ctrl hx-pause" type="button" aria-label="Pause automatic rotation"><span class="hx-pause-icon" aria-hidden="true"></span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Latest evidence</p><h2>New in the<br>Knowledge Hub</h2></div><div class="rail-actions"><a class="text-link" href="knowledge-hub/index.html">Browse all knowledge</a><div class="rail-buttons"><button type="button" data-rail-direction="-1" aria-controls="knowledge-rail">Previous</button><button type="button" data-rail-direction="1" aria-controls="knowledge-rail">Next</button></div></div></div>
+        <div class="content-grid knowledge-rail" id="knowledge-rail" tabindex="0" aria-label="Latest Knowledge Hub content. Scroll horizontally for more.">
+          <article class="content-card featured"><div class="content-thumb thumb-publication" aria-hidden="true"><span>Publication</span></div><div class="meta"><span>Publication</span><span>South Africa</span><span>17 Sep 2026</span></div><h3>When the Clipboard Becomes a Threat</h3><p>Rethinking monitoring and evaluation in an age of community distrust—and designing stronger feedback loops.</p><a href="knowledge-hub/index.html">Read the insight</a></article>
+          <article class="content-card"><div class="content-thumb thumb-report" aria-hidden="true"><span>Report</span></div><div class="meta"><span>Report</span><span>SADC</span></div><h3>2026 SADC Financial Inclusion Forum Report</h3><p>A decade of progress and the priorities shaping digital public infrastructure and financial health.</p><a href="knowledge-hub/index.html">View publication</a></article>
+          <article class="content-card"><div class="content-thumb thumb-article" aria-hidden="true"><span>Article</span></div><div class="meta"><span>Article</span><span>Gender data</span></div><h3>Beyond Counting Women</h3><p>Why better gender data matters for women’s economic empowerment.</p><a href="knowledge-hub/index.html">Read article</a></article>
+          <article class="content-card"><div class="content-thumb thumb-video" aria-hidden="true"><span>Video</span><i></i></div><div class="meta"><span>Video</span><span>Digitalisation</span></div><h3>Leaving no one behind in the digital economy</h3><p>FinScope evidence and practical lessons from South Africa’s digital tipping pilots.</p><a href="knowledge-hub/index.html">Watch video</a></article>
+          <article class="content-card"><div class="content-thumb thumb-blog" aria-hidden="true"><span>Blog</span></div><div class="meta"><span>Blog</span><span>Financial education</span></div><h3>From Knowledge to Practice</h3><p>Lessons on practical learning, trusted support and meaningful financial behaviour change.</p><a href="knowledge-hub/index.html">Read the article</a></article>
+        </div>
+      </div>
     </section>
     <section class="section landing-pages" id="landing-pages">
       <div class="container">
@@ -60,21 +160,15 @@
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">One connected platform</p><h2>Start with your question,<br>not our structure.</h2></div><p>FinMark Trust’s evidence is organised around the ways people use it: to explore data, understand an issue or see what works in practice.</p></div>
         <div class="gateway-grid two-pathways">
-          <article class="gateway-card"><span class="gateway-num">01 / DATA &amp; ANALYTICS</span><div><h3>Explore financial inclusion data</h3><p>Compare indicators, find surveys and download evidence across countries and years.</p><a href="data/index.html">Explore Data &amp; Analytics</a></div></article>
-          <article class="gateway-card"><span class="gateway-num">02 / PROGRAMMES &amp; RESEARCH</span><div><h3>See how evidence becomes impact</h3><p>Follow programme outcomes, research themes, partners and learning in one place.</p><a href="#landing-pages">Explore programmes</a></div></article>
+          <article class="gateway-card"><span class="gateway-num">01 / DATA &amp; ANALYTICS</span><div><h3>Explore financial inclusion data</h3><p>Find surveys, explore indicators and download evidence for each country.</p><a href="countries/index.html">Explore Data &amp; Analytics</a></div></article>
+          <article class="gateway-card"><span class="gateway-num">02 / PROGRAMMES &amp; RESEARCH</span><div><h3>See how evidence becomes impact</h3><p>Follow programme outcomes, research themes, partners and learning in one place.</p><a href="programmes/index.html">Explore programmes</a></div></article>
         </div>
       </div>
     </section>
     <section class="section alt" id="countries">
       <div class="container feature-grid">
-        <div class="data-visual" aria-label="Illustrative chart of financial inclusion across SADC"><div class="visual-top"><div><span class="badge">Featured dataset</span><h3>Financial inclusion across SADC</h3></div><span>2024</span></div><div class="bars"><div class="bar" style="height:64%"><span>Botswana</span></div><div class="bar" style="height:82%"><span>Lesotho</span></div><div class="bar" style="height:70%"><span>Malawi</span></div><div class="bar" style="height:90%"><span>South Africa</span></div><div class="bar" style="height:74%"><span>Zambia</span></div><div class="bar" style="height:78%"><span>Zimbabwe</span></div></div><div class="data-note"><span>Illustrative prototype data</span><span>View 16 SADC countries</span></div></div>
-        <div class="feature-copy"><p class="eyebrow">Data spotlight</p><h2>One region.<br>Many realities.</h2><p>Explore how access, usage and financial wellbeing differ across countries—and connect each indicator to the research and programmes behind it.</p><div class="topic-row"><span class="chip">FinScope Consumer</span><span class="chip">MSME</span><span class="chip">Gender</span><span class="chip">Digitalisation</span></div><a class="primary-btn" href="data/index.html">Compare country data</a></div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="section-head"><div><p class="eyebrow">Latest evidence</p><h2>New in the<br>Knowledge Hub</h2></div><div class="rail-actions"><a class="text-link" href="knowledge-hub/index.html">Browse all knowledge</a><div class="rail-buttons"><button type="button" data-rail-direction="-1" aria-controls="knowledge-rail">Previous</button><button type="button" data-rail-direction="1" aria-controls="knowledge-rail">Next</button></div></div></div>
-        <div class="content-grid knowledge-rail" id="knowledge-rail" tabindex="0" aria-label="Latest Knowledge Hub content. Scroll horizontally for more."><article class="content-card featured"><div class="meta"><span>Publication</span><span>South Africa</span><span>17 Sep 2026</span></div><h3>When the Clipboard Becomes a Threat</h3><p>Rethinking monitoring and evaluation in an age of community distrust—and designing stronger feedback loops.</p><a href="knowledge-hub/index.html">Read the insight</a></article><article class="content-card"><div class="meta"><span>Report</span><span>SADC</span></div><h3>2026 SADC Financial Inclusion Forum Report</h3><p>A decade of progress and the priorities shaping digital public infrastructure and financial health.</p><a href="knowledge-hub/index.html">View publication</a></article><article class="content-card"><div class="meta"><span>Article</span><span>Gender data</span></div><h3>Beyond Counting Women</h3><p>Why better gender data matters for women’s economic empowerment.</p><a href="knowledge-hub/index.html">Read article</a></article><article class="content-card"><div class="meta"><span>Video</span><span>Digitalisation</span></div><h3>Leaving no one behind in the digital economy</h3><p>FinScope evidence and practical lessons from South Africa’s digital tipping pilots.</p><a href="knowledge-hub/index.html">Watch video</a></article><article class="content-card"><div class="meta"><span>Blog</span><span>Financial education</span></div><h3>From Knowledge to Practice</h3><p>Lessons on practical learning, trusted support and meaningful financial behaviour change.</p><a href="knowledge-hub/index.html">Read the article</a></article></div>
+        <div class="data-visual" aria-label="FinScope Consumer Malawi 2023 access strand"><div class="visual-top"><div><span class="badge">Featured country</span><h3>Malawi: access strand</h3></div><span>2023</span></div><div class="bars"><div class="bar" style="height:12.7%;background:#213265"><span>Banked 13%</span></div><div class="bar" style="height:60.6%;background:#0098ae"><span>Other formal 61%</span></div><div class="bar" style="height:13.8%;background:#00997b"><span>Informal 14%</span></div><div class="bar" style="height:12.9%;background:#c5ccd5"><span>Excluded 13%</span></div></div><div class="data-note"><span>FinScope Consumer Malawi 2023, weighted</span><a href="data/finscope-consumer.html#MWI-2023">Open the explorer →</a></div></div>
+        <div class="feature-copy"><p class="eyebrow">Data spotlight</p><h2>One region.<br>Many realities.</h2><p>Every SADC country has its own data page, with its FinScope surveys, key statistics and the research and programmes behind them.</p><div class="topic-row"><a class="chip" href="data/country.html#BWA">Botswana</a><a class="chip" href="data/country.html#LSO">Lesotho</a><a class="chip" href="data/country.html#MWI">Malawi</a><a class="chip" href="data/country.html#ZAF">South Africa</a><a class="chip" href="data/country.html#ZMB">Zambia</a><a class="chip" href="data/country.html#ZWE">Zimbabwe</a></div><a class="primary-btn" href="countries/index.html">Choose a country</a></div>
       </div>
     </section>
     <section class="section tight"><div class="container programme-strip"><p class="eyebrow light">Programme spotlight</p><h2>Generating better livelihoods from evidence and opportunity.</h2><p>See how FinMark Trust links grant recipients to employment and entrepreneurship pathways—and brings programme learning, resources and results together.</p><a class="primary-btn" href="programmes/generating-better-livelihoods/index.html">Explore the programme</a></div></section>

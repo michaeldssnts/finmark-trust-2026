@@ -1,0 +1,12 @@
+{
+  "name": "finmark-trust-website",
+  "private": true,
+  "type": "module",
+  "description": "FinMark Trust website prototype with Decap CMS for the Knowledge Hub",
+  "scripts": {
+    "cms": "node scripts/dev.mjs",
+    "build:knowledge": "node scripts/build-knowledge.mjs",
+    "import:legacy": "node scripts/import-legacy.mjs --in legacy/hub-inventory.json --clean"
+  },
+  "engines": { "node": ">=18" }
+}

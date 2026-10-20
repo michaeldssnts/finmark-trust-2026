@@ -1,0 +1,48 @@
+# Knowledge Hub content manager (Decap CMS)
+
+The Knowledge Hub (`knowledge-hub/`) reads one feed, `knowledge-hub/knowledge.json`. That feed is built from the CMS content files:
+
+```
+content/themes/<slug>.json            one file per theme (current or archived)
+content/knowledge/<date>-<slug>.json  one file per report, article, video, etc.
+```
+
+Editors never touch these files directly; they use the content manager at `/admin/`.
+
+## Edit locally (no accounts needed)
+
+Requires Node.js 18 or newer.
+
+```
+npm run cms
+```
+
+Then open http://localhost:8080/admin/ and click **Login**. Saves are written straight into `content/`, and the feed rebuilds within a second, so http://localhost:8080/knowledge-hub/ shows the change on refresh.
+
+The first run imports the legacy export (`legacy/hub-inventory.json`) into `content/` automatically.
+
+## Live and staging site (GitHub + Netlify)
+
+1. **Create the GitHub repository** (private is fine) and add everything in this `dist` folder to it. GitHub Desktop is the easiest way: File › Add local repository › choose this folder › Publish repository.
+2. **In `admin/cms-config.js`, set `REPO`** to the repository, currently `michaeldssnts/finmark-trust-2026`, and commit.
+3. **Create the Netlify site:** Add new site › Import an existing project › GitHub › pick the repository. Set **Base directory** to `dist` (the site sits in a `dist` folder in the repository); the rest of the build settings come from `netlify.toml`.
+4. **Turn on GitHub sign-in for editors:** in GitHub, Settings › Developer settings › OAuth Apps › New OAuth App. Homepage URL is the Netlify address; the callback URL is `https://api.netlify.com/auth/done`. Copy the Client ID and secret into Netlify: Site configuration › Access & security › OAuth › Install provider › GitHub.
+5. **Give editors access:** add them to the GitHub repository with write access. They sign in at `https://<your-site>/admin/` with their GitHub account.
+
+The site works on its `*.netlify.app` address straight away. For a custom address such as `staging.finmark.org.za`, add it in Netlify (Domain management) and in `STAGING_HOSTS` in `admin/cms-config.js`.
+
+On the live and staging site the editor uses an editorial workflow: items are saved as drafts, reviewed, then published. Publishing commits to GitHub and Netlify rebuilds the site in about a minute.
+
+## Other modes
+
+Opened anywhere other than localhost, finmark.org.za or a Netlify address (for example the hosted prototype), `/admin/` runs in a **demo sandbox** seeded with the 40 newest items. Nothing is saved.
+
+## Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run cms` | Local site + editor + automatic feed rebuild |
+| `npm run build:knowledge` | Rebuild `knowledge-hub/knowledge.json` once |
+| `npm run import:legacy` | Re-import the legacy export into `content/` (overwrites it) |
+
+`scripts/theme-map.json` holds the theme list and how old site tags fold into the new themes. `legacy/migration-report.csv` lists every imported item with anything an editor should check.

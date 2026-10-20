@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Explore Data by Country — FinMark Trust</title>
+  <meta name="description" content="Explore FinMark Trust data, research and programmes across Southern Africa and beyond.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+<style>
+.cg-hero{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
+.cg-hero:after{content:"";position:absolute;right:6%;bottom:-170px;width:34px;height:360px;background:var(--teal);opacity:.85;transform:rotate(45deg)}
+.cg-hero .container{position:relative;z-index:1;padding:40px 0 44px}
+.cg-hero .breadcrumbs{margin-bottom:22px}
+.cg-hero-row{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+.cg-hero h1{margin:0;color:#fff;font-size:clamp(2.4rem,4.6vw,3.8rem);line-height:1.04;letter-spacing:-.035em}
+.cg-hero p:not(.eyebrow){margin:12px 0 0;color:#d5def0;max-width:56ch}
+.cg-search{display:grid;gap:6px;min-width:min(340px,100%)}
+.cg-search label{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#aebbd8}
+.cg-search input{min-height:48px;padding:0 16px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:1rem;border-radius:2px}
+.cg-search input::placeholder{color:#aebbd8}
+.cg-search input:focus{outline:3px solid #22b8cd;outline-offset:1px}
+.cg-section{background:#f5f8fa;padding:40px 0 88px}
+.cg-count{margin:0 0 18px;color:var(--muted);font-size:.86rem;font-weight:600}
+.cg-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.cg-grid li{min-width:0}
+/* Card: flag cut by a 16° brand diagonal with a teal edge, navy base, oversized ISO code as texture */
+.cg-grid li{display:flex}
+.cg-card{--drop:38%;position:relative;isolation:isolate;flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--navy-deep);color:#fff;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.cg-flag{position:relative;z-index:1;display:block;aspect-ratio:4/3;background-size:cover;background-position:center;clip-path:polygon(0 0,100% 0,100% 100%,0 calc(100% - var(--drop)));transition:clip-path .45s cubic-bezier(.2,.7,.2,1)}
+.cg-card:before{content:"";position:absolute;z-index:2;top:0;left:0;right:0;aspect-ratio:4/3;background:var(--teal);clip-path:polygon(0 calc(100% - var(--drop) - 7px),100% calc(100% - 7px),100% 100%,0 calc(100% - var(--drop)));transition:clip-path .45s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.cg-code{position:absolute;right:-8px;bottom:64px;z-index:0;font-size:5.4rem;font-weight:800;letter-spacing:-.04em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);pointer-events:none;transition:-webkit-text-stroke-color .3s}
+.cg-body{position:relative;z-index:3;display:grid;gap:6px;align-content:start;flex:1;margin-top:-10%;padding:0 22px 22px}
+.cg-body strong{font-size:1.55rem;font-weight:800;letter-spacing:-.025em;line-height:1.1;padding-right:44px;text-wrap:balance}
+.cg-meta{font-size:.8rem;color:#aebbd8}
+.cg-surveys{display:grid;gap:5px;margin-top:8px;padding-top:12px;border-top:1px solid rgba(255,255,255,.14)}
+.cg-s{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:#e8eef9;font-variant-numeric:tabular-nums}
+.cg-s i{width:9px;height:9px;flex:0 0 auto;background:#22b8cd;transform:rotate(45deg)}
+.cg-s.msme i{background:#2cc39f}
+.cg-s.other{color:#aebbd8;font-weight:600}.cg-s.other i{background:#8a96b0}
+.cg-s.none{color:#aebbd8;font-weight:600}
+.cg-go{position:absolute;z-index:3;right:16px;top:16px;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#fff;color:var(--navy);font-weight:800;font-size:1.1rem;box-shadow:0 8px 20px rgba(0,0,0,.25);transform:scale(.85);opacity:0;transition:opacity .3s,transform .3s}
+a.cg-card:hover,a.cg-card:focus-visible{transform:translateY(-6px);box-shadow:0 26px 50px rgba(20,32,68,.28)}
+a.cg-card:hover,a.cg-card:focus-visible{--drop:16%}
+a.cg-card:hover .cg-go,a.cg-card:focus-visible .cg-go{opacity:1;transform:scale(1)}
+a.cg-card:hover .cg-code,a.cg-card:focus-visible .cg-code{-webkit-text-stroke-color:rgba(127,219,230,.4)}
+a.cg-card:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.cg-card.is-off{background:#2a3350}
+.cg-card.is-off .cg-flag{filter:grayscale(1) contrast(.8);opacity:.45}
+.cg-card.is-off:before{background:#5d6880}
+.cg-card.is-off strong{color:#c9d1e3}
+.cg-empty{padding:28px;border:1px dashed var(--border);text-align:center;color:var(--muted);background:#fff}
+@media(max-width:1020px){.cg-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.cg-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cg-body{padding:0 14px 16px}.cg-body strong{font-size:1.15rem;padding-right:0}.cg-code{font-size:3.4rem;bottom:60px}.cg-go{display:none}.cg-s{font-size:.7rem}.cg-search{min-width:100%}}
+@media (prefers-reduced-motion:reduce){.cg-card,.cg-go,.cg-flag,.cg-card:before{transition:none}}
+</style>
+</head>
+<body data-page="countries" data-header="dark">
+  <div id="site-header"></div>
+  <main id="main">
+    <header class="cg-hero">
+      <div class="container">
+        <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><span>Explore Data</span></div>
+        <div class="cg-hero-row">
+          <div><p class="eyebrow light">Explore Data</p><h1>Choose a country</h1><p>See each country's FinScope surveys, key statistics, publications and programme work in one place.</p></div>
+          <div class="cg-search"><label for="cgFind">Find a country</label><input id="cgFind" type="search" placeholder="Type a country name" autocomplete="off"></div>
+        </div>
+      </div>
+    </header>
+    <section class="cg-section" aria-label="Countries">
+      <div class="container">
+        <p class="cg-count" id="cgCount" aria-live="polite">15 countries with data pages</p>
+        <ul class="cg-grid" id="cgGrid">
+          <li data-name="angola angola ago"><a class="cg-card" href="../data/country.html#AGO" aria-label="Angola: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/ao.svg)"></span><span class="cg-code" aria-hidden="true">AGO</span><span class="cg-body"><strong>Angola</strong><span class="cg-meta">Luanda · 39.0m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2022</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="botswana botswana bwa"><a class="cg-card" href="../data/country.html#BWA" aria-label="Botswana: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/bw.svg)"></span><span class="cg-code" aria-hidden="true">BWA</span><span class="cg-body"><strong>Botswana</strong><span class="cg-meta">Gaborone · 2.6m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014, 2020, 2024</span><span class="cg-s msme"><i></i>MSME 2024</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="comoros"><div class="cg-card is-off" aria-disabled="true"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/km.svg)"></span><span class="cg-code" aria-hidden="true">COM</span><span class="cg-body"><strong>Comoros</strong><span class="cg-meta">Moroni</span><span class="cg-surveys"><span class="cg-s none">No data page yet</span></span></span></div></li>
+          <li data-name="democratic republic of the congo dr congo cod"><a class="cg-card" href="../data/country.html#COD" aria-label="Democratic Republic of the Congo: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/cd.svg)"></span><span class="cg-code" aria-hidden="true">COD</span><span class="cg-body"><strong>DR Congo</strong><span class="cg-meta">Kinshasa · 112.8m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="eswatini eswatini swz"><a class="cg-card" href="../data/country.html#SWZ" aria-label="Eswatini: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/sz.svg)"></span><span class="cg-code" aria-hidden="true">SWZ</span><span class="cg-body"><strong>Eswatini</strong><span class="cg-meta">Mbabane · 1.3m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014, 2018</span><span class="cg-s msme"><i></i>MSME 2017, 2023</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="lesotho lesotho lso"><a class="cg-card" href="../data/country.html#LSO" aria-label="Lesotho: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/ls.svg)"></span><span class="cg-code" aria-hidden="true">LSO</span><span class="cg-body"><strong>Lesotho</strong><span class="cg-meta">Maseru · 2.4m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2011, 2021</span><span class="cg-s msme"><i></i>MSME 2016, 2023</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="madagascar madagascar mdg"><a class="cg-card" href="../data/country.html#MDG" aria-label="Madagascar: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/mg.svg)"></span><span class="cg-code" aria-hidden="true">MDG</span><span class="cg-body"><strong>Madagascar</strong><span class="cg-meta">Antananarivo · 32.7m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2016</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="malawi malawi mwi"><a class="cg-card" href="../data/country.html#MWI" aria-label="Malawi: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/mw.svg)"></span><span class="cg-code" aria-hidden="true">MWI</span><span class="cg-body"><strong>Malawi</strong><span class="cg-meta">Lilongwe · 22.2m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014, 2023</span><span class="cg-s msme"><i></i>MSME 2019</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="mauritius mauritius mus"><a class="cg-card" href="../data/country.html#MUS" aria-label="Mauritius: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/mu.svg)"></span><span class="cg-code" aria-hidden="true">MUS</span><span class="cg-body"><strong>Mauritius</strong><span class="cg-meta">Port Louis · 1.2m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="mozambique mozambique moz"><a class="cg-card" href="../data/country.html#MOZ" aria-label="Mozambique: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/mz.svg)"></span><span class="cg-code" aria-hidden="true">MOZ</span><span class="cg-body"><strong>Mozambique</strong><span class="cg-meta">Maputo · 35.6m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2009, 2014, 2019</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="namibia namibia nam"><a class="cg-card" href="../data/country.html#NAM" aria-label="Namibia: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/na.svg)"></span><span class="cg-code" aria-hidden="true">NAM</span><span class="cg-body"><strong>Namibia</strong><span class="cg-meta">Windhoek · 3.1m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2011, 2017</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="seychelles seychelles syc"><a class="cg-card" href="../data/country.html#SYC" aria-label="Seychelles: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/sc.svg)"></span><span class="cg-code" aria-hidden="true">SYC</span><span class="cg-body"><strong>Seychelles</strong><span class="cg-meta">Victoria · 123k people</span><span class="cg-surveys"><span class="cg-s other"><i></i>Publications and other data</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="south africa south africa zaf"><a class="cg-card" href="../data/country.html#ZAF" aria-label="South Africa: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/za.svg)"></span><span class="cg-code" aria-hidden="true">ZAF</span><span class="cg-body"><strong>South Africa</strong><span class="cg-meta">Pretoria · 64.7m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2019, 2024, 2025</span><span class="cg-s msme"><i></i>MSME 2024</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="tanzania tanzania tza"><a class="cg-card" href="../data/country.html#TZA" aria-label="Tanzania: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/tz.svg)"></span><span class="cg-code" aria-hidden="true">TZA</span><span class="cg-body"><strong>Tanzania</strong><span class="cg-meta">Dodoma · 70.5m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2009, 2017, 2023</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="zambia zambia zmb"><a class="cg-card" href="../data/country.html#ZMB" aria-label="Zambia: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/zm.svg)"></span><span class="cg-code" aria-hidden="true">ZMB</span><span class="cg-body"><strong>Zambia</strong><span class="cg-meta">Lusaka · 21.9m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2009, 2015</span><span class="cg-s msme"><i></i>MSME 2009</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+          <li data-name="zimbabwe zimbabwe zwe"><a class="cg-card" href="../data/country.html#ZWE" aria-label="Zimbabwe: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/zw.svg)"></span><span class="cg-code" aria-hidden="true">ZWE</span><span class="cg-body"><strong>Zimbabwe</strong><span class="cg-meta">Harare · 17.0m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014, 2022</span><span class="cg-s msme"><i></i>MSME 2022</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
+        </ul>
+        <p class="cg-empty" id="cgEmpty" hidden>No country matches that name.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container regional-pathways"><div><p class="eyebrow">Keep exploring</p><h2>Go deeper<br>into a country.</h2><p>Each country page links its surveys to the explorer, the dataset request form and the research behind the numbers.</p></div><div class="regional-link-list"><a href="../data/finscope-consumer.html#MWI-2023"><span>Data</span><strong>Open the FinScope Consumer explorer</strong></a><a href="../programmes/index.html"><span>Programmes</span><strong>See programmes and research themes</strong></a><a href="../knowledge-hub/index.html"><span>Knowledge</span><strong>Read country research and insights</strong></a></div></div> </section>
+  </main>
+  <div id="site-footer"></div>
+  <script>
+(() => {
+  const input = document.getElementById('cgFind'), items = [...document.querySelectorAll('#cgGrid li')];
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase(); let n = 0;
+    items.forEach(li => { const hit = !q || (li.dataset.name || li.textContent.toLowerCase()).includes(q) || li.textContent.toLowerCase().includes(q); li.hidden = !hit; if (hit) n++; });
+    document.getElementById('cgEmpty').hidden = items.some(li => !li.hidden);
+    document.getElementById('cgCount').textContent = q ? `${n} matching countr${n === 1 ? 'y' : 'ies'}` : '15 countries with data pages';
+  });
+})();
+</script>
+<script src="../site.js"></script>
+</body>
+</html>

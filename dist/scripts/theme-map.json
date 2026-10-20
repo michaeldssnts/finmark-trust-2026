@@ -1,0 +1,498 @@
+{
+  "_about": "Knowledge Hub themes. 'legacy' lists the old site's tag labels that fold into each theme; 'keywords' are used only by the importer to suggest themes for untagged legacy items (flagged for editor review). Order matters: earlier themes win ties.",
+  "themes": [
+    {
+      "slug": "finscope-consumer",
+      "name": "FinScope Consumer",
+      "status": "current",
+      "pathway": "data",
+      "description": "National demand-side surveys of how adults use financial services.",
+      "legacy": [
+        "FinScope Consumer"
+      ],
+      "keywords": [
+        "finscope consumer",
+        "consumer survey",
+        "pocket guide",
+        "finscope by numbers"
+      ]
+    },
+    {
+      "slug": "finscope-msme",
+      "name": "FinScope MSME",
+      "status": "current",
+      "pathway": "data",
+      "description": "Surveys of micro, small and medium enterprises and their finance.",
+      "legacy": [
+        "FinScope MSME"
+      ],
+      "keywords": [
+        "msme survey",
+        "finscope msme",
+        "small business survey",
+        "msme pulse",
+        "business development measure"
+      ]
+    },
+    {
+      "slug": "data-research-methods",
+      "name": "Data and research methods",
+      "status": "current",
+      "pathway": "data",
+      "description": "Analytics, survey practice, questionnaire design and measurement.",
+      "legacy": [
+        "Data and analytics",
+        "Data",
+        "Survey data",
+        "Data collection",
+        "Research methods",
+        "Questionnaire Design Tool",
+        "FMT Analytics",
+        "Survey design"
+      ],
+      "keywords": [
+        "data collection",
+        "measurement",
+        "questionnaire",
+        "research method",
+        "respondents",
+        "survey data",
+        "analytics",
+        "m&e",
+        "clipboard",
+        "dashboard",
+        "indicator"
+      ]
+    },
+    {
+      "slug": "financial-inclusion",
+      "name": "Financial inclusion",
+      "status": "current",
+      "pathway": "data",
+      "description": "Access to and use of financial services across markets.",
+      "legacy": [
+        "Financial inclusion"
+      ],
+      "keywords": [
+        "financial inclusion",
+        "excluded society",
+        "access to finance",
+        "access strand",
+        "financial access"
+      ]
+    },
+    {
+      "slug": "digitalisation",
+      "name": "Digitalisation and payments",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Digital payments, mobile money and community digitalisation.",
+      "legacy": [
+        "Digitalisation",
+        "Digitisation",
+        "Technology",
+        "Mobile money",
+        "Payments"
+      ],
+      "keywords": [
+        "digital",
+        "mobile money",
+        "payment",
+        "fintech",
+        "tipping",
+        "cashless",
+        "e-money",
+        "technology"
+      ]
+    },
+    {
+      "slug": "digital-identity",
+      "name": "Digital identity and eKYC",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Identity systems, eKYC and lower-friction access.",
+      "legacy": [
+        "Digital Identity"
+      ],
+      "keywords": [
+        "ekyc",
+        "e-kyc",
+        "kyc",
+        "identity",
+        "biometric"
+      ]
+    },
+    {
+      "slug": "remittances",
+      "name": "Cross-border remittances",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Remittance corridors, prices and cross-border traders.",
+      "legacy": [
+        "Cross-border remittances",
+        "Cross Border Traders"
+      ],
+      "keywords": [
+        "remittance",
+        "cross-border",
+        "cross border",
+        "corridor",
+        "traders",
+        "remessas"
+      ]
+    },
+    {
+      "slug": "gender",
+      "name": "Gender",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Women's financial inclusion and economic empowerment.",
+      "legacy": [
+        "Gender with a focus on women"
+      ],
+      "keywords": [
+        "gender",
+        "women",
+        "woman",
+        "mulheres",
+        "female"
+      ]
+    },
+    {
+      "slug": "gbl",
+      "name": "Generating Better Livelihoods",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Pathways from social grants to sustainable livelihoods.",
+      "legacy": [
+        "GBL",
+        "Impact",
+        "SIBE"
+      ],
+      "keywords": [
+        "gbl",
+        "livelihood",
+        "grant recipient",
+        "thundafund",
+        "aunty vee",
+        "joint policy brief"
+      ]
+    },
+    {
+      "slug": "financial-health",
+      "name": "Financial health and education",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Resilience, financial wellbeing, literacy and education.",
+      "legacy": [
+        "Financial health",
+        "Financial Education",
+        "Financial needs"
+      ],
+      "keywords": [
+        "financial health",
+        "financial literacy",
+        "financial education",
+        "resilience",
+        "wellbeing",
+        "financial needs",
+        "financial lives"
+      ]
+    },
+    {
+      "slug": "credit-msme-finance",
+      "name": "Credit and MSME finance",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Credit, debt, microfinance and finance for small enterprises.",
+      "legacy": [
+        "Credit",
+        "SME financing",
+        "SMEs",
+        "Microfinance",
+        "MSME Formalisation",
+        "Digital Lending"
+      ],
+      "keywords": [
+        "credit",
+        "debt",
+        "lending",
+        "loan",
+        "microfinance",
+        "sme",
+        "msme",
+        "small enterprise",
+        "informal sector"
+      ]
+    },
+    {
+      "slug": "integrity",
+      "name": "Integrity: AML/CFT",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Anti-money laundering, de-risking and financial integrity.",
+      "legacy": [
+        "Integrity – AML/CFT"
+      ],
+      "keywords": [
+        "aml",
+        "cft",
+        "money laundering",
+        "de-risking",
+        "integrity"
+      ]
+    },
+    {
+      "slug": "policy-regulation",
+      "name": "Policy and regulation",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Policy, regulation and national inclusion strategies.",
+      "legacy": [
+        "Policy and Regulation",
+        "AFI",
+        "Financial Inclusion strategies"
+      ],
+      "keywords": [
+        "policy",
+        "regulat",
+        "strategy",
+        "legislation",
+        "afi"
+      ]
+    },
+    {
+      "slug": "sadc",
+      "name": "SADC and regional integration",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Regional platforms, the SADC FI Forum and cross-country work.",
+      "legacy": [
+        "SADC",
+        "Protocol on Finance and Investment"
+      ],
+      "keywords": [
+        "sadc",
+        "forum",
+        "regional"
+      ]
+    },
+    {
+      "slug": "covid-19",
+      "name": "COVID-19",
+      "status": "archived",
+      "pathway": "data",
+      "description": "Pandemic tracking surveys and relief work (2020–2022).",
+      "legacy": [
+        "COVID-19",
+        "COVID-19 Tracker",
+        "Migrant Relief Fund"
+      ],
+      "keywords": [
+        "covid",
+        "pandemic",
+        "lockdown",
+        "coronavirus",
+        "relief fund"
+      ]
+    },
+    {
+      "slug": "map",
+      "name": "MAP diagnostics and roadmaps",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Making Access Possible country diagnostics and roadmaps.",
+      "legacy": [
+        "MAP diagnostics and road map"
+      ],
+      "keywords": [
+        "map ",
+        "map:",
+        "diagnostic",
+        "roadmap",
+        "road map",
+        "making access possible",
+        "refresh"
+      ]
+    },
+    {
+      "slug": "agriculture",
+      "name": "Agriculture",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Agricultural finance and value chains.",
+      "legacy": [
+        "Agricultural Value Chains",
+        "Agriculture"
+      ],
+      "keywords": [
+        "agri",
+        "farmer",
+        "smallholder",
+        "value chain",
+        "crop"
+      ]
+    },
+    {
+      "slug": "big-data",
+      "name": "Big and alternative data",
+      "status": "archived",
+      "pathway": "data",
+      "description": "Alternative, transactional and geospatial data experiments.",
+      "legacy": [
+        "Alternative Data",
+        "Big Data",
+        "Transactional data",
+        "Geospatial data",
+        "Database",
+        "Data privacy",
+        "Analytics"
+      ],
+      "keywords": [
+        "big data",
+        "alternative data",
+        "transactional data",
+        "geospatial",
+        "data privacy",
+        "machine learning",
+        "datahack"
+      ]
+    },
+    {
+      "slug": "i2i",
+      "name": "insight2impact (i2i)",
+      "status": "archived",
+      "pathway": "data",
+      "description": "Legacy insight2impact data programme content.",
+      "legacy": [],
+      "keywords": [
+        "i2i",
+        "insight2impact"
+      ]
+    },
+    {
+      "slug": "insurance",
+      "name": "Insurance",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Microinsurance, funeral and health cover.",
+      "legacy": [
+        "Insurance",
+        "Funeral Insurance",
+        "Microinsurance",
+        "Health Care",
+        "Credit life insurance"
+      ],
+      "keywords": [
+        "insurance",
+        "funeral",
+        "microinsurance",
+        "insur"
+      ]
+    },
+    {
+      "slug": "savings-groups",
+      "name": "Savings groups",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Savings groups, stokvels and community finance.",
+      "legacy": [
+        "Savings Groups"
+      ],
+      "keywords": [
+        "savings group",
+        "stokvel",
+        "vsla",
+        "burial society"
+      ]
+    },
+    {
+      "slug": "housing-finance",
+      "name": "Housing finance",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Housing and mortgage finance.",
+      "legacy": [
+        "Housing Finance"
+      ],
+      "keywords": [
+        "housing",
+        "mortgage"
+      ]
+    },
+    {
+      "slug": "retirement",
+      "name": "Retirement",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Retirement savings and pensions.",
+      "legacy": [
+        "Retirement"
+      ],
+      "keywords": [
+        "retirement",
+        "pension"
+      ]
+    },
+    {
+      "slug": "youth",
+      "name": "Youth",
+      "status": "current",
+      "pathway": "programmes",
+      "description": "Young people's financial inclusion.",
+      "legacy": [
+        "Youth"
+      ],
+      "keywords": [
+        "youth",
+        "young people"
+      ]
+    },
+    {
+      "slug": "social-protection",
+      "name": "Social protection",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Social grants and protection systems.",
+      "legacy": [
+        "Social protection"
+      ],
+      "keywords": [
+        "social protection",
+        "social grant",
+        "safety net"
+      ]
+    },
+    {
+      "slug": "innovation",
+      "name": "Innovation",
+      "status": "archived",
+      "pathway": "programmes",
+      "description": "Innovation challenges and the FSD Network.",
+      "legacy": [
+        "Innovation",
+        "FSD Network",
+        "Multimedia"
+      ],
+      "keywords": [
+        "innovation",
+        "lookbook",
+        "challenge",
+        "hackathon"
+      ]
+    }
+  ],
+  "types": {
+    "_about": "Legacy listing type → new content type. Publications are refined by title (presentation, pocket guide, media release, video links).",
+    "Publications": "Report",
+    "Articles": "Article",
+    "Blogs": "Blog",
+    "Videos": "Video",
+    "Podcasts": "Podcast",
+    "Interviews": "Interview",
+    "Infographics": "Infographic"
+  },
+  "dropTags": [
+    "Press release"
+  ]
+}

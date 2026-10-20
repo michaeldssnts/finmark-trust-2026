@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Content Manager — FinMark Trust</title>
+<style>
+  #fmt-demo-bar{position:fixed;left:0;right:0;bottom:0;z-index:99999;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px;background:#142044;color:#fff;font:600 13px/1.4 "Open Sans",Arial,sans-serif}
+  #fmt-demo-bar b{color:#7fdbe6}
+  #fmt-demo-bar a{color:#fff;text-decoration:underline}
+  #fmt-loading{font:16px/1.5 "Open Sans",Arial,sans-serif;color:#213265;padding:40px;text-align:center}
+</style>
+</head>
+<body>
+<div id="fmt-loading">Loading the content manager…</div>
+<script>window.CMS_MANUAL_INIT = true;</script>
+<script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+<script src="cms-config.js"></script>
+<script>
+(function () {
+  var cfg = window.FMT_CMS_CONFIG, mode = window.FMT_CMS_MODE;
+  Object.keys(cfg).forEach(function (k) { if (cfg[k] === undefined) delete cfg[k]; });
+
+  function start() {
+    var l = document.getElementById('fmt-loading'); if (l) l.remove();
+    window.initCMS({ config: cfg });
+    if (window.CMS) {
+      window.CMS.registerPreviewStyle('../styles.css');
+      if (window.h && window.createClass) {
+        window.CMS.registerPreviewTemplate('knowledge', window.createClass({
+          render: function () {
+            var e = this.props.entry, get = function (k) { return e.getIn(['data', k]); };
+            var h = window.h, themes = (get('themes') && get('themes').toJS ? get('themes').toJS() : []) || [];
+            var self = this, src = function (k) { var v = get(k); if (!v) return ''; var a = self.props.getAsset(v); return a ? a.toString() : v; };
+            var thumb = src('thumbnail'), file = src('file'), link = get('link');
+            return h('div', { style: { fontFamily: 'Open Sans, Arial, sans-serif', padding: '32px', maxWidth: '720px' } },
+              thumb ? h('img', { src: thumb, alt: '', style: { width: '100%', aspectRatio: '16/9', objectFit: 'cover', borderRadius: '4px', marginBottom: '18px', display: 'block' } }) : null,
+              h('p', { style: { color: '#0098ae', fontWeight: 700, fontSize: '12px', letterSpacing: '.12em', textTransform: 'uppercase', margin: 0 } }, (get('type') || '') + ' · ' + (get('date') || '')),
+              h('h1', { style: { color: '#213265', fontSize: '30px', lineHeight: 1.15, margin: '10px 0 12px' } }, get('title') || 'Untitled'),
+              h('p', { style: { color: '#5d6880', fontSize: '16px', lineHeight: 1.6 } }, get('summary') || 'Add a summary to show it on the card.'),
+              h('p', { style: { fontSize: '13px', color: '#213265' } }, 'Themes: ' + (themes.join(', ') || 'none yet')),
+              file || link ? h('p', { style: { fontSize: '14px' } }, h('a', { href: file || link, target: '_blank', rel: 'noopener', style: { color: '#0098ae', fontWeight: 700 } }, file ? 'Open the file' : 'Open the link')) : null,
+              this.props.widgetFor('body'));
+          }
+        }));
+      }
+    }
+    if (mode !== 'live') {
+      var bar = document.createElement('div'); bar.id = 'fmt-demo-bar';
+      bar.innerHTML = mode === 'demo'
+        ? '<span><b>Demo mode.</b> Try adding or editing an item. Changes stay in this browser tab and are not saved.</span><a href="../knowledge-hub/index.html">Back to the Knowledge Hub</a>'
+        : '<span><b>Local editing.</b> Saves go straight to the files in this folder; the Knowledge Hub rebuilds automatically.</span><a href="/knowledge-hub/index.html" target="_blank">Open the Knowledge Hub</a>';
+      document.body.appendChild(bar);
+    }
+  }
+
+  if (mode !== 'demo') return start();
+
+  // Demo: seed the in-browser sandbox with real themes and the 40 newest items (plus any with thumbnails) from the published feed.
+  fetch('../knowledge-hub/knowledge.json').then(function (r) { return r.json(); }).then(function (feed) {
+    var themes = {}, knowledge = {};
+    feed.themes.forEach(function (t) { themes[t.slug + '.json'] = { content: JSON.stringify({ name: t.name, slug: t.slug, status: t.status, pathway: t.pathway, description: t.description }, null, 2) }; });
+    // Uploaded files are stored as /uploads/...; point the sandbox at them relative to this page so previews work anywhere.
+    var rel = function (p) { return p && p.indexOf('/uploads/') === 0 ? '..' + p : (p || ''); };
+    feed.items.filter(function (i, n) { return n < 40 || i.img; }).forEach(function (i) {
+      var isFile = /\.(pdf|zip|xlsx?|docx?|pptx?)(\?|$)/i.test(i.u);
+      knowledge[i.id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', file: isFile ? rel(i.u) : '', link: isFile ? '' : i.u, thumbnail: rel(i.img), featured: !!i.f, draft: false, review: false, legacy_url: i.u }, null, 2) };
+    });
+    window.repoFiles = { knowledge: knowledge, themes: themes };
+    start();
+  }).catch(function () { window.repoFiles = {}; start(); });
+})();
+</script>
+</body>
+</html>
