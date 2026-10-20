@@ -1,0 +1,18 @@
+{
+  "name": "Data and research methods",
+  "slug": "data-research-methods",
+  "status": "current",
+  "pathway": "data",
+  "colour": "#5e6e87",
+  "description": "Analytics, survey practice, questionnaire design and measurement.",
+  "legacy_labels": [
+    "Data and analytics",
+    "Data",
+    "Survey data",
+    "Data collection",
+    "Research methods",
+    "Questionnaire Design Tool",
+    "FMT Analytics",
+    "Survey design"
+  ]
+}

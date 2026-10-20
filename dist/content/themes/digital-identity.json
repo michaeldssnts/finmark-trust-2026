@@ -1,0 +1,11 @@
+{
+  "name": "Digital identity and eKYC",
+  "slug": "digital-identity",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#7a4fc4",
+  "description": "Identity systems, eKYC and lower-friction access.",
+  "legacy_labels": [
+    "Digital Identity"
+  ]
+}

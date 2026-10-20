@@ -79,8 +79,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   }
 
   // ---------- Rendering: filters ----------
-  function check(name, value, label, n, on) {
-    return `<label class="kh-check${n ? '' : ' zero'}"><input type="checkbox" name="${name}" value="${esc(value)}"${on ? ' checked' : ''}><span>${esc(label)}</span><small>${n || 0}</small></label>`;
+  function check(name, value, label, n, on, colour) {
+    return `<label class="kh-check${n ? '' : ' zero'}"${colour ? ` style="--tc:${colour}"` : ''}><input type="checkbox" name="${name}" value="${esc(value)}"${on ? ' checked' : ''}>${colour ? '<i class="sw" aria-hidden="true"></i>' : ''}<span>${esc(label)}</span><small>${n || 0}</small></label>`;
   }
   function renderFilters() {
     const pc = count('path', it => [...it.paths, 'all']);
@@ -88,8 +88,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
       `<label><input type="radio" name="path" value="${v}"${S.path === v ? ' checked' : ''}><span>${l}${v ? ` <small style="font-weight:600;opacity:.7">${pc.get(v) || 0}</small>` : ''}</span></label>`).join('')}</div>`;
     const tc = count('themes', it => it.th);
     const cur = THEMES.filter(t => t.status === 'current'), arc = THEMES.filter(t => t.status === 'archived');
-    $('fThemes').innerHTML = cur.map(t => check('theme', t.slug, t.name, tc.get(t.slug), S.themes.has(t.slug))).join('');
-    $('fThemesArchived').innerHTML = arc.map(t => check('theme', t.slug, t.name, tc.get(t.slug), S.themes.has(t.slug))).join('');
+    $('fThemes').innerHTML = cur.map(t => check('theme', t.slug, t.name, tc.get(t.slug), S.themes.has(t.slug), t.colour)).join('');
+    $('fThemesArchived').innerHTML = arc.map(t => check('theme', t.slug, t.name, tc.get(t.slug), S.themes.has(t.slug), t.colour)).join('');
     $('fThemesArchived').hidden = !S.archived; $('fArchived').checked = S.archived;
     $('fArchivedN').textContent = `${ITEMS.filter(i => i.isArch).length}`;
     const yc = count('types', it => [it.y]);
@@ -120,7 +120,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   function renderRail() {
     const all = new Map(); ITEMS.forEach(i => i.th.forEach(t => all.set(t, (all.get(t) || 0) + 1)));
     $('khThemeRail').innerHTML = THEMES.filter(t => t.status === 'current').sort((a, b) => (all.get(b.slug) || 0) - (all.get(a.slug) || 0))
-      .map(t => `<button type="button" class="kh-tile ${t.pathway}" data-theme="${t.slug}" aria-pressed="${S.themes.has(t.slug) && S.themes.size === 1}"><i aria-hidden="true"></i>${esc(t.name)} <small>${all.get(t.slug) || 0}</small></button>`).join('');
+      .map(t => `<button type="button" class="kh-tile ${t.pathway}" style="--tc:${t.colour}" data-theme="${t.slug}" aria-pressed="${S.themes.has(t.slug) && S.themes.size === 1}"><i aria-hidden="true"></i>${esc(t.name)} <small>${all.get(t.slug) || 0}</small></button>`).join('');
   }
 
   // ---------- Rendering: results ----------
@@ -132,11 +132,13 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   function card(it, ts, featured) {
     const [col, ic] = TYPE_LOOK[it.y] || TYPE_LOOK.Report;
     const ext = /^https?:/.test(it.u) && !/^https?:\/\/(www\.)?finmark\.org\.za/.test(it.u);
-    const themes = it.th.slice(0, 2).map(s => TH[s] ? `<span class="kh-tag ${TH[s].status === 'archived' ? 'archived' : TH[s].pathway}">${esc(TH[s].name)}</span>` : '').join('');
+    const themes = it.th.slice(0, 2).map(s => TH[s] ? `<span class="kh-tag th ${TH[s].status === 'archived' ? 'archived' : TH[s].pathway}" style="--tc:${TH[s].colour}">${esc(TH[s].name)}</span>` : '').join('');
     const places = it.c.filter(c => c !== 'SADC').slice(0, 2).map(c => `<span class="kh-tag place">${esc(PLACES[c] || c)}</span>`).join('') + (it.c.length > 3 ? `<span class="kh-tag place">+${it.c.length - 2}</span>` : '');
-    const tag = it.u ? 'a' : 'div';
-    const attrs = it.u ? ` href="${esc(asset(it.u))}"${ext || /\.pdf/i.test(it.u) ? ' target="_blank" rel="noopener"' : ''}` : '';
-    return `<${tag} class="kh-card${featured ? ' kh-feat' : ''}"${attrs}>
+    // Blogs and articles with full text open their own page on this site
+    const tag = it.p || it.u ? 'a' : 'div';
+    const attrs = it.p ? ` href="post.html?id=${encodeURIComponent(it.id)}"` : it.u ? ` href="${esc(asset(it.u))}"${ext || /\.pdf/i.test(it.u) ? ' target="_blank" rel="noopener"' : ''}` : '';
+    const tc = it.th.map(s => TH[s]).find(Boolean);
+    return `<${tag} class="kh-card${featured ? ' kh-feat' : ''}${tc ? ' has-tc' : ''}"${tc ? ` style="--tc:${tc.colour}"` : ''}${attrs}>
       <span class="kh-cover${it.isArch ? ' pt-arch' : ''}${it.img ? ' has-img' : ''}" style="--c:${col};background:${col}" aria-hidden="true">${it.img ? `<img class="bg" src="${esc(asset(it.img))}" alt="" loading="lazy"><img class="fg" src="${esc(asset(it.img))}" alt="" loading="lazy">` : ''}<span class="t">${esc(it.y)}</span><span class="ic">${ic}</span><span class="yr">${it.year}</span></span>
       <span class="kh-cbody"><span class="kh-meta"><span>${esc(it.y)}</span><span>${fmtDate(it.d)}</span>${it.l && it.l !== 'en' ? `<span class="lang">${LANGS[it.l]}</span>` : ''}${it.isArch ? '<span>Archive</span>' : ''}</span>
       <h3>${hl(it.t, ts)}</h3>${it.s ? `<p class="s">${hl(it.s, ts)}</p>` : ''}<span class="kh-tags">${themes}${places}</span></span></${tag}>`;

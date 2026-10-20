@@ -1,0 +1,16 @@
+{
+  "name": "Credit and MSME finance",
+  "slug": "credit-msme-finance",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#00997b",
+  "description": "Credit, debt, microfinance and finance for small enterprises.",
+  "legacy_labels": [
+    "Credit",
+    "SME financing",
+    "SMEs",
+    "Microfinance",
+    "MSME Formalisation",
+    "Digital Lending"
+  ]
+}

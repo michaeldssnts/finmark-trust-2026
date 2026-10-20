@@ -142,6 +142,12 @@
     .pp-theme .latest{grid-column:1/-1;margin-top:8px;padding-top:10px;border-top:1px solid var(--border);color:var(--ink);font-size:.82rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .pp-theme .latest small{color:var(--teal);font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
     .pp-theme.arch b,.pp-theme.arch .n{color:#4a5670}
+    .pp-theme{border-left:5px solid var(--tc,var(--teal))}
+    .pp-theme:hover,.pp-theme:focus-visible{border-color:var(--tc,var(--teal))}
+    .pp-theme b{display:flex;align-items:baseline;gap:9px}
+    .pp-theme b:before{content:"";width:9px;height:9px;flex:none;transform:rotate(45deg) translateY(-2px);background:var(--tc,var(--teal))}
+    .pp-theme .n{color:color-mix(in srgb,var(--tc,var(--navy)) 70%,#0b1430)}
+    .pp-theme .latest small{color:color-mix(in srgb,var(--tc,var(--teal)) 75%,#0b1430)}
     .pp-archived{margin-top:34px;padding-top:28px;border-top:1px dashed #b9c3cf}
     .pp-archived[hidden]{display:none}
     .pp-archived h3{margin:0;color:var(--navy);font-size:1.35rem}
@@ -270,6 +276,7 @@
 <script src="../site.js"></script>
 <script>
 /* Builds the page from the Knowledge Hub feed: programmes (managed in the content manager), research counts and themes. */
+var THEME_COL = {}; function themeCol(slug) { return THEME_COL[slug] || ''; }
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
@@ -305,6 +312,7 @@
   }
 
   fetch('../knowledge-hub/knowledge.json').then(function (r) { return r.json(); }).then(function (feed) {
+    (feed.themes || []).forEach(function (t) { THEME_COL[t.slug] = t.colour; });
     var progs = (feed.programmes || []).filter(function (p) { return p.status !== 'archived'; });
     var pc = {}, progItems = 0;
     feed.items.forEach(function (i) {
@@ -334,7 +342,7 @@
       + '<span class="d">FinScope Consumer and MSME results, key statistics and publications for South Africa.</span><span class="go">Open the South Africa data page →</span></a>';
 
     $('ppCross').innerHTML = cross.map(function (p) {
-      return '<li><article class="pp-x" style="--c:' + (CROSS_COL[p.slug] || '#22b8cd') + '"><span class="pp-ic">' + (ICON[p.slug] || DEF_ICON) + '</span><h3>' + esc(p.name) + '</h3>'
+      return '<li><article class="pp-x" style="--c:' + (themeCol(p.theme) || CROSS_COL[p.slug] || '#22b8cd') + '"><span class="pp-ic">' + (ICON[p.slug] || DEF_ICON) + '</span><h3>' + esc(p.name) + '</h3>'
         + (p.description ? '<p>' + esc(p.description) + '</p>' : '') + links(p, pc[p.slug]) + '</article></li>';
     }).join('');
 
@@ -353,7 +361,7 @@
     var arc = feed.themes.filter(function (t) { return t.status === 'archived' && st[t.slug].n; }).sort(byN);
     var tile = function (t, archived) {
       var x = st[t.slug], yrs = x.min && x.max ? (x.min === x.max ? x.min : x.min + '–' + x.max) : '';
-      return '<li><a class="pp-theme' + (archived ? ' arch' : '') + '" href="../knowledge-hub/index.html?theme=' + encodeURIComponent(t.slug) + (archived ? '&archived=1' : '') + '">'
+      return '<li><a class="pp-theme' + (archived ? ' arch' : '') + '" style="--tc:' + (t.colour || '#0098ae') + '" href="../knowledge-hub/index.html?theme=' + encodeURIComponent(t.slug) + (archived ? '&archived=1' : '') + '">'
         + '<b>' + esc(t.name) + '</b><span class="n">' + x.n + '<small>pieces</small></span>'
         + '<span class="d">' + esc(archived && yrs ? 'Archive ' + yrs : (t.description || '')) + '</span>'
         + (x.latest ? '<span class="latest"><small>' + (archived ? 'Most recent' : 'Latest') + ' · ' + esc(fmt(x.latest.d)) + '</small>' + esc(x.latest.t) + '</span>' : '')

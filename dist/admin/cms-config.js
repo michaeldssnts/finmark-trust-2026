@@ -101,7 +101,8 @@
           { name: 'file', label: 'File (PDF, slides, data)', widget: 'file', required: false, choose_url: true, hint: 'Upload the document, or paste its address.' },
           { name: 'link', label: 'Link', widget: 'string', required: false, hint: 'For videos, podcasts or pages hosted elsewhere (e.g. YouTube).' },
           { name: 'thumbnail', label: 'Thumbnail image', widget: 'image', required: false, hint: 'A wide banner, ideally 2114 × 744 px (about 2.85:1). The same image is used as the header of blogs and articles. Optional: without one, the site draws a branded cover.' },
-          { name: 'body', label: 'Full text', widget: 'markdown', required: false, hint: 'For blogs and articles published on the site itself.' },
+          { name: 'author', label: 'Author(s)', widget: 'string', required: false, hint: 'Blogs and articles: shown in the byline, e.g. "Keneilwe Tsotsotso and Tabitha Chamboko".' },
+          { name: 'body', label: 'Full text', widget: 'markdown', required: false, buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], hint: 'For blogs and articles. When filled in, the item gets its own page on the site (header image = the thumbnail above) instead of linking out. Use Heading 2 for section titles: they become the page\'s contents list.' },
           { name: 'featured', label: 'Featured (old setting)', widget: 'hidden', required: false },
           { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false },
           { name: 'review', label: 'Needs editor review', widget: 'boolean', default: false, required: false, hint: 'Set on items imported from the old site whose themes were suggested automatically. Untick once checked.' },
@@ -124,6 +125,7 @@
           { name: 'slug', label: 'Short name for links', widget: 'string', pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and hyphens only'], hint: 'Do not change once items use this theme.' },
           { name: 'status', label: 'Status', widget: 'select', options: [{ label: 'Current', value: 'current' }, { label: 'Archived', value: 'archived' }], default: 'current' },
           { name: 'pathway', label: 'Pathway', widget: 'select', options: [{ label: 'Data & Analytics', value: 'data' }, { label: 'Programmes & Research', value: 'programmes' }] },
+          { name: 'colour', label: 'Colour', widget: 'color', required: false, allowInput: true, hint: 'The theme\'s colour across the site: tags, card stripes, filters and the Programmes page. Pick something clearly different from the other themes; archived themes show in grey.' },
           { name: 'description', label: 'Description', widget: 'text', required: false },
           { name: 'legacy_labels', label: 'Old site tags merged into this theme', widget: 'list', required: false }
         ]

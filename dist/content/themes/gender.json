@@ -1,0 +1,11 @@
+{
+  "name": "Gender",
+  "slug": "gender",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#d63877",
+  "description": "Women's financial inclusion and economic empowerment.",
+  "legacy_labels": [
+    "Gender with a focus on women"
+  ]
+}

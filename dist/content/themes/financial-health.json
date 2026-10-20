@@ -1,0 +1,13 @@
+{
+  "name": "Financial health and education",
+  "slug": "financial-health",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#4c9a2a",
+  "description": "Resilience, financial wellbeing, literacy and education.",
+  "legacy_labels": [
+    "Financial health",
+    "Financial Education",
+    "Financial needs"
+  ]
+}

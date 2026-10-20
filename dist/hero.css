@@ -174,3 +174,8 @@
 .hx-thumb.has-img img.bg{position:absolute;inset:0;filter:blur(14px) brightness(.92);transform:scale(1.15)}
 .hx-thumb.has-img img.fg{position:relative;object-fit:contain}
 .hx-card:hover .hx-thumb.has-img img.fg{transform:none}
+
+/* Theme colour on the slider's "Latest" cards */
+.hx-card.has-tc{border-top:3px solid var(--tc)}
+.hx-theme{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-bottom:6px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--tc) 12%,#fff);color:color-mix(in srgb,var(--tc) 58%,#0b1430);font-size:.66rem;font-weight:700;line-height:1.5}
+.hx-theme:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tc)}

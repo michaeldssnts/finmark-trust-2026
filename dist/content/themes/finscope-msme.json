@@ -1,0 +1,11 @@
+{
+  "name": "FinScope MSME",
+  "slug": "finscope-msme",
+  "status": "current",
+  "pathway": "data",
+  "colour": "#5a4fc0",
+  "description": "Surveys of micro, small and medium enterprises and their finance.",
+  "legacy_labels": [
+    "FinScope MSME"
+  ]
+}

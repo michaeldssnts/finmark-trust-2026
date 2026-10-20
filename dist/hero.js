@@ -145,19 +145,23 @@ updateRailButtons();
   const asset = (p) => (p && p.startsWith('/uploads/') ? p.slice(1) : p);
   const THUMB = { Video: 'thumb-video', Podcast: 'thumb-video', Interview: 'thumb-video', Blog: 'thumb-blog', Article: 'thumb-article', 'Media release': 'thumb-article', Report: 'thumb-report' };
   const CTA = { Video: 'Watch video', Podcast: 'Listen', Interview: 'Watch interview', Article: 'Read article', Blog: 'Read blog', Report: 'View report', Presentation: 'View slides', 'Pocket guide': 'View guide', Infographic: 'View infographic' };
+  const TH = {};
   const card = (i) => {
-    const url = asset(i.u) || 'knowledge-hub/index.html';
+    const t = (i.th || []).map((s) => TH[s]).find(Boolean);
+    const url = i.p ? `knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || 'knowledge-hub/index.html';
     const ext = /^https?:/.test(url) || /\.pdf/i.test(url);
     const thumb = i.img
       ? `<span class="hx-thumb has-img" aria-hidden="true"><img class="bg" src="${esc(asset(i.img))}" alt=""><img class="fg" src="${esc(asset(i.img))}" alt=""></span>`
       : `<span class="hx-thumb ${THUMB[i.y] || 'thumb-publication'}" aria-hidden="true">${/Video|Podcast|Interview/.test(i.y) ? '<i></i>' : ''}</span>`;
-    return `<a class="hx-card" href="${esc(url)}"${ext ? ' target="_blank" rel="noopener"' : ''}>${thumb}<span class="hx-card-body">`
+    return `<a class="hx-card${t ? ' has-tc' : ''}" href="${esc(url)}"${t ? ` style="--tc:${t.colour}"` : ''}${ext ? ' target="_blank" rel="noopener"' : ''}>${thumb}<span class="hx-card-body">`
+      + (t ? `<span class="hx-theme">${esc(t.name)}</span>` : '')
       + `<small>${esc(i.y)} <b aria-hidden="true">·</b> ${esc(fmt(i.d))}</small><strong>${esc(i.t)}</strong>`
       + (i.s ? `<span class="hx-card-text">${esc(i.s)}</span>` : '')
       + `<span class="hx-card-cta">${CTA[i.y] || 'Read more'} <span aria-hidden="true">&#8594;</span></span></span></a>`;
   };
   fetch('knowledge-hub/knowledge.json').then((r) => r.json()).then((feed) => {
     const byId = new Map(feed.items.map((i) => [i.id, i]));
+    (feed.themes || []).forEach((t) => { TH[t.slug] = t; });
     const f = feed.featured || {};
     const pickFor = (key, sec) => {
       const chosen = (f[key] || []).map((id) => byId.get(id)).filter(Boolean);

@@ -371,3 +371,10 @@
 .cap-stats span{display:block;margin-top:8px;color:#c9d3e8;font-size:.84rem;line-height:1.45}
 @media(max-width:900px){.cap-card{grid-template-columns:1fr;padding:36px 24px}.cap-card:after{display:none}}
 @media(max-width:520px){.cap-stats{grid-template-columns:1fr}}
+
+/* Header: Donate (Oct 2026) — small pill in the top utility bar, next to Contact us */
+.utility .donate-btn{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 11px;border:1px solid rgba(94,224,194,.55);border-radius:999px;color:#7fe6cd;font-weight:700;letter-spacing:.02em;transition:background .2s,border-color .2s,color .2s}
+.utility .donate-btn:hover,.utility .donate-btn.active{background:#00997b;border-color:#00997b;color:#fff}
+.utility .donate-btn svg{transition:transform .25s}
+.utility .donate-btn:hover svg{transform:scale(1.15)}
+@media(prefers-reduced-motion:reduce){.utility .donate-btn,.utility .donate-btn svg{transition:none}}

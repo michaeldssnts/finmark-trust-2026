@@ -1,0 +1,11 @@
+{
+  "name": "Financial inclusion",
+  "slug": "financial-inclusion",
+  "status": "current",
+  "pathway": "data",
+  "colour": "#0098ae",
+  "description": "Access to and use of financial services across markets.",
+  "legacy_labels": [
+    "Financial inclusion"
+  ]
+}

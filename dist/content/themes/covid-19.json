@@ -1,0 +1,13 @@
+{
+  "name": "COVID-19",
+  "slug": "covid-19",
+  "status": "archived",
+  "pathway": "data",
+  "colour": "#8a94a6",
+  "description": "Pandemic tracking surveys and relief work (2020–2022).",
+  "legacy_labels": [
+    "COVID-19",
+    "COVID-19 Tracker",
+    "Migrant Relief Fund"
+  ]
+}

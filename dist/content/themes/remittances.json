@@ -1,0 +1,12 @@
+{
+  "name": "Cross-border remittances",
+  "slug": "remittances",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#e07b1f",
+  "description": "Remittance corridors, prices and cross-border traders.",
+  "legacy_labels": [
+    "Cross-border remittances",
+    "Cross Border Traders"
+  ]
+}

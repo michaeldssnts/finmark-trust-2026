@@ -1,0 +1,17 @@
+{
+  "name": "Big and alternative data",
+  "slug": "big-data",
+  "status": "archived",
+  "pathway": "data",
+  "colour": "#8a94a6",
+  "description": "Alternative, transactional and geospatial data experiments.",
+  "legacy_labels": [
+    "Alternative Data",
+    "Big Data",
+    "Transactional data",
+    "Geospatial data",
+    "Database",
+    "Data privacy",
+    "Analytics"
+  ]
+}

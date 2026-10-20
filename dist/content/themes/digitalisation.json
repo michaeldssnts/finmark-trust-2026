@@ -1,0 +1,15 @@
+{
+  "name": "Digitalisation and payments",
+  "slug": "digitalisation",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#2a8fe0",
+  "description": "Digital payments, mobile money and community digitalisation.",
+  "legacy_labels": [
+    "Digitalisation",
+    "Digitisation",
+    "Technology",
+    "Mobile money",
+    "Payments"
+  ]
+}

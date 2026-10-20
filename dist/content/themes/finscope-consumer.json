@@ -1,0 +1,11 @@
+{
+  "name": "FinScope Consumer",
+  "slug": "finscope-consumer",
+  "status": "current",
+  "pathway": "data",
+  "colour": "#1f4f99",
+  "description": "National demand-side surveys of how adults use financial services.",
+  "legacy_labels": [
+    "FinScope Consumer"
+  ]
+}

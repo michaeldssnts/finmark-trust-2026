@@ -1,0 +1,11 @@
+{
+  "name": "MAP diagnostics and roadmaps",
+  "slug": "map",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#7d8a12",
+  "description": "Making Access Possible country diagnostics and roadmaps.",
+  "legacy_labels": [
+    "MAP diagnostics and road map"
+  ]
+}

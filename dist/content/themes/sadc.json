@@ -1,0 +1,12 @@
+{
+  "name": "SADC and regional integration",
+  "slug": "sadc",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#e0512f",
+  "description": "Regional platforms, the SADC FI Forum and cross-country work.",
+  "legacy_labels": [
+    "SADC",
+    "Protocol on Finance and Investment"
+  ]
+}

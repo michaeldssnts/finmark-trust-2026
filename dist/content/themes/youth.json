@@ -1,0 +1,11 @@
+{
+  "name": "Youth",
+  "slug": "youth",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#e2a50f",
+  "description": "Young people's financial inclusion.",
+  "legacy_labels": [
+    "Youth"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Policy and regulation",
+  "slug": "policy-regulation",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#b8283f",
+  "description": "Policy, regulation and national inclusion strategies.",
+  "legacy_labels": [
+    "Policy and Regulation",
+    "AFI",
+    "Financial Inclusion strategies"
+  ]
+}

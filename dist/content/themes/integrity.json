@@ -1,0 +1,11 @@
+{
+  "name": "Integrity: AML/CFT",
+  "slug": "integrity",
+  "status": "current",
+  "pathway": "programmes",
+  "colour": "#8a2f72",
+  "description": "Anti-money laundering, de-risking and financial integrity.",
+  "legacy_labels": [
+    "Integrity – AML/CFT"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Social protection",
+  "slug": "social-protection",
+  "status": "archived",
+  "pathway": "programmes",
+  "colour": "#8a94a6",
+  "description": "Social grants and protection systems.",
+  "legacy_labels": [
+    "Social protection"
+  ]
+}

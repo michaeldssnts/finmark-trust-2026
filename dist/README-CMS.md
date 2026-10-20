@@ -68,3 +68,11 @@ Programmes are managed in the content manager like themes: add one, or set it to
 - **Knowledge Hub: "Latest from FinMark Trust"**: up to 3 items; the first is the large feature.
 
 Search by title and pick. An empty slot is filled with the newest item from that section, so the homepage never goes stale.
+
+## Blog and article pages
+
+Give a Blog or Article a **Full text** (and optionally **Author(s)**) in the content manager and it gets its own page on the site (`knowledge-hub/post.html?id=…`) instead of linking to the old site. The **Thumbnail image** (2114 × 744) is the page's header. Use *Heading 2* for section titles: on blogs they become the "On this page" contents list. Blogs get a magazine layout; articles and media releases a newsroom layout with an at-a-glance panel.
+
+## Theme colours
+
+Each theme has a **Colour** (Themes collection). It is used everywhere a theme appears: Knowledge Hub tags, card stripes, the theme rail and filters, blog/article pages, the homepage slider cards and the Programmes page. Archived themes show in grey.
