@@ -78,7 +78,7 @@
           { name: 'language', label: 'Language', widget: 'select', options: [{ label: 'English', value: 'en' }, { label: 'Portuguese', value: 'pt' }, { label: 'French', value: 'fr' }], default: 'en' },
           { name: 'file', label: 'File (PDF, slides, data)', widget: 'file', required: false, choose_url: true, hint: 'Upload the document, or paste its address.' },
           { name: 'link', label: 'Link', widget: 'string', required: false, hint: 'For videos, podcasts or pages hosted elsewhere (e.g. YouTube).' },
-          { name: 'thumbnail', label: 'Thumbnail image', widget: 'image', required: false, hint: 'Optional. Without one, the site draws a branded cover for the content type.' },
+          { name: 'thumbnail', label: 'Thumbnail image', widget: 'image', required: false, hint: 'A wide banner, ideally 2114 × 744 px (about 2.85:1). The same image is used as the header of blogs and articles. Optional: without one, the site draws a branded cover.' },
           { name: 'body', label: 'Full text', widget: 'markdown', required: false, hint: 'For blogs and articles published on the site itself.' },
           { name: 'featured', label: 'Feature at the top of the Knowledge Hub', widget: 'boolean', default: false, required: false },
           { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false },

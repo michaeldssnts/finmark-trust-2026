@@ -126,8 +126,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     const places = it.c.filter(c => c !== 'SADC').slice(0, 2).map(c => `<span class="kh-tag place">${esc(PLACES[c] || c)}</span>`).join('') + (it.c.length > 3 ? `<span class="kh-tag place">+${it.c.length - 2}</span>` : '');
     const tag = it.u ? 'a' : 'div';
     const attrs = it.u ? ` href="${esc(asset(it.u))}"${ext || /\.pdf/i.test(it.u) ? ' target="_blank" rel="noopener"' : ''}` : '';
-    return `<${tag} class="kh-card"${attrs}>
-      <span class="kh-cover${it.isArch ? ' pt-arch' : ''}" style="--c:${col};background:${col}" aria-hidden="true">${it.img ? `<img src="${esc(asset(it.img))}" alt="" loading="lazy">` : ''}<span class="t">${esc(it.y)}</span><span class="ic">${ic}</span><span class="yr">${it.year}</span></span>
+    return `<${tag} class="kh-card${featured ? ' kh-feat' : ''}"${attrs}>
+      <span class="kh-cover${it.isArch ? ' pt-arch' : ''}${it.img ? ' has-img' : ''}" style="--c:${col};background:${col}" aria-hidden="true">${it.img ? `<img class="bg" src="${esc(asset(it.img))}" alt="" loading="lazy"><img class="fg" src="${esc(asset(it.img))}" alt="" loading="lazy">` : ''}<span class="t">${esc(it.y)}</span><span class="ic">${ic}</span><span class="yr">${it.year}</span></span>
       <span class="kh-cbody"><span class="kh-meta"><span>${esc(it.y)}</span><span>${fmtDate(it.d)}</span>${it.l && it.l !== 'en' ? `<span class="lang">${LANGS[it.l]}</span>` : ''}${it.isArch ? '<span>Archive</span>' : ''}</span>
       <h3>${hl(it.t, ts)}</h3>${it.s ? `<p class="s">${hl(it.s, ts)}</p>` : ''}<span class="kh-tags">${themes}${places}</span></span></${tag}>`;
   }
@@ -146,7 +146,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     const { list, ts } = results();
     // Featured: only on the unfiltered landing view
     const feat = !filtered() ? (ITEMS.filter(i => i.f && !i.isArch).slice(0, 3).length ? ITEMS.filter(i => i.f && !i.isArch).slice(0, 3) : (() => { const out = [], seen = new Set(); for (const i of ITEMS) { if (i.isArch || seen.has(i.y) || !['Report', 'Pocket guide', 'Article', 'Blog', 'Video', 'Presentation'].includes(i.y)) continue; seen.add(i.y); out.push(i); if (out.length === 3) break; } return out; })()) : [];
-    $('khFeatured').innerHTML = feat.length ? `<p class="kh-feat-label">Latest from FinMark Trust</p>` + feat.map(i => card(i, [], true)).join('') : '';
+    $('khFeatured').innerHTML = feat.length ? `<h2 class="kh-feat-label">Latest from FinMark Trust</h2>` + feat.map(i => card(i, [], true)).join('') : '';
     const shown = list.slice(0, S.shown);
     $('khResults').className = 'kh-results' + (S.view === 'list' ? ' list' : '');
     $('khResults').innerHTML = shown.length ? shown.map(i => `<li>${card(i, ts)}</li>`).join('')
@@ -207,6 +207,12 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && panel.classList.contains('open')) { panel.classList.remove('open'); $('khOpenFilters').focus(); } });
   }
   function setView(v) { S.view = v; $('vGrid').setAttribute('aria-pressed', v === 'grid'); $('vList').setAttribute('aria-pressed', v === 'list'); try { localStorage.setItem('kh-view', v); } catch (e) {} renderResults(); }
+
+  // Thumbnails much squarer than the wide banner shape are shown whole (over a blurred copy) instead of being cropped.
+  document.addEventListener('load', e => {
+    const im = e.target;
+    if (im.tagName === 'IMG' && im.classList.contains('fg') && im.naturalHeight && im.naturalWidth / im.naturalHeight < 2.2) im.parentElement.classList.add('fit');
+  }, true);
 
   fetch('knowledge.json').then(r => r.json()).then(feed => {
     THEMES = feed.themes; THEMES.forEach(t => (TH[t.slug] = t));
