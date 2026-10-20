@@ -118,7 +118,7 @@ a.ps-tag:hover{background:#d6f0f3}
   .ps-titlecard{margin-top:-60px;padding:28px 26px}
 }
 @media(max-width:640px){
-  .ps-titlecard{margin:0 -20px;box-shadow:none;border-top-width:4px}
+  .ps-titlecard{margin:0;padding:24px 20px;border-top-width:4px}
   .ps-banner{aspect-ratio:16/9}
   .ps-newshead{padding:34px 0 90px}
   .ps-figure{margin-top:-60px}
@@ -145,3 +145,23 @@ a.ps-tag.th:hover{background:color-mix(in srgb,var(--tc) 20%,#fff)}
 /* References / sources at the end of a post */
 .ps-body h2#references ~ p{font-size:.84rem;line-height:1.6;color:var(--muted);margin-bottom:.8em;padding-left:1.4em;text-indent:-1.4em}
 .ps-titlecard h1{max-width:1000px}
+
+/* Oct 2026: full-width blog body, contents as a bar, linked authors */
+.ps-layout.wide{display:block;padding-top:40px}
+.ps-layout.wide .ps-body{max-width:none}
+.ps-layout.wide .ps-toc{position:sticky;top:0;z-index:5;margin:0 0 36px;padding:14px 0;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:18px}
+.ps-layout.wide .ps-toc p{margin:0;flex:none}
+.ps-layout.wide .ps-toc ol{display:flex;gap:6px;overflow-x:auto;border-left:0;scrollbar-width:thin;padding-bottom:2px}
+.ps-layout.wide .ps-toc li{flex:none}
+.ps-layout.wide .ps-toc a{margin:0;padding:6px 12px;border:1px solid var(--border);border-radius:999px;white-space:nowrap;font-size:.8rem}
+.ps-layout.wide .ps-toc a.on{border-color:var(--tc,var(--teal));background:color-mix(in srgb,var(--tc,var(--teal)) 10%,#fff);color:var(--navy)}
+.ps-body h2{scroll-margin-top:80px}
+.ps-meta-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.ps-avatars a,.ps-avatars i{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;overflow:hidden;font-style:normal;font-weight:700;font-size:.8rem;background:var(--teal);color:#fff;border:3px solid #fff;box-shadow:0 0 0 1px var(--border)}
+.ps-avatars>*+*{margin-left:-12px}
+.ps-avatars img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.ps-author{color:inherit;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--tc,var(--teal)) 60%,transparent);text-underline-offset:3px;text-decoration-thickness:2px}
+.ps-author:hover{color:var(--tc,var(--teal))}
+.ps-newshead .ps-author:hover{color:#8ce3ed}
+.ps-newshead .ps-avatars a,.ps-newshead .ps-avatars i{border-color:var(--navy-deep);box-shadow:none}
+@media(max-width:980px){.ps-layout.wide .ps-toc{display:none}}

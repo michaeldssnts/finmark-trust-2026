@@ -32,6 +32,7 @@
   var KFOLDER = mode === 'demo' ? 'knowledge' : DIR + 'content/knowledge';
   var TFOLDER = mode === 'demo' ? 'themes' : DIR + 'content/themes';
   var PFOLDER = mode === 'demo' ? 'programmes' : DIR + 'content/programmes';
+  var PEFOLDER = mode === 'demo' ? 'people' : DIR + 'content/people';
   var FEATFILE = mode === 'demo' ? 'settings/featured.json' : DIR + 'content/settings/featured.json';
   var pickItems = function (name, label, max, hint) {
     return { name: name, label: label, widget: 'relation', collection: 'knowledge', search_fields: ['title'], value_field: '{{slug}}', display_fields: ['{{title}} ({{date}})'], multiple: true, required: false, max: max, options_length: 30, hint: hint };
@@ -101,7 +102,8 @@
           { name: 'file', label: 'File (PDF, slides, data)', widget: 'file', required: false, choose_url: true, hint: 'Upload the document, or paste its address.' },
           { name: 'link', label: 'Link', widget: 'string', required: false, hint: 'For videos, podcasts or pages hosted elsewhere (e.g. YouTube).' },
           { name: 'thumbnail', label: 'Thumbnail image', widget: 'image', required: false, hint: 'A wide banner, ideally 2114 × 744 px (about 2.85:1). The same image is used as the header of blogs and articles. Optional: without one, the site draws a branded cover.' },
-          { name: 'author', label: 'Author(s)', widget: 'string', required: false, hint: 'Blogs and articles: shown in the byline, e.g. "Keneilwe Tsotsotso and Tabitha Chamboko".' },
+          { name: 'authors', label: 'Written by (FinMark Trust staff)', widget: 'relation', collection: 'people', search_fields: ['name', 'role'], value_field: 'slug', display_fields: ['name'], multiple: true, required: false, max: 6, options_length: 60, hint: 'Pick the staff members who wrote this. Their names in the byline link to their profile, and the piece is listed on their profile page.' },
+          { name: 'author', label: 'Other authors (not on staff)', widget: 'string', required: false, hint: 'Guest or partner authors, shown in the byline after the staff names, e.g. "Keneilwe Tsotsotso".' },
           { name: 'body', label: 'Full text', widget: 'markdown', required: false, buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], hint: 'For blogs and articles. When filled in, the item gets its own page on the site (header image = the thumbnail above) instead of linking out. Use Heading 2 for section titles: they become the page\'s contents list.' },
           { name: 'featured', label: 'Featured (old setting)', widget: 'hidden', required: false },
           { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false },
@@ -111,6 +113,26 @@
           { name: 'legacy_thumbnail', label: 'Old site thumbnail', widget: 'hidden', required: false },
           { name: 'legacy_id', label: 'Old site record ID', widget: 'hidden', required: false },
           { name: 'legacy_slug', label: 'Old site slug', widget: 'hidden', required: false }
+        ]
+      },
+      {
+        name: 'people', label: 'People', label_singular: 'Person',
+        description: 'The team and trustees on the About page. Staff picked as authors on a Knowledge Hub item get it listed on their profile.',
+        folder: PEFOLDER, create: true, format: 'json', extension: 'json',
+        identifier_field: 'name', slug: '{{fields.slug}}', summary: '{{name}} — {{role}}',
+        sortable_fields: ['name', 'order', 'group'],
+        view_filters: [{ label: 'Team', field: 'group', pattern: 'team' }, { label: 'Trustees', field: 'group', pattern: 'trustee' }],
+        fields: [
+          { name: 'name', label: 'Name', widget: 'string' },
+          { name: 'slug', label: 'Short name for links', widget: 'string', pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and hyphens only'], hint: 'e.g. jabulani-khumalo. Do not change once they are an author.' },
+          { name: 'role', label: 'Job title', widget: 'string' },
+          { name: 'group', label: 'Group', widget: 'select', options: [{ label: 'Team', value: 'team' }, { label: 'Trustee', value: 'trustee' }], default: 'team' },
+          { name: 'order', label: 'Order on the About page', widget: 'number', value_type: 'int', default: 99, required: false },
+          { name: 'photo', label: 'Photo', widget: 'image', required: false, choose_url: true, hint: 'Square or portrait head-and-shoulders photo.' },
+          { name: 'bio', label: 'Biography', widget: 'text', required: false },
+          { name: 'email', label: 'Email (optional)', widget: 'string', required: false },
+          { name: 'linkedin', label: 'LinkedIn address (optional)', widget: 'string', required: false },
+          { name: 'hidden', label: 'Hide from the About page (e.g. has left)', widget: 'boolean', default: false, required: false, hint: 'Their profile and authored pieces stay online.' }
         ]
       },
       {

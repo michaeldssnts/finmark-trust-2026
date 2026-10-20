@@ -34,18 +34,28 @@
     const toc = [];
     body.querySelectorAll('h2').forEach(h => { h.id = slug(h.textContent) || 'section-' + toc.length; toc.push([h.id, h.textContent]); });
     const first = body.querySelector('p');
-    if (first) { first.classList.add('ps-lead'); if (/^[A-Za-z]/.test(first.textContent.trim())) first.classList.add('drop'); }
+    if (first) { first.classList.add('ps-lead'); }
     body.querySelectorAll('p').forEach(el => { if (/^(for more information|media (enquiries|contact)|contact:)/i.test(el.textContent.trim())) el.classList.add('ps-contact'); });
 
-    const authors = (p.a || '').split(/\s*(?:,|&|\band\b)\s*/).filter(Boolean);
+    // Staff authors (picked in the CMS) link to their profile; other authors are plain text
+    const staff = (p.authors || []).map(a => ({ ...a, href: `../about/person.html?id=${encodeURIComponent(a.slug)}` }));
+    const others = (p.a || '').split(/\s*(?:,|&|\band\b)\s*/).filter(Boolean).map(name => ({ name }));
+    const people = [...staff, ...others];
+    const authors = people.map(a => a.name);
+    const joinNames = arr => arr.length < 2 ? arr.join('') : arr.slice(0, -1).join(', ') + ' and ' + arr[arr.length - 1];
+    const nameHtml = joinNames(people.map(a => a.href ? `<a class="ps-author" href="${a.href}">${esc(a.name)}</a>` : esc(a.name)));
+    const avatar = a => {
+      const inner = a.photo ? `<img src="${esc(a.photo)}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc(initials(a.name))}'))">` : esc(initials(a.name));
+      return a.href ? `<a href="${a.href}" tabindex="-1">${inner}</a>` : `<i>${inner}</i>`;
+    };
     const tags = [
       ...(p.th || []).map(s => TH[s] && `<a class="ps-tag th" style="--tc:${TH[s].colour}" href="index.html?theme=${encodeURIComponent(s)}">${esc(TH[s].name)}</a>`),
       ...(p.pg || []).filter(s => PG[s] && !(p.th || []).some(t => TH[t] && TH[t].name === PG[s].name)).map(s => `<a class="ps-tag pg" href="index.html?programme=${encodeURIComponent(s)}">${esc(PG[s].name)}</a>`),
       ...(() => { const cs = (p.c || []).filter(c => c !== 'SADC'); return cs.length > 4 ? [`<span class="ps-tag place">SADC region · ${cs.length} countries</span>`] : cs.map(c => `<span class="ps-tag place">${esc(PLACES[c] || c)}</span>`); })()
     ].filter(Boolean).join('');
     const byline = `<div class="ps-byline">
-        ${authors.length ? `<span class="ps-avatars" aria-hidden="true">${authors.map(a => `<i>${esc(initials(a))}</i>`).join('')}</span>` : ''}
-        <span>${authors.length ? `<span class="ps-by">Written by <b>${esc(authors.join(' and '))}</b></span>` : ''}
+        ${people.length ? `<span class="ps-avatars" aria-hidden="true">${people.map(avatar).join('')}</span>` : ''}
+        <span>${people.length ? `<span class="ps-by">Written by <b>${nameHtml}</b></span>` : ''}
         <span class="ps-when"><time datetime="${esc(p.d)}">${fmt(p.d)}</time><span aria-hidden="true">·</span>${p.mins} min read</span></span>
       </div>`;
     const url = location.href;
@@ -82,12 +92,12 @@
           ${crumbs}
           <p class="eyebrow">Blog</p>
           <h1>${esc(p.t)}</h1>
-          ${byline}
+          <div class="ps-meta-row">${byline}${share}</div>
           ${tags ? `<div class="ps-tags">${tags}</div>` : ''}
         </div></div>
       </header>
-      <div class="container ps-layout">
-        <aside class="ps-rail">${tocHtml}${share}</aside>
+      <div class="container ps-layout wide">
+        ${tocHtml}
         <article class="ps-body" id="psBody"></article>
       </div>`;
     } else {
@@ -106,7 +116,7 @@
         <aside class="ps-facts">
           <dl>
             <div><dt>Published</dt><dd>${fmt(p.d)}</dd></div>
-            ${authors.length ? `<div><dt>Written by</dt><dd>${esc(authors.join(' and '))}</dd></div>` : ''}
+            ${people.length ? `<div><dt>Written by</dt><dd>${nameHtml}</dd></div>` : ''}
             <div><dt>Reading time</dt><dd>${p.mins} minutes</dd></div>
             ${tags ? `<div><dt>Topics</dt><dd class="ps-tags">${tags}</dd></div>` : ''}
           </dl>

@@ -80,7 +80,7 @@
     var rel = function (p) { return p && p.indexOf('/uploads/') === 0 ? '..' + p : (p || ''); };
     feed.items.filter(function (i, n) { return n < 40 || i.img; }).forEach(function (i) {
       var isFile = /\.(pdf|zip|xlsx?|docx?|pptx?)(\?|$)/i.test(i.u);
-      knowledge[i.id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', section: i.sec || 'programmes', programmes: i.pg || [], file: isFile ? rel(i.u) : '', link: isFile ? '' : i.u, thumbnail: rel(i.img), featured: !!i.f, draft: false, review: false, legacy_url: i.u }, null, 2) };
+      knowledge[i.id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', section: i.sec || 'programmes', programmes: i.pg || [], authors: i.au || [], file: isFile ? rel(i.u) : '', link: isFile ? '' : i.u, thumbnail: rel(i.img), featured: !!i.f, draft: false, review: false, legacy_url: i.u }, null, 2) };
     });
     var programmes = {};
     (feed.programmes || []).forEach(function (p) { programmes[p.slug + '.json'] = { content: JSON.stringify({ name: p.name, slug: p.slug, pathway: p.pathway, status: p.status, order: p.order, description: p.description, site_url: p.site }, null, 2) }; });
@@ -92,7 +92,9 @@
       var i = feed.items.filter(function (x) { return x.id === id; })[0]; if (!i) return;
       knowledge[id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', section: i.sec || 'programmes', programmes: i.pg || [], link: i.u, thumbnail: rel(i.img), draft: false, review: false }, null, 2) };
     });
-    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes, settings: settings };
+    var people = {};
+    (feed.people || []).forEach(function (p) { people[p.slug + '.json'] = { content: JSON.stringify({ name: p.name, slug: p.slug, role: p.role, group: p.group, order: p.order, photo: p.photo, bio: p.bio || '', email: p.email || '', linkedin: p.linkedin || '', hidden: !!p.hidden }, null, 2) }; });
+    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes, people: people, settings: settings };
     start();
   }).catch(function () { window.repoFiles = {}; start(); });
 })();

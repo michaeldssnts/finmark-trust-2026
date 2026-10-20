@@ -21,7 +21,7 @@ import { guessSection, guessProgrammes } from './classify.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FEAT = join(ROOT, 'content/settings/featured.json');
-const K = join(ROOT, 'content/knowledge'), T = join(ROOT, 'content/themes'), P = join(ROOT, 'content/programmes'), OUT = join(ROOT, 'knowledge-hub/knowledge.json'), POSTS = join(ROOT, 'knowledge-hub/posts');
+const K = join(ROOT, 'content/knowledge'), T = join(ROOT, 'content/themes'), P = join(ROOT, 'content/programmes'), PE = join(ROOT, 'content/people'), OUT = join(ROOT, 'knowledge-hub/knowledge.json'), POSTS = join(ROOT, 'knowledge-hub/posts');
 
 // Small Markdown renderer for post bodies: ## / ### headings, paragraphs, - and 1. lists, > quotes, **bold**, *italic*, [links](url), line breaks.
 const escH = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -62,6 +62,9 @@ function build() {
   const programmes = progAll.map(p => ({ slug: p.slug, name: p.name, pathway: p.pathway || 'sadc', status: p.status || 'current', order: p.order || 99, description: p.description || '', site: p.site_url || '', theme: p.theme || '' }))
     .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
   const knownP = new Set(programmes.map(p => p.slug));
+  const people = readDir(PE).map(p => ({ slug: p.slug || p.id, name: p.name, role: p.role || '', group: p.group || 'team', order: p.order || 99, photo: p.photo || '', bio: p.bio || '', email: p.email || '', linkedin: p.linkedin || '', ...(p.hidden ? { hidden: 1 } : {}) }))
+    .sort((a, b) => (a.group === b.group ? a.order - b.order || a.name.localeCompare(b.name) : a.group === 'team' ? -1 : 1));
+  const PEOPLE = Object.fromEntries(people.map(p => [p.slug, p]));
   const items = readDir(K).filter(i => !i.draft && i.title).map(i => {
     const th = (i.themes || []).filter(s => known.has(s));
     const pg = (Array.isArray(i.programmes) ? i.programmes : guessProgrammes(i, progAll)).filter(s => knownP.has(s));
@@ -71,7 +74,10 @@ function build() {
     if (i.language && i.language !== 'en') o.l = i.language;
     if (i.featured) o.f = 1;
     if (i.thumbnail) o.img = i.thumbnail;
-    if (i.body && String(i.body).trim()) { o.p = 1; if (i.author) o.a = i.author; o._body = i.body; }
+    const au = (Array.isArray(i.authors) ? i.authors : []).filter(s => PEOPLE[s]);
+    if (au.length) o.au = au;
+    if (i.author) o.a = i.author;
+    if (i.body && String(i.body).trim()) { o.p = 1; o._body = i.body; }
     return o;
   }).sort((a, b) => (b.d || '').localeCompare(a.d || ''));
   // Featured picks from the content manager; unknown or draft items are dropped. Empty lists mean "use the newest".
@@ -87,17 +93,18 @@ function build() {
   for (const it of items) {
     if (!it._body) continue;
     const { _body, ...meta } = it;
-    writeFileSync(join(POSTS, `${it.id}.json`), JSON.stringify({ ...meta, html: md(_body), mins: Math.max(1, Math.round(words(_body) / 220)) }));
+    const authors = (it.au || []).map(s => ({ slug: s, name: PEOPLE[s].name, role: PEOPLE[s].role, photo: PEOPLE[s].photo }));
+    writeFileSync(join(POSTS, `${it.id}.json`), JSON.stringify({ ...meta, authors, html: md(_body), mins: Math.max(1, Math.round(words(_body) / 220)) }));
     delete it._body; posts++;
   }
-  writeFileSync(OUT, JSON.stringify({ built: new Date().toISOString(), themes, programmes, featured, items }));
-  console.log(`knowledge.json: ${items.length} items, ${themes.length} themes, ${programmes.length} programmes, ${posts} post pages`);
+  writeFileSync(OUT, JSON.stringify({ built: new Date().toISOString(), themes, programmes, people, featured, items }));
+  console.log(`knowledge.json: ${items.length} items, ${themes.length} themes, ${programmes.length} programmes, ${people.length} people, ${posts} post pages`);
 }
 
 build();
 if (process.argv.includes('--watch')) {
   let timer;
   const again = () => { clearTimeout(timer); timer = setTimeout(build, 300); };
-  [K, T, P, dirname(FEAT)].forEach(d => { mkdirSync(d, { recursive: true }); watch(d, again); });
+  [K, T, P, PE, dirname(FEAT)].forEach(d => { mkdirSync(d, { recursive: true }); watch(d, again); });
   console.log('Watching content/ for changes…');
 }
