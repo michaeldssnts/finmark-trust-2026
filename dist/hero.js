@@ -133,3 +133,41 @@ railButtons.forEach((button) => {
 knowledgeRail?.addEventListener('scroll', updateRailButtons, { passive: true });
 window.addEventListener('resize', updateRailButtons);
 updateRailButtons();
+
+/* ---- Latest content on each slide: chosen in the content manager (Featured content), else the newest ----
+   The cards in the HTML stay as a fallback if the feed cannot load. */
+(function fillSlideCards() {
+  const asides = { data: document.querySelector('#hx-panel-data .hx-latest'), programmes: document.querySelector('#hx-panel-programmes .hx-latest') };
+  if (!asides.data && !asides.programmes) return;
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fmt = (d) => { const [y, m, dd] = (d || '').split('-'); return y ? `${dd ? String(+dd).padStart(2, '0') + ' ' : ''}${m ? M[+m - 1] + ' ' : ''}${y}` : ''; };
+  const asset = (p) => (p && p.startsWith('/uploads/') ? p.slice(1) : p);
+  const THUMB = { Video: 'thumb-video', Podcast: 'thumb-video', Interview: 'thumb-video', Blog: 'thumb-blog', Article: 'thumb-article', 'Media release': 'thumb-article', Report: 'thumb-report' };
+  const CTA = { Video: 'Watch video', Podcast: 'Listen', Interview: 'Watch interview', Article: 'Read article', Blog: 'Read blog', Report: 'View report', Presentation: 'View slides', 'Pocket guide': 'View guide', Infographic: 'View infographic' };
+  const card = (i) => {
+    const url = asset(i.u) || 'knowledge-hub/index.html';
+    const ext = /^https?:/.test(url) || /\.pdf/i.test(url);
+    const thumb = i.img
+      ? `<span class="hx-thumb has-img" aria-hidden="true"><img class="bg" src="${esc(asset(i.img))}" alt=""><img class="fg" src="${esc(asset(i.img))}" alt=""></span>`
+      : `<span class="hx-thumb ${THUMB[i.y] || 'thumb-publication'}" aria-hidden="true">${/Video|Podcast|Interview/.test(i.y) ? '<i></i>' : ''}</span>`;
+    return `<a class="hx-card" href="${esc(url)}"${ext ? ' target="_blank" rel="noopener"' : ''}>${thumb}<span class="hx-card-body">`
+      + `<small>${esc(i.y)} <b aria-hidden="true">·</b> ${esc(fmt(i.d))}</small><strong>${esc(i.t)}</strong>`
+      + (i.s ? `<span class="hx-card-text">${esc(i.s)}</span>` : '')
+      + `<span class="hx-card-cta">${CTA[i.y] || 'Read more'} <span aria-hidden="true">&#8594;</span></span></span></a>`;
+  };
+  fetch('knowledge-hub/knowledge.json').then((r) => r.json()).then((feed) => {
+    const byId = new Map(feed.items.map((i) => [i.id, i]));
+    const f = feed.featured || {};
+    const pickFor = (key, sec) => {
+      const chosen = (f[key] || []).map((id) => byId.get(id)).filter(Boolean);
+      const fill = feed.items.filter((i) => (i.sec === sec || i.sec === 'both') && !chosen.includes(i));
+      return chosen.concat(fill).slice(0, 2);
+    };
+    [['data', 'home_data'], ['programmes', 'home_programmes']].forEach(([sec, key]) => {
+      const aside = asides[sec]; if (!aside) return;
+      const label = aside.querySelector('.hx-latest-label');
+      aside.innerHTML = (label ? label.outerHTML : '') + pickFor(key, sec).map(card).join('');
+    });
+  }).catch(() => {});
+})();

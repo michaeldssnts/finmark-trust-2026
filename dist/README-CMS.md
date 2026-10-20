@@ -6,6 +6,7 @@ The Knowledge Hub (`knowledge-hub/`) reads one feed, `knowledge-hub/knowledge.js
 content/themes/<slug>.json            one file per theme (current or archived)
 content/knowledge/<date>-<slug>.json  one file per report, article, video, etc.
 content/programmes/<slug>.json        one file per programme (SADC, South Africa, cross-cutting)
+content/settings/featured.json        what the homepage slider and the Knowledge Hub feature
 ```
 
 Editors never touch these files directly; they use the content manager at `/admin/`.
@@ -57,3 +58,13 @@ Every Knowledge Hub item has three ways of being grouped:
 - **Themes**: 1–4 research topics, as before.
 
 Programmes are managed in the content manager like themes: add one, or set it to Archived when it ends. `node scripts/backfill-programmes.mjs` filled in Section and Programme for items that existed before these fields; the rules live in `scripts/classify.mjs` and are also used by the importer.
+
+## Featured content
+
+**Featured content** in the content manager has one page with three pickers:
+
+- **Homepage slider: Data slide**: the 2 items under "Latest in Data & Analytics".
+- **Homepage slider: Programmes slide**: the 2 items under "Latest in Programmes & Research".
+- **Knowledge Hub: "Latest from FinMark Trust"**: up to 3 items; the first is the large feature.
+
+Search by title and pick. An empty slot is filled with the newest item from that section, so the homepage never goes stale.

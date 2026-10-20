@@ -4,285 +4,370 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Programmes — FinMark Trust</title>
-  <meta name="description" content="FinMark Trust programmes in South Africa and across the SADC region, cross-cutting themes, and thematic research from the Knowledge Hub.">
+  <meta name="description" content="FinMark Trust programmes across the SADC region and in South Africa, the themes that run through them, and the research they produce.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23213265'/%3E%3Cpath d='M15 14h18v8H23v8h9v8h-9v13h-8V14Zm22 0h12v37h-8V23h-4v-9Z' fill='white'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../styles.css">
   <style>
-    /* Programmes: title → two pathway columns → cross-cutting band joined to both → thematic research (current + archived) → data signpost */
-    .pg-hero{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
-    .pg-hero:after{content:"";position:absolute;right:5%;bottom:-170px;width:34px;height:360px;background:var(--emerald);opacity:.85;transform:rotate(45deg)}
-    .pg-hero .container{position:relative;z-index:1;padding:44px 0 48px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);gap:44px;align-items:end}
-    .pg-hero .breadcrumbs{margin-bottom:22px}
-    .pg-hero h1{margin:0;color:#fff;font-size:clamp(2.4rem,4.6vw,3.8rem);line-height:1.04;letter-spacing:-.035em}
-    .pg-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;background:var(--teal);color:#fff;font-weight:700;font-size:.88rem}
-    .pg-btn:hover{background:#007f91}
+    /* Programmes (Oct 2026 redesign): photo hero with live counts → pathway chooser → SADC programme grid →
+       South Africa feature cards → cross-cutting band → thematic research → data signpost.
+       Programmes, counts and themes all come from the Knowledge Hub feed, so the content manager drives this page. */
+    .pp-hero{position:relative;overflow:hidden;background:var(--navy-deep);color:#fff}
+    .pp-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:520px}
+    .pp-hero-copy{position:relative;z-index:2;padding:46px 56px 112px max(20px,calc((100vw - var(--max))/2));display:flex;flex-direction:column;justify-content:center}
+    .pp-hero .breadcrumbs{margin-bottom:30px}
+    .pp-hero h1{margin:0;color:#fff;font-size:clamp(3rem,6.4vw,5.6rem);line-height:.98;letter-spacing:-.045em}
+    .pp-hero h1 span{display:block;color:#5ee0c2}
+    .pp-hero-lead{max-width:540px;margin:22px 0 0;color:#d5def0;font-size:1.1rem;line-height:1.6}
+    .pp-stats{display:flex;flex-wrap:wrap;gap:0;margin:34px 0 0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.16)}
+    .pp-stats li{flex:1 1 0;min-width:120px;padding:18px 18px 0 0}
+    .pp-stats li+li{padding-left:18px;border-left:1px solid rgba(255,255,255,.16)}
+    .pp-stats b{display:block;color:#fff;font-size:2.2rem;font-weight:800;line-height:1;letter-spacing:-.03em}
+    .pp-stats span{display:block;margin-top:6px;color:#aebbd8;font-size:.8rem;font-weight:600}
+    .pp-hero-media{position:relative;min-height:420px}
+    .pp-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+    .pp-hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy-deep) 0%,rgba(20,32,68,.35) 30%,rgba(20,32,68,0) 60%),linear-gradient(0deg,rgba(0,153,123,.35),transparent 45%)}
+    .pp-hero .pp-diag{position:absolute;z-index:3;left:50%;bottom:-110px;width:40px;height:330px;background:var(--emerald);transform:rotate(45deg);opacity:.92}
 
-    .pg-main{background:#f5f8fa;padding:56px 0 30px}
-    .pg-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
-    .pg-intro h2{margin:0;color:var(--navy);font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.1;letter-spacing:-.025em}
-    .pg-intro p{margin:8px 0 0;color:var(--muted);max-width:60ch}
+    /* Pathway chooser */
+    .pp-choose{position:relative;z-index:5;margin-top:-56px}
+    .pp-choose-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .pp-door{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;min-height:200px;padding:28px 30px;color:#fff;box-shadow:0 24px 60px rgba(20,32,68,.28);transition:transform .25s,box-shadow .25s}
+    .pp-door:hover,.pp-door:focus-visible{transform:translateY(-4px);box-shadow:0 30px 70px rgba(20,32,68,.36)}
+    .pp-door.sadc{background:var(--navy)}
+    .pp-door.za{background:var(--emerald)}
+    .pp-door:before{content:"";position:absolute;right:-40px;top:-90px;width:34px;height:300px;background:rgba(255,255,255,.14);transform:rotate(45deg)}
+    .pp-door small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+    .pp-door h2{margin:8px 0 6px;color:#fff;font-size:clamp(1.6rem,2.6vw,2.2rem);letter-spacing:-.02em}
+    .pp-door p{margin:0;color:rgba(255,255,255,.86);font-size:.92rem;max-width:44ch}
+    .pp-door .flags{display:flex;flex-wrap:wrap;gap:4px;margin-top:16px;max-width:360px}
+    .pp-door .flags img{width:26px;height:19px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.35)}
+    .pp-door .flags.big img{width:48px;height:36px}
+    .pp-door .go{position:relative;display:grid;place-items:center;width:54px;height:54px;border:1px solid rgba(255,255,255,.5);border-radius:50%;font-size:1.3rem;transition:background .2s}
+    .pp-door:hover .go{background:#fff;color:var(--navy)}
+    .pp-door.za:hover .go{color:var(--emerald)}
+    .pp-door .count{display:inline-block;margin-top:14px;padding:4px 10px;background:rgba(255,255,255,.14);font-size:.78rem;font-weight:700}
 
-    .pg-paths{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:22px;align-items:stretch}
-    .pg-path{position:relative;background:#fff;border:1px solid var(--border);display:flex;flex-direction:column;min-width:0}
-    .pg-path-head{position:relative;overflow:hidden;padding:24px 26px 22px;color:#fff;background:var(--navy)}
-    .pg-path.za .pg-path-head{background:var(--emerald)}
-    .pg-path-head:after{content:"";position:absolute;right:-30px;top:-70px;width:28px;height:220px;background:rgba(255,255,255,.14);transform:rotate(45deg)}
-    .pg-path-head small{display:block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
-    .pg-path-head h3{margin:6px 0 4px;color:#fff;font-size:1.7rem;letter-spacing:-.02em}
-    .pg-path-head p{margin:0;color:rgba(255,255,255,.85);font-size:.9rem;max-width:52ch}
-    .pg-flags{display:flex;flex-wrap:wrap;gap:4px;margin-top:14px}
-    .pg-flags img{width:28px;height:21px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.35)}
-    .pg-path.za .pg-flags img{width:44px;height:33px}
-    .pg-list{list-style:none;margin:0;padding:10px;display:grid;gap:8px;flex:1;align-content:start}
-    .pg-path.sadc .pg-list{grid-template-columns:1fr 1fr}
+    /* Section heads */
+    .pp-sec{padding:84px 0}
+    .pp-sec.alt{background:#f5f8fa}
+    .pp-head{display:flex;justify-content:space-between;align-items:end;gap:28px;flex-wrap:wrap;margin-bottom:34px}
+    .pp-head h2{margin:0;color:var(--navy);font-size:clamp(2rem,3.6vw,3.2rem);line-height:1.05;letter-spacing:-.03em}
+    .pp-head p{margin:10px 0 0;color:var(--muted);max-width:58ch}
+    .pp-num{display:inline-grid;place-items:center;min-width:34px;height:26px;margin-right:10px;padding:0 6px;background:var(--navy);color:#fff;font-size:.74rem;font-weight:700;vertical-align:middle}
+    .za-head .pp-num{background:var(--emerald)}
 
-    .pg-card{position:relative;display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 18px 14px;border:1px solid var(--border);background:#fff;transition:border-color .2s,transform .2s,box-shadow .2s}
-    .pg-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 14px 30px rgba(20,32,68,.1)}
-    .pg-card:before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:4px;background:var(--navy)}
-    .za .pg-card:before{background:var(--emerald)}
-    .pg-card b{color:var(--navy);font-size:1.02rem;line-height:1.3}
-    .pg-card span.d{color:var(--muted);font-size:.84rem;line-height:1.45}
-    .pg-card .links{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:auto;padding-top:6px;font-size:.8rem;font-weight:700}
-    .pg-card .links a{color:var(--teal)}
-    .pg-card .links a:hover{text-decoration:underline}
-    .pg-card .site{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:#eef1f4;color:var(--muted);font-size:.66rem;font-weight:700;vertical-align:2px}
-    .za .pg-card{padding:20px 20px 16px}
-    .za .pg-card b{font-size:1.15rem}
-    .pg-card.pg-note{background:#f5f8fa;border-style:dashed}
-    .pg-card.pg-note:before{background:var(--teal)}
+    /* SADC programme grid */
+    .pp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .pp-grid>li{display:flex;min-width:0}
+    .pp-tile{position:relative;flex:1;display:flex;flex-direction:column;gap:10px;padding:24px 22px 20px;background:#fff;border:1px solid var(--border);overflow:hidden;transition:background .25s,color .25s,transform .25s,box-shadow .25s}
+    .pp-tile:hover,.pp-tile:focus-within{background:var(--navy);transform:translateY(-4px);box-shadow:0 20px 44px rgba(20,32,68,.22)}
+    .pp-tile .ix{position:absolute;right:16px;top:12px;color:#e3e8ef;font-size:2.6rem;font-weight:800;line-height:1;letter-spacing:-.04em;transition:color .25s}
+    .pp-ic{display:grid;place-items:center;width:52px;height:52px;background:var(--mist);color:var(--teal);transition:background .25s,color .25s}
+    .pp-ic svg{width:26px;height:26px}
+    .pp-tile h3{margin:6px 0 0;color:var(--navy);font-size:1.12rem;line-height:1.25;transition:color .25s}
+    .pp-tile p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.5;transition:color .25s}
+    .pp-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border);font-size:.82rem;font-weight:700;transition:border-color .25s}
+    .pp-links a{color:var(--teal)}
+    .pp-links a:hover{text-decoration:underline}
+    .pp-links .n{color:var(--muted);font-weight:600}
+    .pp-tile:hover .ix,.pp-tile:focus-within .ix{color:rgba(255,255,255,.12)}
+    .pp-tile:hover .pp-ic,.pp-tile:focus-within .pp-ic{background:var(--teal);color:#fff}
+    .pp-tile:hover h3,.pp-tile:focus-within h3{color:#fff}
+    .pp-tile:hover p,.pp-tile:focus-within p,.pp-tile:hover .pp-links .n,.pp-tile:focus-within .pp-links .n{color:#c9d3e8}
+    .pp-tile:hover .pp-links,.pp-tile:focus-within .pp-links{border-color:rgba(255,255,255,.16)}
+    .pp-tile:hover .pp-links a,.pp-tile:focus-within .pp-links a{color:#7fdbe6}
 
-    /* Cross-cutting band joined to both pathways */
-    .pg-cross{position:relative;margin-top:44px;background:var(--navy-deep);color:#fff;padding:26px 26px 24px}
-    .pg-joins{position:absolute;left:0;right:0;top:-44px;height:44px;display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:22px;pointer-events:none}
-    .pg-joins span{position:relative}
-    .pg-joins span:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px dashed #9aa6bf}
-    .pg-joins span:after{content:"";position:absolute;left:calc(50% - 6px);top:-1px;width:12px;height:12px;border-left:2px solid #9aa6bf;border-top:2px solid #9aa6bf;transform:rotate(45deg)}
-    .pg-cross-head{display:flex;justify-content:space-between;align-items:end;gap:18px;flex-wrap:wrap;margin-bottom:18px}
-    .pg-cross-head small{display:block;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7fdbe6}
-    .pg-cross-head h3{margin:6px 0 0;color:#fff;font-size:1.6rem;letter-spacing:-.02em}
-    .pg-cross-head p{margin:0;color:#c9d3e8;font-size:.9rem;max-width:46ch}
-    .pg-cross-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-    .pg-x{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px 16px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:background .2s,border-color .2s}
-    .pg-x:hover{background:rgba(255,255,255,.1);border-color:#22b8cd}
-    .pg-x i{display:block;width:12px;height:12px;transform:rotate(45deg);background:#22b8cd;margin-bottom:4px}
-    .pg-x.gender i{background:#a98bd6}.pg-x.youth i{background:#e0a128}.pg-x.data i{background:#22b8cd}.pg-x.training i{background:#2cc39f}
-    .pg-x b{color:#fff;font-size:1.05rem}
-    .pg-x span.d{color:#c9d3e8;font-size:.82rem;line-height:1.45}
-    .pg-x .links{margin-top:auto;padding-top:6px;display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.78rem;font-weight:700}
-    .pg-x .links a{color:#7fdbe6}
-    .pg-x .links a:hover{text-decoration:underline}
+    /* South Africa feature cards */
+    .za-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr)) minmax(0,.8fr);gap:18px}
+    .za-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);overflow:hidden;transition:transform .25s,box-shadow .25s}
+    .za-card:hover,.za-card:focus-within{transform:translateY(-4px);box-shadow:0 20px 44px rgba(20,32,68,.16)}
+    .za-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:#e7efe9}
+    .za-media img{width:100%;height:100%;object-fit:cover}
+    .za-card.gbl .za-media{background:#F8F4EE}
+    .za-card.gbl .za-media img{object-fit:contain;padding:14px}
+    .za-body{flex:1;display:flex;flex-direction:column;gap:10px;padding:22px 24px 22px;border-top:4px solid var(--emerald)}
+    .za-card.gbl .za-body{border-top-color:#62400c}
+    .za-body small{color:var(--emerald);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .za-card.gbl .za-body small{color:#62400c}
+    .za-body h3{margin:0;color:var(--navy);font-size:1.4rem;line-height:1.2}
+    .za-body p{margin:0;color:var(--muted);font-size:.92rem}
+    .za-body .pp-links{border-top:0;padding-top:4px}
+    .za-card.gbl .pp-links a{color:#62400c}
+    .za-num{display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:28px 26px;background:var(--navy-deep);color:#fff;position:relative;overflow:hidden;transition:transform .25s}
+    .za-num:hover,.za-num:focus-visible{transform:translateY(-4px)}
+    .za-num:after{content:"";position:absolute;right:-30px;bottom:-80px;width:30px;height:240px;background:var(--emerald);transform:rotate(45deg)}
+    .za-num img{width:56px;height:42px;object-fit:cover}
+    .za-num small{color:#7fdbe6;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .za-num strong{display:block;margin-top:6px;font-size:1.45rem;line-height:1.2}
+    .za-num span.d{color:#c9d3e8;font-size:.88rem}
+    .za-num .go{color:#7fdbe6;font-weight:700;font-size:.88rem}
 
-    .pg-btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--navy)}
-    .pg-btn.ghost:hover{background:var(--navy);color:#fff}
-
-    @media(max-width:1020px){
-      .pg-hero .container{grid-template-columns:1fr;gap:28px}
-      .pg-paths,.pg-joins{grid-template-columns:1fr}
-      .pg-joins{display:none}
-      .pg-cross{margin-top:22px}
-      .pg-cross-list{grid-template-columns:1fr 1fr}
-    }
-    @media(max-width:640px){
-      .pg-path.sadc .pg-list,.pg-cross-list{grid-template-columns:1fr}
-      .pg-main{padding-top:40px}
-      .pg-path-head{padding:20px}
-      .pg-cross{padding:20px}
-    }
-    @media(prefers-reduced-motion:reduce){.pg-card,.pg-x{transition:none}}
-    /* Hero (simplified, Oct 2026) */
-    .pg-hero .container{grid-template-columns:minmax(0,1fr) auto;padding:40px 0 44px}
-    .pg-jump{display:flex;flex-wrap:wrap;gap:8px}
-    .pg-jump a{padding:9px 14px;border:1px solid rgba(255,255,255,.35);color:#fff;font-size:.84rem;font-weight:700}
-    .pg-jump a:hover{border-color:#7fdbe6;color:#7fdbe6}
+    /* Cross-cutting */
+    .pp-cross{background:var(--navy-deep);color:#fff;padding:80px 0;position:relative;overflow:hidden}
+    .pp-cross:before{content:"";position:absolute;left:-60px;top:-140px;width:36px;height:380px;background:var(--teal);opacity:.7;transform:rotate(45deg)}
+    .pp-cross .pp-head h2{color:#fff}
+    .pp-cross .pp-head p{color:#c9d3e8}
+    .pp-cross-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .pp-cross-grid>li{display:flex}
+    .pp-x{flex:1;display:flex;flex-direction:column;gap:10px;padding:26px 24px 22px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-top:4px solid var(--c,#22b8cd);transition:background .2s,transform .2s}
+    .pp-x:hover,.pp-x:focus-within{background:rgba(255,255,255,.1);transform:translateY(-3px)}
+    .pp-x .pp-ic{background:var(--c,#22b8cd);color:#fff}
+    .pp-x h3{margin:6px 0 0;color:#fff;font-size:1.25rem}
+    .pp-x p{margin:0;color:#c9d3e8;font-size:.86rem;line-height:1.5}
+    .pp-x .pp-links{border-top-color:rgba(255,255,255,.14)}
+    .pp-x .pp-links a{color:#7fdbe6}
+    .pp-x .pp-links .n{color:#9aa6bf}
+    .pp-joined{display:flex;align-items:center;gap:10px;margin-top:22px;color:#9aa6bf;font-size:.84rem}
+    .pp-joined i{display:inline-block;width:10px;height:10px;transform:rotate(45deg)}
 
     /* Thematic research */
-    .pg-themes{background:#fff;border-top:1px solid var(--border);padding:56px 0 52px}
-    .pg-arch-toggle{display:inline-flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;color:var(--navy);cursor:pointer;padding:8px 0}
-    .pg-arch-toggle input{position:absolute;opacity:0}
-    .pg-arch-toggle .track{position:relative;width:38px;height:22px;border-radius:999px;background:#cfd6de;transition:background .2s;flex:0 0 auto}
-    .pg-arch-toggle .track:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
-    .pg-arch-toggle input:checked+.track{background:var(--teal)}
-    .pg-arch-toggle input:checked+.track:after{transform:translateX(16px)}
-    .pg-arch-toggle input:focus-visible+.track{outline:3px solid var(--teal);outline-offset:2px}
-    .pg-theme-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .pg-theme-grid>li{display:flex;min-width:0}
-    .pg-theme-loading{grid-column:1/-1;color:var(--muted);padding:20px 0}
-    .pg-theme{flex:1;display:flex;flex-direction:column;gap:8px;padding:20px 20px 16px;background:#f5f8fa;border:1px solid var(--border);border-top:4px solid var(--emerald);transition:border-color .2s,transform .2s,box-shadow .2s;min-width:0}
-    .pg-theme:hover,.pg-theme:focus-visible{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 14px 30px rgba(20,32,68,.1)}
-    .pg-theme .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-    .pg-theme b{color:var(--navy);font-size:1.12rem;line-height:1.25}
-    .pg-theme .n{color:var(--navy);font-size:1.5rem;font-weight:800;line-height:1;text-align:right;white-space:nowrap}
-    .pg-theme .n small{display:block;margin-top:3px;color:var(--muted);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-    .pg-theme .d{color:var(--muted);font-size:.86rem;line-height:1.45}
-    .pg-theme .latest{display:block;padding-top:10px;margin-top:2px;border-top:1px solid var(--border);color:var(--ink);font-size:.84rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-    .pg-theme .latest small{display:block;color:var(--teal);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
-    .pg-theme .go{margin-top:auto;padding-top:6px;color:var(--teal);font-size:.84rem;font-weight:700}
-    .pg-archived{margin-top:34px;padding-top:28px;border-top:1px dashed #b9c3cf}
-    .pg-archived[hidden]{display:none}
-    .pg-archived h3{margin:0;color:var(--navy);font-size:1.35rem}
-    .pg-archived>p{margin:4px 0 18px;color:var(--muted)}
-    .pg-theme.arch{background:#fff;border-top-color:#9aa4b5}
-    .pg-theme.arch b,.pg-theme.arch .n{color:#4a5670}
-    .pg-all{margin:28px 0 0}
+    .pp-arch-toggle{display:inline-flex;align-items:center;gap:10px;font-size:.9rem;font-weight:700;color:var(--navy);cursor:pointer;padding:8px 0}
+    .pp-arch-toggle input{position:absolute;opacity:0}
+    .pp-arch-toggle .track{position:relative;width:38px;height:22px;border-radius:999px;background:#cfd6de;transition:background .2s;flex:0 0 auto}
+    .pp-arch-toggle .track:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+    .pp-arch-toggle input:checked+.track{background:var(--teal)}
+    .pp-arch-toggle input:checked+.track:after{transform:translateX(16px)}
+    .pp-arch-toggle input:focus-visible+.track{outline:3px solid var(--teal);outline-offset:2px}
+    .pp-themes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .pp-themes>li{display:flex;min-width:0}
+    .pp-theme{flex:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;padding:20px 22px 18px;background:#fff;border:1px solid var(--border);transition:border-color .2s,transform .2s,box-shadow .2s}
+    .pp-theme:hover,.pp-theme:focus-visible{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 14px 30px rgba(20,32,68,.1)}
+    .pp-theme b{color:var(--navy);font-size:1.08rem;line-height:1.25}
+    .pp-theme .n{grid-row:span 2;align-self:start;text-align:right;color:var(--navy);font-size:1.7rem;font-weight:800;line-height:1}
+    .pp-theme .n small{display:block;margin-top:4px;color:var(--muted);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .pp-theme .d{color:var(--muted);font-size:.84rem;line-height:1.45}
+    .pp-theme .latest{grid-column:1/-1;margin-top:8px;padding-top:10px;border-top:1px solid var(--border);color:var(--ink);font-size:.82rem;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .pp-theme .latest small{color:var(--teal);font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
+    .pp-theme.arch b,.pp-theme.arch .n{color:#4a5670}
+    .pp-archived{margin-top:34px;padding-top:28px;border-top:1px dashed #b9c3cf}
+    .pp-archived[hidden]{display:none}
+    .pp-archived h3{margin:0;color:var(--navy);font-size:1.35rem}
+    .pp-archived>p{margin:4px 0 18px;color:var(--muted)}
+    .pp-loading{grid-column:1/-1;color:var(--muted);padding:16px 0}
 
-    /* Looking for data (bottom) */
-    .pg-databand{background:var(--navy-deep);color:#fff;padding:44px 0;position:relative;overflow:hidden}
-    .pg-databand:after{content:"";position:absolute;right:8%;top:-120px;width:30px;height:320px;background:var(--teal);opacity:.8;transform:rotate(45deg)}
-    .pg-databand .container{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-    .pg-databand small{display:block;color:#7fdbe6;font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
-    .pg-databand h2{margin:6px 0 6px;color:#fff;font-size:clamp(1.4rem,2.4vw,1.9rem)}
-    .pg-databand p{margin:0;color:#c9d3e8;max-width:60ch}
-    @media(max-width:1020px){.pg-theme-grid{grid-template-columns:1fr 1fr}.pg-hero .container{grid-template-columns:1fr}}
-    @media(max-width:640px){.pg-theme-grid{grid-template-columns:1fr}}
-    @media(prefers-reduced-motion:reduce){.pg-theme,.pg-arch-toggle .track,.pg-arch-toggle .track:after{transition:none}}
+    /* Data signpost */
+    .pp-databand{background:var(--teal);color:#fff;padding:46px 0;position:relative;overflow:hidden}
+    .pp-databand:after{content:"";position:absolute;right:8%;top:-120px;width:30px;height:320px;background:var(--navy);opacity:.35;transform:rotate(45deg)}
+    .pp-databand .container{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+    .pp-databand small{display:block;font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;opacity:.85}
+    .pp-databand h2{margin:6px 0 6px;color:#fff;font-size:clamp(1.4rem,2.4vw,1.9rem)}
+    .pp-databand p{margin:0;color:#e6f7f9;max-width:60ch}
+    .pp-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 22px;background:#fff;color:var(--navy);font-weight:700;font-size:.9rem}
+    .pp-btn:hover{background:var(--navy);color:#fff}
+    .pp-btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}
+    .pp-btn.ghost:hover{background:var(--navy);color:#fff}
+
+    @media(max-width:1100px){.pp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pp-cross-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.za-grid{grid-template-columns:1fr 1fr}.za-num{grid-column:1/-1}.pp-themes{grid-template-columns:1fr 1fr}}
+    @media(max-width:900px){.pp-hero-grid{grid-template-columns:1fr}.pp-hero-copy{padding:40px 20px 90px}.pp-hero-media{min-height:260px;order:-1}.pp-hero-media:after{background:linear-gradient(0deg,var(--navy-deep),rgba(20,32,68,.1) 60%)}.pp-hero .pp-diag{display:none}.pp-choose-grid{grid-template-columns:1fr}}
+    @media(max-width:640px){.pp-grid,.pp-cross-grid,.za-grid,.pp-themes{grid-template-columns:1fr}.pp-sec{padding:60px 0}.pp-door{padding:24px}.pp-stats li{min-width:0}.pp-stats b{font-size:1.7rem}}
+    @media(prefers-reduced-motion:reduce){.pp-door,.pp-tile,.za-card,.za-num,.pp-x,.pp-theme{transition:none}}
   </style>
 </head>
 <body data-page="programmes">
 <div id="site-header"></div>
 <main id="main">
-  <header class="pg-hero">
-    <div class="container">
-      <div>
+  <header class="pp-hero">
+    <div class="pp-hero-grid">
+      <div class="pp-hero-copy">
         <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><span>Programmes</span></div>
-        <h1>Programmes</h1>
+        <h1>Programmes <span>in practice.</span></h1>
+        <p class="pp-hero-lead">Regional platforms across SADC and community programmes in South Africa, each backed by research you can read.</p>
+        <ul class="pp-stats" aria-label="At a glance">
+          <li><b id="ppStatProg">14</b><span>programmes</span></li>
+          <li><b>16</b><span>SADC countries</span></li>
+          <li><b id="ppStatRes">400+</b><span>programme research pieces</span></li>
+        </ul>
       </div>
-      <nav class="pg-jump" aria-label="On this page">
-        <a href="#pathTitle">Programmes by pathway</a>
-        <a href="#themesTitle">Thematic research</a>
-        <a href="#dataTitle">Looking for data?</a>
-      </nav>
+      <div class="pp-hero-media" aria-hidden="true"><img src="../images/programmes/programmes-hero.webp" alt=""></div>
     </div>
+    <span class="pp-diag" aria-hidden="true"></span>
   </header>
 
-  <section class="pg-main" aria-labelledby="pathTitle">
-    <div class="container">
-      <div class="pg-intro"><div><p class="eyebrow">Two pathways</p><h2 id="pathTitle">Where the work happens</h2><p>Choose a pathway to see its programmes. Each one links to its own site, where it has one, and to its research in the Knowledge Hub.</p></div></div>
-
-      <div class="pg-paths">
-        <section class="pg-path sadc" aria-labelledby="sadcTitle">
-          <div class="pg-path-head">
-            <small>Regional pathway</small>
-            <h3 id="sadcTitle">SADC region</h3>
-            <p>Regional platforms, policy and market work across the Southern African Development Community.</p>
-            <div class="pg-flags" aria-hidden="true">
-              <img src="../flags/ao.svg" alt=""><img src="../flags/bw.svg" alt=""><img src="../flags/km.svg" alt=""><img src="../flags/cd.svg" alt=""><img src="../flags/sz.svg" alt=""><img src="../flags/ls.svg" alt=""><img src="../flags/mg.svg" alt=""><img src="../flags/mw.svg" alt=""><img src="../flags/mu.svg" alt=""><img src="../flags/mz.svg" alt=""><img src="../flags/na.svg" alt=""><img src="../flags/sc.svg" alt=""><img src="../flags/za.svg" alt=""><img src="../flags/tz.svg" alt=""><img src="../flags/zm.svg" alt=""><img src="../flags/zw.svg" alt="">
-            </div>
-          </div>
-          <ul class="pg-list">
-            <li><div class="pg-card"><b>SADC Financial Inclusion Forum<span class="site">Own site</span></b><span class="d">Regional convening of regulators, providers and partners on financial inclusion.</span><span class="links"><a href="https://finmark.org.za/SADC_FI_Forum/">Visit the forum</a><a href="../knowledge-hub/index.html?programme=sadc-fi-forum" data-prog="sadc-fi-forum">Research</a></span></div></li>
-            <li><div class="pg-card"><b>eKYC and Digital Identity<span class="site">Own site</span></b><span class="d">Lower-friction, interoperable identity and customer checks across SADC.</span><span class="links"><a href="https://finmark.org.za/eKYC/Index.html">Visit eKYC</a><a href="../knowledge-hub/index.html?programme=ekyc-digital-identity" data-prog="ekyc-digital-identity">Research</a></span></div></li>
-            <li><div class="pg-card"><b>Cross-border remittances</b><span class="d">Cheaper, safer ways to send money between South Africa and the region.</span><span class="links"><a href="../knowledge-hub/index.html?programme=cross-border-remittances" data-prog="cross-border-remittances">Research and updates</a></span></div></li>
-            <li><div class="pg-card"><b>Financial inclusion strategies</b><span class="d">Supporting countries to design and track national financial inclusion strategies.</span><span class="links"><a href="../knowledge-hub/index.html?programme=fi-strategies" data-prog="fi-strategies">Research and updates</a></span></div></li>
-            <li><div class="pg-card"><b>Financial integrity</b><span class="d">Anti-money laundering rules that protect the system without shutting people out.</span><span class="links"><a href="../knowledge-hub/index.html?programme=financial-integrity" data-prog="financial-integrity">Research and updates</a></span></div></li>
-            <li><div class="pg-card"><b>MAP diagnostics and roadmap</b><span class="d">Making Access Possible: country diagnostics that shape national roadmaps.</span><span class="links"><a href="../knowledge-hub/index.html?programme=map" data-prog="map">Diagnostics and roadmaps</a></span></div></li>
-            <li><div class="pg-card"><b>MSME formalisation</b><span class="d">Understanding what helps informal businesses formalise, access finance and grow.</span><span class="links"><a href="../knowledge-hub/index.html?programme=msme-formalisation" data-prog="msme-formalisation">Research and updates</a></span></div></li>
-            <li><div class="pg-card"><b>Policy and regulation</b><span class="d">Evidence for proportionate, inclusive financial policy and regulation.</span><span class="links"><a href="../knowledge-hub/index.html?programme=policy-regulation" data-prog="policy-regulation">Research and updates</a></span></div></li>
-          </ul>
-        </section>
-
-        <section class="pg-path za" aria-labelledby="zaTitle">
-          <div class="pg-path-head">
-            <small>National pathway</small>
-            <h3 id="zaTitle">South Africa</h3>
-            <p>Programmes delivered with partners in South African communities.</p>
-            <div class="pg-flags" aria-hidden="true"><img src="../flags/za.svg" alt=""></div>
-          </div>
-          <ul class="pg-list">
-            <li><div class="pg-card"><b>Generating Better Livelihoods</b><span class="d">Supporting grant recipients into employment and sustainable enterprise pathways.</span><span class="links"><a href="generating-better-livelihoods/index.html">View programme</a><a href="../knowledge-hub/index.html?programme=gbl" data-prog="gbl">Research</a></span></div></li>
-            <li><div class="pg-card"><b>Community Digitalisation<span class="site">Own site</span></b><span class="d">Expanding safer digital payments and opportunity in Thembisa and Hammanskraal.</span><span class="links"><a href="https://finmark.org.za/Community_digitalisation/">Visit the programme</a><a href="../knowledge-hub/index.html?programme=community-digitalisation" data-prog="community-digitalisation">Research</a></span></div></li>
-            <li><a class="pg-card pg-note" href="../data/country.html#ZAF"><b>South Africa in numbers</b><span class="d">FinScope Consumer and MSME results, key statistics and publications for South Africa.</span><span class="links"><span style="color:var(--teal)">Open the South Africa data page →</span></span></a></li>
-          </ul>
-        </section>
-      </div>
-
-      <section class="pg-cross" aria-labelledby="crossTitle">
-        <div class="pg-joins" aria-hidden="true"><span></span><span></span></div>
-        <div class="pg-cross-head">
-          <div><small>Runs through both pathways</small><h3 id="crossTitle">Cross-cutting themes</h3></div>
-          <p>These shape programmes in South Africa and across SADC alike, rather than sitting in one place.</p>
+  <div class="pp-choose">
+    <div class="container pp-choose-grid">
+      <a class="pp-door sadc" href="#sadc">
+        <div>
+          <small>Regional pathway</small>
+          <h2>SADC region</h2>
+          <p>Regional platforms, policy and market work across the Southern African Development Community.</p>
+          <div class="flags" aria-hidden="true"><img src="../flags/ao.svg" alt=""><img src="../flags/bw.svg" alt=""><img src="../flags/km.svg" alt=""><img src="../flags/cd.svg" alt=""><img src="../flags/sz.svg" alt=""><img src="../flags/ls.svg" alt=""><img src="../flags/mg.svg" alt=""><img src="../flags/mw.svg" alt=""><img src="../flags/mu.svg" alt=""><img src="../flags/mz.svg" alt=""><img src="../flags/na.svg" alt=""><img src="../flags/sc.svg" alt=""><img src="../flags/za.svg" alt=""><img src="../flags/tz.svg" alt=""><img src="../flags/zm.svg" alt=""><img src="../flags/zw.svg" alt=""></div>
+          <span class="count" id="ppCountSadc">8 programmes</span>
         </div>
-        <ul class="pg-cross-list">
-          <li><div class="pg-x gender"><i aria-hidden="true"></i><b>Gender</b><span class="d">Gender-disaggregated evidence and action for women's economic empowerment.</span><span class="links"><a href="https://finmark.org.za/Gender/">Visit Gender</a><a href="../knowledge-hub/index.html?programme=gender" data-prog="gender">Research</a></span></div></li>
-          <li><div class="pg-x youth"><i aria-hidden="true"></i><b>Youth</b><span class="d">Young people's access to finance, skills and livelihoods.</span><span class="links"><a href="../knowledge-hub/index.html?programme=youth" data-prog="youth">Research and updates</a></span></div></li>
-          <li><div class="pg-x data"><i aria-hidden="true"></i><b>Data</b><span class="d">FinScope Consumer and MSME surveys and analytics behind every programme.</span><span class="links"><a href="../countries/index.html">Explore Data</a></span></div></li>
-          <li><div class="pg-x training"><i aria-hidden="true"></i><b>Training</b><span class="d">Building the practical capacity to understand and apply financial inclusion evidence.</span><span class="links"><a href="https://finmark.org.za/Training/">Visit Training</a><a href="../knowledge-hub/index.html?programme=training" data-prog="training">Research</a></span></div></li>
-        </ul>
-      </section>
+        <span class="go" aria-hidden="true">&#8595;</span>
+      </a>
+      <a class="pp-door za" href="#za">
+        <div>
+          <small>National pathway</small>
+          <h2>South Africa</h2>
+          <p>Programmes delivered with partners in South African communities, from social grants to digital payments.</p>
+          <div class="flags big" aria-hidden="true"><img src="../flags/za.svg" alt=""></div>
+          <span class="count" id="ppCountZa">2 programmes</span>
+        </div>
+        <span class="go" aria-hidden="true">&#8595;</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="pp-sec" id="sadc" aria-labelledby="sadcTitle">
+    <div class="container">
+      <div class="pp-head">
+        <div><h2 id="sadcTitle"><span class="pp-num">01</span>SADC region</h2><p>Each programme links to its own site, where it has one, and to its research in the Knowledge Hub.</p></div>
+      </div>
+      <ul class="pp-grid" id="ppSadc"></ul>
     </div>
   </section>
 
-  <section class="pg-themes" aria-labelledby="themesTitle">
+  <section class="pp-sec alt" id="za" aria-labelledby="zaTitle">
     <div class="container">
-      <div class="pg-intro">
-        <div><p class="eyebrow">Knowledge Hub</p><h2 id="themesTitle">Thematic research</h2><p>Reports, articles, blogs and videos from our programme work, grouped by theme. Pick a theme to see everything on it in the Knowledge Hub.</p></div>
-        <label class="pg-arch-toggle"><input type="checkbox" id="pgArchived"><span class="track" aria-hidden="true"></span>Show archived themes</label>
+      <div class="pp-head za-head">
+        <div><h2 id="zaTitle"><span class="pp-num">02</span>South Africa</h2><p>Community programmes that connect people to livelihoods, payments and opportunity.</p></div>
       </div>
-      <ul class="pg-theme-grid" id="pgThemes"><li class="pg-theme-loading">Loading themes…</li></ul>
-      <div class="pg-archived" id="pgArchivedWrap" hidden>
+      <div class="za-grid" id="ppZa"></div>
+    </div>
+  </section>
+
+  <section class="pp-cross" id="cross" aria-labelledby="crossTitle">
+    <div class="container">
+      <div class="pp-head">
+        <div><h2 id="crossTitle">Cross-cutting themes</h2><p>These run through programmes in South Africa and across SADC alike.</p></div>
+      </div>
+      <ul class="pp-cross-grid" id="ppCross"></ul>
+      <p class="pp-joined"><i style="background:var(--navy);box-shadow:0 0 0 1px #9aa6bf"></i>SADC region <span aria-hidden="true">+</span> <i style="background:var(--emerald)"></i>South Africa</p>
+    </div>
+  </section>
+
+  <section class="pp-sec" id="themes" aria-labelledby="themesTitle">
+    <div class="container">
+      <div class="pp-head">
+        <div><h2 id="themesTitle">Thematic research</h2><p>Reports, articles, blogs and videos from our programme work, grouped by theme. Pick a theme to see everything on it in the Knowledge Hub.</p></div>
+        <label class="pp-arch-toggle"><input type="checkbox" id="ppArchived"><span class="track" aria-hidden="true"></span>Show archived themes</label>
+      </div>
+      <ul class="pp-themes" id="ppThemes"><li class="pp-loading">Loading themes…</li></ul>
+      <div class="pp-archived" id="ppArchivedWrap" hidden>
         <h3>Archived themes</h3>
         <p>Earlier areas of work. The research is still available and searchable.</p>
-        <ul class="pg-theme-grid arch" id="pgArchivedList"></ul>
+        <ul class="pp-themes" id="ppArchivedList"></ul>
       </div>
-      <p class="pg-all"><a class="pg-btn ghost" href="../knowledge-hub/index.html?pathway=programmes">Browse all programme research →</a></p>
+      <p style="margin:28px 0 0"><a class="pp-btn ghost" href="../knowledge-hub/index.html?section=programmes">Browse all programme research →</a></p>
     </div>
   </section>
 
-  <section class="pg-databand" aria-labelledby="dataTitle">
+  <section class="pp-databand" aria-labelledby="dataTitle">
     <div class="container">
       <div>
         <small>Looking for data?</small>
         <h2 id="dataTitle">Surveys and country data are in Explore Data</h2>
         <p>FinScope Consumer and MSME surveys, country statistics and dataset downloads sit in the data section.</p>
       </div>
-      <a class="pg-btn" href="../countries/index.html">Go to Explore Data →</a>
+      <a class="pp-btn" href="../countries/index.html">Go to Explore Data →</a>
     </div>
   </section>
 </main>
 <div id="site-footer"></div>
 <script src="../site.js"></script>
 <script>
-/* Thematic research: built from the Knowledge Hub feed, so themes, counts and archive status follow the content manager. */
+/* Builds the page from the Knowledge Hub feed: programmes (managed in the content manager), research counts and themes. */
 (function () {
+  var $ = function (id) { return document.getElementById(id); };
   var esc = function (x) { return String(x == null ? '' : x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
   var M = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var fmt = function (d) { var p = (d || '').split('-'); return p[0] ? (p[2] ? +p[2] + ' ' : '') + (p[1] ? M[+p[1] - 1] + ' ' : '') + p[0] : ''; };
-  function tile(t, st, arch) {
-    var href = '../knowledge-hub/index.html?theme=' + encodeURIComponent(t.slug) + (arch ? '&archived=1' : '');
-    var years = st.min && st.max ? (st.min === st.max ? st.min : st.min + '–' + st.max) : '';
-    return '<li><a class="pg-theme' + (arch ? ' arch' : '') + '" href="' + href + '">'
-      + '<span class="top"><b>' + esc(t.name) + '</b><span class="n">' + st.n + '<small>' + (st.n === 1 ? 'piece' : 'pieces') + '</small></span></span>'
-      + (t.description ? '<span class="d">' + esc(t.description) + '</span>' : '')
-      + (st.latest ? '<span class="latest"><small>' + (arch ? 'Most recent' : 'Latest') + ' · ' + esc(fmt(st.latest.d)) + '</small>' + esc(st.latest.t) + '</span>' : '')
-      + '<span class="go">' + (arch ? 'View archive' + (years ? ' (' + years + ')' : '') : 'View research') + ' →</span></a></li>';
+  var S = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>'; };
+  var ICON = {
+    'sadc-fi-forum': S('<path d="M4 5h11v8H8l-4 3z"/><path d="M15 9h5v8l-3-2h-6v-2"/>'),
+    'ekyc-digital-identity': S('<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.8-1.6 2-2.4 3.5-2.4s2.7.8 3.5 2.4M14 10h5M14 13h4"/>'),
+    'cross-border-remittances': S('<path d="M4 8h13l-3-3M20 16H7l3 3"/>'),
+    'fi-strategies': S('<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>'),
+    'financial-integrity': S('<path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>'),
+    'map': S('<path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/>'),
+    'msme-formalisation': S('<path d="M4 9l1.5-5h13L20 9"/><path d="M4 9h16v2a3 3 0 0 1-5.3 2 3 3 0 0 1-5.4 0A3 3 0 0 1 4 11z"/><path d="M5 13v7h14v-7M10 20v-4h4v4"/>'),
+    'policy-regulation': S('<path d="M12 4v16M6 20h12M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0zM19 8l-3 6a3 3 0 0 0 6 0z"/>'),
+    'gbl': S('<path d="M12 21v-9"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/>'),
+    'community-digitalisation': S('<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>'),
+    'gender': S('<circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/>'),
+    'youth': S('<path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/>'),
+    'data': S('<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'),
+    'training': S('<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5M22 9v6"/>')
+  };
+  var DEF_ICON = S('<circle cx="12" cy="12" r="8"/>');
+  var CROSS_COL = { gender: '#8b6cc4', youth: '#d08a12', data: '#0098ae', training: '#00997b' };
+  var ZA_IMG = { gbl: '../images/gbl/gbl-participants.webp', 'community-digitalisation': '../images/programmes/community-digitalisation.webp' };
+
+  function links(p, n) {
+    var out = '';
+    if (p.site) out += '<a href="' + esc(p.site) + '">' + (p.slug === 'gbl' ? 'Visit the GBL site' : 'Visit the site') + '</a>';
+    if (p.slug === 'data') out += '<a href="../countries/index.html">Explore Data</a>';
+    out += n ? '<a href="../knowledge-hub/index.html?programme=' + esc(p.slug) + '">Research</a><span class="n">' + n + ' ' + (n === 1 ? 'piece' : 'pieces') + '</span>' : '';
+    return out ? '<span class="pp-links">' + out + '</span>' : '';
   }
+
   fetch('../knowledge-hub/knowledge.json').then(function (r) { return r.json(); }).then(function (feed) {
-    var stats = {};
-    feed.themes.forEach(function (t) { stats[t.slug] = { n: 0, latest: null, min: '', max: '' }; });
+    var progs = (feed.programmes || []).filter(function (p) { return p.status !== 'archived'; });
+    var pc = {}, progItems = 0;
+    feed.items.forEach(function (i) {
+      (i.pg || []).forEach(function (s) { pc[s] = (pc[s] || 0) + 1; });
+      if (i.sec === 'programmes' || i.sec === 'both') progItems++;
+    });
+    var by = function (k) { return progs.filter(function (p) { return p.pathway === k; }); };
+    var sadc = by('sadc'), za = by('za'), cross = by('cross');
+    $('ppStatProg').textContent = progs.length;
+    $('ppStatRes').textContent = progItems.toLocaleString('en-GB');
+    $('ppCountSadc').textContent = sadc.length + ' programmes';
+    $('ppCountZa').textContent = za.length + (za.length === 1 ? ' programme' : ' programmes');
+
+    $('ppSadc').innerHTML = sadc.map(function (p, i) {
+      return '<li><article class="pp-tile"><span class="ix" aria-hidden="true">' + String(i + 1).padStart(2, '0') + '</span>'
+        + '<span class="pp-ic">' + (ICON[p.slug] || DEF_ICON) + '</span><h3>' + esc(p.name) + '</h3>'
+        + (p.description ? '<p>' + esc(p.description) + '</p>' : '') + links(p, pc[p.slug]) + '</article></li>';
+    }).join('');
+
+    $('ppZa').innerHTML = za.map(function (p) {
+      var img = ZA_IMG[p.slug];
+      return '<article class="za-card' + (p.slug === 'gbl' ? ' gbl' : '') + '">'
+        + (img ? '<div class="za-media"><img src="' + img + '" alt="" loading="lazy"></div>' : '')
+        + '<div class="za-body"><small>' + (p.slug === 'gbl' ? 'Livelihoods' : 'South Africa') + '</small><h3>' + esc(p.name) + '</h3>'
+        + (p.description ? '<p>' + esc(p.description) + '</p>' : '') + links(p, pc[p.slug]) + '</div></article>';
+    }).join('') + '<a class="za-num" href="../data/country.html#ZAF"><img src="../flags/za.svg" alt=""><div><small>Data</small><strong>South Africa in numbers</strong></div>'
+      + '<span class="d">FinScope Consumer and MSME results, key statistics and publications for South Africa.</span><span class="go">Open the South Africa data page →</span></a>';
+
+    $('ppCross').innerHTML = cross.map(function (p) {
+      return '<li><article class="pp-x" style="--c:' + (CROSS_COL[p.slug] || '#22b8cd') + '"><span class="pp-ic">' + (ICON[p.slug] || DEF_ICON) + '</span><h3>' + esc(p.name) + '</h3>'
+        + (p.description ? '<p>' + esc(p.description) + '</p>' : '') + links(p, pc[p.slug]) + '</article></li>';
+    }).join('');
+
+    // Thematic research (current programme themes; archived themes behind a switch)
+    var st = {};
+    feed.themes.forEach(function (t) { st[t.slug] = { n: 0, latest: null, min: '', max: '' }; });
     feed.items.forEach(function (i) {
       (i.th || []).forEach(function (s) {
-        var st = stats[s]; if (!st) return; st.n++;
-        if (!st.latest || (i.d || '') > (st.latest.d || '')) st.latest = i;
-        var y = (i.d || '').slice(0, 4); if (y) { if (!st.min || y < st.min) st.min = y; if (!st.max || y > st.max) st.max = y; }
+        var x = st[s]; if (!x) return; x.n++;
+        if (!x.latest || (i.d || '') > (x.latest.d || '')) x.latest = i;
+        var y = (i.d || '').slice(0, 4); if (y) { if (!x.min || y < x.min) x.min = y; if (!x.max || y > x.max) x.max = y; }
       });
     });
-    // Programme research counts on the pathway cards ("Research (12)").
-    var pc = {}; feed.items.forEach(function (i) { (i.pg || []).forEach(function (s) { pc[s] = (pc[s] || 0) + 1; }); });
-    document.querySelectorAll('[data-prog]').forEach(function (a) { var c = pc[a.getAttribute('data-prog')]; if (c) a.textContent = a.textContent.replace(/\s*\(\d+\)$/, '') + ' (' + c + ')'; });
-    var byCount = function (a, b) { return stats[b.slug].n - stats[a.slug].n; };
-    var cur = feed.themes.filter(function (t) { return t.status !== 'archived' && t.pathway === 'programmes' && stats[t.slug].n; }).sort(byCount);
-    var arc = feed.themes.filter(function (t) { return t.status === 'archived' && stats[t.slug].n; }).sort(byCount);
-    document.getElementById('pgThemes').innerHTML = cur.map(function (t) { return tile(t, stats[t.slug], false); }).join('');
-    document.getElementById('pgArchivedList').innerHTML = arc.map(function (t) { return tile(t, stats[t.slug], true); }).join('');
-    var box = document.getElementById('pgArchived'), wrap = document.getElementById('pgArchivedWrap');
-    var sync = function () { wrap.hidden = !box.checked; };
-    box.addEventListener('change', function () { sync(); if (box.checked) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
-    if (/[?&]archived=1/.test(location.search)) { box.checked = true; }
-    sync();
+    var byN = function (a, b) { return st[b.slug].n - st[a.slug].n; };
+    var cur = feed.themes.filter(function (t) { return t.status !== 'archived' && t.pathway === 'programmes' && st[t.slug].n; }).sort(byN);
+    var arc = feed.themes.filter(function (t) { return t.status === 'archived' && st[t.slug].n; }).sort(byN);
+    var tile = function (t, archived) {
+      var x = st[t.slug], yrs = x.min && x.max ? (x.min === x.max ? x.min : x.min + '–' + x.max) : '';
+      return '<li><a class="pp-theme' + (archived ? ' arch' : '') + '" href="../knowledge-hub/index.html?theme=' + encodeURIComponent(t.slug) + (archived ? '&archived=1' : '') + '">'
+        + '<b>' + esc(t.name) + '</b><span class="n">' + x.n + '<small>pieces</small></span>'
+        + '<span class="d">' + esc(archived && yrs ? 'Archive ' + yrs : (t.description || '')) + '</span>'
+        + (x.latest ? '<span class="latest"><small>' + (archived ? 'Most recent' : 'Latest') + ' · ' + esc(fmt(x.latest.d)) + '</small>' + esc(x.latest.t) + '</span>' : '')
+        + '</a></li>';
+    };
+    $('ppThemes').innerHTML = cur.map(function (t) { return tile(t, false); }).join('');
+    $('ppArchivedList').innerHTML = arc.map(function (t) { return tile(t, true); }).join('');
+    var box = $('ppArchived'), wrap = $('ppArchivedWrap');
+    box.addEventListener('change', function () { wrap.hidden = !box.checked; if (box.checked) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    if (/[?&]archived=1/.test(location.search)) box.checked = true;
+    wrap.hidden = !box.checked;
   }).catch(function () {
-    document.getElementById('pgThemes').innerHTML = '<li class="pg-theme-loading">Themes could not load. <a href="../knowledge-hub/index.html">Open the Knowledge Hub</a>.</li>';
+    $('ppSadc').innerHTML = '<li class="pp-loading">Programmes could not load. <a href="../knowledge-hub/index.html">Open the Knowledge Hub</a>.</li>';
+    $('ppThemes').innerHTML = '';
   });
 })();
 </script>

@@ -19,7 +19,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   const fmtDate = d => { const [y, m, dd] = (d || '').split('-'); return y ? `${+dd} ${MONTHS[+m - 1]} ${y}` : 'Undated'; };
 
   const S = { q: '', path: '', prog: '', themes: new Set(), types: new Set(), country: '', from: '', to: '', langs: new Set(), archived: false, sort: 'new', view: 'grid', shown: PAGE };
-  let THEMES = [], TH = {}, ITEMS = [], PROGS = [], PG = {};
+  let THEMES = [], TH = {}, ITEMS = [], PROGS = [], PG = {}, FEATURED = {};
 
   // ---------- URL state (works on the live site; ignored where query strings are unavailable) ----------
   function readUrl() {
@@ -154,8 +154,9 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
 
   function renderResults() {
     const { list, ts } = results();
-    // Featured: only on the unfiltered landing view
-    const feat = !filtered() ? (ITEMS.filter(i => i.f && !i.isArch).slice(0, 3).length ? ITEMS.filter(i => i.f && !i.isArch).slice(0, 3) : (() => { const out = [], seen = new Set(); for (const i of ITEMS) { if (i.isArch || seen.has(i.y) || !['Report', 'Pocket guide', 'Article', 'Blog', 'Video', 'Presentation'].includes(i.y)) continue; seen.add(i.y); out.push(i); if (out.length === 3) break; } return out; })()) : [];
+    // Featured: only on the unfiltered landing view. Chosen in the content manager (Featured content); otherwise the newest.
+    const picked = (FEATURED.hub || []).map(id => ITEMS.find(i => i.id === id)).filter(Boolean);
+    const feat = !filtered() ? picked.length ? picked : (ITEMS.filter(i => i.f && !i.isArch).slice(0, 3).length ? ITEMS.filter(i => i.f && !i.isArch).slice(0, 3) : (() => { const out = [], seen = new Set(); for (const i of ITEMS) { if (i.isArch || seen.has(i.y) || !['Report', 'Pocket guide', 'Article', 'Blog', 'Video', 'Presentation'].includes(i.y)) continue; seen.add(i.y); out.push(i); if (out.length === 3) break; } return out; })()) : [];
     $('khFeatured').innerHTML = feat.length ? `<h2 class="kh-feat-label">Latest from FinMark Trust</h2>` + feat.map(i => card(i, [], true)).join('') : '';
     const shown = list.slice(0, S.shown);
     $('khResults').className = 'kh-results' + (S.view === 'list' ? ' list' : '');
@@ -228,7 +229,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
 
   fetch('knowledge.json').then(r => r.json()).then(feed => {
     THEMES = feed.themes; THEMES.forEach(t => (TH[t.slug] = t));
-    PROGS = feed.programmes || []; PROGS.forEach(p => (PG[p.slug] = p));
+    PROGS = feed.programmes || []; FEATURED = feed.featured || {}; PROGS.forEach(p => (PG[p.slug] = p));
     ITEMS = feed.items; ITEMS.forEach(prep);
     readUrl();
     try { const v = localStorage.getItem('kh-view'); if (v === 'list' || v === 'grid') S.view = v; } catch (e) {}

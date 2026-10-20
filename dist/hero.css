@@ -168,3 +168,9 @@
   .hx-track,.hx-media img,.hx-copy>*,.hx-latest>*{transition:none!important}
   .hx-media img{transform:none!important}
 }
+
+/* Slide cards fed from the content manager: show banner thumbnails whole over a blurred copy, so wide images are not cut off */
+.hx-thumb.has-img{background:#e9eef4}
+.hx-thumb.has-img img.bg{position:absolute;inset:0;filter:blur(14px) brightness(.92);transform:scale(1.15)}
+.hx-thumb.has-img img.fg{position:relative;object-fit:contain}
+.hx-card:hover .hx-thumb.has-img img.fg{transform:none}

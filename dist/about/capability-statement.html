@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Capability Statement — FinMark Trust</title>
+  <meta name="description" content="FinMark Trust Capability Statement: our track record, strategic capabilities, five priorities for real economic impact, data and analytics, partnerships and governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    /* Capability Statement: copy is verbatim from the source document (built by fs/build_capability.py). */
+    .cs-hero{position:relative;overflow:hidden;background:var(--navy-deep);color:#fff;padding:44px 0 64px}
+    .cs-hero:after{content:"";position:absolute;right:8%;bottom:-150px;width:40px;height:380px;background:var(--teal);opacity:.85;transform:rotate(45deg)}
+    .cs-hero .container{position:relative;z-index:1}
+    .cs-draft{display:inline-flex;align-items:center;gap:8px;margin:0 0 26px;padding:6px 12px;border:1px dashed #e0a128;color:#ffd17a;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+    .cs-hero h1{margin:6px 0 0;color:#fff;font-size:clamp(2.8rem,6vw,5rem);line-height:1;letter-spacing:-.045em}
+    .cs-hero .eyebrow{margin-top:8px}
+    .cs-body{display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;align-items:start}
+    .cs-toc{position:sticky;top:20px;padding:26px 0}
+    .cs-toc small{display:block;margin-bottom:10px;color:var(--muted);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .cs-toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--border)}
+    .cs-toc a{display:block;padding:7px 0 7px 14px;margin-left:-2px;border-left:2px solid transparent;color:var(--muted);font-size:.84rem;font-weight:600;line-height:1.35}
+    .cs-toc a:hover{color:var(--navy)}
+    .cs-toc a.on{color:var(--navy);border-left-color:var(--teal);font-weight:700}
+    .cs-main{min-width:0}
+    .cs-body>*{min-width:0}
+    body[data-page="about"] main{overflow-x:clip}
+    .cs-sec{padding:64px 0;border-bottom:1px solid var(--border);scroll-margin-top:10px}
+    .cs-sec.alt{position:relative}
+    .cs-sec.alt:before{content:"";position:absolute;z-index:-1;inset:0 -100vw;background:#f5f8fa}
+    .cs-sec.dark{position:relative;color:#fff;border-bottom:0}
+    .cs-sec.dark:before{content:"";position:absolute;z-index:-1;inset:0 -100vw;background:var(--navy-deep)}
+    .cs-main{position:relative;z-index:0}
+    .cs-sec h2{display:flex;align-items:baseline;gap:14px;margin:0 0 28px;color:var(--navy);font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.08;letter-spacing:-.03em}
+    .cs-sec.dark h2{color:#fff}
+    .cs-n{flex:0 0 auto;display:inline-grid;place-items:center;min-width:40px;height:30px;padding:0 6px;background:var(--teal);color:#fff;font-size:.8rem;font-weight:800;letter-spacing:0;transform:translateY(-4px)}
+    .cs-h3{margin:44px 0 16px;color:var(--navy);font-size:1.4rem}
+    .dark .cs-h3{color:#fff}
+    .cs-prose p,.cs-lead,.cs-sub{margin:0 0 16px;color:#3b465e;font-size:1rem;line-height:1.72}
+    .dark .cs-prose p,.dark .cs-lead{color:#d5def0}
+    .cs-lead{max-width:76ch;font-size:1.06rem}
+    .cs-sub{margin-top:30px;font-weight:600;color:var(--navy)}
+    .cs-cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:start}
+    .cs-cols.wide{grid-template-columns:1fr 1fr}
+
+    /* Access → impact */
+    .cs-shift{margin:0;padding:24px;background:var(--navy);color:#fff;display:grid;gap:14px}
+    .cs-shift small{display:block;color:#7fdbe6;font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .cs-shift .from{padding:16px;border:1px dashed rgba(255,255,255,.35)}
+    .cs-shift .from b{display:block;margin-top:4px;font-size:1.1rem}
+    .cs-shift .arrow{height:34px;display:grid;place-items:center}
+    .cs-shift .arrow span{width:2px;height:100%;background:linear-gradient(#7fdbe6,#5ee0c2);position:relative}
+    .cs-shift .arrow span:after{content:"";position:absolute;left:-6px;bottom:-2px;border:7px solid transparent;border-top:9px solid #5ee0c2}
+    .cs-shift .to{padding:16px;background:var(--emerald)}
+    .cs-shift .to small{color:#e6fff8}
+    .cs-shift ul{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .cs-shift li{padding:10px 12px;background:rgba(255,255,255,.14);font-weight:700;font-size:.95rem}
+    .cs-shift figcaption{display:flex;align-items:center;gap:10px;color:#fff;font-size:.8rem;font-weight:700}
+    .cs-shift .yr{padding:6px 10px;background:rgba(255,255,255,.1);border-left:3px solid #7fdbe6;line-height:1.35}
+    .cs-shift .line{flex:1;min-width:16px;height:2px;background:repeating-linear-gradient(90deg,#7fdbe6 0 6px,transparent 6px 10px)}
+    .cs-vm{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+    .cs-vm article{padding:26px 28px;border:1px solid var(--border);border-top:5px solid var(--teal);background:#fff}
+    .cs-vm .cs-mission{border-top-color:var(--emerald)}
+    .cs-vm h3{margin:0 0 10px;color:var(--navy);font-size:1.25rem}
+    .cs-vm p{margin:0;color:#3b465e;line-height:1.7}
+    .cs-values{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .cs-value{position:relative;width:100%;height:100%;min-height:200px;display:flex;flex-direction:column;gap:8px;padding:22px 20px;text-align:left;background:#fff;border:1px solid var(--border);color:var(--ink);font:inherit;overflow:hidden;transition:background .25s,border-color .25s}
+    .cs-value .ltr{position:absolute;right:-6px;bottom:-26px;color:#eef1f4;font-size:7rem;font-weight:800;line-height:1;transition:color .25s}
+    .cs-value b{position:relative;color:var(--navy);font-size:1.2rem}
+    .cs-value .txt{position:relative;color:var(--muted);font-size:.88rem;line-height:1.55}
+    .cs-value:hover,.cs-value[aria-expanded="true"],.cs-value:focus-visible{background:var(--navy);border-color:var(--navy)}
+    .cs-value:hover b,.cs-value[aria-expanded="true"] b,.cs-value:focus-visible b{color:#fff}
+    .cs-value:hover .txt,.cs-value[aria-expanded="true"] .txt,.cs-value:focus-visible .txt{color:#d5def0}
+    .cs-value:hover .ltr,.cs-value[aria-expanded="true"] .ltr,.cs-value:focus-visible .ltr{color:rgba(255,255,255,.08)}
+
+    /* Stats */
+    .cs-stats{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .cs-stat{display:flex;flex-direction:column;gap:12px;padding:24px 22px;background:#fff;border:1px solid var(--border);border-top:5px solid var(--teal)}
+    .cs-stat:nth-child(2n){border-top-color:var(--emerald)}
+    .cs-stat:nth-child(3n){border-top-color:var(--navy)}
+    .cs-stat .num{color:var(--navy);font-size:clamp(2rem,3.2vw,2.8rem);font-weight:800;line-height:1;letter-spacing:-.03em}
+    .cs-stat span{color:#3b465e;font-size:.9rem;line-height:1.55}
+    .cs-bars{display:grid;gap:6px}
+    .cs-bars .b{position:relative;display:block;height:22px;background:#eef1f4}
+    .cs-bars .b i{position:absolute;left:0;top:0;bottom:0;width:0;background:#9aa4b5;transition:width 1.2s ease}
+    .cs-bars .b.now i{background:var(--teal)}
+    .cs-in .cs-bars .b i{width:var(--w)}
+    .cs-bars em{position:relative;z-index:1;display:block;padding:0 8px;color:#17213b;font-size:.72rem;font-style:normal;font-weight:700;line-height:22px}
+    .cs-ach{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+    .cs-ach li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:18px;padding:22px 24px;background:#fff;border:1px solid var(--border)}
+    .cs-ach h3{margin:0 0 6px;color:var(--navy);font-size:1.08rem}
+    .cs-ach p{margin:0;color:#3b465e;font-size:.94rem;line-height:1.65}
+    .ic{display:grid;place-items:center;width:52px;height:52px;background:var(--mist);color:var(--teal)}
+    .ic svg{width:26px;height:26px}
+
+    /* Evidence loop */
+    .cs-loop{margin:0;padding:24px;border:1px solid var(--border);background:#fff}
+    .cs-loop ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+    .cs-loop li{position:relative;display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:center;padding:14px 16px;background:#f5f8fa;color:var(--navy);font-weight:700;line-height:1.35}
+    .cs-loop li+li:before{content:"";position:absolute;left:33px;top:-11px;width:2px;height:12px;background:var(--teal)}
+    .cs-loop .k{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--teal);color:#fff;font-weight:800}
+    .cs-loop li:last-child{background:var(--emerald);color:#fff}
+    .cs-loop li:last-child .k{background:#fff;color:var(--emerald)}
+    .cs-loop figcaption{margin-top:12px;color:var(--muted);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .cs-caps{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0;border:1px solid var(--border);background:#fff}
+    .cs-cap-list{display:grid;border-right:1px solid var(--border)}
+    .cs-cap-list button{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:center;padding:12px 18px;border:0;border-bottom:1px solid var(--border);background:#fff;color:var(--navy);font:inherit;font-size:.9rem;font-weight:700;text-align:left;line-height:1.3;cursor:pointer}
+    .cs-cap-list button:last-child{border-bottom:0}
+    .cs-cap-list .ic{width:40px;height:40px}
+    .cs-cap-list .ic svg{width:20px;height:20px}
+    .cs-cap-list button[aria-selected="true"]{background:var(--navy);color:#fff}
+    .cs-cap-list button[aria-selected="true"] .ic{background:var(--teal);color:#fff}
+    .cs-cap-list button:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
+    .cs-cap-panels>div{padding:32px 34px}
+    .cs-cap-panels .big-ic{display:grid;place-items:center;width:72px;height:72px;margin-bottom:18px;background:var(--teal);color:#fff}
+    .cs-cap-panels .big-ic svg{width:36px;height:36px}
+    .cs-cap-panels p{margin:0;color:#3b465e;font-size:1.05rem;line-height:1.72}
+    .cs-cap-panels strong{color:var(--navy)}
+    .cs-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .cs-flags.in-row{margin:0 0 26px}
+    .cs-flag{display:inline-flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border:1px solid var(--border);background:#fff;color:var(--navy);font-size:.82rem;font-weight:700}
+    .cs-flag img{width:30px;height:22px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+
+    /* Challenge */
+    .cs-gap{margin:0;padding:20px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04)}
+    .cs-gap svg{display:block;width:100%;height:auto}
+    .cs-gap figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font-size:.84rem;font-weight:700}
+    .cs-gap .up{color:#5ee0c2}.cs-gap .flat{color:#c9d3e8}
+    .cs-toc-wrap{margin-top:30px}
+    .cs-clusters{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .cs-clusters li{position:relative;display:flex;flex-direction:column;gap:12px;padding:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-top:4px solid #5ee0c2}
+    .cs-clusters .ic{background:#5ee0c2;color:var(--navy-deep)}
+    .cs-clusters .k{position:absolute;right:16px;top:12px;color:rgba(255,255,255,.14);font-size:2.6rem;font-weight:800;line-height:1}
+    .cs-clusters p{margin:0;color:#fff;font-size:1rem;font-weight:600;line-height:1.5}
+
+    /* Priorities */
+    .cs-pri{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);border:1px solid var(--border);background:#fff}
+    .cs-pri-tabs{display:grid;border-right:1px solid var(--border)}
+    .cs-pri-tabs button{display:grid;grid-template-columns:30px 44px minmax(0,1fr);gap:10px;align-items:center;padding:14px 18px;border:0;border-bottom:1px solid var(--border);background:#fff;color:var(--navy);font:inherit;text-align:left;cursor:pointer}
+    .cs-pri-tabs button:last-child{border-bottom:0}
+    .cs-pri-tabs .rn{color:var(--muted);font-weight:800;font-size:.9rem}
+    .cs-pri-tabs .ic{width:44px;height:44px}
+    .cs-pri-tabs .ic svg{width:22px;height:22px}
+    .cs-pri-tabs .tt{font-weight:700;font-size:.92rem;line-height:1.3}
+    .cs-pri-tabs button[aria-selected="true"]{background:var(--emerald);color:#fff}
+    .cs-pri-tabs button[aria-selected="true"] .rn{color:#d9fff4}
+    .cs-pri-tabs button[aria-selected="true"] .ic{background:#fff;color:var(--emerald)}
+    .cs-pri-tabs button:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
+    .cs-pri-panels>div{padding:32px 34px}
+    .cs-pri-panels h3{margin:0 0 14px;color:var(--navy);font-size:1.35rem;line-height:1.25}
+    .cs-pri-panels p{margin:0;color:#3b465e;line-height:1.72}
+    .cs-callouts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+    .cs-callout{padding:16px 18px;background:#e3f4ef;border-left:4px solid var(--emerald)}
+    .cs-callout b{display:block;color:#00684f;font-size:2rem;font-weight:800;line-height:1}
+    .cs-callout span{display:block;margin-top:6px;color:#2c4b44;font-size:.84rem;font-weight:600}
+    .cs-cross{margin-top:28px;padding:26px 28px;background:var(--navy);color:#fff}
+    .cs-cross h3{margin:0 0 16px;color:#fff;font-size:1.25rem}
+    .cs-cross ul{list-style:none;margin:0 0 18px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .cs-cross li{display:flex;gap:10px;align-items:flex-start;padding:14px;background:rgba(255,255,255,.08);font-weight:700;font-size:.9rem;line-height:1.35}
+    .cs-cross .k{flex:0 0 auto;display:grid;place-items:center;width:24px;height:24px;background:var(--teal);font-size:.75rem}
+    .cs-cross p{margin:0;color:#d5def0;line-height:1.7}
+
+    /* Data flow */
+    .cs-flow{margin:30px 0 0}
+    .cs-flow figcaption{margin-bottom:14px;color:var(--navy);font-size:1.3rem;font-weight:800}
+    .cs-flow>ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:f}
+    .cs-step{position:relative;display:flex;flex-direction:column;background:#fff;border:1px solid var(--border)}
+    .cs-step+.cs-step:before{content:"";position:absolute;left:-14px;top:52px;width:14px;height:2px;background:var(--teal)}
+    .cs-step+.cs-step:after{content:"";position:absolute;left:-6px;top:47px;border:6px solid transparent;border-left:7px solid var(--teal)}
+    .cs-step>button{position:relative;min-height:210px;display:flex;flex-direction:column;gap:8px;padding:22px 20px 18px;border:0;background:var(--navy);color:#fff;font:inherit;text-align:left;cursor:pointer}
+    .cs-step:nth-child(2)>button{background:#1d4a7a}.cs-step:nth-child(3)>button{background:#0d6f80}.cs-step:nth-child(4)>button{background:var(--emerald)}
+    .cs-step .ic{background:rgba(255,255,255,.14);color:#fff}
+    .cs-step .k{position:absolute;right:16px;top:12px;color:rgba(255,255,255,.18);font-size:2.6rem;font-weight:800;line-height:1}
+    .cs-step b{font-size:1.15rem}
+    .cs-step em{color:#d5def0;font-size:.84rem;line-height:1.45}
+    .cs-step>ul{list-style:none;margin:0;padding:16px 20px 20px;display:grid;gap:8px}
+    .cs-step>ul li{position:relative;padding-left:16px;color:#3b465e;font-size:.88rem;line-height:1.45}
+    .cs-step>ul li:before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;transform:rotate(45deg);background:var(--teal)}
+
+    /* Partners */
+    .cs-partners ul{list-style:none;margin:0 0 14px;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+    .cs-partners li{padding:8px 12px;border:1px solid var(--border);background:#fff;color:var(--navy);font-size:.82rem;font-weight:700}
+    .cs-net{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:center;padding:20px 22px;background:var(--navy);color:#fff}
+    .cs-net b{grid-row:span 2;font-size:3rem;font-weight:800;line-height:1;color:#5ee0c2}
+    .cs-net span{font-weight:700}
+    .cs-net small{color:#c9d3e8;font-size:.8rem}
+
+    /* People + governance */
+    .cs-people{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .cs-people li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;padding:20px;background:#fff;border:1px solid var(--border)}
+    .cs-people .av{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800}
+    .cs-people.lead .av{background:var(--teal)}
+    .cs-people b{display:block;color:var(--navy);font-size:1rem;line-height:1.3}
+    .cs-people p{margin:6px 0 0;color:#3b465e;font-size:.86rem;line-height:1.55}
+    .cs-people.lead p{color:var(--muted);font-weight:600}
+    .cs-gov{display:grid;grid-template-columns:240px minmax(0,1fr);gap:16px;align-items:start}
+    .cs-audit{position:sticky;top:20px;padding:28px 24px;background:var(--emerald);color:#fff}
+    .cs-audit b{display:block;font-size:5rem;font-weight:800;line-height:.9;letter-spacing:-.04em}
+    .cs-audit span{display:block;margin-top:10px;font-weight:700;font-size:1.05rem;line-height:1.35}
+    .cs-gov ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+    .cs-gov li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:16px;padding:20px 22px;background:#fff;border:1px solid var(--border)}
+    .cs-gov h4{margin:0 0 4px;color:var(--navy);font-size:1.02rem}
+    .cs-gov p{margin:0;color:#3b465e;font-size:.92rem;line-height:1.6}
+
+    /* Contact */
+    .cs-contact dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0 0}
+    .cs-contact dl>div{padding:18px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+    .cs-contact dt{color:#7fdbe6;font-size:.86rem;font-weight:700}
+    .cs-contact dd{margin:4px 0 0;color:#fff;font-weight:600;line-height:1.5}
+    .cs-contact a{color:#fff;border-bottom:1px solid rgba(255,255,255,.4)}
+    .cs-contact a:hover{border-color:#fff}
+    .cs-sec#contact{padding-bottom:80px}
+
+    @media(max-width:1180px){.cs-values{grid-template-columns:1fr 1fr}.cs-people{grid-template-columns:1fr 1fr}.cs-cross ul,.cs-flow>ol{grid-template-columns:1fr 1fr}.cs-step+.cs-step:before,.cs-step+.cs-step:after{display:none}}
+    @media(max-width:1020px){.cs-body{grid-template-columns:1fr;gap:0}.cs-toc{position:static;padding:18px 0 0}.cs-toc ol{display:flex;gap:6px;overflow-x:auto;border:0;padding-bottom:6px}.cs-toc li{flex:0 0 auto}.cs-toc a{margin:0;padding:7px 12px;border:1px solid var(--border);border-radius:999px;white-space:nowrap}.cs-toc a.on{border-color:var(--teal)}
+      .cs-cols,.cs-cols.wide,.cs-caps,.cs-pri{grid-template-columns:1fr}.cs-cap-list,.cs-pri-tabs{border-right:0;border-bottom:1px solid var(--border)}.cs-stats,.cs-clusters{grid-template-columns:1fr 1fr}.cs-gov{grid-template-columns:1fr}.cs-audit{position:static}}
+    @media(max-width:640px){.cs-stats,.cs-clusters,.cs-values,.cs-people,.cs-cross ul,.cs-flow>ol,.cs-vm,.cs-contact dl,.cs-callouts{grid-template-columns:1fr}.cs-sec{padding:48px 0}.cs-cap-panels>div,.cs-pri-panels>div{padding:24px 20px}.cs-shift ul{grid-template-columns:1fr 1fr}.cs-sec h2{gap:10px}}
+    @media(prefers-reduced-motion:reduce){.cs-bars .b i,.cs-value{transition:none}}
+  </style>
+</head>
+<body data-page="about">
+<div id="site-header"></div>
+<main id="main">
+  <header class="cs-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">About FinMark Trust</a><span>/</span><span>Capability Statement</span></div>
+      <p class="eyebrow light">FinMark Trust</p>
+      <h1>Capability Statement</h1>
+    </div>
+  </header>
+  <div class="container cs-body">
+    <nav class="cs-toc" aria-label="Contents"><small>Contents</small><ol><li><a href="#access">1. From access to impact</a></li><li><a href="#track">2. Our track record and impact</a></li><li><a href="#evidence">3. From evidence to action</a></li><li><a href="#challenge">4. The SADC challenge: why access is not enough</a></li><li><a href="#priorities">5. Five priorities for real economic impact</a></li><li><a href="#data">6. From data to decisions</a></li><li><a href="#partners">7. Partnerships for impact</a></li><li><a href="#governance">8. Led with purpose, governed with integrity</a></li><li><a href="#contact">9. Contact us</a></li></ol></nav>
+    <div class="cs-main">
+
+<section class="cs-sec" id="access" aria-labelledby="access-h">
+  <h2 id="access-h"><span class="cs-n">01</span>From access to impact</h2>
+  <div class="cs-cols">
+    <div class="cs-prose"><p>FinMark Trust is an independent, non-profit trust established in 2002 to fight poverty and inequality in the Southern African Development Community (SADC) region by ensuring that underserved and vulnerable communities are included in the economy. Our purpose is to make financial markets work for people living in poverty by promoting financial inclusion and inclusive growth.</p><p>For more than two decades, our work has created a sustainable impact on the lives of low-income communities, achieved through partnerships with regional authorities, national governments, development partners and the private sector.</p><p>Our journey has taught us that access to financial services alone does not automatically translate into improved lives. FinMark Trust therefore pioneered an evolved approach to financial inclusion, developed with our peers in the Financial Sector Deepening (FSD) Network, that places financial inclusion within the larger development agenda and emphasises initiatives that deliver real economic impact: jobs, incomes, resilience and sustainable livelihoods. This shift from access to impact anticipated the global dialogue now taking place, including through the G20’s Global Partnership for Financial Inclusion (GPFI), to which FinMark Trust contributed actively as a key partner during South Africa’s 2025 G20 Presidency.</p></div>
+    <figure class="cs-shift" aria-label="From access to impact">
+      <div class="from"><small>access</small><b>access to financial services</b></div>
+      <div class="arrow" aria-hidden="true"><span></span></div>
+      <div class="to"><small>impact</small>
+        <ul><li>jobs</li><li>incomes</li><li>resilience</li><li>sustainable livelihoods</li></ul>
+      </div>
+      <figcaption><span class="yr">established in 2002</span><span class="line" aria-hidden="true"></span><span class="yr">South Africa’s 2025 G20 Presidency</span></figcaption>
+    </figure>
+  </div>
+  <div class="cs-vm">
+    <article class="cs-vision"><h3>Our vision</h3><p>An equitable world in which everyone is recognised and empowered to leverage inclusive financial markets to improve their lives and well-being, and to contribute to socioeconomic growth.</p></article>
+    <article class="cs-mission"><h3>Our mission</h3><p>FinMark Trust works tirelessly to address the challenges that affect the lives of people in poverty across the SADC region. We are convinced that financial inclusion is part of a broader development agenda that will ultimately improve livelihoods. While we continue to focus on the inclusive development of financial markets, our purpose and strategic focus now also emphasise initiatives that result in real economic impact.</p></article>
+  </div>
+  <h3 class="cs-h3">Our values</h3>
+  <ul class="cs-values">
+    <li><button type="button" class="cs-value" aria-expanded="false"><span class="ltr" aria-hidden="true">U</span><b>Ubuntu</b><span class="txt">— respect and humility for colleagues and partners, commitment to reducing poverty, and valuing diversity in our board and staff.</span></button></li><li><button type="button" class="cs-value" aria-expanded="false"><span class="ltr" aria-hidden="true">E</span><b>Evidence-driven</b><span class="txt">— independence driven by facts and evidence, and innovation driven by evidence.</span></button></li><li><button type="button" class="cs-value" aria-expanded="false"><span class="ltr" aria-hidden="true">Q</span><b>Quality</b><span class="txt">— commitment to quality in our work, internal quality assurance, and honest, professional engagement with stakeholders.</span></button></li><li><button type="button" class="cs-value" aria-expanded="false"><span class="ltr" aria-hidden="true">L</span><b>Learning</b><span class="txt">— commitment to learning from our practice and others, continuous improvement, and contributing thought leadership to global financial inclusion.</span></button></li>
+  </ul>
+</section>
+
+<section class="cs-sec alt" id="track" aria-labelledby="track-h">
+  <h2 id="track-h"><span class="cs-n">02</span>Our track record and impact</h2>
+  <p class="cs-lead">FinMark Trust has a strong track record of catalysing policy shifts, products and services that benefit people in poverty across the SADC region. Highlights of our impact include:</p>
+  <ul class="cs-stats">
+    <li class="cs-stat"><b class="num" data-count="43% → 22%">43% → 22%</b><span class="cs-bars" aria-hidden="true"><span class="b"><i style="--w:43%"></i><em>2011 · 43%</em></span><span class="b now"><i style="--w:22%"></i><em>2025 · 22%</em></span></span><span>Financial exclusion in SADC nearly halved between 2011 and 2025, while formal banking rose from 33% to 41% of adults</span></li><li class="cs-stat"><b class="num" data-count="4.7%">4.7%</b><span class="cs-bars" aria-hidden="true"><span class="b"><i style="--w:100%"></i><em>&gt;20%</em></span><span class="b now"><i style="--w:23.5%"></i><em>4.7%</em></span></span><span>Average cost of sending USD55 across borders, down from more than 20% a decade ago — driven by reforms FinMark Trust helped catalyse</span></li><li class="cs-stat"><b class="num" data-count="15.6m">15.6m</b><span>Formal remittances processed in the South Africa–SADC corridors in 2024, achieving the 2027 target two years early</span></li><li class="cs-stat"><b class="num" data-count="35+">35+</b><span>Countries across Africa, Asia and the Caribbean covered by FinScope, the world’s most comprehensive demand-side survey of its kind</span></li><li class="cs-stat"><b class="num" data-count="USD 1.4bn">USD 1.4bn</b><span>Settled monthly through the SADC RTGS system, whose development FinMark Trust supported since 2013</span></li><li class="cs-stat"><b class="num" data-count="15">15</b><span>SADC central banks are submitting financial inclusion data to the regional M&amp;E dashboards we support, with 100+ regulators trained</span></li>
+  </ul>
+  <p class="cs-sub">Further achievements that define our track record:</p>
+  <ol class="cs-ach">
+    <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span><div><h3>Regional integration and policy influence.</h3><p>Long-term technical partnership with the SADC Secretariat and the Committee of Central Bank Governors (CCBG), including support for the SADC Strategy on Financial Inclusion and SMEs’ Access to Finance 2023–2028, approved by the SADC Council of Ministers, and national financial inclusion strategies in eight SADC member states.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 20h12M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0zM19 8l-3 6a3 3 0 0 0 6 0z"/></svg></span><div><h3>South Africa’s National Financial Inclusion Policy.</h3><p>As the World Bank-appointed coordinator for financial inclusion in South Africa, FinMark Trust supported the policy through to Cabinet approval and now supports the National Treasury in developing the National Financial Inclusion Strategy.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><div><h3>SIBE Programme delivery.</h3><p>As lead consortium member of the EU-funded Support to Improving the Investment and Business Environment (SIBE) Programme, we delivered 71 assignments at a 91% completion rate over four years, strengthening investment frameworks, financial market integration, AML/CFT compliance and consumer protection across the region.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.2"/><path d="M5.5 16c.8-1.6 2-2.4 3.5-2.4s2.7.8 3.5 2.4M14 10h5M14 13h4"/></svg></span><div><h3>Digital public infrastructure.</h3><p>Pioneering cross-border eKYC and digital identity work, including a strategic partnership with Co-Develop to support a federated eKYC ecosystem across all 16 SADC member states, aligned with the CCBG’s payment systems integration objectives.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-9"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span><div><h3>Livelihoods at scale.</h3><p>Through the Generating Better Livelihoods for Grant Recipients (GBL) project, thousands of social grant recipients have been profiled and supported into skills development, entrepreneurship and employment pathways. A national scale-up strategy for the project is now embedded in government systems.</p></div></li>
+  </ol>
+</section>
+
+<section class="cs-sec" id="evidence" aria-labelledby="evidence-h">
+  <h2 id="evidence-h"><span class="cs-n">03</span>From evidence to action</h2>
+  <div class="cs-cols">
+    <div class="cs-prose"><p>Through our unique approach, we bring real change and benefits to people in the SADC region. As a market facilitator, we combine the evidence base to identify needs and blockages with the technical skills and partnerships to design, pilot and prove solutions in live markets — and then hand over to government and the private sector to roll out at scale, sustainably. Examples include our low-cost remittance corridors, digital financial identity and eKYC pilots, community digitalisation ecosystems, and risk-based AML/CFT approaches adopted by regulators and financial service providers.</p><p>We are passionate about Africa and are proudly a vehicle for African professionals who share our excitement about financial and economic inclusion in the SADC region. Our team reflects a diverse range of Africans with deep-rooted ambition and commitment to a financially inclusive region.</p></div>
+    <figure class="cs-loop" aria-label="How we work as a market facilitator">
+      <ol><li><span class="k">1</span>identify needs and blockages</li><li><span class="k">2</span>design, pilot and prove solutions in live markets</li><li><span class="k">3</span>hand over to government and the private sector</li><li><span class="k">4</span>roll out at scale, sustainably</li></ol>
+      <figcaption>As a market facilitator</figcaption>
+    </figure>
+  </div>
+  <h3 class="cs-h3">Our strategic capabilities</h3>
+  <div class="cs-caps" role="tablist" aria-label="Our strategic capabilities">
+    <div class="cs-cap-list">
+      <button type="button" role="tab" id="cap-t0" aria-controls="cap-p0" aria-selected="true" tabindex="0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span>Deep local presence and reach</button><button type="button" role="tab" id="cap-t1" aria-controls="cap-p1" aria-selected="false" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l4-4 5 2 5-2 4 4-7 7z"/><path d="M8 13l3 3M11 11l3 3"/></svg></span>Trusted technical and implementation partner</button><button type="button" role="tab" id="cap-t2" aria-controls="cap-p2" aria-selected="false" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M7.3 11l9.4-4M7.3 13l9.4 4"/></svg></span>Deep relationships across the public and private sectors</button><button type="button" role="tab" id="cap-t3" aria-controls="cap-p3" aria-selected="false" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span>Capacity to implement substantial regional programmes</button><button type="button" role="tab" id="cap-t4" aria-controls="cap-p4" aria-selected="false" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>World-class data and analytics</button><button type="button" role="tab" id="cap-t5" aria-controls="cap-p5" aria-selected="false" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4A1.5 1.5 0 0 0 20 19l-6-10V3"/><path d="M7 15h10"/></svg></span>Piloting and proof-of-concept expertise</button><button type="button" role="tab" id="cap-t6" aria-controls="cap-p6" aria-selected="false" tabindex="-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>An unrelenting focus on people living in poverty</button>
+    </div>
+    <div class="cs-cap-panels">
+      <div role="tabpanel" id="cap-p0" aria-labelledby="cap-t0"><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span><p><strong>Deep local presence and reach</strong> built over more than 20 years, with country presence in South Africa, Botswana, Zimbabwe, Eswatini, Lesotho and Malawi, programme activity across the region, and ready access to stakeholders and policymakers, including at the SADC Secretariat.</p><div class=cs-flags><span class="cs-flag"><img src="../flags/za.svg" alt="">South Africa</span><span class="cs-flag"><img src="../flags/bw.svg" alt="">Botswana</span><span class="cs-flag"><img src="../flags/zw.svg" alt="">Zimbabwe</span><span class="cs-flag"><img src="../flags/sz.svg" alt="">Eswatini</span><span class="cs-flag"><img src="../flags/ls.svg" alt="">Lesotho</span><span class="cs-flag"><img src="../flags/mw.svg" alt="">Malawi</span></div></div><div role="tabpanel" id="cap-p1" aria-labelledby="cap-t1" hidden><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l4-4 5 2 5-2 4 4-7 7z"/><path d="M8 13l3 3M11 11l3 3"/></svg></span><p><strong>Trusted technical and implementation partner</strong> to the SADC Secretariat, the CCBG and its Payment Systems Subcommittee, the National Treasury of South Africa, the South African Reserve Bank, the South African Social Security Agency (SASSA), the Department of Social Development (DSD), and Ministries of Finance and central banks across the region.</p></div><div role="tabpanel" id="cap-p2" aria-labelledby="cap-t2" hidden><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M7.3 11l9.4-4M7.3 13l9.4 4"/></svg></span><p><strong>Deep relationships across the public and private sectors,</strong> including established convening platforms such as the annual SADC Financial Inclusion Forum, which in 2026 marked ten years of regional dialogue.</p></div><div role="tabpanel" id="cap-p3" aria-labelledby="cap-t3" hidden><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><p><strong>Capacity to implement substantial regional programmes,</strong> backed by strong programme management, data and analytics, monitoring, evaluation and learning (MEL), and operational capability.</p></div><div role="tabpanel" id="cap-p4" aria-labelledby="cap-t4" hidden><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><p><strong>World-class data and analytics,</strong> anchored by the FinScope Consumer and MSME surveys, regional data portals and dashboards, and a growing training and capacity-building offering for regulators, statistics offices and financial sector development partners.</p></div><div role="tabpanel" id="cap-p5" aria-labelledby="cap-t5" hidden><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6L4 19a1.5 1.5 0 0 0 1.3 2h13.4A1.5 1.5 0 0 0 20 19l-6-10V3"/><path d="M7 15h10"/></svg></span><p><strong>Piloting and proof-of-concept expertise,</strong> with a demonstrated ability to test market-led solutions with implementing partners and clear handover plans for scale.</p></div><div role="tabpanel" id="cap-p6" aria-labelledby="cap-t6" hidden><span class="big-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span><p><strong>An unrelenting focus on people living in poverty,</strong> especially women and youth, whom our programmes disproportionately benefit, with gender intentionality mainstreamed across all our work.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-sec dark" id="challenge" aria-labelledby="challenge-h">
+  <h2 id="challenge-h"><span class="cs-n">04</span>The SADC challenge: why access is not enough</h2>
+  <div class="cs-cols">
+    <div class="cs-prose"><p>Poverty remains one of the SADC regional economic community’s most significant challenges, with approximately half of the population living on less than USD1 a day, high youth unemployment, high levels of informality, food insecurity and acute vulnerability to climate change. The financial sector remains relatively underdeveloped, limiting access to finance, particularly for micro, small and medium enterprises (MSMEs), and constraining long-term, local-currency investment finance.</p><p>At the same time, financial inclusion in the region has improved markedly: financial exclusion fell from 43% of adults in 2011 to 22% in 2025. Yet FinScope data across several countries show that, despite gains in access, large segments of the population remain financially vulnerable. This disconnect between rising financial access and stagnant well-being is precisely what FinMark Trust aims to respond to. Our work moves beyond counting accounts to evaluating real improvements in financial health, resilience and ecosystem sustainability. We want inclusion to translate into jobs, incomes and improved livelihoods, especially for women, youth and the informal sector.</p></div>
+    <figure class="cs-gap" aria-label="disconnect between rising financial access and stagnant well-being">
+      <svg viewBox="0 0 320 200" role="img" aria-label="Rising financial access compared with stagnant well-being">
+        <line x1="30" y1="170" x2="300" y2="170" stroke="rgba(255,255,255,.3)"/>
+        <path d="M30 150 C 110 130, 170 80, 300 40" fill="none" stroke="#5ee0c2" stroke-width="4" stroke-linecap="round"/>
+        <path d="M30 140 C 110 138, 200 136, 300 134" fill="none" stroke="#c9d3e8" stroke-width="4" stroke-dasharray="2 8" stroke-linecap="round"/>
+        <circle cx="300" cy="40" r="6" fill="#5ee0c2"/><circle cx="300" cy="134" r="6" fill="#c9d3e8"/>
+      </svg>
+      <figcaption><span class="up">rising financial access</span><span class="flat">stagnant well-being</span></figcaption>
+    </figure>
+  </div>
+  <div class="cs-toc-wrap">
+    <p class="cs-lead">Our theory of change targets impact across three clusters: inclusive economic growth (incomes and jobs for low-income people); increased access to basic goods and services; and a stable, sustainable future characterised by resilience, equality and a green economy.</p>
+    <ol class="cs-clusters"><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="k">1</span><p>inclusive economic growth (incomes and jobs for low-income people)</p></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.7-3.4 3-5 6-5s5.3 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 15c2.6 0 4.4 1.4 5 4"/></svg></span><span class="k">2</span><p>increased access to basic goods and services</p></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-9"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span><span class="k">3</span><p>a stable, sustainable future characterised by resilience, equality and a green economy</p></li></ol>
+  </div>
+</section>
+
+<section class="cs-sec" id="priorities" aria-labelledby="priorities-h">
+  <h2 id="priorities-h"><span class="cs-n">05</span>Five priorities for real economic impact</h2>
+  <p class="cs-lead">Under our Strategic Framework 2024–2027, our programme work is organised around five strategic priorities, supported by four cross-cutting themes. We leverage regional and country stakeholders to catalyse and embed change, combining regional approaches and joint convening with implementation in Botswana, Eswatini, Lesotho, Malawi, South Africa and Zimbabwe.</p>
+  <div class="cs-flags in-row"><span class="cs-flag"><img src="../flags/bw.svg" alt="">Botswana</span><span class="cs-flag"><img src="../flags/sz.svg" alt="">Eswatini</span><span class="cs-flag"><img src="../flags/ls.svg" alt="">Lesotho</span><span class="cs-flag"><img src="../flags/mw.svg" alt="">Malawi</span><span class="cs-flag"><img src="../flags/za.svg" alt="">South Africa</span><span class="cs-flag"><img src="../flags/zw.svg" alt="">Zimbabwe</span></div>
+  <div class="cs-pri">
+    <div class="cs-pri-tabs" role="tablist" aria-label="Five priorities for real economic impact"><button type="button" role="tab" id="pri-t0" aria-controls="pri-p0" aria-selected="true" tabindex="0"><span class="rn">i</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span><span class="tt">Regional financial integration, trade and financial inclusion</span></button><button type="button" role="tab" id="pri-t1" aria-controls="pri-p1" aria-selected="false" tabindex="-1"><span class="rn">ii</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-9"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span><span class="tt">Growth and resilience of smallholder farmers and MSMEs</span></button><button type="button" role="tab" id="pri-t2" aria-controls="pri-p2" aria-selected="false" tabindex="-1"><span class="rn">iii</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></span><span class="tt">Local community empowerment through digitalisation</span></button><button type="button" role="tab" id="pri-t3" aria-controls="pri-p3" aria-selected="false" tabindex="-1"><span class="rn">iv</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20c0-6 14-4 14-10a4 4 0 0 0-8 0"/><circle cx="5" cy="20" r="1.5"/><circle cx="19" cy="4" r="1.5"/></svg></span><span class="tt">Better livelihoods for social protection grant recipients</span></button><button type="button" role="tab" id="pri-t4" aria-controls="pri-p4" aria-selected="false" tabindex="-1"><span class="rn">v</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M12 12v9M9 18h6"/></svg></span><span class="tt">Women and youth empowerment</span></button></div>
+    <div class="cs-pri-panels"><div role="tabpanel" id="pri-p0" aria-labelledby="pri-t0"><h3>i. Regional financial integration, trade and financial inclusion</h3><p>We support SADC in achieving its regional financial integration and investment objectives under the Finance and Investment Protocol and the SADC Strategy on Financial Inclusion and SMEs’ Access to Finance 2023–2028. Our work spans cross-border remittances and payments, first-mile digitisation, digital financial identity and eKYC, formalisation of cross-border capital flows, informal cross-border trade, and financial inclusion coordination and measurement, including the SADC financial inclusion and remittances data portals and M&amp;E dashboards. Our cross-border remittances work remains ground-breaking: costs on key corridors have fallen towards the G20 target, formal volumes continue to grow. We are also advancing regulatory reforms including a regional CDD/KYC process for remittance service providers to be linked to national ID systems to enable non-bank providers to offer low-risk digital wallets for undocumented migrants.</p></div><div role="tabpanel" id="pri-p1" aria-labelledby="pri-t1" hidden><h3>ii. Growth and resilience of smallholder farmers and MSMEs</h3><p>Our supplier development programmes in Lesotho, Eswatini and Botswana support smallholder farmers and MSMEs with access to finance, access to markets, productivity improvements and national frameworks for supplier development. We also lead informal MSME support work: in partnership with the World Bank, the National Treasury and the Department of Small Business Development, we developed and are supporting the implementation of a policy framework for informal MSMEs in South Africa. Green finance, climate adaptation and green-economy opportunities, including community incomes through waste management and recycling, form a growing part of this portfolio.</p></div><div role="tabpanel" id="pri-p2" aria-labelledby="pri-t2" hidden><h3>iii. Local community empowerment through digitalisation</h3><p>Our Inclusive Payments Digitalisation Programme (IPDP), funded by the Swiss State Secretariat for Economic Affairs (SECO) and in partnership with the South African Reserve Bank, builds digital ecosystems in low-income communities. The community digitalisation pilots in Thembisa and Hammanskraal have onboarded 355 merchants to encourage the use of digital financial solutions for their businesses. They are supported by digital and financial literacy training and community liaison officers who are available to support the merchants and community with any blockages to digital financial services they encounter. Our digitalising incomes project protects informal and low-income workers, such as tip-dependent service workers, from being left behind in a digitised economy, with over 1,000 participants piloting digital tipping solutions.</p><div class=cs-callouts><div class="cs-callout"><b>355</b><span>onboarded 355 merchants</span></div><div class="cs-callout"><b>1,000+</b><span>over 1,000 participants piloting digital tipping solutions</span></div></div></div><div role="tabpanel" id="pri-p3" aria-labelledby="pri-t3" hidden><h3>iv. Better livelihoods for social protection grant recipients</h3><p>The Generating Better Livelihoods for Grant Recipients (GBL) project is a flagship, government-led partnership with the DSD, SASSA, the National Development Agency and BRAC International, based on the globally proven BRAC graduation model. The project links Child Support Grant recipients, mostly young women, to employment, entrepreneurship and skills development pathways. The project is now being integrated into government delivery systems with a long-term national scale-up strategy, attracting regional interest for adaptation beyond South Africa.</p></div><div role="tabpanel" id="pri-p4" aria-labelledby="pri-t4" hidden><h3>v. Women and youth empowerment</h3><p>Gender equality and women’s economic empowerment are mainstreamed across all our programmes, guided by our organisation-wide gender strategy and Gender Action Plan. We have integrated Women’s Economic Empowerment (WEE) indicators into FinScope surveys, strengthened gender-disaggregated data systems for SADC regulators and financial service providers. We also run targeted diagnostics and interventions for women cross-border traders, women remitters and vulnerable women workers, including in partnership with UN Women. Youth empowerment is prioritised through skills, entrepreneurship and employment linkages across our programmes.</p></div></div>
+  </div>
+  <div class="cs-cross">
+    <h3>Cross-cutting themes</h3>
+    <ul><li><span class="k">1</span>data and analytics</li><li><span class="k">2</span>responsible finance (consumer protection and financial literacy)</li><li><span class="k">3</span>the informal sector</li><li><span class="k">4</span>learning, knowledge codification, sharing and influencing</li></ul>
+    <p>Four cross-cutting priorities support all our work: data and analytics; responsible finance (consumer protection and financial literacy); the informal sector; and learning, knowledge codification, sharing and influencing — through which we contribute thought leadership to platforms such as the G20 GPFI, the AFI Global Policy Forum, and the SADC Financial Inclusion Forum.</p>
+  </div>
+</section>
+
+<section class="cs-sec alt" id="data" aria-labelledby="data-h">
+  <h2 id="data-h"><span class="cs-n">06</span>From data to decisions</h2>
+  <div class="cs-cols wide">
+    <div class="cs-prose"><p>FinMark Trust has always prioritised data and analytics, having pioneered the FinScope survey methodology in the early 2000s. FinScope Consumer and MSME surveys remain the gold standard in demand-side financial inclusion measurement. Conducted in more than 35 countries across Africa, Asia and the Caribbean, FinScope surveys inform policy decisions and industry conversations globally. Between full baseline surveys, the lighter-touch mobile FinScope Tracker allows countries to monitor key financial inclusion indicators on an ongoing basis, without the cost and lead time for a full survey cycle.</p><p>For more than two decades, FinScope has provided governments, regulators, development partners and the private sector with the evidence needed to design and monitor financial inclusion and economic development interventions. As the originator of the FinScope methodology, FinMark Trust has built one of the world&#x27;s most extensive demand-side datasets on household and MSME financial behaviour, enabling trend analysis, policy formulation and market development across multiple regions.</p></div>
+    <div class="cs-prose"><p>Our data capabilities include supply- and demand-side data collection using multiple tools and methodologies (including mixed-mode and mobile approaches), advanced analytics, and the development of insights and evidence to drive impactful, targeted market initiatives. We measure financial health using a UNSGSA-aligned indicator, and we continue to deepen real economy-related measurement in areas such as informality, gender (WEE indicators), climate and green finance, and business resilience.</p><p>Our data portals, including the FinMark Trust data portal and the SADC financial inclusion and remittances portals we manage on behalf of the CCBG, help stakeholders make informed, data-driven decisions through accessible interfaces, with datasets available for direct download. We have also formalised a data training and capacity-building offering, spanning virtual and in-country training, field visits and support for regulators, national statistics offices, policymakers, FSD counterparts and financial service providers.</p></div>
+  </div>
+  <figure class="cs-flow">
+    <figcaption>How FinMark Trust Informs Decisions with Evidence</figcaption>
+    <ol><li class="cs-step"><button type="button" aria-expanded="true" aria-controls="flow-0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span class="k">1</span><b>Collect</b><em>Transactional data, best-in-class surveys, lighter-touch tracking, at scale</em></button><ul id="flow-0"><li>Supply-side data partnerships</li><li>FinScope Consumer and MSME surveys</li><li>FinScope Tracker: Mixed-mode and mobile collection</li></ul></li><li class="cs-step"><button type="button" aria-expanded="false" aria-controls="flow-1"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span class="k">2</span><b>Measure and Analyse</b><em>Turning raw data into evidence of real impact</em></button><ul id="flow-1"><li>Advanced analytics on informality, gender, climate &amp; resilience</li><li>UNSGSA-aligned financial health indicator</li></ul></li><li class="cs-step"><button type="button" aria-expanded="false" aria-controls="flow-2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M7.3 11l9.4-4M7.3 13l9.4 4"/></svg></span><span class="k">3</span><b>Disseminate</b><em>Accessible dashboards and open datasets</em></button><ul id="flow-2"><li>Webinars, data launches and conferences</li><li>A knowledge hub of our insights</li><li>FinMark Trust data portal</li><li>SADC financial inclusion and remittances portals (for the CCBG)</li><li>Downloadable datasets and dashboards</li></ul></li><li class="cs-step"><button type="button" aria-expanded="false" aria-controls="flow-3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.7-3.4 3-5 6-5s5.3 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 15c2.6 0 4.4 1.4 5 4"/></svg></span><span class="k">4</span><b>Build Capacity</b><em>Equipping others to use the evidence themselves</em></button><ul id="flow-3"><li>Training for regulators and national statistics offices</li><li>Support for policymakers, FSD counterparts and financial service providers</li></ul></li></ol>
+  </figure>
+</section>
+
+<section class="cs-sec" id="partners" aria-labelledby="partners-h">
+  <h2 id="partners-h"><span class="cs-n">07</span>Partnerships for impact</h2>
+  <div class="cs-cols">
+    <div class="cs-prose"><p>Our current and recent funding partners include the Swiss State Secretariat for Economic Affairs (SECO), the World Bank Group, the Bill &amp; Melinda Gates Foundation, the Mastercard Foundation, BRAC International, FSD Africa, the South African Reserve Bank, UNCDF, UN Women, UK Aid (FCDO), the European Union (via SADC), the Alliance for Financial Inclusion (AFI), Access to Finance Rwanda, Co-Develop, and the Centre for Financial Inclusion. </p><p>We are a proud member of the FSD Network, a family of ten financial sector deepening organisations across Africa working to make financial markets work for the poor. In 2026, FinMark Trust also became a member of the Global Anti-Scam Alliance (GASA).</p></div>
+    <div class="cs-partners">
+      <ul aria-label="Funding partners"><li>Swiss State Secretariat for Economic Affairs (SECO)</li><li>World Bank Group</li><li>Bill &amp; Melinda Gates Foundation</li><li>Mastercard Foundation</li><li>BRAC International</li><li>FSD Africa</li><li>South African Reserve Bank</li><li>UNCDF</li><li>UN Women</li><li>UK Aid (FCDO)</li><li>European Union (via SADC)</li><li>Alliance for Financial Inclusion (AFI)</li><li>Access to Finance Rwanda</li><li>Co-Develop</li><li>Centre for Financial Inclusion</li></ul>
+      <div class="cs-net"><b>ten</b><span>financial sector deepening organisations across Africa</span><small>FSD Network <span aria-hidden="true">·</span> Global Anti-Scam Alliance (GASA)</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cs-sec alt" id="governance" aria-labelledby="governance-h">
+  <h2 id="governance-h"><span class="cs-n">08</span>Led with purpose, governed with integrity</h2>
+  <h3 class="cs-h3">Board of Trustees</h3>
+  <p class="cs-lead">FinMark Trust is governed by an experienced and independent Board of Trustees that maintains strong oversight of strategy execution, organisational performance and risk management, ensuring alignment with our five-year strategic priorities.</p>
+  <ul class="cs-people board"><li><span class="av" aria-hidden="true">CC</span><div><b>Cas Coovadia (Chairman)</b><p>— CEO of Business Unity South Africa (BUSA) and former Managing Director of the Banking Association of South Africa. He sits on the boards of the National Business Initiative, the African Union for Housing Finance and the University of the Witwatersrand.</p></div></li><li><span class="av" aria-hidden="true">BP</span><div><b>Brendan Pearce (Chief Executive Officer)</b><p>— oversees FinMark Trust’s strategic direction and operations. His experience includes advising the Managing Director of the Land and Agricultural Bank of South Africa, serving as CEO of MerSETA and LGSETA, leading Umhlaba Development Services, and heading Vodacom’s international legal and regulatory affairs.</p></div></li><li><span class="av" aria-hidden="true">EM</span><div><b>Ethel Matenge-Sebesho</b><p>— an experienced banker and financial services professional who previously served on the board of FirstRand Limited and continues to serve on the boards of its subsidiaries and Distell Group Limited.</p></div></li><li><span class="av" aria-hidden="true">LM</span><div><b>Lumkile Mondi</b><p>— senior lecturer at the University of the Witwatersrand’s School of Economic and Business Sciences, former executive at the Industrial Development Corporation, and director of Gemfields Group Limited and Thelo Rolling Stock Leasing.</p></div></li><li><span class="av" aria-hidden="true">VT</span><div><b>Vimbai Tsopotsa</b><p>— extensive experience in the South African and Zimbabwean financial sectors, with a focus on banking and ICT; executive director of Amaciko Film Investments and director of Aigle Finance.</p></div></li><li><span class="av" aria-hidden="true">IM</span><div><b>Ishmael Mkhabela</b><p>— extensive experience in community organising, governance and housing policy; Chairman of the Steve Biko Foundation and the Johannesburg Inner City Partnership, and Deputy President of the South African Institute of Race Relations.</p></div></li></ul>
+  <h3 class="cs-h3">Leadership team</h3>
+  <p class="cs-lead">Our executive and management team combines deep financial sector, data and development expertise:</p>
+  <ul class="cs-people lead"><li><span class="av" aria-hidden="true">BP</span><div><b>Brendan Pearce</b><p>— Chief Executive Officer</p></div></li><li><span class="av" aria-hidden="true">GR</span><div><b>Grant Robertson</b><p>— Chief Financial Officer</p></div></li><li><span class="av" aria-hidden="true">KM</span><div><b>Dr Kingstone Mutsonziwa</b><p>— Executive: Data and Analytics</p></div></li><li><span class="av" aria-hidden="true">LM</span><div><b>Lesego Mashigo</b><p>— Head: South Africa Financial Inclusion Programme</p></div></li><li><span class="av" aria-hidden="true">DO</span><div><b>Damola Owolade</b><p>— Head: SADC Financial Inclusion Programme</p></div></li><li><span class="av" aria-hidden="true">SJ</span><div><b>Shirley Jeoffreys-Leach</b><p>— Head: Knowledge Management</p></div></li><li><span class="av" aria-hidden="true">HM</span><div><b>Helen Mosito</b><p>— Accounting Manager</p></div></li></ul>
+  <p class="cs-sub">They are supported by a diverse, multidisciplinary team of financial inclusion, data and analytics, programme and communications specialists, together with country coordinators in Zimbabwe, Lesotho, Eswatini and Malawi and community-based coordinators and linkages facilitators embedded in our programme sites.</p>
+  <h3 class="cs-h3">Governance and institutional strength</h3>
+  <div class="cs-gov">
+    <div class="cs-audit"><b data-count="23">23</b><span>consecutive unqualified audits</span></div>
+    <ul><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><h4>Financial integrity.</h4><p>FinMark Trust has achieved 23 consecutive unqualified audits, reflecting robust internal controls, compliance processes and prudent stewardship of donor resources. Our financial statements are independently audited in accordance with the IFRS for SMEs Accounting Standard and the requirements of the Trust Deed.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 20h12M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0zM19 8l-3 6a3 3 0 0 0 6 0z"/></svg></span><div><h4>Sound governance.</h4><p>Governance processes are continuously strengthened through the review and implementation of updated policies and frameworks, supporting clear decision-making, accountability and alignment with strategic priorities.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20c0-6 14-4 14-10a4 4 0 0 0-8 0"/><circle cx="5" cy="20" r="1.5"/><circle cx="19" cy="4" r="1.5"/></svg></span><div><h4>Leadership continuity.</h4><p>A structured succession framework and ongoing leadership development strengthen our leadership pipeline and institutional resilience.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c.7-3.4 3-5 6-5s5.3 1.6 6 5"/><circle cx="17" cy="9" r="2.4"/><path d="M16 15c2.6 0 4.4 1.4 5 4"/></svg></span><div><h4>People and culture.</h4><p>Annual staff climate surveys reflect high levels of engagement, trust and organisational commitment, supported by a flexible, remote-enabled working environment and regular salary benchmarking.</p></div></li><li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-9"/><path d="M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span><div><h4>Growing the next generation.</h4><p>Our internship programme bridges academic learning and the professional world; in 2025, three interns secured full-time or contractual roles within the organisation.</p></div></li></ul>
+  </div>
+</section>
+
+<section class="cs-sec dark" id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h"><span class="cs-n">09</span>Contact us</h2>
+  <div class="cs-contact">
+    <p class="cs-lead">Get in touch with us to exchange ideas or if you would like to work with us.</p>
+    <dl><div><dt>Telephone:</dt><dd><a href="tel:+27675949291">+27 (0) 67 594 9291</a></dd></div><div><dt>Email:</dt><dd><a href="mailto:info@finmark.org.za">info@finmark.org.za</a></dd></div><div><dt>Web:</dt><dd><a href="https://www.finmark.org.za">www.finmark.org.za</a></dd></div><div><dt>Address:</dt><dd>Block B West, First Floor, Central Park, 400 16th Rd, Randjespark, Midrand, 1685, Johannesburg, South Africa</dd></div></dl>
+  </div>
+</section>
+    </div>
+  </div>
+</main>
+<div id="site-footer"></div>
+<script src="../site.js"></script>
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Tabs (strategic capabilities, five priorities): click or arrow keys
+  function tabs(list) {
+    var btns = [].slice.call(list.querySelectorAll('[role="tab"]'));
+    function select(b, focus) {
+      btns.forEach(function (x) { var on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+      if (focus) b.focus();
+    }
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { select(b); });
+      b.addEventListener('keydown', function (ev) {
+        var d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[ev.key];
+        if (d) { ev.preventDefault(); select(btns[(i + d + btns.length) % btns.length], true); }
+      });
+    });
+  }
+  document.querySelectorAll('.cs-cap-list,.cs-pri-tabs').forEach(tabs);
+  // Values: tap to highlight
+  document.querySelectorAll('.cs-value').forEach(function (b) { b.addEventListener('click', function () { b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') !== 'true'); }); });
+  // Data flow: each stage expands its list (all open on wide screens)
+  document.querySelectorAll('.cs-step>button').forEach(function (b) {
+    var list = document.getElementById(b.getAttribute('aria-controls'));
+    var narrow = window.matchMedia('(max-width: 640px)');
+    var sync = function () { if (!narrow.matches) { list.hidden = false; b.setAttribute('aria-expanded', 'true'); } };
+    b.addEventListener('click', function () { if (!narrow.matches) return; var open = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded', open); list.hidden = !open; });
+    if (narrow.matches && b.getAttribute('aria-expanded') !== 'true') list.hidden = true;
+    narrow.addEventListener('change', sync);
+  });
+  // Count-up for plain whole numbers; text stays exactly as written once finished
+  function countUp(el) {
+    var txt = el.getAttribute('data-count'), m = /^(\D*)(\d+)(\D*)$/.exec(txt);
+    if (!m || reduce) return;
+    var end = +m[2], t0 = null;
+    function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 1100); el.textContent = m[1] + Math.round(end * (1 - Math.pow(1 - p, 3))) + m[3]; if (p < 1) requestAnimationFrame(step); else el.textContent = txt; }
+    requestAnimationFrame(step);
+  }
+  var seen = new WeakSet();
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) {
+      if (!en.isIntersecting || seen.has(en.target)) return; seen.add(en.target);
+      en.target.classList.add('cs-in');
+      en.target.querySelectorAll('[data-count]').forEach(countUp);
+    });
+  }, { threshold: 0.25 }) : null;
+  document.querySelectorAll('.cs-stats,.cs-audit').forEach(function (el) { if (io) io.observe(el); else el.classList.add('cs-in'); });
+  // Contents: highlight the section in view
+  var links = {}; document.querySelectorAll('.cs-toc a').forEach(function (a) { links[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { Object.keys(links).forEach(function (k) { links[k].classList.toggle('on', k === en.target.id); }); } });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    document.querySelectorAll('.cs-sec').forEach(function (s) { spy.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

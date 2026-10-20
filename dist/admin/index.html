@@ -84,7 +84,15 @@
     });
     var programmes = {};
     (feed.programmes || []).forEach(function (p) { programmes[p.slug + '.json'] = { content: JSON.stringify({ name: p.name, slug: p.slug, pathway: p.pathway, status: p.status, order: p.order, description: p.description, site_url: p.site }, null, 2) }; });
-    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes };
+    var f = feed.featured || {};
+    var settings = { 'featured.json': { content: JSON.stringify({ home_data: f.home_data || [], home_programmes: f.home_programmes || [], hub: f.hub || [] }, null, 2) } };
+    // Make sure every featured item is in the sandbox so the pickers can show it.
+    [].concat(f.home_data || [], f.home_programmes || [], f.hub || []).forEach(function (id) {
+      if (knowledge[id + '.json']) return;
+      var i = feed.items.filter(function (x) { return x.id === id; })[0]; if (!i) return;
+      knowledge[id + '.json'] = { content: JSON.stringify({ title: i.t, date: i.d, type: i.y, summary: i.s || '', themes: i.th, countries: i.c, language: i.l || 'en', section: i.sec || 'programmes', programmes: i.pg || [], link: i.u, thumbnail: rel(i.img), draft: false, review: false }, null, 2) };
+    });
+    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes, settings: settings };
     start();
   }).catch(function () { window.repoFiles = {}; start(); });
 })();

@@ -32,6 +32,10 @@
   var KFOLDER = mode === 'demo' ? 'knowledge' : DIR + 'content/knowledge';
   var TFOLDER = mode === 'demo' ? 'themes' : DIR + 'content/themes';
   var PFOLDER = mode === 'demo' ? 'programmes' : DIR + 'content/programmes';
+  var FEATFILE = mode === 'demo' ? 'settings/featured.json' : DIR + 'content/settings/featured.json';
+  var pickItems = function (name, label, max, hint) {
+    return { name: name, label: label, widget: 'relation', collection: 'knowledge', search_fields: ['title'], value_field: '{{slug}}', display_fields: ['{{title}} ({{date}})'], multiple: true, required: false, max: max, options_length: 30, hint: hint };
+  };
 
   // Live and staging: editors sign in with GitHub. Netlify handles the GitHub sign-in (Site configuration > Access & security > OAuth).
   var backend = mode === 'demo' ? { name: 'test-repo' } : { name: 'github', repo: REPO, branch: 'main' };
@@ -49,6 +53,18 @@
     public_folder: '/uploads/knowledge',
     slug: { encoding: 'ascii', clean_accents: true },
     collections: [
+      {
+        name: 'settings', label: 'Featured content', editor: { preview: false },
+        description: 'Choose what the homepage slider and the top of the Knowledge Hub show. Leave a list empty to show the newest items automatically.',
+        files: [{
+          name: 'featured', label: 'Homepage slider and Knowledge Hub features', file: FEATFILE, format: 'json',
+          fields: [
+            pickItems('home_data', 'Homepage slider: Data slide (2 items)', 2, 'Shown under "Latest in Data & Analytics" on the first slide. Empty: the newest Data items.'),
+            pickItems('home_programmes', 'Homepage slider: Programmes slide (2 items)', 2, 'Shown under "Latest in Programmes & Research" on the second slide. Empty: the newest Programmes items.'),
+            pickItems('hub', 'Knowledge Hub: "Latest from FinMark Trust" (up to 3)', 3, 'The first one is shown as the large feature. Empty: the newest items.')
+          ]
+        }]
+      },
       {
         name: 'knowledge', label: 'Knowledge Hub', label_singular: 'Knowledge item',
         description: 'Reports, articles, blogs, videos and other pieces shown in the Knowledge Hub. Use “Needs review” to check items brought over from the old site.',
@@ -86,7 +102,7 @@
           { name: 'link', label: 'Link', widget: 'string', required: false, hint: 'For videos, podcasts or pages hosted elsewhere (e.g. YouTube).' },
           { name: 'thumbnail', label: 'Thumbnail image', widget: 'image', required: false, hint: 'A wide banner, ideally 2114 × 744 px (about 2.85:1). The same image is used as the header of blogs and articles. Optional: without one, the site draws a branded cover.' },
           { name: 'body', label: 'Full text', widget: 'markdown', required: false, hint: 'For blogs and articles published on the site itself.' },
-          { name: 'featured', label: 'Feature at the top of the Knowledge Hub', widget: 'boolean', default: false, required: false },
+          { name: 'featured', label: 'Featured (old setting)', widget: 'hidden', required: false },
           { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false },
           { name: 'review', label: 'Needs editor review', widget: 'boolean', default: false, required: false, hint: 'Set on items imported from the old site whose themes were suggested automatically. Untick once checked.' },
           { name: 'legacy_url', label: 'Old site address', widget: 'string', required: false, hint: 'Used to redirect the old URL to this item.' },
