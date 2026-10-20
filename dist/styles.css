@@ -378,3 +378,16 @@
 .utility .donate-btn svg{transition:transform .25s}
 .utility .donate-btn:hover svg{transform:scale(1.15)}
 @media(prefers-reduced-motion:reduce){.utility .donate-btn,.utility .donate-btn svg{transition:none}}
+
+/* Homepage "New in the Knowledge Hub" rail: banner thumbnails, flush to the card edges */
+.content-thumb{height:auto;aspect-ratio:2114/744}
+.content-thumb.has-img:before{display:none}
+.content-thumb.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;transition:transform .5s ease}
+.content-card:hover .content-thumb.has-img img{transform:scale(1.04)}
+.content-thumb.has-img span{left:14px;bottom:auto;top:12px;padding:4px 9px;background:rgba(20,32,68,.88)}
+.content-card.has-tc{border-top:4px solid var(--tc)}
+.content-card.has-tc .content-thumb{margin-top:-28px}
+.rail-theme{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin:-14px 0 12px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--tc) 12%,#fff);color:color-mix(in srgb,var(--tc) 58%,#0b1430);font-size:.68rem;font-weight:700}
+.rail-theme:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tc)}
+.content-card.featured .rail-theme{background:rgba(255,255,255,.14);color:#fff}
+.content-card.featured .rail-theme:before{background:color-mix(in srgb,var(--tc) 70%,#fff)}

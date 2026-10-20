@@ -179,3 +179,10 @@
 .hx-card.has-tc{border-top:3px solid var(--tc)}
 .hx-theme{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-bottom:6px;padding:2px 9px;border-radius:999px;background:color-mix(in srgb,var(--tc) 12%,#fff);color:color-mix(in srgb,var(--tc) 58%,#0b1430);font-size:.66rem;font-weight:700;line-height:1.5}
 .hx-theme:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tc)}
+
+/* Oct 2026: every card thumbnail uses the same long banner shape (2114 × 744) and fills it edge to edge */
+.hx-thumb{aspect-ratio:2114/744}
+.hx-thumb.has-img img.bg{display:none}
+.hx-thumb.has-img img.fg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hx-card:hover .hx-thumb.has-img img.fg{transform:scale(1.04)}
+@media(max-width:760px){.hx-card{display:flex;flex-direction:column}.hx-thumb{aspect-ratio:2114/744;min-height:0}}

@@ -40,3 +40,9 @@
 @media(max-width:640px){.fg{right:12px;bottom:12px}.fg-btn span{display:none}.fg-btn{width:48px;height:48px;padding:0;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.fg-panel{animation:none}.fg-btn{transition:none}.fg-typing i{animation:none}}
 @media print{.fg{display:none}}
+/* Keep the button very small: icon only, the label slides out on hover or keyboard focus */
+.fg-btn{width:46px;padding:0;justify-content:center;gap:0;overflow:hidden;white-space:nowrap;transition:width .25s ease,padding .25s ease,background .2s,transform .2s}
+.fg-btn span{max-width:0;opacity:0;transition:max-width .25s ease,opacity .2s}
+.fg:not(.on) .fg-btn:hover,.fg:not(.on) .fg-btn:focus-visible{width:auto;padding:0 18px 0 12px;gap:9px}
+.fg:not(.on) .fg-btn:hover span,.fg:not(.on) .fg-btn:focus-visible span{max-width:260px;opacity:1}
+.fg-btn[aria-expanded="false"]{}

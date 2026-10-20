@@ -208,3 +208,10 @@ a.kh-card.has-tc:hover{border-color:var(--tc);border-top-color:var(--tc)}
 .kh-featured .kh-card.has-tc{border-top:4px solid var(--tc)}
 .kh-featured .kh-feat:first-of-type .kh-tag.th{background:rgba(255,255,255,.12);color:#fff}
 .kh-featured .kh-feat:first-of-type .kh-tag.th:before{background:color-mix(in srgb,var(--tc) 70%,#fff)}
+
+/* Oct 2026: thumbnails always fill the long banner shape edge to edge; featured cards stack image over text */
+.kh-cover img.bg{display:none}
+.kh-cover img.fg,.kh-cover.fit img.fg{object-fit:cover}
+.kh-card.kh-feat{flex-direction:column;align-items:stretch}
+.kh-card.kh-feat .kh-cover{flex:none;align-self:stretch}
+.kh-card.kh-feat .kh-cbody{justify-content:flex-start}

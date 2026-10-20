@@ -36,7 +36,7 @@
         <form class="fg-form" id="fgForm"><label class="fg-sr" for="fgInput">Ask the site guide</label><input id="fgInput" type="text" autocomplete="off" placeholder="e.g. remittances in Lesotho"><button type="submit" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h14m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>
         <p class="fg-note">Answers come from this website’s content.</p>
       </section>
-      <button type="button" class="fg-btn" id="fgBtn" aria-expanded="false" aria-controls="fgPanel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Need help finding something?</span></button>
+      <button type="button" class="fg-btn" id="fgBtn" aria-expanded="false" aria-controls="fgPanel" aria-label="Site guide: need help finding something?" title="Need help finding something?"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Need help finding something?</span></button>
     </div>`);
   const $ = id => document.getElementById(id);
   const panel = $('fgPanel'), btn = $('fgBtn'), log = $('fgLog'), input = $('fgInput'), chips = $('fgChips');

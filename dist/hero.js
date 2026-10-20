@@ -175,3 +175,36 @@ updateRailButtons();
     });
   }).catch(() => {});
 })();
+
+/* ---- "New in the Knowledge Hub" rail: the newest pieces from the feed, with their banner thumbnails ----
+   The cards in the HTML stay as a fallback if the feed cannot load. */
+(function fillKnowledgeRail() {
+  const rail = document.querySelector('#knowledge-rail');
+  if (!rail) return;
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const asset = (p) => (p && p.startsWith('/uploads/') ? p.slice(1) : p);
+  const M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const fmt = (d) => { const [y, m, dd] = (d || '').split('-'); return y ? `${dd ? +dd + ' ' : ''}${m ? M[+m - 1] + ' ' : ''}${y}` : ''; };
+  const CTA = { Video: 'Watch video', Podcast: 'Listen', Interview: 'Watch interview', Article: 'Read article', Blog: 'Read blog', Report: 'View report', Presentation: 'View slides', 'Pocket guide': 'View guide' };
+  const THUMB = { Video: 'thumb-video', Podcast: 'thumb-video', Interview: 'thumb-video', Blog: 'thumb-blog', Article: 'thumb-article', 'Media release': 'thumb-article', Report: 'thumb-report' };
+  fetch('knowledge-hub/knowledge.json').then((r) => r.json()).then((feed) => {
+    const TH = Object.fromEntries((feed.themes || []).map((t) => [t.slug, t]));
+    const list = (feed.items || []).slice(0, 8);
+    if (!list.length) return;
+    rail.innerHTML = list.map((i, n) => {
+      const t = (i.th || []).map((s) => TH[s]).find(Boolean);
+      const url = i.p ? `knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || 'knowledge-hub/index.html';
+      const ext = !i.p && (/^https?:/.test(url) || /\.pdf/i.test(url));
+      const thumb = i.img
+        ? `<div class="content-thumb has-img" aria-hidden="true"><img src="${esc(asset(i.img))}" alt="" loading="lazy"><span>${esc(i.y)}</span></div>`
+        : `<div class="content-thumb ${THUMB[i.y] || 'thumb-publication'}" aria-hidden="true"><span>${esc(i.y)}</span>${/Video|Podcast|Interview/.test(i.y) ? '<i></i>' : ''}</div>`;
+      return `<article class="content-card${n === 0 ? ' featured' : ''}${t ? ' has-tc' : ''}"${t ? ` style="--tc:${t.colour}"` : ''}>${thumb}`
+        + `<div class="meta"><span>${esc(i.y)}</span><span>${esc(fmt(i.d))}</span></div>`
+        + (t ? `<span class="rail-theme">${esc(t.name)}</span>` : '')
+        + `<h3>${esc(i.t)}</h3>${i.s ? `<p>${esc(i.s)}</p>` : ''}`
+        + `<a href="${esc(url)}"${ext ? ' target="_blank" rel="noopener"' : ''}>${CTA[i.y] || 'Read more'}</a></article>`;
+    }).join('');
+    rail.scrollLeft = 0;
+    if (typeof updateRailButtons === 'function') updateRailButtons();
+  }).catch(() => {});
+})();
