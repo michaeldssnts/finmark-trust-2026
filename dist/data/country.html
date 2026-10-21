@@ -286,7 +286,7 @@ a.cp-dot:hover{background:var(--navy)}
   });
   $('cpRegional').onchange = e => { st.regional = e.target.checked; st.all = false; renderContent(list.find(x => x.iso === st.iso)); };
 
-  const h = location.hash.slice(1).toUpperCase(); if (list.some(c => c.iso === h)) st.iso = h;
+  const h = (location.hash.slice(1) || new URLSearchParams(location.search).get('country') || '').toUpperCase(); if (list.some(c => c.iso === h)) st.iso = h;  // ?country= is used by redirects from the old /data-portal/XXX addresses
   render();
 })();
 </script>

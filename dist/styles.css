@@ -391,3 +391,12 @@
 .rail-theme:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tc)}
 .content-card.featured .rail-theme{background:rgba(255,255,255,.14);color:#fff}
 .content-card.featured .rail-theme:before{background:color-mix(in srgb,var(--tc) 70%,#fff)}
+
+/* Main nav has six items: tighten it on smaller laptop screens before the mobile menu takes over */
+@media(min-width:981px) and (max-width:1180px){.main-nav{grid-template-columns:auto 1fr auto;gap:16px}.nav-link{padding:34px 8px 31px;font-size:.82rem}.nav-actions .primary-btn{padding:0 16px}.brand-logo{max-width:190px;height:auto}}
+
+/* Homepage "One region. Many realities.": every country with a data page */
+.country-row{gap:8px}
+.country-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 13px 7px 8px;transition:border-color .2s,color .2s}
+.country-chip:hover{border-color:var(--teal);color:var(--teal)}
+.cc-flag{width:22px;height:16px;flex:none;border-radius:2px;background:#eee center/cover no-repeat;box-shadow:0 0 0 1px rgba(20,32,68,.12)}

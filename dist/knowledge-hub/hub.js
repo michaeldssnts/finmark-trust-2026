@@ -30,6 +30,11 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
       (p.get('theme') || '').split(',').filter(Boolean).forEach(t => S.themes.add(t));
       (p.get('type') || '').split(',').filter(Boolean).forEach(t => S.types.add(t));
       (p.get('lang') || '').split(',').filter(Boolean).forEach(t => S.langs.add(t));
+      // Addresses from the old website: /search?tag_term=…, /search?locations[]=…, and /knowledge-hub/<type>/<old-slug>
+      const tag = p.get('tag_term') || p.get('tag') || '';
+      if (tag) { const th = THEMES.find(t => (t.lt || []).includes(tag) || t.slug === tag); if (th) S.themes.add(th.slug); else S.q = tag.replace(/-/g, ' '); }
+      const loc = p.get('locations[]') || ''; if (loc && !S.country) S.country = loc;
+      if (S.q && !/\s/.test(S.q) && (S.q.match(/-/g) || []).length >= 2) { S.q = S.q.replace(/-/g, ' '); S.loose = true; if (!p.get('sort')) S.sort = 'rel'; }
       if ([...S.themes].some(t => TH[t] && TH[t].status === 'archived')) S.archived = true;
     } catch (e) {}
   }
@@ -56,7 +61,12 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     it.titleN = norm(it.t);
   }
   const terms = () => norm(S.q).split(/\s+/).filter(t => t.length > 1);
-  function score(it, ts) { let s = 0; for (const t of ts) { if (!it.hay.includes(t)) return -1; s += it.titleN.includes(t) ? 3 : 1; } return s; }
+  // Loose mode (old-site addresses turned into a search): words don't all have to match; at least half must.
+  const STOPW = new Set('a an and the of in on for to with from by at is are as or its it be our we how why what new'.split(' '));
+  function score(it, ts) {
+    if (S.loose) { const k = ts.filter(t => !STOPW.has(t)); let s = 0, hit = 0; for (const t of k) { if (it.hay.includes(t)) { hit++; s += it.titleN.includes(t) ? 3 : 1; } } return hit >= Math.max(1, Math.ceil(k.length / 2)) ? s : -1; }
+    let s = 0; for (const t of ts) { if (!it.hay.includes(t)) return -1; s += it.titleN.includes(t) ? 3 : 1; } return s;
+  }
 
   // ---------- Filtering with facet counts ----------
   function passes(it, skip, ts) {

@@ -1,0 +1,45 @@
+/* Explore Data: Data and Analytics offerings, below the country flags */
+.da-offer{background:#fff;padding:80px 0 88px;border-top:1px solid #e3e9ef}
+.da-head{display:grid;grid-template-columns:minmax(220px,.7fr) 1.3fr;gap:40px;align-items:end;margin-bottom:28px}
+.da-head h2{margin:6px 0 0}
+.da-head > p{margin:0;color:var(--muted);font-size:1.02rem;line-height:1.65}
+.da-jump{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 34px}
+.da-jump a{padding:8px 14px;border:1px solid #d5dee8;background:#f5f8fa;color:var(--navy);font-size:.86rem;font-weight:700;transition:background .2s,border-color .2s,color .2s}
+.da-jump a:hover,.da-jump a:focus-visible{background:var(--navy);border-color:var(--navy);color:#fff}
+.da-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.da-card{display:flex;flex-direction:column;padding:0 28px 26px;background:#f7f9fb;border-top:5px solid var(--c);scroll-margin-top:110px;transition:box-shadow .2s,transform .2s}
+.da-card:hover{box-shadow:0 22px 50px rgba(20,32,68,.12);transform:translateY(-3px);background:#fff}
+.da-card:target{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 40%,transparent);background:#fff}
+.da-ic{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:color-mix(in srgb,var(--c) 12%,#fff);color:var(--c);margin-bottom:18px}
+.da-ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.da-card h3{margin:0 0 12px;color:var(--navy);font-size:1.28rem;line-height:1.2}
+.da-text{color:#45526a;font-size:.93rem;line-height:1.65}
+.da-text p{margin:0 0 12px}
+.da-text ul{margin:0 0 12px;padding-left:0;list-style:none}
+.da-text li{position:relative;padding-left:18px;margin-bottom:6px}
+.da-text li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;background:var(--c)}
+.da-btn{align-self:flex-start;margin-top:auto;padding-top:8px;color:var(--c);font-weight:700;font-size:.92rem}
+.da-btn:hover{text-decoration:underline}
+.da-contact{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-top:40px;padding:36px 40px;background:var(--navy-deep,#142044);color:#fff;position:relative;overflow:hidden}
+.da-contact:after{content:"";position:absolute;left:-40px;bottom:-110px;width:22px;height:220px;background:var(--teal);transform:rotate(45deg);opacity:.85}
+.da-contact-copy{position:relative;z-index:1}
+.da-contact-copy h3{margin:0 0 10px;font-size:1.4rem;color:#fff}
+.da-contact-copy p{margin:0;color:#d5def0;line-height:1.65}
+.da-person{position:relative;z-index:1;display:flex;gap:20px;align-items:center;padding:22px;background:#1d2c57;border:1px solid rgba(255,255,255,.14)}
+.da-photo{flex:none;display:grid;place-items:center;width:86px;height:86px;border-radius:50%;overflow:hidden;background:var(--teal);color:#fff;font-weight:800;font-size:1.4rem}
+.da-photo img{width:100%;height:100%;object-fit:cover}
+.da-person h4{margin:0;font-size:1.12rem}
+.da-person h4 a{color:#fff}
+.da-person h4 a:hover{text-decoration:underline}
+.da-role{margin:2px 0 10px;color:#61d7e2;font-size:.86rem;font-weight:700}
+.da-lines{margin:0;display:grid;gap:4px;font-size:.9rem;color:#d5def0}
+.da-lines b{color:#fff}
+.da-lines a{color:#fff;word-break:break-word}
+.da-lines a:hover{text-decoration:underline}
+@media(max-width:1020px){.da-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.da-contact{grid-template-columns:1fr;gap:24px}}
+@media(max-width:720px){.da-offer{padding:56px 0 64px}.da-head{grid-template-columns:1fr;gap:14px}.da-grid{grid-template-columns:1fr}.da-card{padding:24px 22px}.da-contact{padding:28px 22px}.da-person{flex-direction:column;align-items:flex-start;padding:18px}.da-jump{gap:6px}.da-jump a{font-size:.8rem;padding:7px 11px}}
+/* Offering logos (from the old Data and Analytics page): white logos sit on navy, colour logos on white */
+.da-logo{display:flex;align-items:center;height:118px;margin:0 -28px 22px;padding:0 28px;background:#fff;border-bottom:1px solid #e3e9ef}
+.da-logo.dark{background:var(--navy,#213265);border-bottom-color:var(--navy,#213265)}
+.da-logo img{display:block;width:auto;max-width:100%;height:58px}
+@media(max-width:720px){.da-card{padding:0 22px 24px}.da-logo{height:100px;margin:0 -22px 20px;padding:0 22px}.da-logo img{height:50px}}

@@ -38,7 +38,7 @@
     body.querySelectorAll('p').forEach(el => { if (/^(for more information|media (enquiries|contact)|contact:)/i.test(el.textContent.trim())) el.classList.add('ps-contact'); });
 
     // Staff authors (picked in the CMS) link to their profile; other authors are plain text
-    const staff = (p.authors || []).map(a => ({ ...a, href: `../about/person.html?id=${encodeURIComponent(a.slug)}` }));
+    const staff = (p.authors || []).map(a => ({ ...a, href: `../about/index.html?member=${encodeURIComponent(a.slug)}` }));
     const others = (p.a || '').split(/\s*(?:,|&|\band\b)\s*/).filter(Boolean).map(name => ({ name }));
     const people = [...staff, ...others];
     const authors = people.map(a => a.name);

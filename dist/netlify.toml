@@ -1,7 +1,8 @@
 # Netlify build settings for the FinMark Trust website.
-# Every save in the content manager is a commit to GitHub; Netlify then rebuilds the Knowledge Hub feed and publishes the site.
+# Every save in the content manager is a commit to GitHub; Netlify then rebuilds the Knowledge Hub feed and the redirects
+# that keep old finmark.org.za addresses working (_redirects), and publishes the site. Missing pages show 404.html.
 [build]
-  command = "node scripts/build-knowledge.mjs"
+  command = "node scripts/build-knowledge.mjs && node scripts/build-redirects.mjs"
   publish = "."
 
 [build.environment]

@@ -94,7 +94,9 @@
     });
     var people = {};
     (feed.people || []).forEach(function (p) { people[p.slug + '.json'] = { content: JSON.stringify({ name: p.name, slug: p.slug, role: p.role, group: p.group, order: p.order, photo: p.photo, bio: p.bio || '', email: p.email || '', linkedin: p.linkedin || '', hidden: !!p.hidden }, null, 2) }; });
-    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes, people: people, settings: settings };
+    var tors = {};
+    (feed.tors || []).forEach(function (t) { tors[t.id + '.json'] = { content: JSON.stringify({ title: t.title, type: t.type, summary: t.summary, programme: t.programme || '', published: t.published || '', closing: t.closing || '', document: t.document || '', image: t.image || '', contact: t.contact || '', draft: false }, null, 2) }; });
+    window.repoFiles = { knowledge: knowledge, themes: themes, programmes: programmes, people: people, tors: tors, settings: settings };
     start();
   }).catch(function () { window.repoFiles = {}; start(); });
 })();

@@ -33,6 +33,7 @@
   var TFOLDER = mode === 'demo' ? 'themes' : DIR + 'content/themes';
   var PFOLDER = mode === 'demo' ? 'programmes' : DIR + 'content/programmes';
   var PEFOLDER = mode === 'demo' ? 'people' : DIR + 'content/people';
+  var TORFOLDER = mode === 'demo' ? 'tors' : DIR + 'content/tors';
   var FEATFILE = mode === 'demo' ? 'settings/featured.json' : DIR + 'content/settings/featured.json';
   var pickItems = function (name, label, max, hint) {
     return { name: name, label: label, widget: 'relation', collection: 'knowledge', search_fields: ['title'], value_field: '{{slug}}', display_fields: ['{{title}} ({{date}})'], multiple: true, required: false, max: max, options_length: 30, hint: hint };
@@ -113,6 +114,26 @@
           { name: 'legacy_thumbnail', label: 'Old site thumbnail', widget: 'hidden', required: false },
           { name: 'legacy_id', label: 'Old site record ID', widget: 'hidden', required: false },
           { name: 'legacy_slug', label: 'Old site slug', widget: 'hidden', required: false }
+        ]
+      },
+      {
+        name: 'tors', label: 'Terms of Reference', label_singular: 'Call',
+        description: 'Expressions of interest, full TORs, available positions and consultant work, listed on the Terms of Reference page. Calls move to “Closed” on their own after the closing date.',
+        folder: TORFOLDER, create: true, format: 'json', extension: 'json',
+        identifier_field: 'title', slug: '{{year}}-{{month}}-{{slug}}', summary: '{{title}} — closes {{closing}}',
+        sortable_fields: ['title', 'closing', 'type'],
+        view_filters: [{ label: 'Expressions of interest', field: 'type', pattern: 'Expression of interest' }, { label: 'Terms of reference', field: 'type', pattern: 'Terms of reference' }, { label: 'Positions', field: 'type', pattern: 'Position' }, { label: 'Consultancies', field: 'type', pattern: 'Consultancy' }],
+        fields: [
+          { name: 'title', label: 'Title', widget: 'string' },
+          { name: 'type', label: 'Type', widget: 'select', options: ['Expression of interest', 'Terms of reference', 'Position', 'Consultancy'], default: 'Terms of reference' },
+          { name: 'summary', label: 'Summary', widget: 'text', hint: 'Two or three sentences on what the work is.' },
+          { name: 'programme', label: 'Programme', widget: 'relation', collection: 'programmes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], required: false, options_length: 40, hint: 'Optional. Shown as a tag on the card.' },
+          { name: 'published', label: 'Date published', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'DD MMM YYYY', time_format: false, picker_utc: true, default: '{{now}}', required: false, hint: 'The call appears on the site from this date. Set a future date to schedule it.' },
+          { name: 'closing', label: 'Closing date', widget: 'datetime', format: 'YYYY-MM-DD', date_format: 'DD MMM YYYY', time_format: false, picker_utc: true, required: false, hint: 'After this date the call moves to Closed on the site by itself; nothing else to do. Leave empty for calls that stay open until filled.' },
+          { name: 'document', label: 'Document (PDF)', widget: 'file', required: false, choose_url: true, hint: 'Upload the TOR or advert, or paste its address.' },
+          { name: 'image', label: 'Thumbnail image', widget: 'image', required: false, choose_url: true, hint: 'Optional wide banner (2114 × 744 px). Without one, the site draws a branded cover.' },
+          { name: 'contact', label: 'Contact email for submissions', widget: 'string', required: false },
+          { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false }
         ]
       },
       {

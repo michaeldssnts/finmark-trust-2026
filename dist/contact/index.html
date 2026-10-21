@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="contact-loc.css">
 </head>
 <body data-page="contact">
   <div id="site-header"></div>
@@ -30,7 +31,7 @@
           <p>Send a general enquiry or choose a topic in the form. Our team will route your message to the relevant specialist.</p>
 
           <div class="contact-direct">
-            <a href="mailto:info@finmark.org.za"><span>Email</span><strong>info@finmark.org.za</strong></a>
+            <a data-m="YXouZ3JvLmtyYW1uaWZAb2ZuaQ==" data-mk><span>Email</span><strong data-mt="YXouZ3JvLmtyYW1uaWZAb2ZuaQ=="></strong></a>
             <a href="tel:+27675949291"><span>Telephone</span><strong>+27 (0) 67 594 9291</strong></a>
           </div>
 
@@ -70,6 +71,24 @@
       </div>
     </section>
 
+    <section class="section fmt-location" id="location" aria-labelledby="locTitle">
+      <div class="container loc-grid">
+        <div class="loc-copy">
+          <p class="eyebrow">FMT Location</p>
+          <h2 id="locTitle">Johannesburg, South Africa</h2>
+          <dl class="loc-list">
+            <div><dt>Address</dt><dd>Block B West, First Floor, Central Park, 400 16th Rd, Randjespark, Midrand, 1685, Johannesburg, South Africa.</dd></div>
+            <div><dt>Tel</dt><dd><a href="tel:+27675949291">+27 (0) 67 594 9291</a></dd></div>
+            <div><dt>Email</dt><dd><a data-m="YXouZ3JvLmtyYW1uaWZAb2ZuaQ=="></a></dd></div>
+          </dl>
+          <a class="primary-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=FinMark+Trust+Central+Park+400+16th+Road+Randjespark+Midrand" target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="loc-map">
+          <iframe title="Map showing the FinMark Trust office in Central Park, Midrand" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.6493637004405!2d28.128299875326437!3d-25.97953755486166!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e956e3ecd3423af%3A0xadad49c93f4b94de!2sFinMark%20Trust!5e0!3m2!1sen!2sza!4v1693311670915!5m2!1sen!2sza" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
     <section class="section tight alt contact-routes">
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">Find the right starting point</p><h2>Explore before<br>you enquire.</h2></div><p>Our most-used resources may already have what you need.</p></div>
@@ -89,7 +108,7 @@
       const data=new FormData(this);
       const subject='Website enquiry — '+data.get('topic');
       const body=['Name: '+data.get('name'),'Organisation: '+(data.get('organisation')||'Not provided'),'Email: '+data.get('email'),'Enquiry type: '+data.get('topic'),'','Message:',''+data.get('message')].join('\n');
-      window.location.href='mailto:info@finmark.org.za?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      window.location.href='mailto:<a data-m="YXouZ3JvLmtyYW1uaWZAb2ZuaQ=="></a>?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     });
   </script>
 </body>

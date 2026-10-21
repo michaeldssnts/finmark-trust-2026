@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found — FinMark Trust</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23213265'/%3E%3Cpath d='M15 14h18v8H23v8h9v8h-9v13h-8V14Zm22 0h12v37h-8V23h-4v-9Z' fill='white'/%3E%3C/svg%3E">
+<!-- This page can be shown at any address, so every link starts from the site root -->
+<link rel="stylesheet" href="/styles.css">
+<style>
+  .nf-hero{position:relative;overflow:hidden;background:var(--navy-deep);color:#fff;padding:70px 0 150px}
+  .nf-hero:after{content:"";position:absolute;right:12%;bottom:-170px;width:38px;height:400px;background:var(--teal);transform:rotate(45deg);opacity:.9}
+  .nf-hero .container{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center}
+  .nf-code{font-size:clamp(6rem,16vw,12rem);font-weight:800;line-height:.85;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:2px #61d7e2}
+  .nf-hero h1{margin:0 0 14px;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:-.03em}
+  .nf-hero p{margin:0;max-width:600px;color:#d5def0;font-size:1.06rem}
+  .nf-path{display:inline-block;margin-top:14px;padding:4px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#aebbd8;font-size:.8rem;word-break:break-all}
+  .nf-search{display:flex;max-width:600px;margin-top:26px;background:#fff}
+  .nf-search input{flex:1;min-width:0;height:54px;padding:0 16px;border:0;font:inherit;color:var(--ink)}
+  .nf-search button{border:0;background:var(--teal);color:#fff;font:inherit;font-weight:700;padding:0 22px}
+  .nf-options{position:relative;z-index:2;margin-top:-96px;padding-bottom:90px}
+  .nf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .nf-card{display:flex;flex-direction:column;min-height:230px;padding:30px;background:#fff;box-shadow:var(--shadow);border-top:5px solid var(--c);transition:transform .2s,box-shadow .2s}
+  .nf-card:hover{transform:translateY(-4px);box-shadow:0 30px 70px rgba(20,32,68,.18)}
+  .nf-card small{color:var(--c);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+  .nf-card strong{margin:10px 0 8px;color:var(--navy);font-size:1.5rem;line-height:1.15}
+  .nf-card span{color:var(--muted);font-size:.92rem}
+  .nf-card em{margin-top:auto;padding-top:18px;color:var(--c);font-style:normal;font-weight:700;font-size:.9rem}
+  .nf-more{margin:26px 0 0;color:var(--muted);font-size:.92rem}
+  .nf-more a{color:var(--teal);font-weight:700}
+  @media(max-width:900px){.nf-hero .container{grid-template-columns:1fr;gap:20px}.nf-grid{grid-template-columns:1fr}.nf-card{min-height:0}}
+</style>
+</head>
+<body data-page="">
+<script>window.FMT_ROOT = '/';</script>
+<div id="site-header"></div>
+<main id="main">
+  <header class="nf-hero">
+    <div class="container">
+      <div class="nf-code" aria-hidden="true">404</div>
+      <div>
+        <p class="eyebrow light">Page not found</p>
+        <h1>Sorry, we couldn’t find that page.</h1>
+        <p>It may have moved when we launched our new website. Try one of the options below, or search for what you need.</p>
+        <span class="nf-path" id="nfPath"></span>
+        <form class="nf-search" action="/knowledge-hub/index.html" role="search"><label class="kh-sr" for="nfQ" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search the Knowledge Hub</label><input id="nfQ" name="q" type="search" placeholder="Search reports, blogs, data and more"><button type="submit">Search</button></form>
+      </div>
+    </div>
+  </header>
+  <section class="nf-options" aria-label="Where to go next">
+    <div class="container">
+      <div class="nf-grid">
+        <a class="nf-card" href="/" style="--c:#213265"><small>Start again</small><strong>Home page</strong><span>Our latest research, data and programmes in one place.</span><em>Go to the home page →</em></a>
+        <a class="nf-card" href="/countries/index.html" style="--c:#0098ae"><small>Data &amp; Analytics</small><strong>Explore Data</strong><span>FinScope Consumer and MSME results for countries across SADC.</span><em>Explore the data →</em></a>
+        <a class="nf-card" href="/programmes/index.html" style="--c:#00997b"><small>Programmes &amp; Research</small><strong>Programmes</strong><span>Our programmes in South Africa and across SADC, and their research.</span><em>See our programmes →</em></a>
+      </div>
+      <p class="nf-more">Or browse the <a href="/knowledge-hub/index.html">Knowledge Hub</a>, see <a href="/terms-of-reference/index.html">Terms of Reference</a>, or <a href="/contact/index.html">contact us</a>.</p>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script>
+  // Show the address that wasn't found, and pre-fill the search with the words from it
+  (function () {
+    var p = decodeURIComponent(location.pathname + location.search);
+    document.getElementById('nfPath').textContent = p;
+    var words = location.pathname.split('/').pop().replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ').trim();
+    if (words && words.length > 2 && !/^index$/i.test(words)) document.getElementById('nfQ').value = words;
+  })();
+</script>
+<script src="/site.js"></script>
+</body>
+</html>

@@ -12,7 +12,8 @@
   const STOP = new Set('a an the and or of in on for to with about is are be i me my we our you your do does can could would should how what where which who find show give get looking look want need any some there please hi hello hey information info tell more on latest new recent'.split(' '));
   const PAGES = [
     { k: /donat|give|fund|endow|patron|support (fmt|finmark)|contribut/, t: 'Donate', d: 'Fund a small business through GBL, or become a founding patron of the Impact Endowment.', u: 'donate/index.html' },
-    { k: /contact|email|phone|call|address|office|reach/, t: 'Contact us', d: 'info@finmark.org.za · +27 (0) 67 594 9291', u: 'contact/index.html' },
+    { k: /terms of reference|\btors?\b|tender|expression of interest|\beoi\b|consultan|vacanc|job|position|career|work (for|with) (you|us|fmt|finmark)|procure|rfp|proposal/, t: 'Terms of Reference', d: 'Expressions of interest, TORs, positions and consultant work.', u: 'terms-of-reference/index.html' },
+    { k: /contact|email|phone|call|address|office|reach/, t: 'Contact us', d: 'info\u0040finmark.org.za · +27 (0) 67 594 9291', u: 'contact/index.html' },
     { k: /team|staff|people|who works|trustee|board|ceo/, t: 'Our team and trustees', d: 'The people behind FinMark Trust’s work.', u: 'about/index.html#team' },
     { k: /about|mission|history|who (are|is) (you|finmark)|what is finmark|capabilit/, t: 'About FinMark Trust', d: 'Who we are, how we work and our Capability Statement.', u: 'about/index.html' },
     { k: /data|dataset|survey|finscope|statistic|numbers|indicator|dashboard|microdata/, t: 'Explore Data', d: 'FinScope Consumer and MSME results by country.', u: 'countries/index.html' },
@@ -43,7 +44,7 @@
   const heroBar = document.querySelector('.hx-bar');
   if (heroBar && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => document.getElementById('fmtGuide').classList.toggle('lift', e.isIntersecting)).observe(heroBar);
   const panel = $('fgPanel'), btn = $('fgBtn'), log = $('fgLog'), input = $('fgInput'), chips = $('fgChips');
-  const START = ['Latest research', 'FinScope data', 'Programmes', 'Blogs', 'Gender', 'Remittances', 'How can I donate?'];
+  const START = ['Latest research', 'FinScope data', 'Programmes', 'Blogs', 'Gender', 'Remittances', 'Terms of reference', 'How can I donate?'];
   let greeted = false;
   const say = (html, who) => { log.insertAdjacentHTML('beforeend', `<div class="fg-msg ${who}">${html}</div>`); log.scrollTop = log.scrollHeight; };
   const setChips = list => { chips.innerHTML = list.map(c => `<button type="button" data-q="${esc(c)}">${esc(c)}</button>`).join(''); };
@@ -105,7 +106,7 @@
       const href = i.p ? `${R}knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || `${R}knowledge-hub/index.html`;
       return link(href, i.t, `${i.y} · ${fmt(i.d)}`, !i.p && /^https?:|\.pdf$/i.test(href));
     };
-    people.forEach(p => out.push(link(`${R}about/person.html?id=${encodeURIComponent(p.slug)}`, p.name, p.role)));
+    people.forEach(p => out.push(link(`${R}about/index.html?member=${encodeURIComponent(p.slug)}`, p.name, p.role)));
     progs.slice(0, 2).forEach(p => out.push(link(p.site || `${R}knowledge-hub/index.html?programme=${encodeURIComponent(p.slug)}`, p.name, p.site ? 'Programme site' : 'Programme research', /^https?:/.test(p.site || ''))));
     cs.slice(0, 2).forEach(c => out.push(link(`${R}data/country.html#${c}`, `${COUNTRIES[c].split('|')[0]} data`, 'FinScope results and indicators')));
     pages.slice(0, 2).forEach(p => out.push(link(p.u.startsWith('#') ? p.u : R + p.u, p.t, p.d)));

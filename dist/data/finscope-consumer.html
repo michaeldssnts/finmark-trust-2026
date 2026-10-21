@@ -631,7 +631,7 @@ function initRequest(){
     $('reqDone').innerHTML = `
       <div><p class="eyebrow">Request received</p><h3 style="color:var(--navy);font-size:1.3rem">Check your inbox, ${esc(first)}</h3><p class="note" style="margin:6px 0 0">We have sent the download link to <b>${esc(email)}</b>. It can take a few minutes to arrive.</p></div>
       <ul class="fs-steps"><li>Spam check passed</li><li>Request logged for ${esc(name)} ${S.year}</li><li>Private link created, valid until ${exp}</li><li>Email sent to ${esc(email)}</li></ul>
-      <div class="mail" aria-label="Email preview"><header><span>From <b>FinMark Trust Data</b> &lt;data@finmark.org.za&gt;</span><span>To <b>${esc(email)}</b></span><span>Subject <b>Your FinScope Consumer ${esc(name)} ${S.year} data</b></span></header>
+      <div class="mail" aria-label="Email preview"><header><span>From <b>FinMark Trust Data</b> &lt;data&#64;finmark&#46;org&#46;za&gt;</span><span>To <b>${esc(email)}</b></span><span>Subject <b>Your FinScope Consumer ${esc(name)} ${S.year} data</b></span></header>
         <div class="body"><p>Dear ${esc(first)},</p><p>Thank you for your interest in FinScope Consumer. Your dataset is ready to download.</p>
         <div class="dl"><div><b>${file}</b><small>Data, codebook, indicator file and methodology note · link expires ${exp}</small></div><span class="btn" aria-disabled="true">Download</span></div>
         <p>Please cite: FinMark Trust (${S.year}). FinScope Consumer Survey ${esc(name)} ${S.year}.</p><p>Kind regards,<br>The FinMark Trust data team</p></div></div>

@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="da.css">
 <style>
 .cg-hero{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden}
 .cg-hero:after{content:"";position:absolute;right:6%;bottom:-170px;width:34px;height:360px;background:var(--teal);opacity:.85;transform:rotate(45deg)}
@@ -59,7 +60,7 @@ a.cg-card:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
 </head>
 <body data-page="countries" data-header="dark">
   <div id="site-header"></div>
-  <main id="main">
+  <main id="main"><span id="top"></span>
     <header class="cg-hero">
       <div class="container">
         <div class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><span>Explore Data</span></div>
@@ -91,6 +92,65 @@ a.cg-card:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
           <li data-name="zimbabwe zimbabwe zwe"><a class="cg-card" href="../data/country.html#ZWE" aria-label="Zimbabwe: view country data"><span class="cg-flag" aria-hidden="true" style="background-image:url(../flags/zw.svg)"></span><span class="cg-code" aria-hidden="true">ZWE</span><span class="cg-body"><strong>Zimbabwe</strong><span class="cg-meta">Harare · 17.0m people</span><span class="cg-surveys"><span class="cg-s"><i></i>Consumer 2014, 2022</span><span class="cg-s msme"><i></i>MSME 2022</span></span></span><span class="cg-go" aria-hidden="true">→</span></a></li>
         </ul>
         <p class="cg-empty" id="cgEmpty" hidden>No country matches that name.</p>
+      </div>
+    </section>
+    <section class="section da-offer" id="data-and-analytics" aria-labelledby="daTitle">
+      <div class="container">
+        <div class="section-head da-head">
+          <div><p class="eyebrow">Our offerings</p><h2 id="daTitle">Data and Analytics</h2></div>
+          <p>Data and Analytics address new data opportunities and challenges for how financial products and services can support more inclusive economies. Our product offerings include FinScope Consumer, FinScope MSME, training and capacity building, FinScope Tracker surveys, customised analytics and data portals.</p>
+        </div>
+        <nav class="da-jump" aria-label="Data and Analytics offerings"><a href="#consumer">FinScope Consumer</a><a href="#msme">FinScope MSME</a><a href="#tracker">FinScope Tracker surveys</a><a href="#analytics">Analytics</a><a href="#portal">Portal</a><a href="#training">Training and capacity-building</a></nav>
+        <div class="da-grid">
+          <article class="da-card" id="consumer" style="--c:#213265">
+            <div class="da-logo dark"><img src="../images/data-logos/finscope-consumer.svg" alt="FinScope Consumer logo" width="280" height="70" loading="lazy"></div>
+            <h3>FinScope Consumer</h3>
+            <div class="da-text"><p>FinScope Consumer is a comprehensive probability survey with an end-user focus (individual or household) of financial services and products. The survey is uniquely aimed at increasing understanding of both the formal and informal financial product/service market. Widely used by governments, for policy development and regulation, academia, development partners and donors, and financial service providers, to build more relevant and consumer-centric financial products and services that improve financial health and support economic development.</p></div>
+            <a class="da-btn" href="../data/finscope-consumer.html#MWI-2023">View FinScope Consumer data <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="da-card" id="msme" style="--c:#0098ae">
+            <div class="da-logo"><img src="../images/data-logos/finscope-msme.svg" alt="FinScope MSME logo" width="280" height="70" loading="lazy"></div>
+            <h3>FinScope MSME</h3>
+            <div class="da-text"><p>The FinScope Micro-, Small and Medium Enterprises (MSME) Survey is the benchmark study to understand business activity at national level. Geospatial sampling is utilised for sampling MSMEs owners, encompassing information from business owners, formal and informal enterprises through to business operations and experiences. FinScope MSME Survey gives a national view of enterprise health by examining firm and business owner financial, operational, and risk factors. Additionally, the unique methodology allows reliable study of firm size, sector, and geographic area. Recognised globally, funders, institutions of government, and regulators as well as financial service providers utilise it to design their interventions and develop MSME-focused financial services and products.</p></div>
+            <a class="da-btn" href="../knowledge-hub/index.html?theme=finscope-msme">View FinScope MSME data <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="da-card" id="tracker" style="--c:#00997b">
+            <div class="da-logo dark"><img src="../images/data-logos/finscope-tracker.svg" alt="FinScope Tracker surveys logo" width="280" height="70" loading="lazy"></div>
+            <h3>FinScope Tracker</h3>
+            <div class="da-text"><p>FinScope Tracker is a smaller survey designed to track the main financial inclusion indicators between the baseline FinScope Consumer surveys, using mixed research methods, with the overall aim of:</p><ul><li>Estimating market growth trends, where possible, against the key FinScope indicators from the baseline</li><li>Highlighting new market opportunities and challenges.</li></ul><p>A specialised modular survey focused on key financial inclusion market updates, designed to measure progress against specific indicators. The tracker survey covers core demographics, limited livelihoods income generation and access, as well as the uptake and usage of financial products and services.</p></div>
+          </article>
+          <article class="da-card" id="training" style="--c:#34568b">
+            <div class="da-logo"><img src="../images/data-logos/training.svg" alt="Training and capacity-building logo" width="280" height="70" loading="lazy"></div>
+            <h3>Training and capacity-building</h3>
+            <div class="da-text"><p>The training and capacity-building offering is designed to promote financial inclusion and empower inclusive finance enablers. Our approach to data training and capacity-building involves offering tailored programmes that address the specific needs of individuals and organisations, honing data skills, fostering innovation, and enhancing decision-making capabilities. This programme empowers institutions and various stakeholders with the skills to thrive in this evolving landscape. The impact of our training and capacity-building results in empowerment, motivation and increased productivity. We provide tailored solutions and packages for different organisations, drawing on our extensive experience in implementing our gold-standard FinScope surveys and leveraging our expertise.</p></div>
+          </article>
+          <article class="da-card" id="analytics" style="--c:#0d6f80">
+            <div class="da-logo dark"><img src="../images/data-logos/analytics.svg" alt="Analytics logo" width="280" height="70" loading="lazy"></div>
+            <h3>Analytics</h3>
+            <div class="da-text"><p>Gathering data is the easy part. Knowing what to do with it is the more complex challenge. Our team of researchers, statisticians, and data scientists can analyse FinScope data alongside other relevant datasets to generate evidence and insights across core themes, such as women, the informal sector, digital financial services, product usage, financial needs, and livelihoods. By exploring data through new analytical lenses, our team maximises the value of the investment and provides fresh perspectives on how best to serve those in poverty.</p><p>The analytics theme supports financial inclusion efforts through the following activities:</p><ul><li>Segmentation, target market analysis and reporting</li><li>Analysis and insights from transactional data</li><li>Technical assistance and capacity building to countries that are collecting various kinds of data.</li></ul></div>
+          </article>
+          <article class="da-card" id="portal" style="--c:#142044">
+            <div class="da-logo"><img src="../images/data-logos/portal.svg" alt="Data portal logo" width="280" height="70" loading="lazy"></div>
+            <h3>Data portal</h3>
+            <div class="da-text"><p>The data portal provides access to a range of public data types and analytical tools, enabling stakeholders to compare indicators across countries. Through FinScope Consumer, stakeholders gain a comprehensive view of financial markets, further enriched by Financial Diaries, which reveal how low-income households manage their finances. FinScope MSME survey data also allows stakeholders to examine key indicators within the MSME sector.</p></div>
+            <a class="da-btn" href="#top">View Portals <span aria-hidden="true">↑</span></a>
+          </article>
+        </div>
+
+        <aside class="da-contact" aria-labelledby="daContactTitle">
+          <div class="da-contact-copy">
+            <h3 id="daContactTitle">Contact details for Data and Analytics</h3>
+            <p>Feel free to contact us for more information on our Data and Analytics suite. These include FinScope Consumer and MSME surveys, Tracker surveys, a data portal housing numerous financial inclusion data sets and our analytics capability that can generate insights from all data sources.</p>
+          </div>
+          <div class="da-person">
+            <a class="da-photo" href="../about/index.html?member=kingstone-mutsonziwa" aria-hidden="true" tabindex="-1"><img id="daPhoto" src="https://finmark.org.za/system/members/images/000/000/067/original/King.jpg?1747923399" alt="" onerror="this.replaceWith(document.createTextNode('KM'))"></a>
+            <div>
+              <h4><a href="../about/index.html?member=kingstone-mutsonziwa">Kingstone Mutsonziwa</a></h4>
+              <p class="da-role">Executive: Data and Analytics</p>
+              <p class="da-lines"><span><b>Tel:</b> <a href="tel:+27675949291">+27 (0) 67 594 9291</a></span><span><b>Email:</b> <a data-m="YXouZ3JvLmtyYW1uaWZATWVub3RzZ25paw=="></a></span></p>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
     <section class="section">
