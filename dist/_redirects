@@ -7,6 +7,9 @@
 /data                                                                  /data/index.html                                                                           301!
 /donate                                                                /donate/index.html                                                                         301!
 
+# Server files are not part of the website
+/server/*                                                              /404.html                                                                                  404!
+
 # Old main pages
 /about member=:member                                                  /about/index.html?member=:member                                                           301!
 /about                                                                 /about/index.html                                                                          301!

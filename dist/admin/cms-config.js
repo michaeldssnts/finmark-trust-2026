@@ -41,6 +41,8 @@
 
   // Live and staging: editors sign in with GitHub. Netlify handles the GitHub sign-in (Site configuration > Access & security > OAuth).
   var backend = mode === 'demo' ? { name: 'test-repo' } : { name: 'github', repo: REPO, branch: 'main' };
+  // On our own server the GitHub sign-in runs on this site (server/oauth-server.mjs); on Netlify, Netlify does it.
+  if (mode === 'live' && !/\.netlify\.app$/.test(host)) { backend.base_url = location.origin; backend.auth_endpoint = 'oauth/auth'; }
 
   window.FMT_CMS_MODE = mode;
   window.FMT_CMS_CONFIG = {
