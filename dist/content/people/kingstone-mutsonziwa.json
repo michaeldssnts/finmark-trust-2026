@@ -1,11 +1,11 @@
 {
+  "bio": "Dr Mutsonziwa, a member of the executive committee at FinMark Trust, is responsible for leading the implementation of the organisation's research activities with a primary focus on FinScope surveys and other data offerings across Africa and beyond. With a remarkable 22-year research career, Dr Mutsonziwa brings a wealth of expertise in managing large-scale data analytics and research projects, covering diverse areas such as market research and socio-economic research. He possesses a strong skill set in research design, project management, statistical methodologies and data analysis. Dr Mutsonziwa has contributed to numerous quantitative and qualitative research initiatives with sound knowledge of the analysis and modelling of quantitative data. Engaging with stakeholders and cultivating partnerships at senior levels are integral components of his role.\n\nDr Mutsonziwa's academic background includes a Doctorate in Business Leadership, an MBA, a master's degree in statistics and an honours degree in statistics.",
   "name": "Dr Kingstone Mutsonziwa",
   "slug": "kingstone-mutsonziwa",
-  "role": "Executive: Data and Analytics",
-  "group": "team",
   "order": 5,
   "photo": "https://finmark.org.za/system/members/images/000/000/067/original/King.jpg?1747923399",
-  "bio": "Kingstone leads the organisation’s research activities, including FinScope surveys and other data offerings across Africa and beyond. His research career spans large-scale analytics, research design and statistical modelling.",
+  "role": "Executive: Data and Analytics",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
