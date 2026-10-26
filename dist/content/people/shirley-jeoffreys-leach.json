@@ -1,11 +1,11 @@
 {
+  "bio": "Shirley heads the knowledge management department at FinMark Trust, overseeing knowledge sharing, communications, portal and interactive management, and monitoring and results measurement.\n\nShe joined the organisation in 2017 as part of the data team, focused on driving innovative data collection methods in financial inclusion survey research.\n\nWith over ten years of consumer research experience, Shirley ensures that FinMark Trust's best practices and research insights are effectively applied organisation-wide. She actively disseminates these valuable insights to benefit other organisations with similar development goals.\n\nShirley is dedicated to evidence-based economic development and fosters strong collaborative relationships with stakeholders. Her commitment to knowledge sharing and collaboration contributes to FinMark Trust's overall success in driving impactful economic development initiatives.",
   "name": "Shirley Jeoffreys-Leach",
   "slug": "shirley-jeoffreys-leach",
-  "role": "Head: Knowledge Management",
-  "group": "team",
   "order": 6,
   "photo": "https://finmark.org.za/system/members/images/000/000/080/original/Shirley.jpg?1747924157",
-  "bio": "Shirley oversees knowledge sharing, communications, interactive platforms, and monitoring and results measurement. She is committed to evidence-based development and effective collaboration.",
+  "role": "Head: Knowledge Management",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
