@@ -1,0 +1,26 @@
+{
+  "title": "We are collecting data for the COVID-19 Tracker",
+  "date": "2020-04-16",
+  "type": "Report",
+  "summary": "",
+  "themes": [
+    "covid-19"
+  ],
+  "countries": [
+    "ZMB",
+    "GHA",
+    "ZAF",
+    "KEN",
+    "UGA",
+    "NGA"
+  ],
+  "language": "en",
+  "file": "",
+  "link": "https://covid19tracker.africa/",
+  "featured": false,
+  "review": true,
+  "legacy_url": "https://covid19tracker.africa/",
+  "legacy_type": "Publications",
+  "section": "data",
+  "programmes": []
+}

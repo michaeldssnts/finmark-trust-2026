@@ -1,0 +1,47 @@
+{
+  "title": "When more is more: why financial inclusion demand-side surveys are essential for access to financial services",
+  "date": "2022-12-01",
+  "type": "Blog",
+  "summary": "Impact is central to financial inclusion. An accurate evaluation of the environment, social characteristics, and conditions of the businesses and people they will ultimately serve is essential to design solutions that will promote…",
+  "themes": [
+    "data-research-methods",
+    "financial-inclusion",
+    "finscope-consumer"
+  ],
+  "countries": [
+    "MDG",
+    "ZWE",
+    "MUS",
+    "ZMB",
+    "SWZ",
+    "LSO",
+    "COD",
+    "SYC",
+    "NAM",
+    "MWI",
+    "BWA",
+    "ZAF",
+    "MOZ",
+    "AGO",
+    "SADC"
+  ],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/blog/when-more-is-more-why-financial-inclusion-demand-side-surveys-are-essential-for-access-to-financial-services",
+  "featured": false,
+  "review": false,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/blog/when-more-is-more-why-financial-inclusion-demand-side-surveys-are-essential-for-access-to-financial-services",
+  "legacy_type": "Blogs",
+  "section": "data",
+  "programmes": [],
+  "body": "Impact is central to financial inclusion. An accurate evaluation of the environment, social characteristics, and conditions of the businesses and people they will ultimately serve is essential to design solutions that will promote growth and access to financial services for poor and low-income households and businesses. The information and in-depth insights provided by comprehensive surveys like [FinScope](https://finmark.org.za/data-for-financial-markets) (FinMark Trusts’ nationally representative formal and informal financial inclusion survey) help decision-makers formulate effective solutions to successfully link financial inclusion to the real economy. Here’s how.\n\nWe begin by gathering data on the adoption and use of financial services and products to track and evaluate the efforts of policymakers, regulators, financial service providers, and other market participants to reach underserved and unserved populations. Financial inclusion surveys, such as the FinScope and the World Bank Findex, are used around the world to collect such information.\n\nFinScope surveys are typically conducted every three to five years. Between surveys, market actors, policymakers, and decision-makers frequently struggle to determine the impact of their actions, any changes, progress, or lack thereof. Economic growth, population growth, and market interventions or disruptions may occur faster than expected, making it difficult to accurately track the interventions. Annual FinScope surveys may be one way to avoid this, but the cost of implementation remains the main barrier to conducting these surveys more frequently.\n\nTo address the need to track key indicators between FinScope surveys, FinMark Trust developed a more cost-effective solution using mobile phone surveys; however, there are [limitations](https://finmark.org.za/knowledge-hub/blog/the-joy-of-mobile-survey-design?entity=blog). As a result, stakeholders have advocated for financial inclusion indicators to be included in annual national surveys to make up for the interlude.\n\nAre national surveys like annual household income and expenditure surveys or census a good solution to track financial inclusion indicators?\n\nUsing the Mozambique case study to unpack the discrepancies, FinMark Trust and the Financial Sector Deepening Mozambique (FSDMoc) contributed a few financial inclusion questions in the IV General Population and Housing Census of 2017, to measure the uptake of key financial products, while profiling the financially included population.\n\nA comparison of the ‘financial inclusion’ census results and those from FinScope showed useful insights into the measurement of financial inclusion indicators in census and national surveys. While adult and household demographic data were comparable, the use of single census questions to capture bank account usage, bank credit access and mobile money account ownership under-reported financial inclusion indicators.\n\n## The comparisons between the 2017 National Census and the FinScope Consumer Surveys of 2014 and 2019 are shown below.\n\nIndicator / QuestionFinScope 2014Census 2017FinScope 2019 Total estimated adult population (million) 14,413,714,2 Adult has a bank account (%) 201321 Adult has bank credit (%) 524 Adult has mobile money account (%) 31729 Adult financially excluded (%) 607946\n\nThe leading explanations to note on differing or incomparable results are that FinScope surveys are comprehensive, and the method is designed specifically to measure uptake and usage of financial products and services using multiple questions for more accurate results. Often, a key challenge with one-dimensional questions is the varying levels of understanding financial terminology. FinScope methodology involves triangulation across multiple questions on access and usage of both formal and informal products and services. As a result, FinScope surveys provide a holistic demand-side picture of the usage of financial products that includes drivers and barriers that is not the case with annual national surveys.\n\nIn addition, alternative question phrasing and a lack of understanding of financial terms may affect the results. FinScope surveys broaden the financial access question to include terms other than ‘account’ when referring to various products or services. This helps capture all the products that are being used, which may show uptake and usage more clearly. In South Africa, we have found that respondents may answer that they do not have a bank account but at product level, they confirm that they have a SASSA card, which is considered a bank product. In instances like this, one question may underreport such cases.\n\nThe framing of a question can influence the respondent’s position on a personal level, household or community level. Unlike census-type surveys, FinScope begins with financial markets and the individual or owner’s interaction with the financial system. The bulk of the questionnaire deals with financial behaviour, needs, usage, livelihoods, financial capabilities, savings and investments, credit and loans, long-term and short-term insurance, and other financial categories of interest. While FinScope consumer surveys allow for the measurement of financial inclusion indicators at the sub-national level, it also employs a process of engagement with key stakeholders to achieve a crucial depth of understanding. A scoping mission is launched to gain a better understanding of the country's context, engage various stakeholders, and secure the necessary stakeholder buy-in. The questionnaire design and validation of results are overseen by key financial players, funders, and policymakers.\n\nFinancial inclusion indicators entail a meticulous approach to design, analysis, and reporting that other annual surveys cannot provide. FinScope consumer surveys offer insights into people’s financial needs, preferences, and behaviour. It has been customised to be most useful for those seeking credible information on financial inclusion. It does not attempt to replicate the work of censuses, household surveys or other annual surveys. Instead, it seeks to deepen the insights and knowledge of populations to guide financial service and product development and implementation.",
+  "tags": [
+    "Data",
+    "Data collection",
+    "Financial inclusion",
+    "FinScope Consumer",
+    "Research methods",
+    "Survey data"
+  ],
+  "thumbnail": "https://finmark.org.za/system/blogs/images/000/000/131/original/Blog-Banner-Img.jpg?1669866868"
+}

@@ -1,0 +1,30 @@
+{
+  "title": "Analysis of transactional data in Nigeria reveals growth in instant payments driving financial inclusion",
+  "date": "2019-04-02",
+  "type": "Blog",
+  "summary": "Transactional data can potentially augment the more traditional demand-and-supply data used to monitor use-based financial inclusion indicators.",
+  "themes": [
+    "financial-inclusion",
+    "financial-health",
+    "big-data"
+  ],
+  "countries": [
+    "NGA"
+  ],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/blog/analysis-of-transactional-data-in-nigeria-reveals-growth-in-instant-payments-driving-financial-inclusion",
+  "featured": false,
+  "review": false,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/blog/analysis-of-transactional-data-in-nigeria-reveals-growth-in-instant-payments-driving-financial-inclusion",
+  "legacy_type": "Blogs",
+  "section": "both",
+  "programmes": [],
+  "body": "Transactional data can potentially augment the more traditional demand-and-supply data used to monitor use-based financial inclusion indicators.\n\nWe recently worked with Nigeria’s central switch, the **[Nigerian Inter-bank Settlement System (NIBSS)](https://nibss-plc.com.ng/)**, to explore customer-level transactional data. NIBSS processes all inter-bank credit and debit transactions as well as all point-of-sale (POS) transactions in Nigeria. While NIBSS already generates and publishes monthly activity reports, these have traditionally been expressed in terms of the value and volume of transactions. Thanks to the introduction of the bank verification number (BVN), NIBSS can now also report on activity at a customer level.\n\nThe available data is only on transactions that are processed by the switch. The data therefore does not include “on-us” transactions – transactions between account holders at the same bank – or some more common transactions like airtime purchases. Additionally, NIBSS does not process ATM transactions or cross-border transactions, which are operated through other switches. Needless to say, because NIBSS only tracks banking transactions, it has no visibility on cash transactions – the dominant mechanism used by the majority of adults employed in Nigeria’s informal economy.\n\nAside from these limitations, NIBSS also has limited demographic data, restricted to the age, gender and contact details provided by the customer when registering for a BVN. NIBSS would have to use proxies based on customers’ visible transactions profiles to determine key demographics such as income source.\n\n## Transactional data reveals growth in instant payments in Nigeria\n\n**Even with these limitations, the data can provide useful insights on key trends within banking transactions**. In 2011, a critical intervention in Nigeria was the development of an instant payment platform. The platform, known as the NIBSS instant payment (NIP), currently accounts for around 70% of roughly 120 million monthly transactions processed by NIBSS. NIBSS reported that both the volume and the value of transactions on the NIP platform have grown exponentially, with the volumes reported in December 2018 being more than four times higher than those from January 2017 and over two-and-a-half times higher than POS transactions.\n\nWhile POS transactions have also grown, the analysis of customer-level data highlights a critical distinction between NIP and POS: **The growth in POS has largely resulted from existing customers conducting more transactions, whereas the growth in NIP comes from increased use by new customers**. At the same time, average transaction values for NIP have declined in nominal terms, even as inflation in Nigeria averaged 16.5% in 2017. A decline in average or median transaction values is consistent with a broadening of the customer base and/or transaction types associated with lower-value payments (e.g. airtime, business expenses and credit and insurance payments). In addition, those who use NIP are relatively active – over a quarter of customers transact four or more times a month.\n\nThe findings also highlighted the importance of USSD as a channel. Just under half of customers have used USSD to conduct NIP transactions. Interestingly, this channel is associated with the lowest-average transaction values.\n\n## The value of transactional data analysis for financial inclusion\n\nThese findings and the analysis stand alone as useful and important; however, they also speak to the value we can take from the analysis of transactional data. A few other banks and payment aggregators from the countries we work in have reached out to us since first presenting this data to analyse their transactional data. We will share the insights from this analysis throughout the remainder of the insight2impact programme.\n\nIf you are a payment aggregator of an FSP and have transactional data that you would like help to analyse, please reach out to our measurement manager Isabelle Carboni at **[isabelle@i2ifacility.org](http://isabelle@i2ifacility.org)**.",
+  "tags": [
+    "Financial inclusion",
+    "Financial needs",
+    "Transactional data"
+  ],
+  "thumbnail": "https://finmark.org.za/system/blogs/images/000/000/056/original/i2iblog-Analysis-of-transactional-data-in-Nigeria-reveals-growth-in-instant-payments-driving-financial-inclusion-compressor.jpg?1560268183"
+}

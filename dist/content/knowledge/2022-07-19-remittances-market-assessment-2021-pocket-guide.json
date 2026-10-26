@@ -1,0 +1,38 @@
+{
+  "title": "Remittances Market Assessment 2021 - Pocket guide",
+  "date": "2022-07-19",
+  "type": "Pocket guide",
+  "summary": "",
+  "themes": [
+    "finscope-consumer",
+    "remittances"
+  ],
+  "countries": [
+    "MDG",
+    "ZWE",
+    "MUS",
+    "ZMB",
+    "SWZ",
+    "LSO",
+    "COD",
+    "SYC",
+    "NAM",
+    "MWI",
+    "BWA",
+    "ZAF",
+    "MOZ",
+    "AGO",
+    "SADC"
+  ],
+  "language": "en",
+  "file": "https://finmark.org.za/Publications/Remittance_Pocket_Guide_2022.pdf",
+  "link": "",
+  "featured": false,
+  "review": true,
+  "legacy_url": "https://finmark.org.za/Publications/Remittance_Pocket_Guide_2022.pdf",
+  "legacy_type": "Publications",
+  "section": "both",
+  "programmes": [
+    "cross-border-remittances"
+  ]
+}

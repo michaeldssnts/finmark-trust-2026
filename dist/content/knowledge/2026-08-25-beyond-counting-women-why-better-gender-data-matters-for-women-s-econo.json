@@ -2,7 +2,7 @@
   "title": "Beyond Counting Women: Why Better Gender Data Matters for Women's Economic Empowerment",
   "date": "2026-08-25",
   "type": "Blog",
-  "summary": "",
+  "summary": "\"What gets measured gets managed\" is a familiar saying in development. But when it comes to gender equality, it’s worth asking whether we’re measuring what matters. Counting the number of women who have access to financial services is…",
   "themes": [
     "gender"
   ],
@@ -39,5 +39,8 @@
   "section": "programmes",
   "programmes": [
     "gender"
+  ],
+  "tags": [
+    "Gender (with a focus on women)"
   ]
 }

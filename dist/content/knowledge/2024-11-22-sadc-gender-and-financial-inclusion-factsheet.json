@@ -1,0 +1,31 @@
+{
+  "title": "SADC Gender and Financial Inclusion Factsheet",
+  "date": "2024-11-22",
+  "type": "Pocket guide",
+  "summary": "",
+  "themes": [
+    "financial-inclusion",
+    "gender"
+  ],
+  "countries": [
+    "ZWE",
+    "ZMB",
+    "SWZ",
+    "BWA",
+    "ZAF",
+    "MOZ",
+    "TZA",
+    "SADC"
+  ],
+  "language": "en",
+  "file": "https://finmark.org.za/Publications/UN_Women_SADC_Gender_FI_Fact_Sheet.pdf",
+  "link": "",
+  "featured": false,
+  "review": true,
+  "legacy_url": "https://finmark.org.za/Publications/UN_Women_SADC_Gender_FI_Fact_Sheet.pdf",
+  "legacy_type": "Publications",
+  "section": "both",
+  "programmes": [
+    "gender"
+  ]
+}

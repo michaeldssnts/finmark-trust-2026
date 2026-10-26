@@ -1,0 +1,27 @@
+{
+  "title": "A guide to data portals",
+  "date": "2019-06-27",
+  "type": "Blog",
+  "summary": "Data portals are intended to help users easily and effectively find and explore data online. Most open data are hosted on different, independent portals as data owners prefer to host their own data and monitor the usage. A user will…",
+  "themes": [
+    "data-research-methods",
+    "big-data"
+  ],
+  "countries": [],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/blog/a-guide-to-data-portals",
+  "featured": false,
+  "review": false,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/blog/a-guide-to-data-portals",
+  "legacy_type": "Blogs",
+  "section": "data",
+  "programmes": [],
+  "body": "## Build it and they will come. Or will they?\n\nData portals are intended to help users easily and effectively find and explore data online. Most open data are hosted on different, independent portals as data owners prefer to host their own data and monitor the usage. A user will have to browse multiple portals to gather data, which is time consuming and very reliant on search engines. All portals follow the same principle of “Build it and they will come”. This is not always the best case as there are other factors at play: how relevant the data is, how the data is structured, how can you analyse the data within a browser and the user experience and interface design. We at insight2impact learned this and realised that users prefer a central point for all their data needs.\n\n## Ensuring a good user experience\n\nWe followed a user-centred approach when building our portal and interviewed a few users to better understand their needs and skill-levels as well as what they would expect from an online data portal. We have narrowed our users down to two types. The first one prefers to download the data and use their own software to analyse and further segment the data according to their research. The second does not have the technical skills, nor the software, to analyse the data further and would prefer to do this in the browser analytics so as to gather their own insights through the insight2impact data portal and then be able to quickly share that insight.\n\n## Data sharing\n\nCommunity is key for effective data sharing; we at insight2impact have started conversations with inter-governmental organisations to begin sharing their data on our platform. At a glance, they are building a strong library of datasets available at in-country and regional levels.\n\nWith our new release (Phase 5) we will allow data owners to [deposit GIS data](https://i2ifacility.org/login) either directly into the insight2impact data portal or through an application that captures location data from photographs. All data will be hosted on one central platform and, with time and the support of multiple in-country data owners, will allow for real time location access.\n\nThe insight2impact data portal allows a user to select their preferred location data (e.g. finance, health, education) and overlay various additional data (e.g. roads, electricity, mobile coverage, population) to provide a richer analysis.\n\n## Some possible use cases on our GIS interface are:\n\n## Financial service providers\n\n[Watch the video](https://www.youtube.com/embed/BbNzIzmpRXg)\n\n## Regulators\n\n[Watch the video](https://www.youtube.com/embed/pH9nwDL3Tfg)\n\n## Insurance\n\n[Watch the video](https://www.youtube.com/embed/K-0rCW0ijII)\n\n## Ensuring relevant and structured data\n\nWe have changed the user experience on the insight2impact data portal by making it simpler to navigate and brought in 32 dedicated in-country pages with advanced filtering mechanisms where users can find relevant data and better interact with the visualisations in their own browser. We make sure to credit all data owners appropriately and have a team that conducts quality checks on all data uploads and ensures that the data is structured and labelled accurately for machines to read. If you would like to explore the portal, you can [find it here.](https://i2ifacility.org/data-portal)\n\nThese vast data libraries will allow data scientists/statisticians easy access to data that will help shape and inform the development world. Our [DataHack4FI innovation competition](http://datahack4fi.org/) will also make use of these datasets to further enhance data-science skills in Africa. Further case studies can be found under our [Datahack4FI initiative here](https://i2ifacility.org/initiatives/datahack4fi).\n\nWe strongly believe data portals don’t change the world; people change the world. But those people require access to relevant, structured data that can be visualised easily and shared quickly.",
+  "tags": [
+    "Data",
+    "Database",
+    "Geospatial data"
+  ],
+  "thumbnail": "https://finmark.org.za/system/blogs/images/000/000/063/original/Portal_Blog.jpg?1561700813"
+}

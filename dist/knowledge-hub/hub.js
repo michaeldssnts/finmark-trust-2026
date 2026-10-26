@@ -53,11 +53,11 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   const norm = s => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
   function prep(it) {
     it.year = it.d ? it.d.slice(0, 4) : '';
-    it.isArch = it.th.length > 0 && it.th.every(s => TH[s] && TH[s].status === 'archived');
+    it.isArch = !!it.ar || (it.th.length > 0 && it.th.every(s => TH[s] && TH[s].status === 'archived'));
     // Section comes from the item itself (set in the content manager); older feeds fall back to the themes' pathway.
     it.pg = it.pg || [];
     it.paths = it.sec ? new Set(it.sec === 'both' ? ['data', 'programmes'] : [it.sec]) : new Set(it.th.map(s => TH[s] && TH[s].pathway).filter(Boolean));
-    it.hay = norm([it.t, it.s || '', it.y, it.year, ...it.th.map(s => TH[s] ? TH[s].name : ''), ...it.c.map(c => PLACES[c] || c), ...it.pg.map(s => PG[s] ? PG[s].name : '')].join(' '));
+    it.hay = norm([it.t, it.s || '', it.y, it.year, ...it.th.map(s => TH[s] ? TH[s].name : ''), ...it.c.map(c => PLACES[c] || c), ...it.pg.map(s => PG[s] ? PG[s].name : ''), ...(it.tg || [])].join(' '));
     it.titleN = norm(it.t);
   }
   const terms = () => norm(S.q).split(/\s+/).filter(t => t.length > 1);
@@ -146,7 +146,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     const places = it.c.filter(c => c !== 'SADC').slice(0, 2).map(c => `<span class="kh-tag place">${esc(PLACES[c] || c)}</span>`).join('') + (it.c.length > 3 ? `<span class="kh-tag place">+${it.c.length - 2}</span>` : '');
     // Blogs and articles with full text open their own page on this site
     const tag = it.p || it.u ? 'a' : 'div';
-    const attrs = it.p ? ` href="post.html?id=${encodeURIComponent(it.id)}"` : it.u ? ` href="${esc(asset(it.u))}"${ext || /\.pdf/i.test(it.u) ? ' target="_blank" rel="noopener"' : ''}` : '';
+    const attrs = it.p ? ` href="${typeof it.p === 'string' ? it.p + '/' : 'post.html?id=' + encodeURIComponent(it.id)}"` : it.u ? ` href="${esc(asset(it.u))}"${ext || /\.pdf/i.test(it.u) ? ' target="_blank" rel="noopener"' : ''}` : '';
     const tc = it.th.map(s => TH[s]).find(Boolean);
     return `<${tag} class="kh-card${featured ? ' kh-feat' : ''}${tc ? ' has-tc' : ''}"${tc ? ` style="--tc:${tc.colour}"` : ''}${attrs}>
       <span class="kh-cover${it.isArch ? ' pt-arch' : ''}${it.img ? ' has-img' : ''}" style="--c:${col};background:${col}" aria-hidden="true">${it.img ? `<img class="bg" src="${esc(asset(it.img))}" alt="" loading="lazy"><img class="fg" src="${esc(asset(it.img))}" alt="" loading="lazy">` : ''}<span class="t">${esc(it.y)}</span><span class="ic">${ic}</span><span class="yr">${it.year}</span></span>

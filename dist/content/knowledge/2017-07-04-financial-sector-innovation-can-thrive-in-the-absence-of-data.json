@@ -1,0 +1,26 @@
+{
+  "title": "Financial sector innovation can thrive in the absence of data",
+  "date": "2017-07-04",
+  "type": "Interview",
+  "summary": "insight2impact (i2i) is exploring how data can be used by financial service providers to create client value and enhance firm value simultaneously",
+  "themes": [
+    "data-research-methods",
+    "financial-inclusion"
+  ],
+  "countries": [],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/interviews/financial-sector-innovation-can-flourish-in-the-absence-of-data?entity=news",
+  "featured": false,
+  "review": false,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/interviews/financial-sector-innovation-can-flourish-in-the-absence-of-data?entity=news",
+  "legacy_type": "Interviews",
+  "section": "data",
+  "programmes": [],
+  "body": "*insight2impact (i2i) is exploring how data can be used by financial service providers to create client value and enhance firm value simultaneously*\n\n*We posed some data-related questions to Marc van der Zon, Head of Central Analytics at **[Hollard Insurance Company](https://www.hollard.co.za/)**.*\n\n*This topic will be further explored during the invitation-only roundtable discussion that i2i will be hosting during the **[Chief Data & Analytics Officer Africa 2017](http://www.cmswire.com/events/conference/chief-data-analytics-officer-africa-2017/)** conference in Johannesburg on 5 July 2017.*\n\n**Is your organisation making use of alternative data to inform decision-making and product design?**\n\nAt Hollard, we have used telematics, bureau and geospatial data to help us better understand relevant risks and customer behaviour.\n\n**How do you drive your strategy and product design in situations where there is little data available?**\n\nIf we were keen to enter a new market but there was little available data, there are two ways I would potentially mitigate this risk. The one approach would be to take a conservative approach to the economics and build in buffers that can be reduced as you gain experience.\n\nThe second is to approach an expert in that market or a similar market and use their experience to guide my decisions and assumptions. Experts can often be great data points about risks in markets where no actual data exists and their insights can be tested and refined as you gain more experience in the market.\n\n**How prevalent is data sharing in the insurance industry?**\n\nCurrently, some insurers share data with the credit bureaux and that data, can, in turn, be used by companies that have access to the bureaux. In addition to that, certain claims data is shared with independent institutes like SAICB (South African Insurance Crime Bureau) who help the industry prevent fraud.\n\n**Do you think FSPs in Africa have different data concerns and challenges compared to FSPs in other regions?**\n\nYes, for example, some countries don’t have established data aggregators like credit bureaux. However, the limited availability of traditional data is often why you see more innovation in less developed markets (for example in the use of mobile phone data in credit scoring). The challenge with new data sources is you may have the data but not the history to understand what it tells you, which becomes a hindrance when you’re entering the market.\n\nOn balance, I think the absence of readily available data will have positive outcomes in terms of innovation in the sector. Some of these innovations in financial services will eventually make their way back to developed countries.\n\nHaving said that, in some cases there is less of a need to tackle data problems and more urgency to tackle the underlying problems to enable the extension of financial services. To share an example from Ghana, when a small retailer was asked why wasn’t accepting card payments he answered that he didn’t have electricity and that he had no way of powering a POS device, therefore money transferred from phones was the best solution.\n\nPeople can be naïve in approaching certain markets in Africa. On the face of it, Ghana might not be a big credit market but upon closer look, you will find that some travel agents (for example) are running credit books. The demand for and use of specific financial services exist, but you won’t necessarily find that by looking in the usual places.\n\n**In terms of the provision of disruptive financial services, which player are you watching?**\n\nIt can be difficult to figure out who is doing what, although you obviously hear stories. I’m watching technology more closely than other areas. I’m particularly interested in the Internet of Things (IoT) and self-drive cars, which could change the way we do insurance.\n\n*Marc van der Zon is an Engineer and Charted Financial Analyst who has spent over a decade in analytical roles in the banking, retail and insurance sectors. He has applied analytics to customer segmentation, credit risk modelling, product management and customer LTV (lifetime value) optimisation. He is currently the Head of Central Analytics at Hollard Insurance Company.*",
+  "tags": [
+    "Data and analytics",
+    "Financial inclusion"
+  ],
+  "thumbnail": "https://finmark.org.za/system/news/images/000/000/031/original/cdao_interview_Marc.jpg?1560268128"
+}

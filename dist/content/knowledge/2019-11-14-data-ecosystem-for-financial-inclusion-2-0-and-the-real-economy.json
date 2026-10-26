@@ -1,0 +1,28 @@
+{
+  "title": "Data ecosystem for financial inclusion 2.0 and the real economy",
+  "date": "2019-11-14",
+  "type": "Blog",
+  "summary": "Often policy makers, regulators and financial service providers are far removed from the realities of the people whose lives we are trying to improve. Data is one of the ways in which we are able to connect financially excluded people…",
+  "themes": [
+    "big-data",
+    "data-research-methods"
+  ],
+  "countries": [],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/blog/data-ecosystem-for-financial-inclusion-2-0-and-the-real-economy",
+  "featured": false,
+  "review": false,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/blog/data-ecosystem-for-financial-inclusion-2-0-and-the-real-economy",
+  "legacy_type": "Blogs",
+  "section": "data",
+  "programmes": [],
+  "body": "Often policy makers, regulators and financial service providers are far removed from the realities of the people whose lives we are trying to improve. Data is one of the ways in which we are able to connect financially excluded people to the formal financial sector and thereby improve desirable societal outcomes such as poverty reduction and equality.\n\nData is one way to make previously financially excluded people visible. It does this by allowing us to count people and populations, to describe who they are, to assess what they own and have access to, to monitor behaviour, to understand perceptions and attitudes, and to predict how people will behave in future. It also allows us to set relevant goals and to monitor our progress towards them.\n\nGiven that data is a change agent we need to cultivate a data ecosystem to generate and govern the data necessary to bring about the desired change.\n\nWhat is a data ecosystem?\n\n- A data ecosystem is a collection of infrastructure, analytics, and applications used to capture, analyse, exchange and disseminate data.\n- Data ecosystems provide governments and companies with data that they rely on to understand their citizens and customers to make better policy, product and operations decisions\n- Data ecosystems are unique to each country\n- Data ecosystems evolve all the time\n- Data ecosystems embrace a variety of data sources and analytics approaches\n- Optimised data ecosystems are open (data is shared)\n\nFinMark Trust’s (FMT) view of data is that no one single data source can answer all our policy or research questions. All data sources have their unique advantages and disadvantages. A multi-data source approach is required in a digital age and in an environment where real economy issues need to be situated in financial inclusion. To do this we need a rich data ecosystem. Each policy or research question needs to be carefully assessed to establish which data source or combination of data sources will give the best information. It is thus important that that the purpose of the research is clearly established prior to collecting any data. This will ensure there is no duplication, and the best quality data is collected, analysed and used as input into the decision-making process. As FMT we are problem statement driven and not data source driven.",
+  "tags": [
+    "Analytics",
+    "Big Data",
+    "Data",
+    "FMT analytics"
+  ],
+  "thumbnail": "https://finmark.org.za/system/blogs/images/000/000/082/original/Real_economy.jpg?1594739029"
+}

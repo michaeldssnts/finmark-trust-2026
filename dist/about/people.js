@@ -26,7 +26,7 @@
     const work = ITEMS.filter(i => (i.au || []).includes(p.slug));
     const piece = i => {
       const t = (i.th || []).map(s => TH[s]).find(Boolean);
-      const href = i.p ? `../knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || '../knowledge-hub/index.html';
+      const href = i.p ? (typeof i.p === 'string' ? `../knowledge-hub/${i.p}/` : `../knowledge-hub/post.html?id=${encodeURIComponent(i.id)}`) : asset(i.u) || '../knowledge-hub/index.html';
       const ext = !i.p && (/^https?:/.test(href) || /\.pdf$/i.test(href));
       return `<li><a href="${esc(href)}"${t ? ` style="--tc:${t.colour}"` : ''}${ext ? ' target="_blank" rel="noopener"' : ''}>
         <span class="bio-th">${i.img ? `<img src="${esc(asset(i.img))}" alt="" loading="lazy">` : ''}</span>
@@ -39,7 +39,7 @@
         <div><p class="bio-kicker">${p.group === 'trustee' ? 'Trustee' : 'FinMark Trust team'}</p><h2 id="bioName">${esc(p.name)}</h2><p class="bio-role">${esc(p.role)}</p>
           ${p.email || p.linkedin ? `<div class="bio-links">${p.email ? `<a data-m="${esc(p.email)}" data-mk>Email ${esc(first)}</a>` : ''}${p.linkedin ? `<a href="${esc(p.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>` : ''}</div>` : ''}</div>
       </div>
-      <div class="bio-text">${p.bio ? '<p>' + esc(p.bio).replace(/\n\n/g, '</p><p>') + '</p>' : '<p class="none">Biography coming soon.</p>'}</div>
+      <div class="bio-text">${p.bioHtml || (p.bio ? '<p>' + esc(p.bio).replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>') + '</p>' : '<p class="none">Biography coming soon.</p>')}</div>
       ${work.length ? `<div class="bio-work"><h3>Written by ${esc(first)} <span>${work.length}</span></h3><ul>${work.map(piece).join('')}</ul></div>` : ''}`;
     if (!dlg.open) { lastFocus = document.activeElement; dlg.showModal(); document.body.classList.add('lock'); }
     inner.scrollTop = 0;

@@ -9,7 +9,7 @@
   const fmt = d => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '');
   const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const initials = n => n.split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
-  const id = new URLSearchParams(location.search).get('id');
+  const id = new URLSearchParams(location.search).get('id') || window.FMT_POST_ID;
 
   function fail(msg) {
     $('main').innerHTML = `<section class="container ps-missing"><p class="eyebrow">Knowledge Hub</p><h1>${esc(msg)}</h1><p><a class="primary-btn" href="index.html">Back to the Knowledge Hub</a></p></section>`;
@@ -51,7 +51,8 @@
     const tags = [
       ...(p.th || []).map(s => TH[s] && `<a class="ps-tag th" style="--tc:${TH[s].colour}" href="index.html?theme=${encodeURIComponent(s)}">${esc(TH[s].name)}</a>`),
       ...(p.pg || []).filter(s => PG[s] && !(p.th || []).some(t => TH[t] && TH[t].name === PG[s].name)).map(s => `<a class="ps-tag pg" href="index.html?programme=${encodeURIComponent(s)}">${esc(PG[s].name)}</a>`),
-      ...(() => { const cs = (p.c || []).filter(c => c !== 'SADC'); return cs.length > 4 ? [`<span class="ps-tag place">SADC region · ${cs.length} countries</span>`] : cs.map(c => `<span class="ps-tag place">${esc(PLACES[c] || c)}</span>`); })()
+      ...(() => { const cs = (p.c || []).filter(c => c !== 'SADC'); return cs.length > 4 ? [`<span class="ps-tag place">SADC region · ${cs.length} countries</span>`] : cs.map(c => `<span class="ps-tag place">${esc(PLACES[c] || c)}</span>`); })(),
+      ...(p.tg || []).filter(t => !(p.th || []).some(s => TH[s] && TH[s].name.toLowerCase() === String(t).toLowerCase())).map(t => `<a class="ps-tag kw" href="index.html?q=${encodeURIComponent(t)}">${esc(t)}</a>`)
     ].filter(Boolean).join('');
     const byline = `<div class="ps-byline">
         ${people.length ? `<span class="ps-avatars" aria-hidden="true">${people.map(avatar).join('')}</span>` : ''}
@@ -74,7 +75,7 @@
     const score = i => (i.pg || []).filter(x => (p.pg || []).includes(x)).length * 3 + (i.th || []).filter(x => (p.th || []).includes(x)).length * 2 + (i.y === p.y ? 1 : 0) + (i.img ? 0.5 : 0);
     const related = items.map(i => [score(i), i]).filter(([s]) => s >= 2).sort((a, b) => b[0] - a[0] || (b[1].d || '').localeCompare(a[1].d || '')).slice(0, 3).map(x => x[1]);
     const relCard = i => {
-      const href = i.p ? `post.html?id=${encodeURIComponent(i.id)}` : asset(i.u);
+      const href = i.p ? (typeof i.p === 'string' ? `${i.p}/` : `post.html?id=${encodeURIComponent(i.id)}`) : asset(i.u);
       const ext = !i.p && (/^https?:/.test(i.u) || /\.pdf$/i.test(i.u));
       const rt = (i.th || []).map(s => TH[s]).find(Boolean);
       return `<a class="ps-rel" style="--tc:${rt ? rt.colour : 'var(--teal)'}" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}>

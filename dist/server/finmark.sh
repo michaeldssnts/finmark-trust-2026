@@ -9,6 +9,7 @@
 #   sudo finmark rollback   go back to the previous version of the site
 #   sudo finmark golive     add finmark.org.za and www.finmark.org.za (run after the DNS change)
 #   sudo finmark cms-login  add or change the GitHub sign-in details for the content manager
+#   sudo finmark copy-old-files  copy the old site's PDFs and images that the new site links to onto this server
 #
 # Nothing here touches the old website's server.
 set -uo pipefail
@@ -78,11 +79,14 @@ site_body() {
     gzip_types text/css application/javascript application/json image/svg+xml;
     client_max_body_size 50m;
 EOF
+  cat <<'EOF'
+
+    # Old site files: copies on this server first (sudo finmark copy-old-files), otherwise fetched from the old server
+    location @legacy { root /var/www/legacy; try_files $uri @oldserver; }
+EOF
   if [ -n "$LEGACY_UPSTREAM" ]; then
     cat <<EOF
-
-    # Files that still live on the old server (fetched behind the scenes; visitors stay on this site)
-    location @legacy {
+    location @oldserver {
         proxy_pass $LEGACY_UPSTREAM;
         proxy_set_header Host finmark.org.za;
         proxy_set_header X-Forwarded-Proto https;
@@ -92,7 +96,7 @@ EOF
     }
 EOF
   else
-    printf '\n    location @legacy { return 404; }\n'
+    printf '    location @oldserver { return 404; }\n'
   fi
 }
 
@@ -165,6 +169,12 @@ cmd_update() {
   echo "$new" > "$WEB/.deployed"
   echo "$(date '+%F %T') live ${new:0:7}" >> "$LOG"
   ls -1dt "$WEB"/releases/*/ | tail -n +6 | xargs -r rm -rf     # keep the last 5 versions
+  # keep this tool and the sign-in service up to date with the copy in GitHub
+  cmp -s "$rel/server/finmark.sh" /usr/local/bin/finmark || install -m 755 "$rel/server/finmark.sh" /usr/local/bin/finmark
+  if ! cmp -s "$rel/server/oauth-server.mjs" /opt/finmark/oauth-server.mjs; then
+    install -D -m 644 "$rel/server/oauth-server.mjs" /opt/finmark/oauth-server.mjs
+    [ -f "$OAUTH_ENV" ] && systemctl restart finmark-oauth
+  fi
   ok "Website updated to version ${new:0:7}"
 }
 
@@ -303,6 +313,39 @@ cmd_golive() {
   ok "Live. Last step: update the GitHub OAuth app's two web addresses to https://finmark.org.za (see the guide)."
 }
 
+cmd_copy_old_files() {
+  load; [ -n "$LEGACY_UPSTREAM" ] || die "The old server isn't connected. Run sudo finmark setup and give its private IP."
+  local site="$WEB/current/" dest=/var/www/legacy list=/tmp/finmark-old-files.txt missing=/var/log/finmark-old-files-missing.txt
+  local folders='system|Publications|TOR|GBL|SADC_FI_Forum|Community_digitalisation|Gender|Training|eKYC|Covid|FSD|images/logos|images/blogs|ckeditor_assets|assets'
+  step "1/3  Finding old files the new site links to"
+  grep -rhoE "https?://(www\.)?finmark\.org\.za/($folders)/[^\"' )<>#?]+" "$site" \
+      --include='*.html' --include='*.js' --include='*.json' --include='*.css' 2>/dev/null \
+    | sed -E 's#^https?://(www\.)?finmark\.org\.za##' | sort -u > "$list"
+  local total; total=$(wc -l < "$list"); ok "$total files linked"
+  step "2/3  Copying them from the old server (it only reads; files already copied are skipped)"
+  mkdir -p "$dest"; : > "$missing"
+  local n=0 got=0 skip=0 bad=0 path file code
+  while IFS= read -r path; do
+    n=$((n+1)); file="$dest$(printf '%b' "${path//%/\\x}")"
+    case "$file" in *..*) continue ;; esac
+    if [ -s "$file" ]; then skip=$((skip+1)); continue; fi
+    mkdir -p "$(dirname "$file")"
+    case "$LEGACY_UPSTREAM" in
+      https://*) code=$(curl -sk --noproxy '*' --max-time 120 -o "$file.part" -w '%{http_code}' \
+                   --connect-to "finmark.org.za:443:${LEGACY_UPSTREAM#https://}:443" "https://finmark.org.za$path") ;;
+      *) code=$(curl -s --noproxy '*' --max-time 120 -o "$file.part" -w '%{http_code}' -H 'Host: finmark.org.za' "$LEGACY_UPSTREAM$path") ;;
+    esac
+    if [ "$code" = 200 ]; then mv "$file.part" "$file"; got=$((got+1)); else rm -f "$file.part"; echo "$code $path" >> "$missing"; bad=$((bad+1)); fi
+    [ $((n % 25)) = 0 ] && echo "  ... $n of $total"
+  done < "$list"
+  chmod -R a+rX "$dest"
+  step "3/3  Done"
+  ok "Copied $got new files, $skip already here ($(du -sh "$dest" | cut -f1) in total)"
+  if [ "$bad" = 0 ]; then ok "Every linked file was found"
+  else warn "$bad files aren't on the old server either (list: $missing). Those links were already broken."; fi
+  warn "Landing sites (GBL, Gender, Training and so on) still come from the old server, so keep it running for now."
+}
+
 cmd_check() {
   load
   step "FinMark Trust website check"
@@ -329,5 +372,6 @@ case "${1:-}" in
   golive) cmd_golive ;;
   cms-login) cmd_cms_login ;;
   check) cmd_check ;;
-  *) sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//' ;;
+  copy-old-files) cmd_copy_old_files ;;
+  *) sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//' ;;
 esac

@@ -1,0 +1,38 @@
+{
+  "title": "Remittances Market Assessment 2021",
+  "date": "2022-06-15",
+  "type": "Report",
+  "summary": "",
+  "themes": [
+    "remittances",
+    "credit-msme-finance"
+  ],
+  "countries": [
+    "MDG",
+    "ZWE",
+    "MUS",
+    "ZMB",
+    "SWZ",
+    "LSO",
+    "COD",
+    "SYC",
+    "NAM",
+    "MWI",
+    "BWA",
+    "ZAF",
+    "MOZ",
+    "AGO",
+    "SADC"
+  ],
+  "language": "en",
+  "file": "https://finmark.org.za/Publications/Remittances_Market_Assessment_2021.pdf",
+  "link": "",
+  "featured": false,
+  "review": true,
+  "legacy_url": "https://finmark.org.za/Publications/Remittances_Market_Assessment_2021.pdf",
+  "legacy_type": "Publications",
+  "section": "programmes",
+  "programmes": [
+    "cross-border-remittances"
+  ]
+}

@@ -26,6 +26,7 @@ const K = join(ROOT, 'content/knowledge'), T = join(ROOT, 'content/themes'), P =
 // Small Markdown renderer for post bodies: ## / ### headings, paragraphs, - and 1. lists, > quotes, **bold**, *italic*, [links](url), line breaks.
 const escH = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const inline = s => escH(s)
+  .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, alt, u) => `<img src="${u.replace(/"/g, '%22')}" alt="${alt}" loading="lazy">`)
   .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => `<a href="${u.replace(/"/g, '%22')}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`)
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*?)\*/g, '$1<em>$2</em>')
   .replace(/ {2,}\n/g, '<br>\n');
@@ -34,7 +35,9 @@ function md(src) {
   const flushP = () => { if (para.length) out.push(`<p>${inline(para.join('\n'))}</p>`); para = []; };
   const flushL = () => { if (list) out.push(`<${list.t}>${list.items.map(i => `<li>${inline(i)}</li>`).join('')}</${list.t}>`); list = null; };
   const flushQ = () => { if (quote.length) out.push(`<blockquote><p>${inline(quote.join(' '))}</p></blockquote>`); quote = []; };
-  for (const raw of String(src || '').replace(/\r/g, '').split('\n')) {
+  // A typed <br> or a line ending in \ (Shift+Enter in the editor) is a line break
+  src = String(src || '').replace(/\r/g, '').replace(/[ \t]*<br\s*\/?>[ \t]*(\n)?/gi, '  \n').replace(/\\[ \t]*\n/g, '  \n');
+  for (const raw of src.split('\n')) {
     const line = raw.replace(/\s+$/, m => (m.length >= 2 && !m.includes('\n') ? '  ' : ''));
     let m;
     if (!line.trim()) { flushP(); flushL(); flushQ(); continue; }
@@ -64,7 +67,7 @@ function build() {
   const knownP = new Set(programmes.map(p => p.slug));
   // Emails go into the public feed reversed and base64-encoded, so spam bots can't harvest them (site.js decodes them)
   const hideMail = e => (e ? Buffer.from([...String(e).trim()].reverse().join('')).toString('base64') : '');
-  const people = readDir(PE).map(p => ({ slug: p.slug || p.id, name: p.name, role: p.role || '', group: p.group || 'team', order: p.order || 99, photo: p.photo || '', bio: p.bio || '', email: hideMail(p.email), linkedin: p.linkedin || '', ...(p.hidden ? { hidden: 1 } : {}) }))
+  const people = readDir(PE).map(p => ({ slug: p.slug || p.id, name: p.name, role: p.role || '', group: p.group || 'team', order: p.order || 99, photo: p.photo || '', bio: p.bio || '', bioHtml: p.bio ? md(String(p.bio).replace(/\r/g, '').replace(/([^\n])\n(?=[^\n])/g, '$1  \n')) : '', email: hideMail(p.email), linkedin: p.linkedin || '', ...(p.hidden ? { hidden: 1 } : {}) }))
     .sort((a, b) => (a.group === b.group ? a.order - b.order || a.name.localeCompare(b.name) : a.group === 'team' ? -1 : 1));
   const PEOPLE = Object.fromEntries(people.map(p => [p.slug, p]));
   // Terms of Reference page: open calls first (soonest closing), then closed ones (newest first)
@@ -82,7 +85,14 @@ function build() {
     const au = (Array.isArray(i.authors) ? i.authors : []).filter(s => PEOPLE[s]);
     if (au.length) o.au = au;
     if (i.author) o.a = i.author;
-    if (i.body && String(i.body).trim()) { o.p = 1; o._body = i.body; }
+    if (Array.isArray(i.tags) && i.tags.length) o.tg = i.tags.filter(Boolean);
+    // Archive: anything before 2016, or marked archived in the content manager (searchable, hidden by default)
+    if (i.archived || (o.d && o.d < '2016-01-01')) o.ar = 1;
+    if (i.body && String(i.body).trim()) {
+      // Pages that came from the old site keep their old address: /knowledge-hub/<blog|articles|…>/<old-slug>/
+      const lp = String(i.legacy_url || i.link || '').match(/^https?:\/\/(?:www\.)?finmark\.org\.za\/knowledge-hub\/(blog|blogs|articles|interviews|publications|videos|podcasts|infographics)\/([a-z0-9-]+)/i);
+      o.p = lp ? `${lp[1]}/${lp[2]}` : 1; o._body = i.body;
+    }
     return o;
   }).sort((a, b) => (b.d || '').localeCompare(a.d || ''));
   // Featured picks from the content manager; unknown or draft items are dropped. Empty lists mean "use the newest".
@@ -95,8 +105,18 @@ function build() {
   // One JSON file per blog/article page
   rmSync(POSTS, { recursive: true, force: true }); mkdirSync(POSTS, { recursive: true });
   let posts = 0;
+  // Pages at old addresses: a copy of post.html in knowledge-hub/<type>/<slug>/index.html that opens that post
+  const OLD_DIRS = ['blog', 'blogs', 'articles', 'interviews', 'publications', 'videos', 'podcasts', 'infographics'];
+  for (const d of OLD_DIRS) rmSync(join(ROOT, 'knowledge-hub', d), { recursive: true, force: true });
+  const tpl = readFileSync(join(ROOT, 'knowledge-hub/post.html'), 'utf8');
   for (const it of items) {
     if (!it._body) continue;
+    if (typeof it.p === 'string') {
+      const dir = join(ROOT, 'knowledge-hub', it.p);
+      mkdirSync(dir, { recursive: true });
+      writeFileSync(join(dir, 'index.html'), tpl.replace('<head>', `<head>\n<base href="/knowledge-hub/">\n<script>window.FMT_POST_ID = ${JSON.stringify(it.id)};</script>`)
+        .replace(/<title>[^<]*<\/title>/, `<title>${escH(it.t)} — FinMark Trust</title>`));
+    }
     const { _body, ...meta } = it;
     const authors = (it.au || []).map(s => ({ slug: s, name: PEOPLE[s].name, role: PEOPLE[s].role, photo: PEOPLE[s].photo }));
     writeFileSync(join(POSTS, `${it.id}.json`), JSON.stringify({ ...meta, authors, html: md(_body), mins: Math.max(1, Math.round(words(_body) / 220)) }));

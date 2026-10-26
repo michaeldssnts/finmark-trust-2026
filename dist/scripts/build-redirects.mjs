@@ -78,6 +78,7 @@ let n = 0;
 for (const i of items) {
   const m = String(i.legacy_url || '').match(/^https?:\/\/(?:www\.)?finmark\.org\.za(\/knowledge-hub\/[a-z]+\/[^?#\s]+)/i);
   if (!m || seen.has(m[1])) continue;
+  if (i.body && String(i.body).trim()) { seen.add(m[1]); continue; }   // served at its old address by the build (knowledge-hub/<type>/<slug>/)
   seen.add(m[1]);
   const to = i.body && String(i.body).trim() ? `/knowledge-hub/post.html?id=${i.id}` : `${HUB}?q=${enc(i.title.replace(/[^\p{L}\p{N}\s'’-]/gu, ' ').replace(/\s+/g, ' ').trim())}&sort=rel${(i.themes || []).length && i.themes.every(t => ARCH.has(t)) ? '&archived=1' : ''}`;
   rule(m[1].replace(/ /g, '%20'), to);
@@ -88,10 +89,10 @@ note('Old Knowledge Hub listings, and items we have no record of');
 const TYPES = { blog: 'Blog', blogs: 'Blog', articles: 'Article', interviews: 'Interview', videos: 'Video', podcasts: 'Podcast', infographics: 'Infographic', publications: 'Report,Pocket%20guide,Presentation' };
 rule('/knowledge-hub/all', HUB);
 for (const [k, t] of Object.entries(TYPES)) rule(`/knowledge-hub/${k}`, `${HUB}?type=${t}`);
-for (const k of Object.keys(TYPES)) rule(`/knowledge-hub/${k}/:slug`, `${HUB}?q=:slug`);
+for (const k of Object.keys(TYPES)) rule(`/knowledge-hub/${k}/:slug`, `${HUB}?q=:slug`, '301'); // not forced: pages that exist at old addresses win
 
 note(`Files and landing sites that still live on the old server (served from ${LEGACY_ORIGIN})`);
-for (const p of ['system', 'Publications', 'TOR', 'GBL', 'SADC_FI_Forum', 'Community_digitalisation', 'Gender', 'Training', 'eKYC', 'Covid', 'FSD', 'images/logos', 'assets'])
+for (const p of ['system', 'Publications', 'TOR', 'GBL', 'SADC_FI_Forum', 'Community_digitalisation', 'Gender', 'Training', 'eKYC', 'Covid', 'FSD', 'images/logos', 'images/blogs', 'ckeditor_assets', 'assets'])
   rule(`/${p}/*`, `${LEGACY_ORIGIN}/${p}/:splat`, '200');
 
 writeFileSync(join(ROOT, '_redirects'), lines.join('\n') + '\n');
@@ -115,7 +116,8 @@ for (const r of RULES) {
   ng.push(`location = ${q(decodeURI(from))} { return 301 ${q(to + keepArgs)}; }`);
 }
 if (slugTypes.length) ng.push('', '# Old Knowledge Hub items we have no record of: search for the words in the address',
-  `location ~ ^/knowledge-hub/(${slugTypes.join('|')})/([^/]+)$ { return 301 "${HUB}?q=$2"; }`);
+  `location ~ ^/knowledge-hub/(${slugTypes.join('|')})/([^/]+?)/?$ { set $khq $2; try_files /knowledge-hub/$1/$2/index.html @khsearch; }`,
+  `location @khsearch { return 301 "${HUB}?q=$khq"; }`);
 ng.push('', '# Files and landing sites still kept by the old site: served from this server if present, otherwise fetched from the old server',
   `location ~ ^/(${legacy.map(l => l.replace(/^\/|\/$/g, '').replace(/[.]/g, '\\.')).join('|')})/ { try_files $uri @legacy; }`);
 mkdirSync(join(ROOT, 'server'), { recursive: true });

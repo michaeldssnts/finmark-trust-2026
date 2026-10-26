@@ -1,0 +1,26 @@
+{
+  "title": "Shared is better than perfect",
+  "date": "2020-04-24",
+  "type": "Blog",
+  "summary": "The past week has been a challenge for our team, as we analysed and weighted the data we are launching here. We set out with a very ambitious task, to track representative data on the impact of COVID-19 on the livelihoods of people…",
+  "themes": [
+    "covid-19",
+    "data-research-methods"
+  ],
+  "countries": [],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/blog/shared-is-better-than-perfect",
+  "featured": false,
+  "review": false,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/blog/shared-is-better-than-perfect",
+  "legacy_type": "Blogs",
+  "section": "data",
+  "programmes": [],
+  "body": "The past week has been a challenge for our team, as we analysed and weighted the data we are launching [here](http://covid19tracker.africa/). We set out with a very ambitious task, to track representative data on the impact of COVID-19 on the livelihoods of people across sub-Saharan Africa and to execute this as a “rapid response survey”.\n\nWe’re thrilled to be sharing data for three of the seven markets now. It is later than we would have liked, but we have taken the view that in a time of crisis having something, not quite complete, that can guide decision-making now, is better than striving for perfection that will push the results out beyond their usefulness.\n\nThe data we are releasing shows some interesting trends and insights into how different messaging and government strategies have led to differential outcomes in Kenya, Nigeria and South Africa. With South Africa having the highest level of infections and the strictest lockdown regulations, we see a lead effect: South Africans are not only the most concerned about the impact of the virus but also the people making the greatest changes to their hygiene behaviour to help prevent the spread of COVID-19. In Kenya and Nigeria, we see a reported increase in hand washing but not so much in other behaviours.\n\nThe data has been weighted to be representative, but improvements can and will still be made. There are some underlying sampling challenges that were expected using a CATI data collection method, which we are looking to improve on in our next wave of data collection, which means that our weighting scheme will be tweaked to accommodate this.\n\nThe key challenge to CATI sampling in Nigeria and South Africa is that we have samples that have higher overall levels of education than the general population. This is not the case in Kenya. This means that the unweighted samples are slightly wealthier than the average and therefore have greater access to several amenities, e.g. bank accounts. For the next wave, we will be controlling for this and will also include selective household assets questions that can be used to create a better weighting structure for future waves of data. We’re also calculating a second set weights using multi-level regression with post-stratification, which we believe will provide even better estimates. These will be used to report on disaggregated data.\n\nWe’ll be sharing the final results for the three countries this week, and we will disseminate the results from Rwanda in the coming week. Data collection for Wave 2 in Kenya, Nigeria, Rwanda and South Africa will continue this week. It will be interesting to see how our measures change over time. Wave 1 data collection for Uganda and Zambia will start this coming week.\n\nKeep watching this space for information on our COVID-19 survey and what it means for the livelihoods of people across Africa.",
+  "tags": [
+    "COVID-19",
+    "Survey data"
+  ],
+  "thumbnail": "https://finmark.org.za/system/blogs/images/000/000/076/original/Covid_washing_hands.jpg?1587739468"
+}

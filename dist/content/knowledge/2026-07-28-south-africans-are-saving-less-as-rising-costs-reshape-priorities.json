@@ -2,7 +2,7 @@
   "title": "South Africans are saving less as rising costs reshape priorities",
   "date": "2026-07-28",
   "type": "Article",
-  "summary": "",
+  "summary": "Johannesburg, South Africa – While National Savings Month places renewed focus on building financial resilience, new findings from the FinScope Consumer South Africa 2025 Survey show that rising living costs and shrinking disposable…",
   "themes": [
     "finscope-consumer"
   ],
@@ -23,5 +23,8 @@
   "legacy_url": "https://finmark.org.za/knowledge-hub/articles/south-africans-are-saving-less-as-rising-costs-reshape-priorities?entity=blog",
   "legacy_type": "Articles",
   "section": "data",
-  "programmes": []
+  "programmes": [],
+  "tags": [
+    "FinScope Consumer"
+  ]
 }

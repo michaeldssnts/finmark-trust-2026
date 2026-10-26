@@ -1,0 +1,25 @@
+{
+  "title": "GIS data and improved investment planning for FSPs",
+  "date": "2018-08-30",
+  "type": "Blog",
+  "summary": "More and more financial service providers (FSPs) are looking to data to inform investment decisions, such as “Where should we roll out financial service points?”",
+  "themes": [
+    "financial-inclusion",
+    "big-data"
+  ],
+  "countries": [],
+  "tags": [
+    "Financial inclusion",
+    "Geospatial data"
+  ],
+  "language": "en",
+  "file": "",
+  "link": "https://finmark.org.za/knowledge-hub/blog/gis-data-and-improved-investment-planning-for-fsps",
+  "thumbnail": "https://finmark.org.za/system/blogs/images/000/000/018/original/invest.jpg?1560268173",
+  "authors": [],
+  "author": "David Taylor",
+  "body": "More and more financial service providers (FSPs) are looking to data to inform investment decisions, such as “*Where should we roll out financial service points?*”\n\nIncreasingly Geospatial (GIS) data is being included amongst the datasets FSPs are using when making decisions to improve the effectiveness of their investments. GIS data allows FSPs to contextualise existing information and ask better questions that can inform their business decisions.\n\nAn important example of this includes the role of GIS to identify and locate outliers. These outliers have the potential to unlock critical insights that speak to why certain investments work better than average (or worse, depending on the outlier).\n\n**What are outliers and what do they mean in the context of investment decisions?** The map below highlights the county of Trans Nzoia in Kenya, where 89% of the agents take more than 100 deposits a week. This is significantly higher than the national average of 50%. This outlier allows us to ask better questions to inform investment decisions, such as:\n\n- What is driving the high volumes of deposits?\n- Is it replicable?\n- Is it scalable?\n- Does it represent an opportunity to push out or develop new products and services?\n\n### % of agents with over 100 deposits in Kenya\n\n![](http://access.i2ifacility.org/Images/tan_map.png)\n\nArmed with these interesting questions and a specific geographical focus area we can use GIS data to see if it holds answers to these questions. The two maps below show that in addition to the increase in the number of highly active agents in the urban centre of Trans Nzoia, there has been significant growth in other non-urban areas as well.\n\n### Agents with between 101 and 500 deposits in Trans Nzoia\n\n![](http://access.i2ifacility.org/Images/before.png)\n\nThese maps suggest that some type of change has taken place in Trans Nzoia since 2013 which allows us to ask more detailed questions to inform investment decisions, such as:\n\n- Has there been a significant change in economic profile in the county driven by a small number of large investors?\n- Has there been an increase in demand for cash in, cash out services in this area driven by a particularly large harvest?\n- Has there been significant investment in educating customers about the use of mobile money products and services, which has driven higher usage?\n- Has there been any changes in the financial landscape, such as the creation of new bank branches, which has removed liquidity constraints for existing agents?\n- Have road or power infrastructure improved significantly widening access and removing barriers?\n\nThe great thing about these questions for FSPs is how easy and cheap it is to answer them. Most of these questions could be answered with a few phone calls and once you have the answer, you will have learnt enough to go back and have a better understanding of the context when making investment decisions.\n\nHowever, not every question will have the answer FSPs are first looking for. For example, the increase in highly active mobile money agents in Trans Nzoia could have been driven by a single large-scale agricultural investment which has significantly raised the demand for financial services in the county. In that case, the answer to the question ‘Is this scalable?’ would be ‘No’, which doesn’t help to inform where to invest in more agents. However, on the road to finding that answer additional information has been discovered and will hopefully inform better and more detailed questions.\n\nFor example an FSP may then sit and ask, ‘If this is not scalable, could we form stronger links with large scale agriculture investors so we can better serve their customers?’ the answer to which would not only be interesting but potentially more profitable than an answer to the question “Where should we roll out financial service points?”\n\n*David Taylor is the Director of usabledata Ltd and the Senior GIS Specialist at i2i. David has been working with FSPs and regulators in East Africa since 2012. His focus is the use of spatial data to inform strategic and operational decisions which will lead to sustainable growth in financial services and an increasing financial inclusion.*",
+  "review": true,
+  "legacy_url": "https://finmark.org.za/knowledge-hub/blog/gis-data-and-improved-investment-planning-for-fsps",
+  "legacy_type": "Blog"
+}

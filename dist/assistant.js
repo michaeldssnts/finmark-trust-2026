@@ -103,7 +103,7 @@
 
     const link = (href, title, sub, ext) => `<a class="fg-link" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ''}><b>${esc(title)}</b>${sub ? `<small>${esc(sub)}</small>` : ''}</a>`;
     const itemLink = i => {
-      const href = i.p ? `${R}knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || `${R}knowledge-hub/index.html`;
+      const href = i.p ? (typeof i.p === 'string' ? `${R}knowledge-hub/${i.p}/` : `${R}knowledge-hub/post.html?id=${encodeURIComponent(i.id)}`) : asset(i.u) || `${R}knowledge-hub/index.html`;
       return link(href, i.t, `${i.y} · ${fmt(i.d)}`, !i.p && /^https?:|\.pdf$/i.test(href));
     };
     people.forEach(p => out.push(link(`${R}about/index.html?member=${encodeURIComponent(p.slug)}`, p.name, p.role)));

@@ -2,7 +2,7 @@
   "title": "When the Clipboard Becomes a Threat: Rethinking M&E in an Age of Community Distrust",
   "date": "2026-09-17",
   "type": "Blog",
-  "summary": "",
+  "summary": "Imagine the frustration. You arrive in a community with a questionnaire, a tablet, or even just a notebook. You introduce yourself, explain a programme intended to improve the lives of the people in the community and ask your first…",
   "themes": [
     "data-research-methods"
   ],
@@ -23,5 +23,9 @@
   "legacy_url": "https://finmark.org.za/knowledge-hub/publications/when-the-clipboard-becomes-a-threat-rethinking-m-e-in-an-age-of-community-distrust?entity=blog",
   "legacy_type": "Publications",
   "section": "data",
-  "programmes": []
+  "programmes": [],
+  "tags": [
+    "Questionnaire Design Tool",
+    "Research methods"
+  ]
 }

@@ -148,7 +148,7 @@ updateRailButtons();
   const TH = {};
   const card = (i) => {
     const t = (i.th || []).map((s) => TH[s]).find(Boolean);
-    const url = i.p ? `knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || 'knowledge-hub/index.html';
+    const url = i.p ? (typeof i.p === 'string' ? `knowledge-hub/${i.p}/` : `knowledge-hub/post.html?id=${encodeURIComponent(i.id)}`) : asset(i.u) || 'knowledge-hub/index.html';
     const ext = /^https?:/.test(url) || /\.pdf/i.test(url);
     const thumb = i.img
       ? `<span class="hx-thumb has-img" aria-hidden="true"><img class="bg" src="${esc(asset(i.img))}" alt=""><img class="fg" src="${esc(asset(i.img))}" alt=""></span>`
@@ -200,7 +200,7 @@ updateRailButtons();
     if (!list.length) return;
     rail.innerHTML = list.map((i, n) => {
       const t = (i.th || []).map((s) => TH[s]).find(Boolean);
-      const url = i.p ? `knowledge-hub/post.html?id=${encodeURIComponent(i.id)}` : asset(i.u) || 'knowledge-hub/index.html';
+      const url = i.p ? (typeof i.p === 'string' ? `knowledge-hub/${i.p}/` : `knowledge-hub/post.html?id=${encodeURIComponent(i.id)}`) : asset(i.u) || 'knowledge-hub/index.html';
       const ext = !i.p && (/^https?:/.test(url) || /\.pdf/i.test(url));
       const thumb = i.img
         ? `<div class="content-thumb has-img" aria-hidden="true"><img src="${esc(asset(i.img))}" alt="" loading="lazy"><span>${esc(i.y)}</span></div>`
