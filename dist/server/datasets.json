@@ -1,0 +1,467 @@
+{
+ "note": "FinScope dataset download links (from the old data portal, Oct 2026). Edit here to add or change a dataset. Not served publicly: the forms service reads it and emails the link.",
+ "datasets": [
+  {
+   "survey": "consumer",
+   "iso": "GHA",
+   "country": "Ghana",
+   "year": 2010,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/GHA/2010.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "GHA",
+   "country": "Ghana",
+   "year": 2021,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/GHA/2020.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MOZ",
+   "country": "Mozambique",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MOZ/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MOZ",
+   "country": "Mozambique",
+   "year": 2015,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MOZ/2015.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MOZ",
+   "country": "Mozambique",
+   "year": 2019,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MOZ/2019.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "PAK",
+   "country": "Pakistan",
+   "year": 2008,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/PAK/2008.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "RWA",
+   "country": "Rwanda",
+   "year": 2008,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/RWA/2008.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "RWA",
+   "country": "Rwanda",
+   "year": 2012,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/RWA/2012.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "RWA",
+   "country": "Rwanda",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/RWA/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "TZA",
+   "country": "Tanzania",
+   "year": 2006,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/TZA/2006.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "TZA",
+   "country": "Tanzania",
+   "year": 2009,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/TZA/2009.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "TZA",
+   "country": "Tanzania",
+   "year": 2013,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/TZA/2013.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "TZA",
+   "country": "Tanzania",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/TZA/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "TZA",
+   "country": "Tanzania",
+   "year": 2017,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/TZA/2017.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "UGA",
+   "country": "Uganda",
+   "year": 2006,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/UGA/2006.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "UGA",
+   "country": "Uganda",
+   "year": 2009,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/UGA/2009.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "UGA",
+   "country": "Uganda",
+   "year": 2013,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/UGA/2013.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "UGA",
+   "country": "Uganda",
+   "year": 2015,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/UGA/2015.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "UGA",
+   "country": "Uganda",
+   "year": 2018,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/UGA/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZMB",
+   "country": "Zambia",
+   "year": 2009,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZMB/2009.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZMB",
+   "country": "Zambia",
+   "year": 2015,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZMB/2015.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "BGD",
+   "country": "Bangladesh",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/BGD/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "BFA",
+   "country": "Burkina Faso",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/BFA/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "CIV",
+   "country": "Côte d'Ivoire",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/CIV/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "COD",
+   "country": "DR Congo",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/DRC/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "LSO",
+   "country": "Lesotho",
+   "year": 2011,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/LSO/2011.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "LSO",
+   "country": "Lesotho",
+   "year": 2020,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/LSO/2020.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MDG",
+   "country": "Madagascar",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MDG/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "SWZ",
+   "country": "Eswatini",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/SWZ/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "SWZ",
+   "country": "Eswatini",
+   "year": 2018,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/SWZ/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "TGO",
+   "country": "Togo",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/TGO/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZWE",
+   "country": "Zimbabwe",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZWE/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZWE",
+   "country": "Zimbabwe",
+   "year": 2022,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZWE/2022.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "NAM",
+   "country": "Namibia",
+   "year": 2011,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/NAM/2011.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "NAM",
+   "country": "Namibia",
+   "year": 2017,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/NAM/2017.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "BWA",
+   "country": "Botswana",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/BWA/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "BWA",
+   "country": "Botswana",
+   "year": 2020,
+   "url": "https://s3.us-west-2.amazonaws.com/i2ifacility.org/BWA/2020.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2011,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2011.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2012,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2012.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2013,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2013.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2015,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2015.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2018,
+   "url": "https://s3.us-west-2.amazonaws.com/i2ifacility.org/ZAF/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2019,
+   "url": "https://s3.us-west-2.amazonaws.com/i2ifacility.org/ZAF/2019.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MUS",
+   "country": "Mauritius",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MRU/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MWI",
+   "country": "Malawi",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MW/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MWI",
+   "country": "Malawi",
+   "year": 2023,
+   "url": "https://s3.us-west-2.amazonaws.com/i2ifacility.org/MWI/2023.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "SYC",
+   "country": "Seychelles",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/SC/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "MMR",
+   "country": "Myanmar",
+   "year": 2018,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MMR/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "KHM",
+   "country": "Cambodia",
+   "year": 2015,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/KHM/2015.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "LAO",
+   "country": "Laos",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/LAO/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "NPL",
+   "country": "Nepal",
+   "year": 2014,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/NPL/2014.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "HTI",
+   "country": "Haiti",
+   "year": 2018,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/HTI/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "CMR",
+   "country": "Cameroon",
+   "year": 2017,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/CMR/2017.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "BEN",
+   "country": "Benin",
+   "year": 2018,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/BEN/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "GMB",
+   "country": "Gambia",
+   "year": 2019,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/GMB/2019.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "THA",
+   "country": "Thailand",
+   "year": 2013,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/THA/2013.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "NGA",
+   "country": "Nigeria",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/NGA/2016.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "NGA",
+   "country": "Nigeria",
+   "year": 2018,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/NGA/2018.zip"
+  },
+  {
+   "survey": "consumer",
+   "iso": "AGO",
+   "country": "Angola",
+   "year": 2022,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/AGO/2022.zip"
+  },
+  {
+   "survey": "msme",
+   "iso": "MOZ",
+   "country": "Mozambique",
+   "year": 2012,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MOZ/2012_SMME.zip"
+  },
+  {
+   "survey": "msme",
+   "iso": "MWI",
+   "country": "Malawi",
+   "year": 2012,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/MWI/2012_SMME.zip"
+  },
+  {
+   "survey": "msme",
+   "iso": "ZAF",
+   "country": "South Africa",
+   "year": 2010,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/ZAF/2010_SMME.zip"
+  },
+  {
+   "survey": "msme",
+   "iso": "LSO",
+   "country": "Lesotho",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/LSO/2016_SMME_test.zip"
+  },
+  {
+   "survey": "msme",
+   "iso": "SWZ",
+   "country": "Eswatini",
+   "year": 2016,
+   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/SWZ/2016_SMME.zip"
+  }
+ ]
+}

@@ -204,7 +204,9 @@ a.cp-dot:hover{background:var(--navy)}
   window.addEventListener('hashchange', () => { const h = location.hash.slice(1).toUpperCase(); if (list.some(c => c.iso === h) && h !== st.iso) { st.iso = h; render(); } });
 
   function go(iso) { st.iso = iso; st.all = false; try { history.replaceState(null, '', '#' + iso); } catch (e) {} render(); window.scrollTo({ top: 0 }); }
-  const explorer = (c, y) => `finscope-consumer.html#${c.iso}-${y}`;
+  // Malawi 2023 has the full explorer (respondent-level data); other surveys open the results page migrated from the old portal.
+  const explorer = (c, y) => c.iso === 'MWI' && +y === 2023 ? `finscope-consumer.html#${c.iso}-${y}` : `survey.html?d=consumer-${c.iso}-${y}`;
+  const msmePage = (c, y) => `survey.html?d=msme-${c.iso}-${y}`;
 
   function render() {
     const c = list.find(x => x.iso === st.iso) || list[0];
@@ -242,11 +244,11 @@ a.cp-dot:hover{background:var(--navy)}
     const pos = y => ((y - lo) / (hi - lo) * 92 + 4).toFixed(2) + '%';
     const row = (label, k) => { const ps = pts.filter(p => p.k === k); return `<div class="cp-tl-row"><b>${label}</b><div class="cp-tl-track">${ps.length ? ps.map(p => k === 'consumer'
         ? `<a class="cp-dot" href="${explorer(c, p.y)}" style="left:${pos(p.y)}" title="Explore FinScope Consumer ${p.y}${p.note ? ' (' + p.note + ')' : ''}">${p.y}</a>`
-        : `<span class="cp-dot msme" style="left:${pos(p.y)}" title="FinScope MSME ${p.y}">${p.y}</span>`).join('') : '<span class="cp-none" style="position:relative;top:4px">No survey yet</span>'}</div></div>`; };
+        : `<a class="cp-dot msme" href="${msmePage(c, p.y)}" style="left:${pos(p.y)}" title="FinScope MSME ${p.y}">${p.y}</a>`).join('') : '<span class="cp-none" style="position:relative;top:4px">No survey yet</span>'}</div></div>`; };
     const ticks = []; for (let y = Math.ceil(lo / 5) * 5; y <= hi; y += 5) ticks.push(y);
     $('cpTimeline').innerHTML = row('FinScope Consumer', 'consumer') + row('FinScope MSME', 'msme') + `<div class="cp-tl-axis"><div></div><div>${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div></div>`;
     const n = c.consumer.length + c.msme.length + c.other.length + (c.findex ? 1 : 0);
-    $('dataLede').textContent = `${n} dataset${n === 1 ? '' : 's'} for ${c.name}. FinScope Consumer surveys open in the explorer; select a year to begin.`;
+    $('dataLede').textContent = `${n} dataset${n === 1 ? '' : 's'} for ${c.name}. Select a survey year to see its results.`;
 
     // Survey cards
     const pubs = t => c.data.filter(d => d.topic === t && d.url).slice(0, 3);
@@ -254,10 +256,10 @@ a.cp-dot:hover{background:var(--navy)}
     let cards = '';
     cards += `<article class="cp-survey lead"><span class="tag">Flagship survey</span><h3>FinScope Consumer</h3><p>Nationally representative survey of adults (16+) on how they access and use financial products and services. Results are weighted to the national population.</p>`
       + (c.consumer.length ? `<div class="cp-years">${c.consumer.map((x, i) => `<a href="${explorer(c, x.year)}" class="${i === c.consumer.length - 1 ? 'latest' : ''}" title="${x.note ? esc(x.note) : 'Explore ' + x.year}">${x.year}${x.note && x.note.includes('NFIS') ? ' <small>NFIS</small>' : ''}</a>`).join('')}</div>${pubList('FinScope Consumer')}
-        <div class="cp-actions"><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a><a class="cp-btn ghost" href="${explorer(c, latest)}-request">Request the dataset</a></div>`
+        <div class="cp-actions"><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a><a class="cp-btn ghost" href="${c.iso === 'MWI' && +latest === 2023 ? explorer(c, latest) + '-request' : explorer(c, latest) + '#request'}">Request the dataset</a></div>`
         : `<p class="cp-none">No national FinScope Consumer survey has been run in ${esc(c.name)} yet.</p>`) + `</article>`;
     cards += `<article class="cp-survey msme"><span class="tag">Enterprise survey</span><h3>FinScope MSME</h3>`
-      + (c.msme.length ? `<div class="cp-years">${c.msme.map(y => `<span>${y}</span>`).join('')}</div>${pubList('FinScope MSME')}<p>The MSME explorer is in development. Reports and pocket guides are available now.</p>` : `<p class="cp-none">No FinScope MSME survey for ${esc(c.name)} yet.</p>`) + `</article>`;
+      + (c.msme.length ? `<div class="cp-years">${c.msme.map(y => `<a href="${msmePage(c, y)}">${y}</a>`).join('')}</div>${pubList('FinScope MSME')}<p>Select a year to see the results that are online. Reports and pocket guides have the full findings.</p>` : `<p class="cp-none">No FinScope MSME survey for ${esc(c.name)} yet.</p>`) + `</article>`;
     cards += `<article class="cp-survey"><span class="tag">Other data</span><h3>More datasets</h3>${(c.other.length || c.findex) ? `<ul class="cp-list">${c.findex ? `<li><a href="https://www.worldbank.org/en/publication/globalfindex" target="_blank" rel="noopener">World Bank Global Findex</a><small>${s.account ? s.account.year : ''}</small></li>` : ''}${c.other.map(o => `<li><span>${esc(o.name)}</span><small>${esc(o.year)}</small></li>`).join('')}</ul>` : '<p class="cp-none">No other datasets listed.</p>'}</article>`;
     $('cpSurveys').innerHTML = cards;
 

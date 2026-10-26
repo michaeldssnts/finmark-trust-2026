@@ -215,3 +215,10 @@ a.kh-card.has-tc:hover{border-color:var(--tc);border-top-color:var(--tc)}
 .kh-card.kh-feat{flex-direction:column;align-items:stretch}
 .kh-card.kh-feat .kh-cover{flex:none;align-self:stretch}
 .kh-card.kh-feat .kh-cbody{justify-content:flex-start}
+
+/* SADC regional view tile, and all theme tiles visible on wider screens */
+.kh-tile.region{border-color:var(--navy)}
+.kh-tile.region i{background:var(--navy);border-radius:50%;transform:none}
+.kh-tile.region[aria-pressed="true"]{background:var(--navy);border-color:var(--navy)}
+.kh-tile.region[aria-pressed="true"] i{background:#fff}
+@media (min-width:900px){.kh-theme-rail{flex-wrap:wrap;overflow:visible}}

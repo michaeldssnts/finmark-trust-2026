@@ -10,6 +10,7 @@
 #   sudo finmark golive     add finmark.org.za and www.finmark.org.za (run after the DNS change)
 #   sudo finmark cms-login  add or change the GitHub sign-in details for the content manager
 #   sudo finmark copy-old-files  copy the old site's PDFs and images that the new site links to onto this server
+#   sudo finmark email-setup  connect the website forms to Microsoft 365 so they can send email
 #
 # Nothing here touches the old website's server.
 set -uo pipefail
@@ -20,6 +21,7 @@ ACME=/var/www/acme
 SITE_CONF=/etc/nginx/sites-available/finmark.conf
 REDIRECTS=/etc/nginx/finmark-redirects.conf
 OAUTH_ENV=/etc/finmark-oauth.env
+FORMS_ENV=/etc/finmark-forms.env
 LOG=/var/log/finmark-update.log
 CERT=finmark-site
 LIVE_NAMES="finmark.org.za www.finmark.org.za"
@@ -70,6 +72,9 @@ site_body() {
     # Content manager and its GitHub sign-in
     location ^~ /admin/ { add_header Cache-Control "no-store"; add_header X-Robots-Tag "noindex"; try_files $uri $uri/ =404; }
     location ^~ /oauth/ { proxy_pass http://127.0.0.1:8787; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; }
+
+    # Website forms (Download dataset, Contact us) and the Submissions page
+    location ^~ /api/ { proxy_pass http://127.0.0.1:8788; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; client_max_body_size 64k; add_header Cache-Control "no-store"; }
 
     location ~ ^/knowledge-hub/(knowledge\.json|posts/) { add_header Cache-Control "no-cache"; try_files $uri =404; }
     location ~* \.(css|js|svg|webp|jpg|jpeg|png|gif|woff2?)$ { add_header Cache-Control "public, max-age=604800"; try_files $uri =404; }
@@ -175,6 +180,11 @@ cmd_update() {
     install -D -m 644 "$rel/server/oauth-server.mjs" /opt/finmark/oauth-server.mjs
     [ -f "$OAUTH_ENV" ] && systemctl restart finmark-oauth
   fi
+  if ! cmp -s "$rel/server/forms-server.mjs" /opt/finmark/forms-server.mjs; then
+    install -D -m 644 "$rel/server/forms-server.mjs" /opt/finmark/forms-server.mjs
+    systemctl restart finmark-forms 2>/dev/null || true
+  fi
+  ensure_forms
   ok "Website updated to version ${new:0:7}"
 }
 
@@ -208,6 +218,7 @@ cmd_ssl() {
 }
 
 oauth_origin() {
+  [ -f "$FORMS_ENV" ] && sed -i "s#^SITE_ORIGIN=.*#SITE_ORIGIN=$(origin)#" "$FORMS_ENV" && systemctl restart finmark-forms 2>/dev/null
   [ -f "$OAUTH_ENV" ] || return 0
   sed -i "s#^SITE_ORIGIN=.*#SITE_ORIGIN=$(origin)#" "$OAUTH_ENV"
   systemctl restart finmark-oauth && ok "Content manager sign-in set to $(origin)"
@@ -299,6 +310,7 @@ EOF
 
   step "6/6  First publish"
   cmd_update --force
+  ensure_forms
   echo
   ok "Setup finished. Next: the HTTPS step in the guide (sudo finmark ssl)."
 }
@@ -346,6 +358,60 @@ cmd_copy_old_files() {
   warn "Landing sites (GBL, Gender, Training and so on) still come from the old server, so keep it running for now."
 }
 
+# ---------- website forms ----------
+github_repo() { git -C "$REPO" remote get-url origin 2>/dev/null | sed -E 's#^.*github\.com[:/]##; s#\.git$##'; }
+forms_env_set() (  # forms_env_set KEY value  (creates the file if needed; readable by root only). Runs in a subshell so the umask stays local.
+  umask 077; touch "$FORMS_ENV"
+  grep -v "^$1=" "$FORMS_ENV" > "$FORMS_ENV.tmp" || true
+  printf '%s=%s\n' "$1" "$2" >> "$FORMS_ENV.tmp"; mv "$FORMS_ENV.tmp" "$FORMS_ENV"; chmod 600 "$FORMS_ENV"
+)
+ensure_forms() {
+  load
+  [ -f /opt/finmark/forms-server.mjs ] || { [ -f "$WEB/current/server/forms-server.mjs" ] && install -D -m 644 "$WEB/current/server/forms-server.mjs" /opt/finmark/forms-server.mjs; }
+  [ -f /opt/finmark/forms-server.mjs ] || return 0
+  [ -f "$FORMS_ENV" ] || { forms_env_set GITHUB_REPO "$(github_repo)"; forms_env_set SITE_ORIGIN "$(origin)"; forms_env_set MAIL_FROM data@finmark.org.za; }
+  local unit=/etc/systemd/system/finmark-forms.service
+  if [ ! -f "$unit" ]; then
+    cat > "$unit" <<'EOF'
+[Unit]
+Description=FinMark Trust website forms (dataset downloads, contact)
+After=network.target
+[Service]
+EnvironmentFile=/etc/finmark-forms.env
+ExecStart=/usr/bin/node /opt/finmark/forms-server.mjs
+Restart=always
+DynamicUser=yes
+StateDirectory=finmark-forms
+StateDirectoryMode=0700
+[Install]
+WantedBy=multi-user.target
+EOF
+    systemctl daemon-reload
+  fi
+  systemctl is-enabled -q finmark-forms 2>/dev/null || systemctl enable -q finmark-forms
+  systemctl is-active -q finmark-forms || systemctl restart finmark-forms
+  grep -q 'location ^~ /api/' "$SITE_CONF" 2>/dev/null || write_nginx
+}
+
+cmd_email_setup() {
+  load; ensure_forms
+  step "Website email (Microsoft 365) — values from the app registration in the guide"
+  local tenant id secret from alerts
+  tenant=$(ask "Directory (tenant) ID")
+  id=$(ask "Application (client) ID")
+  read -r -s -p "  Client secret value (it won't show as you paste): " secret; echo
+  from=$(ask "Send from" "data@finmark.org.za")
+  alerts=$(ask "Who gets an alert for each form (separate several with commas)" "michaeld@finmark.org.za")
+  [ -n "$tenant" ] && [ -n "$id" ] && [ -n "$secret" ] && [ -n "$alerts" ] || die "All the values are needed."
+  forms_env_set MAIL_TENANT_ID "$tenant"; forms_env_set MAIL_CLIENT_ID "$id"; forms_env_set MAIL_CLIENT_SECRET "$secret"
+  forms_env_set MAIL_FROM "$from"; forms_env_set ALERT_TO "$alerts"
+  systemctl restart finmark-forms; sleep 1
+  systemctl is-active -q finmark-forms || die "The forms service didn't start (see: journalctl -u finmark-forms)"
+  step "Sending a test email to ${alerts%%,*}"
+  if ( set -a; . "$FORMS_ENV"; set +a; node /opt/finmark/forms-server.mjs --test-email "${alerts%%,*}" ); then ok "Test email sent. Check that inbox."
+  else die "The test email didn't send. Copy the red line above into the chat."; fi
+}
+
 cmd_check() {
   load
   step "FinMark Trust website check"
@@ -354,6 +420,8 @@ cmd_check() {
   nginx -t >/dev/null 2>&1 && ok "Web server settings valid" || bad "Web server settings have an error"
   has_cert && ok "HTTPS certificate: $(openssl x509 -enddate -noout -in /etc/letsencrypt/live/$CERT/fullchain.pem | cut -d= -f2)" || warn "No HTTPS certificate yet (sudo finmark ssl)"
   [ -f "$OAUTH_ENV" ] && { systemctl is-active -q finmark-oauth && ok "Content manager sign-in running" || bad "Content manager sign-in stopped"; } || warn "Content manager sign-in not set up (sudo finmark cms-login)"
+  if systemctl is-active -q finmark-forms; then grep -q '^MAIL_CLIENT_SECRET=' "$FORMS_ENV" 2>/dev/null && ok "Website forms running, email on" || warn "Website forms running, email not set up yet (sudo finmark email-setup)"
+  else warn "Website forms not running yet (they start after the next update)"; fi
   systemctl is-active -q finmark-update.timer && ok "Automatic updates on" || bad "Automatic updates off"
   [ -f "$WEB/.deployed" ] && ok "Live version: $(cut -c1-7 "$WEB/.deployed"), last activity: $(tail -1 "$LOG" 2>/dev/null)" || warn "Nothing published yet"
   local code; code=$(curl -s --noproxy '*' -o /dev/null -w '%{http_code}' -H "Host: $TEST_HOST" http://127.0.0.1/index.html)
@@ -373,5 +441,6 @@ case "${1:-}" in
   cms-login) cmd_cms_login ;;
   check) cmd_check ;;
   copy-old-files) cmd_copy_old_files ;;
-  *) sed -n '2,14p' "$0" | sed 's/^# \{0,1\}//' ;;
+  email-setup) cmd_email_setup ;;
+  *) sed -n '2,15p' "$0" | sed 's/^# \{0,1\}//' ;;
 esac

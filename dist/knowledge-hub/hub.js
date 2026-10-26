@@ -69,13 +69,15 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   }
 
   // ---------- Filtering with facet counts ----------
+  // 'SADC' is the regional view: work covering the SADC region as a whole, or tagged with the SADC theme (same as the old site's locations[]=SADC).
+  const inPlace = (it, c) => c === 'SADC' ? (it.c.includes('SADC') || it.th.includes('sadc')) : it.c.includes(c);
   function passes(it, skip, ts) {
     if (!S.archived && it.isArch) return false;
     if (skip !== 'path' && S.path && !it.paths.has(S.path)) return false;
     if (skip !== 'prog' && S.prog && !it.pg.includes(S.prog)) return false;
     if (skip !== 'themes' && S.themes.size && !it.th.some(t => S.themes.has(t))) return false;
     if (skip !== 'types' && S.types.size && !S.types.has(it.y)) return false;
-    if (skip !== 'country' && S.country && !(S.country === 'SADC-ALL' ? it.c.some(c => SADC.includes(c)) : it.c.includes(S.country))) return false;
+    if (skip !== 'country' && S.country && !(S.country === 'SADC-ALL' ? it.c.some(c => SADC.includes(c)) : inPlace(it, S.country))) return false;
     if (skip !== 'year' && S.from && (!it.year || it.year < S.from)) return false;
     if (skip !== 'year' && S.to && (!it.year || it.year > S.to)) return false;
     if (skip !== 'langs' && S.langs.size && !S.langs.has(it.l || 'en')) return false;
@@ -105,11 +107,12 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     const yc = count('types', it => [it.y]);
     $('fTypes').innerHTML = TYPE_ORDER.filter(t => ITEMS.some(i => i.y === t)).map(t => check('type', t, t, yc.get(t), S.types.has(t))).join('');
     const cc = count('country', it => it.c);
+    const regN = count('country', it => (inPlace(it, 'SADC') ? ['x'] : [])).get('x') || 0;
     const sadcN = count('country', it => (it.c.some(c => SADC.includes(c)) ? ['x'] : [])).get('x') || 0;
     const opt = (v, l, n) => `<option value="${v}"${S.country === v ? ' selected' : ''}>${esc(l)}${n !== undefined ? ` (${n})` : ''}</option>`;
     const others = Object.keys(PLACES).filter(c => !SADC.includes(c) && cc.get(c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b]));
-    $('fCountry').innerHTML = opt('', 'All countries') + opt('SADC-ALL', 'Any SADC country', sadcN)
-      + `<optgroup label="SADC">${SADC.filter(c => c !== 'SADC' && (cc.get(c) || S.country === c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b])).map(c => opt(c, PLACES[c], cc.get(c) || 0)).join('')}${cc.get('SADC') ? opt('SADC', 'Regional (SADC-wide)', cc.get('SADC')) : ''}</optgroup>`
+    $('fCountry').innerHTML = opt('', 'All countries') + opt('SADC', 'SADC – regional view', regN) + opt('SADC-ALL', 'Any SADC country', sadcN)
+      + `<optgroup label="SADC">${SADC.filter(c => c !== 'SADC' && (cc.get(c) || S.country === c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b])).map(c => opt(c, PLACES[c], cc.get(c) || 0)).join('')}</optgroup>`
       + (others.length ? `<optgroup label="Beyond SADC">${others.map(c => opt(c, PLACES[c], cc.get(c))).join('')}</optgroup>` : '');
     const prc = count('prog', it => it.pg);
     const popt = p => `<option value="${esc(p.slug)}"${S.prog === p.slug ? ' selected' : ''}>${esc(p.name)} (${prc.get(p.slug) || 0})</option>`;
@@ -129,7 +132,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
 
   function renderRail() {
     const all = new Map(); ITEMS.forEach(i => i.th.forEach(t => all.set(t, (all.get(t) || 0) + 1)));
-    $('khThemeRail').innerHTML = THEMES.filter(t => t.status === 'current').sort((a, b) => (all.get(b.slug) || 0) - (all.get(a.slug) || 0))
+    const reg = ITEMS.filter(i => !i.isArch && inPlace(i, 'SADC')).length;
+    $('khThemeRail').innerHTML = `<button type="button" class="kh-tile region" data-region="SADC" aria-pressed="${S.country === 'SADC'}" title="Southern African Development Community"><i aria-hidden="true"></i>SADC region <small>${reg}</small></button>` + THEMES.filter(t => t.status === 'current').sort((a, b) => (all.get(b.slug) || 0) - (all.get(a.slug) || 0))
       .map(t => `<button type="button" class="kh-tile ${t.pathway}" style="--tc:${t.colour}" data-theme="${t.slug}" aria-pressed="${S.themes.has(t.slug) && S.themes.size === 1}"><i aria-hidden="true"></i>${esc(t.name)} <small>${all.get(t.slug) || 0}</small></button>`).join('');
   }
 
@@ -186,7 +190,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     if (S.prog) chips.push(['prog', '', PG[S.prog] ? PG[S.prog].name : S.prog]);
     S.themes.forEach(t => chips.push(['theme', t, TH[t] ? TH[t].name : t]));
     S.types.forEach(t => chips.push(['type', t, t]));
-    if (S.country) chips.push(['country', '', S.country === 'SADC-ALL' ? 'Any SADC country' : PLACES[S.country] || S.country]);
+    if (S.country) chips.push(['country', '', S.country === 'SADC-ALL' ? 'Any SADC country' : S.country === 'SADC' ? 'SADC – Southern African Development Community' : PLACES[S.country] || S.country]);
     if (S.from || S.to) chips.push(['year', '', `${S.from || '…'}–${S.to || '…'}`]);
     S.langs.forEach(l => chips.push(['lang', l, LANGS[l]]));
     $('khChips').innerHTML = chips.map(([k, v, l]) => `<button type="button" class="kh-chip" data-k="${k}" data-v="${esc(v)}" aria-label="Remove filter ${esc(l)}">${esc(l)}<span aria-hidden="true">×</span></button>`).join('')
@@ -213,7 +217,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
       else if (el.id === 'fArchived') { S.archived = el.checked; if (!S.archived) [...S.themes].forEach(s => TH[s] && TH[s].status === 'archived' && S.themes.delete(s)); }
       render();
     });
-    $('khThemeRail').addEventListener('click', e => { const b = e.target.closest('[data-theme]'); if (!b) return; const s = b.dataset.theme; const only = S.themes.size === 1 && S.themes.has(s); S.themes.clear(); if (!only) S.themes.add(s); render(); });
+    $('khThemeRail').addEventListener('click', e => { const r = e.target.closest('[data-region]'); if (r) { S.country = S.country === r.dataset.region ? '' : r.dataset.region; return render(); } const b = e.target.closest('[data-theme]'); if (!b) return; const s = b.dataset.theme; const only = S.themes.size === 1 && S.themes.has(s); S.themes.clear(); if (!only) S.themes.add(s); render(); });
     document.addEventListener('click', e => {
       if (e.target.closest('[data-clear]')) return clearAll();
       const c = e.target.closest('.kh-chip'); if (!c) return;

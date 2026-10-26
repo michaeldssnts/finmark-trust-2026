@@ -57,6 +57,16 @@ rule('/updates', '/knowledge-hub/index.html');
 for (const p of ['/login', '/sign_up', '/account', '/account/*']) rule(p, '/');
 
 note('Data portal → Explore Data');
+// Survey pages from the old portal (/data-portal/MWI/2023, /data-portal/msm-enterprises/MWI/2012) open the same survey's results
+let SURVEYS = [];
+try { SURVEYS = JSON.parse(readFileSync(join(ROOT, 'data/surveys/index.json'), 'utf8')).surveys.filter(x => x.data); } catch {}
+for (const x of SURVEYS) {
+  const to = `/data/survey.html?d=${x.s}-${x.iso}-${x.year}`;
+  if (x.s === 'msme') rule(`/data-portal/msm-enterprises/${x.iso}/${x.year}`, to);
+  else rule(`/data-portal/${x.iso}/${x.year}`, to);
+}
+for (const iso of [...new Set(SURVEYS.map(x => x.iso))].filter(c => !SADC.includes(c))) { rule(`/data-portal/${iso}`, `/data/survey.html?d=consumer-${iso}`); rule(`/data-portal/${iso}/*`, `/data/survey.html?d=consumer-${iso}`); }
+rule('/data-portal/msm-enterprises/*', '/data/survey.html?d=msme-ZAF');
 for (const c of SADC) { rule(`/data-portal/${c}`, `/data/country.html?country=${c}`); rule(`/data-portal/${c}/*`, `/data/country.html?country=${c}`); }
 for (const p of ['/data-portal', '/data-portal/*', '/region/*', '/national_surveys', '/financial_diaries', '/geospatial_data', '/data-for-financial-markets', '/data-and-analytics', '/datasets', '/datasets/*']) rule(p, '/countries/index.html');
 

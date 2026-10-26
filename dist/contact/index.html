@@ -65,7 +65,8 @@
               </select>
             </label>
             <label>Message<textarea name="message" rows="7" required></textarea></label>
-            <div class="form-submit"><p>Your details will only be used to respond to this enquiry.</p><button class="primary-btn" type="submit">Prepare email <span aria-hidden="true">↗</span></button></div>
+            <div class="hp" aria-hidden="true" style="position:absolute;left:-9999px"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <div class="form-submit"><p id="contact-status" role="status">Your details will only be used to respond to this enquiry.</p><button class="primary-btn" type="submit">Send message <span aria-hidden="true">→</span></button></div>
           </form>
         </div>
       </div>
@@ -103,13 +104,28 @@
   <div id="site-footer"></div>
   <script src="../site.js"></script>
   <script>
-    document.querySelector('#contact-form').addEventListener('submit',function(event){
-      event.preventDefault();
-      const data=new FormData(this);
-      const subject='Website enquiry — '+data.get('topic');
-      const body=['Name: '+data.get('name'),'Organisation: '+(data.get('organisation')||'Not provided'),'Email: '+data.get('email'),'Enquiry type: '+data.get('topic'),'','Message:',''+data.get('message')].join('\n');
-      window.location.href='mailto:<a data-m="YXouZ3JvLmtyYW1uaWZAb2ZuaQ=="></a>?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-    });
+    (function(){
+      const form=document.querySelector('#contact-form'), status=document.querySelector('#contact-status'), btn=form.querySelector('button[type=submit]'), opened=Date.now();
+      // Without the website server (for example on a preview copy), fall back to opening an email.
+      function mailto(data){
+        const subject='Website enquiry — '+data.get('topic');
+        const body=['Name: '+data.get('name'),'Organisation: '+(data.get('organisation')||'Not provided'),'Email: '+data.get('email'),'Enquiry type: '+data.get('topic'),'','Message:',''+data.get('message')].join('\n');
+        window.location.href='mailto:'+atob('YXouZ3JvLmtyYW1uaWZAb2ZuaQ==').split('').reverse().join('')+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+      }
+      form.addEventListener('submit',async function(event){
+        event.preventDefault();
+        const data=new FormData(form), payload=Object.fromEntries(data.entries()); payload.elapsed=Date.now()-opened;
+        btn.disabled=true; status.textContent='Sending…';
+        try{
+          const r=await fetch('/api/forms/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+          if(r.status===404||r.status===405){ btn.disabled=false; status.textContent='Your details will only be used to respond to this enquiry.'; return mailto(data); }
+          const j=await r.json().catch(()=>({}));
+          if(!r.ok) throw new Error(j.error||'Something went wrong.');
+          form.reset(); status.innerHTML='<b>Thank you, your message has been sent.</b> We will get back to you soon.';
+        }catch(e){ status.textContent=(e.message||'We could not send your message.')+' You can also email info@finmark.org.za.'; }
+        btn.disabled=false;
+      });
+    })();
   </script>
 </body>
 </html>
