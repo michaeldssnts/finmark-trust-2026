@@ -1,11 +1,11 @@
 {
+  "bio": "Grant is an executive member of FinMark Trust, currently serving as the Chief Operations Officer. With a wealth of expertise in the data, information, and research industry, Grant plays an instrumental role in driving the organisation's success.\n\nPreviously, he held the position of executive responsible for data and analytics at FinMark Trust. His career spans over 25 years, serving in various leadership roles including research and data director, chief financial officer and chief operations officer at one of Africa’s leading market research companies.\n\nHis expertise and areas of interest includes cross-functional team leadership, human resources, operations, financial management, research methods, statistics, data collection, consumer insights and behavioural science. Grant holds a master's degree in research psychology.",
   "name": "Grant Robertson",
   "slug": "grant-robertson",
-  "role": "Chief Operations Officer",
-  "group": "team",
   "order": 2,
   "photo": "https://finmark.org.za/system/members/images/000/000/065/original/Grant.jpg?1747923021",
-  "bio": "Grant is an executive member of FinMark Trust with more than 25 years’ experience across research, data, finance and operations. He holds a master’s degree in research psychology.",
+  "role": "Chief Operations Officer",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
