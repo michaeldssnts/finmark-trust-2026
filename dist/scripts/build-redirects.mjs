@@ -30,7 +30,7 @@ const readDir = d => existsSync(d) ? readdirSync(d).filter(f => f.endsWith('.jso
 }).filter(Boolean) : [];
 const enc = s => encodeURIComponent(s).replace(/%20/g, '+');
 const HUB = '/knowledge-hub/index.html';
-const SADC = ['AGO', 'BWA', 'COM', 'COD', 'SWZ', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZAF', 'TZA', 'ZMB', 'ZWE'];
+const SADC = ['AGO', 'BWA', 'COD', 'SWZ', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZAF', 'TZA', 'ZMB', 'ZWE'];
 
 const lines = [], RULES = [];
 const rule = (from, to, code = '301!') => { lines.push(`${from.padEnd(70)} ${to.padEnd(90)} ${code}`); RULES.push({ from, to, code }); };

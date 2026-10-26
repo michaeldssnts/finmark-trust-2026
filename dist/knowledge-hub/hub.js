@@ -5,9 +5,9 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const PAGE = 24;
-  const PLACES = { AGO: 'Angola', BWA: 'Botswana', COM: 'Comoros', COD: 'DR Congo', SWZ: 'Eswatini', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe', SADC: 'SADC region',
+  const PLACES = { AGO: 'Angola', BWA: 'Botswana', COD: 'DR Congo', SWZ: 'Eswatini', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe', SADC: 'SADC region',
     BEN: 'Benin', BFA: 'Burkina Faso', KHM: 'Cambodia', CMR: 'Cameroon', GMB: 'Gambia', GHA: 'Ghana', HTI: 'Haiti', KEN: 'Kenya', LAO: 'Laos', MEX: 'Mexico', MMR: 'Myanmar', NPL: 'Nepal', NGA: 'Nigeria', RWA: 'Rwanda', THA: 'Thailand', TGO: 'Togo', UGA: 'Uganda' };
-  const SADC = ['AGO', 'BWA', 'COM', 'COD', 'SWZ', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZAF', 'TZA', 'ZMB', 'ZWE', 'SADC'];
+  const SADC = ['AGO', 'BWA', 'COD', 'SWZ', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZAF', 'TZA', 'ZMB', 'ZWE', 'SADC'];
   const LANGS = { en: 'English', pt: 'Portuguese', fr: 'French' };
   const TYPE_LOOK = {
     Report: ['#213265', '▤'], 'Pocket guide': ['#0098ae', '▭'], Presentation: ['#2b4a8a', '▷'], Dashboard: ['#00997b', '▥'],

@@ -5,7 +5,7 @@
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const asset = p => (p && p.startsWith('/uploads/') ? '..' + p : p);
-  const PLACES = { AGO: 'Angola', BWA: 'Botswana', COM: 'Comoros', COD: 'DR Congo', SWZ: 'Eswatini', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe', SADC: 'SADC region' };
+  const PLACES = { AGO: 'Angola', BWA: 'Botswana', COD: 'DR Congo', SWZ: 'Eswatini', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe', SADC: 'SADC region' };
   const fmt = d => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '');
   const slug = s => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const initials = n => n.split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();

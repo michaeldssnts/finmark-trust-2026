@@ -18,7 +18,7 @@
 
   var TYPES = ['Report', 'Pocket guide', 'Presentation', 'Dashboard', 'Article', 'Blog', 'Media release', 'Video', 'Podcast', 'Interview', 'Infographic'];
   var COUNTRIES = [
-    ['Angola', 'AGO'], ['Botswana', 'BWA'], ['Comoros', 'COM'], ['DR Congo', 'COD'], ['Eswatini', 'SWZ'], ['Lesotho', 'LSO'], ['Madagascar', 'MDG'],
+    ['Angola', 'AGO'], ['Botswana', 'BWA'], ['DR Congo', 'COD'], ['Eswatini', 'SWZ'], ['Lesotho', 'LSO'], ['Madagascar', 'MDG'],
     ['Malawi', 'MWI'], ['Mauritius', 'MUS'], ['Mozambique', 'MOZ'], ['Namibia', 'NAM'], ['Seychelles', 'SYC'], ['South Africa', 'ZAF'],
     ['Tanzania', 'TZA'], ['Zambia', 'ZMB'], ['Zimbabwe', 'ZWE'], ['SADC region', 'SADC'],
     ['Benin', 'BEN'], ['Burkina Faso', 'BFA'], ['Cambodia', 'KHM'], ['Cameroon', 'CMR'], ['Gambia', 'GMB'], ['Ghana', 'GHA'], ['Haiti', 'HTI'],

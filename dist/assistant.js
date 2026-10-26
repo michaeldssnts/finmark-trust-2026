@@ -8,7 +8,7 @@
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const asset = p => (p && p.startsWith('/uploads/') ? R + p.slice(1) : p);
   const fmt = d => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : '');
-  const COUNTRIES = { AGO: 'Angola', BWA: 'Botswana', COM: 'Comoros', COD: 'DR Congo|Democratic Republic of the Congo|DRC', SWZ: 'Eswatini|Swaziland', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa|SA|RSA', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe' };
+  const COUNTRIES = { AGO: 'Angola', BWA: 'Botswana', COD: 'DR Congo|Democratic Republic of the Congo|DRC', SWZ: 'Eswatini|Swaziland', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa|SA|RSA', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe' };
   const STOP = new Set('a an the and or of in on for to with about is are be i me my we our you your do does can could would should how what where which who find show give get looking look want need any some there please hi hello hey information info tell more on latest new recent'.split(' '));
   const PAGES = [
     { k: /donat|give|fund|endow|patron|support (fmt|finmark)|contribut/, t: 'Donate', d: 'Fund a small business through GBL, or become a founding patron of the Impact Endowment.', u: 'donate/index.html' },

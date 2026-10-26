@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Country Data Portal — FinMark Trust</title>
-<meta name="description" content="Surveys, indicators, publications and programme content for each SADC country.">
+<meta name="description" content="FinScope surveys, indicators, publications and programme content for each country.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23213265'/%3E%3Cpath d='M15 14h18v8H23v8h9v8h-9v13h-8V14Zm22 0h12v37h-8V23h-4v-9Z' fill='white'/%3E%3C/svg%3E">
@@ -199,8 +199,10 @@ a.cp-dot:hover{background:var(--navy)}
   const fmtPeople = v => v >= 1e6 ? (v/1e6).toFixed(v >= 1e7 ? 1 : 2) + ' million' : Math.round(v/1e3).toLocaleString('en-GB') + 'k';
   const fmtUsd = v => 'US$' + Math.round(v).toLocaleString('en-GB');
 
-  $('cpSelect').innerHTML = list.map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join('');
-  $('cpSelect').onchange = e => go(e.target.value);
+  // One list of every country with FinScope data: SADC countries have a full country page, the others open their survey results
+  const OTHERS = [{"iso": "BGD", "name": "Bangladesh"}, {"iso": "BEN", "name": "Benin"}, {"iso": "BFA", "name": "Burkina Faso"}, {"iso": "KHM", "name": "Cambodia"}, {"iso": "CMR", "name": "Cameroon"}, {"iso": "CIV", "name": "C\u00f4te d'Ivoire"}, {"iso": "GMB", "name": "Gambia"}, {"iso": "GHA", "name": "Ghana"}, {"iso": "HTI", "name": "Haiti"}, {"iso": "LAO", "name": "Laos"}, {"iso": "MMR", "name": "Myanmar"}, {"iso": "NPL", "name": "Nepal"}, {"iso": "NGA", "name": "Nigeria"}, {"iso": "PAK", "name": "Pakistan"}, {"iso": "RWA", "name": "Rwanda"}, {"iso": "THA", "name": "Thailand"}, {"iso": "TGO", "name": "Togo"}, {"iso": "UGA", "name": "Uganda"}];
+  $('cpSelect').innerHTML = list.map(c => ({ v: c.iso, n: c.name })).concat(OTHERS.map(c => ({ v: 'survey:' + c.iso, n: c.name }))).sort((a, b) => a.n.localeCompare(b.n)).map(o => `<option value="${o.v}">${esc(o.n)}</option>`).join('');
+  $('cpSelect').onchange = e => { const v = e.target.value; if (v.startsWith('survey:')) { location.href = `survey.html?d=consumer-${v.slice(7)}`; return; } go(v); };
   window.addEventListener('hashchange', () => { const h = location.hash.slice(1).toUpperCase(); if (list.some(c => c.iso === h) && h !== st.iso) { st.iso = h; render(); } });
 
   function go(iso) { st.iso = iso; st.all = false; try { history.replaceState(null, '', '#' + iso); } catch (e) {} render(); window.scrollTo({ top: 0 }); }
@@ -230,12 +232,12 @@ a.cp-dot:hover{background:var(--navy)}
       [s.gdp_pc && fmtUsd(s.gdp_pc.value), 'GDP per person', s.gdp_pc && s.gdp_pc.year],
       [s.urban && Math.round(s.urban.value) + '%', 'Live in urban areas', s.urban && s.urban.year],
       [s.mobile && Math.round(s.mobile.value), 'Mobile subscriptions per 100 people', s.mobile && s.mobile.year],
-      [s.account && Math.round(s.account.value) + '%', 'Adults with an account (Global Findex)', s.account && s.account.year]
+      [s.included && Math.round(s.included.value) + '%', 'Adults financially included (FinScope)', s.included && s.included.year]
     ];
     $('cpFacts').innerHTML = facts.map(([v, l, y]) => `<div class="cp-fact"><b>${v ?? '–'}</b><span>${l}</span><small>${y ? y : 'Not available'}</small></div>`).join('');
     $('cpProfile').innerHTML = [['Main exports', c.exports], ['Official languages', (c.languages || []).join(', ')], ['Data depositors', c.depositors.join(', ')]]
       .filter(x => x[1]).map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('');
-    $('cpSource').textContent = `Sources: ${P.sources.worldbank}, latest available year shown. Adults 15+ is total population minus ages 0–14.`;
+    $('cpSource').textContent = `Sources: ${P.sources.worldbank}, latest available year shown; financial inclusion from the latest FinScope survey. Adults 15+ is total population minus ages 0–14.`;
 
     // Timeline
     const pts = [...c.consumer.map(x => ({ y: x.year, k: 'consumer', note: x.note })), ...c.msme.map(y => ({ y, k: 'msme' }))];
@@ -247,7 +249,7 @@ a.cp-dot:hover{background:var(--navy)}
         : `<a class="cp-dot msme" href="${msmePage(c, p.y)}" style="left:${pos(p.y)}" title="FinScope MSME ${p.y}">${p.y}</a>`).join('') : '<span class="cp-none" style="position:relative;top:4px">No survey yet</span>'}</div></div>`; };
     const ticks = []; for (let y = Math.ceil(lo / 5) * 5; y <= hi; y += 5) ticks.push(y);
     $('cpTimeline').innerHTML = row('FinScope Consumer', 'consumer') + row('FinScope MSME', 'msme') + `<div class="cp-tl-axis"><div></div><div>${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div></div>`;
-    const n = c.consumer.length + c.msme.length + c.other.length + (c.findex ? 1 : 0);
+    const n = c.consumer.length + c.msme.length + c.other.length;
     $('dataLede').textContent = `${n} dataset${n === 1 ? '' : 's'} for ${c.name}. Select a survey year to see its results.`;
 
     // Survey cards
@@ -260,13 +262,13 @@ a.cp-dot:hover{background:var(--navy)}
         : `<p class="cp-none">No national FinScope Consumer survey has been run in ${esc(c.name)} yet.</p>`) + `</article>`;
     cards += `<article class="cp-survey msme"><span class="tag">Enterprise survey</span><h3>FinScope MSME</h3>`
       + (c.msme.length ? `<div class="cp-years">${c.msme.map(y => `<a href="${msmePage(c, y)}">${y}</a>`).join('')}</div>${pubList('FinScope MSME')}<p>Select a year to see the results that are online. Reports and pocket guides have the full findings.</p>` : `<p class="cp-none">No FinScope MSME survey for ${esc(c.name)} yet.</p>`) + `</article>`;
-    cards += `<article class="cp-survey"><span class="tag">Other data</span><h3>More datasets</h3>${(c.other.length || c.findex) ? `<ul class="cp-list">${c.findex ? `<li><a href="https://www.worldbank.org/en/publication/globalfindex" target="_blank" rel="noopener">World Bank Global Findex</a><small>${s.account ? s.account.year : ''}</small></li>` : ''}${c.other.map(o => `<li><span>${esc(o.name)}</span><small>${esc(o.year)}</small></li>`).join('')}</ul>` : '<p class="cp-none">No other datasets listed.</p>'}</article>`;
+    cards += `<article class="cp-survey"><span class="tag">Other data</span><h3>More datasets</h3>${c.other.length ? `<ul class="cp-list">${c.other.map(o => `<li><span>${esc(o.name)}</span><small>${esc(o.year)}</small></li>`).join('')}</ul>` : '<p class="cp-none">No other datasets listed.</p>'}</article>`;
     $('cpSurveys').innerHTML = cards;
 
     renderContent(c);
     $('cpPaths').innerHTML = [
       ['Knowledge Hub', `Search everything on ${c.name}`, 'Reports, blogs and videos across all topics.', '../knowledge-hub/index.html'],
-      latest ? ['FinScope Consumer', `Explore ${c.name} ${latest}`, 'Filter, compare and download weighted survey results.', explorer(c, latest)] : ['Explore Data', 'Choose another country', 'See the data pages for all 15 SADC countries.', '../countries/index.html'],
+      latest ? ['FinScope Consumer', `Explore ${c.name} ${latest}`, 'Filter, compare and download weighted survey results.', explorer(c, latest)] : ['Explore Data', 'Choose another country', 'See FinScope data for every country.', '../countries/index.html'],
       ['Programmes', 'Programme platforms', 'Gender, remittances, eKYC, GBL and the SADC FI Forum.', '../programmes/index.html']
     ].map(([k, t, d, h]) => `<a href="${h}"><small>${k}</small><strong>${esc(t)}</strong><span>${esc(d)}</span></a>`).join('');
   }
