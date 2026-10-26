@@ -81,18 +81,8 @@ select{padding-right:30px}
 .scope .warn{color:var(--warn);font-weight:700}
 
 /* Main */
-main.wrap{display:grid;grid-template-columns:270px minmax(0,1fr);gap:30px;padding-block:28px 48px}
-main.wrap>*{min-width:0}
-.analysis-nav{position:sticky;top:96px;align-self:start;background:var(--surface);border:1px solid var(--line);padding:18px}
-.analysis-nav .eyebrow{margin:0 0 5px;font-size:.68rem}
-.analysis-nav h2{font-size:1.15rem;color:var(--navy);line-height:1.25}
-.analysis-nav>p{font-size:.78rem;color:var(--muted);margin:5px 0 14px}
-.indicator-search{display:grid;gap:5px;margin-bottom:16px}
-.indicator-search span{font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
-.indicator-search input{width:100%;min-height:40px;padding-left:36px;background:var(--surface-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235a6680' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-4-4'/%3E%3C/svg%3E") 11px center/16px no-repeat}
-.tabs{display:flex;flex-direction:column;gap:2px}
-.tab-group{margin:13px 12px 4px;font-size:.64rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
-.tab-group:first-child{margin-top:0}
+main.wrap{display:grid;grid-template-columns:210px minmax(0,1fr);gap:28px;padding-block:28px 48px}
+.tabs{display:flex;flex-direction:column;gap:2px;position:sticky;top:120px;align-self:start}
 .tabs button{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;border:0;border-left:3px solid transparent;background:none;padding:10px 14px;font-weight:600;color:var(--muted);cursor:pointer;border-radius:0 3px 3px 0}
 .tabs button:hover{background:var(--surface-2);color:var(--ink)}
 .tabs button[aria-selected="true"]{border-left-color:var(--teal);background:var(--surface);color:var(--navy);font-weight:700}
@@ -103,37 +93,6 @@ main.wrap>*{min-width:0}
 .card h2{font-size:1.35rem;color:var(--navy);font-weight:700;letter-spacing:-.01em}
 .card h3{font-size:1.05rem;color:var(--navy);font-weight:700}
 .card p.sub{margin:4px 0 0;color:var(--muted);font-size:.88rem;max-width:68ch}
-
-/* Audience and indicator navigation */
-.audience-band{background:var(--navy-deep);color:#fff}
-.audience-band .wrap{display:grid;grid-template-columns:minmax(220px,.65fr) minmax(0,1.35fr);align-items:center;gap:26px;padding-block:22px}
-.audience-copy .eyebrow{color:#7fdbe6;margin-bottom:4px}
-.audience-copy h2{font-size:1.25rem;line-height:1.2}
-.audience-copy p{margin:4px 0 0;color:rgba(255,255,255,.7);font-size:.82rem}
-.audience-switch{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.audience-option{position:relative;display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;text-align:left;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;padding:13px 15px;cursor:pointer;min-height:78px}
-.audience-option:hover{background:rgba(255,255,255,.11)}
-.audience-option[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff;box-shadow:inset 0 -4px 0 var(--teal)}
-.audience-option[data-audience="msme"][aria-pressed="true"]{box-shadow:inset 0 -4px 0 var(--emerald)}
-.audience-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.12);font-size:1rem;font-weight:800}
-.audience-option[aria-pressed="true"] .audience-icon{background:#e5f6f8;color:var(--teal-ink)}
-.audience-option[data-audience="msme"][aria-pressed="true"] .audience-icon{background:#e5f5f0;color:var(--emerald)}
-.audience-option strong{display:block;font-size:.9rem}
-.audience-option small{display:block;color:inherit;opacity:.7;font-size:.72rem;font-weight:600;margin-top:1px}
-.audience-option .arrow{font-size:1.1rem;opacity:.65}
-.indicator-chooser{background:var(--surface);border:1px solid var(--line);padding:20px}
-.indicator-chooser .chooser-head{display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:13px}
-.indicator-chooser h2{font-size:1.15rem;color:var(--navy)}
-.indicator-chooser p{margin:3px 0 0;color:var(--muted);font-size:.8rem}
-.indicator-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.indicator-option{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;border:1px solid var(--line);background:var(--surface);padding:11px 13px;min-height:48px;font-weight:600;font-size:.84rem;cursor:pointer}
-.indicator-option:after{content:"→";color:var(--teal-ink)}
-.indicator-option:hover{border-color:var(--teal);background:#f4fbfc}
-.indicator-option[aria-pressed="true"]{border-color:var(--navy);background:var(--navy);color:#fff}
-.indicator-option[aria-pressed="true"]:after{color:#fff}
-.selected-label{display:flex;align-items:center;gap:8px;color:var(--teal-ink);font-size:.68rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase;margin:0 0 8px}
-.selected-label:before{content:"";width:20px;height:2px;background:currentColor}
-.search-empty{font-size:.78rem;color:var(--muted);padding:8px 12px;margin:0}
 
 /* Legend */
 .legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
@@ -252,9 +211,7 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
 @media (max-width:1020px){
   .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
   main.wrap{grid-template-columns:1fr}
-  .analysis-nav{position:static;padding:16px}
   .tabs{position:static;flex-direction:row;overflow-x:auto;border-bottom:1px solid var(--line)}
-  .tab-group{display:none}
   .tabs button{border-left:0;border-bottom:3px solid transparent;border-radius:0;white-space:nowrap}
   .tabs button[aria-selected="true"]{border-bottom-color:var(--teal)}
   .tabs button small{display:none}
@@ -263,10 +220,6 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
 }
 @media (max-width:640px){
   .survey .wrap{grid-template-columns:1fr}
-  .audience-band .wrap{grid-template-columns:1fr;gap:14px}
-  .audience-switch{grid-template-columns:1fr}
-  .audience-option{min-height:68px}
-  .indicator-options{grid-template-columns:1fr}
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .kpi b{font-size:1.4rem}
   .srow,.axis{grid-template-columns:1fr;gap:6px}
@@ -292,6 +245,40 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
 
 /* survey summary page */
 [hidden]{display:none!important}
+/* filters, Analyse / Compare / Share */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;flex:1;min-width:0}
+.filters .flabel{margin-right:2px}
+.controls .fclear{border:0;background:none;color:var(--teal-ink);font-weight:700;font-size:.82rem;cursor:pointer;min-height:34px;padding:0 6px;text-decoration:underline}
+.wtools{display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start}
+.wmenu{position:relative}
+.wmenu>summary{list-style:none}
+.wmenu>summary::-webkit-details-marker{display:none}
+.wbtn{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.8rem;font-weight:700;color:var(--navy);cursor:pointer;white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis}
+.wbtn:after{content:"▾";font-size:.7rem;opacity:.6}
+.wbtn:hover{border-color:var(--teal)}
+.wbtn.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.wpop{position:absolute;right:0;top:calc(100% + 6px);z-index:30;background:var(--surface);border:1px solid var(--line);box-shadow:0 10px 30px rgba(20,32,68,.16);border-radius:4px;padding:10px;min-width:220px;max-height:360px;overflow:auto;display:grid;gap:2px}
+.fmenu .wpop{left:0;right:auto}
+.wpop.wide{min-width:270px}
+.wpop p{margin:0 0 4px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.wpop b{display:block;font-size:.74rem;color:var(--muted);margin:8px 0 2px}
+.wpop label{display:flex;gap:8px;align-items:center;font-size:.86rem;padding:5px 6px;border-radius:3px;cursor:pointer}
+.wpop label:hover{background:var(--surface-2)}
+.wpop.share button{text-align:left;border:0;background:none;padding:8px 8px;font-size:.86rem;font-weight:600;color:var(--ink);cursor:pointer;border-radius:3px}
+.wpop.share button:hover{background:var(--surface-2);color:var(--teal-ink)}
+.wload{color:var(--muted);font-size:.86rem;margin:6px 0}
+.wload:before{content:"";display:inline-block;width:12px;height:12px;margin-right:8px;border:2px solid var(--teal);border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite;vertical-align:-1px}
+.werr{color:var(--warn);font-size:.88rem;margin:6px 0}
+.wfoot{font-size:.78rem;color:var(--muted);margin:12px 0 0}
+.wfoot:empty{display:none}
+.wstamp{font-size:.76rem;color:var(--muted);margin:14px 0 0}
+.widget{scroll-margin-top:140px}
+.widget.flash{animation:flash 1.6s ease}
+@keyframes flash{0%{box-shadow:0 0 0 3px var(--teal)}100%{box-shadow:0 0 0 0 transparent}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ibar.low,.srow.low{opacity:.55}
+@media (max-width:760px){.wpop{right:auto;left:0}.card-head{flex-direction:column}}
+
 .credit{font-size:.84rem;color:var(--muted);margin:10px 0 0;max-width:62ch}
 .credit a{color:var(--teal-ink);font-weight:700}
 .dists{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
@@ -319,45 +306,23 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
     <div class="xlink" id="explorerLink" hidden></div>
   </div>
   <div class="pickers">
-    <div class="field" hidden><label for="pickSurvey">Survey</label><select id="pickSurvey"><option value="consumer">FinScope Consumer</option><option value="msme">FinScope MSME</option></select></div>
+    <div class="field"><label for="pickSurvey">Survey</label><select id="pickSurvey"><option value="consumer">FinScope Consumer</option><option value="msme">FinScope MSME</option></select></div>
     <div class="field"><label for="pickCountry">Country</label><select id="pickCountry"></select></div>
     <div class="field"><label for="pickYear">Survey year</label><select id="pickYear"></select></div>
     <a class="btn" href="#request" id="toRequest">Request the dataset</a>
   </div>
 </div></section>
 
-<section class="audience-band" aria-labelledby="audienceTitle"><div class="wrap">
-  <div class="audience-copy">
-    <p class="eyebrow">Start with the audience</p>
-    <h2 id="audienceTitle">Who do you want to understand?</h2>
-    <p>Switch datasets without leaving the analysis.</p>
-  </div>
-  <div class="audience-switch" role="group" aria-label="FinScope dataset">
-    <button class="audience-option" type="button" data-audience="consumer" aria-pressed="true">
-      <span class="audience-icon" aria-hidden="true">P</span><span><strong>FinScope Consumer</strong><small>People and households</small></span><span class="arrow" aria-hidden="true">→</span>
-    </button>
-    <button class="audience-option" type="button" data-audience="msme" aria-pressed="false">
-      <span class="audience-icon" aria-hidden="true">B</span><span><strong>FinScope MSME</strong><small>Businesses and business owners</small></span><span class="arrow" aria-hidden="true">→</span>
-    </button>
-  </div>
-</div></section>
-
 <div class="wrap"><div class="kpis" id="kpis" aria-live="polite"></div></div>
 
 <div class="controls"><div class="wrap">
-  <p class="scope" id="scope" aria-live="polite" style="width:auto;padding:0;flex:1"></p>
+  <div class="filters" id="filters" role="group" aria-label="Filter the figures"></div>
   <div class="field"><span class="flabel">View</span><div class="seg" role="group" aria-label="View"><button type="button" id="vChart" aria-pressed="true">Chart</button><button type="button" id="vTable" aria-pressed="false">Table</button></div></div>
+  <p class="scope" id="scope" aria-live="polite"></p>
 </div></div>
 
 <main class="wrap">
-  <aside class="analysis-nav" aria-label="Indicator navigation">
-    <p class="eyebrow">Indicator explorer</p>
-    <h2>Choose what to analyse</h2>
-    <p>Browse by theme, or search for a common indicator.</p>
-    <label class="indicator-search"><span>Search indicators</span><input id="indicatorSearch" type="search" placeholder="e.g. gender or credit" autocomplete="off"></label>
-    <div class="tabs" role="tablist" aria-label="Indicator themes" id="tabs"></div>
-    <p class="search-empty" id="searchEmpty" hidden>No indicators match that search.</p>
-  </aside>
+  <div class="tabs" role="tablist" aria-label="Topics" id="tabs"></div>
   <div class="panel" id="panel" role="tabpanel"></div>
 </main>
 

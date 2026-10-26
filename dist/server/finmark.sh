@@ -74,7 +74,8 @@ site_body() {
     location ^~ /oauth/ { proxy_pass http://127.0.0.1:8787; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; }
 
     # Website forms (Download dataset, Contact us) and the Submissions page
-    location ^~ /api/ { proxy_pass http://127.0.0.1:8788; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; client_max_body_size 64k; add_header Cache-Control "no-store"; }
+    location ^~ /api/forms/ { proxy_pass http://127.0.0.1:8788; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; client_max_body_size 64k; add_header Cache-Control "no-store"; }
+    location ^~ /api/admin/ { proxy_pass http://127.0.0.1:8788; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; client_max_body_size 64k; add_header Cache-Control "no-store"; }
 
     location ~ ^/knowledge-hub/(knowledge\.json|posts/) { add_header Cache-Control "no-cache"; try_files $uri =404; }
     location ~* \.(css|js|svg|webp|jpg|jpeg|png|gif|woff2?)$ { add_header Cache-Control "public, max-age=604800"; try_files $uri =404; }
@@ -91,6 +92,26 @@ EOF
 EOF
   if [ -n "$LEGACY_UPSTREAM" ]; then
     cat <<EOF
+
+    # Survey figures for filters and analysis (Explore Data): asked of the old data portal once, then kept on
+    # this server for good (/var/cache/finmark-portal), so they keep working after the old server is switched off.
+    location ~ ^/(api|msme-api)/v1/(indicator|country)(/|$) {
+        proxy_pass $LEGACY_UPSTREAM;
+        proxy_set_header Host finmark.org.za;
+        proxy_set_header Cookie "";
+        proxy_ssl_server_name on;
+        proxy_ssl_name finmark.org.za;
+        proxy_read_timeout 180s;
+        proxy_cache finmark_portal;
+        proxy_cache_key \$request_uri;
+        proxy_cache_valid 200 3650d;
+        proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+        proxy_cache_lock on;
+        proxy_cache_lock_timeout 180s;
+        proxy_ignore_headers Cache-Control Expires Set-Cookie Vary X-Accel-Expires;
+        proxy_hide_header Set-Cookie;
+        add_header X-Finmark-Cache \$upstream_cache_status;
+    }
     location @oldserver {
         proxy_pass $LEGACY_UPSTREAM;
         proxy_set_header Host finmark.org.za;
@@ -102,13 +123,15 @@ EOF
 EOF
   else
     printf '    location @oldserver { return 404; }\n'
+    printf '    location ~ ^/(api|msme-api)/v1/(indicator|country)(/|$) { proxy_cache finmark_portal; proxy_cache_key $request_uri; proxy_cache_valid 200 3650d; proxy_pass http://127.0.0.1:9; proxy_cache_use_stale error timeout http_502 http_503 http_504; }\n'
   fi
 }
 
 write_nginx() {
   local n; n=$(names)
   {
-    echo "# FinMark Trust website. Written by 'finmark' — do not edit by hand (run: sudo finmark setup)."
+    echo "# FinMark Trust website. Written by 'finmark' — do not edit by hand (run: sudo finmark setup). conf v3"
+    echo "proxy_cache_path /var/cache/finmark-portal levels=1:2 keys_zone=finmark_portal:20m max_size=3g inactive=3650d use_temp_path=off;"
     echo "map \$host \$finmark_robots { default \"\"; $TEST_HOST \"noindex, nofollow\"; }"
     echo
     echo "server {"
@@ -393,7 +416,7 @@ EOF
   fi
   systemctl is-enabled -q finmark-forms 2>/dev/null || systemctl enable -q finmark-forms
   systemctl is-active -q finmark-forms || systemctl restart finmark-forms
-  grep -q 'location ^~ /api/' "$SITE_CONF" 2>/dev/null || write_nginx
+  grep -q 'conf v3' "$SITE_CONF" 2>/dev/null || write_nginx
 }
 
 cmd_email_setup() {
@@ -428,8 +451,9 @@ cmd_check() {
   systemctl is-active -q finmark-update.timer && ok "Automatic updates on" || bad "Automatic updates off"
   [ -d "$(readlink -f "$WEB/current")" ] && [ -f "$WEB/current/index.html" ] || bad "The live version's folder is missing (run: sudo finmark update --force)"
   [ -f "$WEB/.deployed" ] && ok "Live version: $(cut -c1-7 "$WEB/.deployed"), last activity: $(tail -1 "$LOG" 2>/dev/null)" || warn "Nothing published yet"
-  local code; code=$(curl -s --noproxy '*' -o /dev/null -w '%{http_code}' -H "Host: $TEST_HOST" http://127.0.0.1/index.html)
-  [ "$code" = 200 ] || [ "$code" = 301 ] && ok "Home page answers" || bad "Home page answered $code"
+  local code; if has_cert; then code=$(curl -sk --noproxy '*' -o /dev/null -w '%{http_code}' --resolve "$TEST_HOST:443:127.0.0.1" "https://$TEST_HOST/index.html")
+  else code=$(curl -s --noproxy '*' -o /dev/null -w '%{http_code}' -H "Host: $TEST_HOST" http://127.0.0.1/index.html); fi
+  [ "$code" = 200 ] && ok "Home page answers" || bad "Home page answered $code (expected 200)"
   if [ -n "$LEGACY_UPSTREAM" ]; then
     code=$(curl -sk --noproxy '*' -o /dev/null -w '%{http_code}' -H "Host: $TEST_HOST" http://127.0.0.1/images/logos/FSDNetwork.png)
     [ "$code" = 200 ] || [ "$code" = 301 ] && ok "Old files reachable via $LEGACY_UPSTREAM" || bad "Old files answered $code"
