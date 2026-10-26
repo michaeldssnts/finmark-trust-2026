@@ -173,7 +173,10 @@ cmd_update() {
   systemctl reload nginx
   echo "$new" > "$WEB/.deployed"
   echo "$(date '+%F %T') live ${new:0:7}" >> "$LOG"
-  ls -1dt "$WEB"/releases/*/ | tail -n +6 | xargs -r rm -rf     # keep the last 5 versions
+  # keep the last 5 versions. Sorted by name (each name starts with its date and time), never by folder date,
+  # and the live version is never removed.
+  local live; live=$(readlink -f "$WEB/current")
+  ls -1d "$WEB"/releases/*/ | sed 's:/$::' | sort -r | tail -n +6 | grep -vx "$live" | xargs -r rm -rf
   # keep this tool and the sign-in service up to date with the copy in GitHub
   cmp -s "$rel/server/finmark.sh" /usr/local/bin/finmark || install -m 755 "$rel/server/finmark.sh" /usr/local/bin/finmark
   if ! cmp -s "$rel/server/oauth-server.mjs" /opt/finmark/oauth-server.mjs; then
@@ -191,7 +194,7 @@ cmd_update() {
 cmd_rollback() {
   load
   local cur prev; cur=$(readlink -f "$WEB/current")
-  prev=$(ls -1dt "$WEB"/releases/*/ | sed 's:/$::' | grep -vx "$cur" | head -1)
+  prev=$(ls -1d "$WEB"/releases/*/ | sed 's:/$::' | sort -r | grep -vx "$cur" | head -1)
   [ -n "$prev" ] || die "There is no earlier version on this server to go back to."
   cp "$prev/server/redirects.conf" "$REDIRECTS"
   nginx -t >/dev/null 2>&1 || die "Couldn't switch back (web server check failed)."
@@ -423,6 +426,7 @@ cmd_check() {
   if systemctl is-active -q finmark-forms; then grep -q '^MAIL_CLIENT_SECRET=' "$FORMS_ENV" 2>/dev/null && ok "Website forms running, email on" || warn "Website forms running, email not set up yet (sudo finmark email-setup)"
   else warn "Website forms not running yet (they start after the next update)"; fi
   systemctl is-active -q finmark-update.timer && ok "Automatic updates on" || bad "Automatic updates off"
+  [ -d "$(readlink -f "$WEB/current")" ] && [ -f "$WEB/current/index.html" ] || bad "The live version's folder is missing (run: sudo finmark update --force)"
   [ -f "$WEB/.deployed" ] && ok "Live version: $(cut -c1-7 "$WEB/.deployed"), last activity: $(tail -1 "$LOG" 2>/dev/null)" || warn "Nothing published yet"
   local code; code=$(curl -s --noproxy '*' -o /dev/null -w '%{http_code}' -H "Host: $TEST_HOST" http://127.0.0.1/index.html)
   [ "$code" = 200 ] || [ "$code" = 301 ] && ok "Home page answers" || bad "Home page answered $code"
