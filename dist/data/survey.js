@@ -10,6 +10,8 @@
   const pct = (v, d = 1) => (v == null || isNaN(v) ? '–' : (v > 0 && v < 0.05 ? '<0.1' : (+v).toFixed(d)) + '%');
   const people = w => { if (!w) return '–'; if (w >= 1e6) return (w / 1e6).toFixed(w >= 1e7 ? 1 : 2) + ' million'; if (w >= 1e3) return Math.round(w / 1e3).toLocaleString('en-GB') + 'k'; return Math.round(w).toLocaleString('en-GB'); };
   const SADC = ['AGO', 'BWA', 'COD', 'SWZ', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZAF', 'TZA', 'ZMB', 'ZWE'];
+  // Countries with a country page (SADC plus the other FinScope countries)
+  const PAGES = SADC.concat(['BGD', 'BEN', 'BFA', 'KHM', 'CMR', 'CIV', 'GMB', 'GHA', 'HTI', 'LAO', 'MMR', 'NPL', 'NGA', 'PAK', 'RWA', 'THA', 'TGO', 'UGA']);
   const EXPLORER = { 'consumer-MWI-2023': 'finscope-consumer.html#MWI-2023' };   // surveys with the full explorer (respondent-level data)
   const STRAND = ['--s1', '--s2', '--s3', '--s4', '--c5', '--c6', '--c7', '--c8'], LIGHT = new Set(['--s4', '--c5', '--none']);
   const GROUP = ['--s1', '--s2', '--s3', '--c5', '--c7', '--c6', '--c8', '--s4', '#8b5a9e', '#b5534a', '#5f7d2e', '#2f6d8a', '#a07a1f', '#6a6f86', '#3d8f7a'];
@@ -234,7 +236,7 @@
     ws.forEach(w => { const el = $('w-' + w.id); if (el) fillWidget(w, el).then(() => { if (my === renderToken && S.w === w.id) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); el.classList.add('flash'); S.w = ''; } }); });
   }
   function renderHead() {
-    const name = D.country, sadc = SADC.includes(S.iso), k = curKey();
+    const name = D.country, sadc = PAGES.includes(S.iso), k = curKey();
     $('countryName').textContent = name; $('crumbCountry').textContent = name; $('crumbSurvey').textContent = label(S.s);
     $('surveyEyebrow').textContent = label(S.s); $('yearEyebrow').textContent = S.year;
     $('crumbCountryLink').href = sadc ? `country.html?country=${S.iso}` : '../countries/index.html';

@@ -94,6 +94,7 @@ a.cp-dot:hover{background:var(--navy)}
 .cp-tabs button{border:0;background:none;padding:14px 18px 12px;font:inherit;font-weight:700;font-size:.95rem;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
 .cp-tabs button[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--teal)}
 .cp-tabs button span{font-weight:600;font-size:.78rem;color:var(--muted);margin-left:6px}
+.cp-filter[hidden]{display:none}
 .cp-filter{display:flex;align-items:center;gap:10px;font-size:.86rem;margin-bottom:18px}
 .cp-filter input{width:18px;height:18px;accent-color:var(--teal)}
 .cp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -199,10 +200,9 @@ a.cp-dot:hover{background:var(--navy)}
   const fmtPeople = v => v >= 1e6 ? (v/1e6).toFixed(v >= 1e7 ? 1 : 2) + ' million' : Math.round(v/1e3).toLocaleString('en-GB') + 'k';
   const fmtUsd = v => 'US$' + Math.round(v).toLocaleString('en-GB');
 
-  // One list of every country with FinScope data: SADC countries have a full country page, the others open their survey results
-  const OTHERS = [{"iso": "BGD", "name": "Bangladesh"}, {"iso": "BEN", "name": "Benin"}, {"iso": "BFA", "name": "Burkina Faso"}, {"iso": "KHM", "name": "Cambodia"}, {"iso": "CMR", "name": "Cameroon"}, {"iso": "CIV", "name": "C\u00f4te d'Ivoire"}, {"iso": "GMB", "name": "Gambia"}, {"iso": "GHA", "name": "Ghana"}, {"iso": "HTI", "name": "Haiti"}, {"iso": "LAO", "name": "Laos"}, {"iso": "MMR", "name": "Myanmar"}, {"iso": "NPL", "name": "Nepal"}, {"iso": "NGA", "name": "Nigeria"}, {"iso": "PAK", "name": "Pakistan"}, {"iso": "RWA", "name": "Rwanda"}, {"iso": "THA", "name": "Thailand"}, {"iso": "TGO", "name": "Togo"}, {"iso": "UGA", "name": "Uganda"}];
-  $('cpSelect').innerHTML = list.map(c => ({ v: c.iso, n: c.name })).concat(OTHERS.map(c => ({ v: 'survey:' + c.iso, n: c.name }))).sort((a, b) => a.n.localeCompare(b.n)).map(o => `<option value="${o.v}">${esc(o.n)}</option>`).join('');
-  $('cpSelect').onchange = e => { const v = e.target.value; if (v.startsWith('survey:')) { location.href = `survey.html?d=consumer-${v.slice(7)}`; return; } go(v); };
+  // Every country with FinScope data has a country page, listed A–Z
+  $('cpSelect').innerHTML = [...list].sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.iso}">${esc(c.name)}</option>`).join('');
+  $('cpSelect').onchange = e => go(e.target.value);
   window.addEventListener('hashchange', () => { const h = location.hash.slice(1).toUpperCase(); if (list.some(c => c.iso === h) && h !== st.iso) { st.iso = h; render(); } });
 
   function go(iso) { st.iso = iso; st.all = false; try { history.replaceState(null, '', '#' + iso); } catch (e) {} render(); window.scrollTo({ top: 0 }); }
@@ -223,6 +223,7 @@ a.cp-dot:hover{background:var(--navy)}
     $('cpKey').innerHTML = c.key
       ? `<small>Headline finding</small><strong>${esc(c.key.value)}</strong><p>${esc(c.key.text)}</p><span>Source: ${esc(c.key.source)}</span>`
       : latest ? `<small>Latest FinScope Consumer</small><strong>${latest} survey</strong><p>Explore how adults in ${esc(c.name)} save, borrow, send money and manage risk.</p><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a>`
+      : c.other.some(o => o.url) ? `<small>Latest survey</small><strong>${esc(c.other.filter(o => o.url).pop().year)} smallholder survey</strong><p>Explore how smallholder farming families in ${esc(c.name)} save, borrow, send money and manage risk.</p><a class="cp-btn" href="${esc(c.other.filter(o => o.url).pop().url)}">Explore the data</a>`
       : `<small>FinScope</small><strong>No national FinScope Consumer survey yet</strong><p>See the datasets and publications we hold for ${esc(c.name)} below.</p>`;
 
     const s = c.stats;
@@ -262,7 +263,7 @@ a.cp-dot:hover{background:var(--navy)}
         : `<p class="cp-none">No national FinScope Consumer survey has been run in ${esc(c.name)} yet.</p>`) + `</article>`;
     cards += `<article class="cp-survey msme"><span class="tag">Enterprise survey</span><h3>FinScope MSME</h3>`
       + (c.msme.length ? `<div class="cp-years">${c.msme.map(y => `<a href="${msmePage(c, y)}">${y}</a>`).join('')}</div>${pubList('FinScope MSME')}<p>Select a year to see the results that are online. Reports and pocket guides have the full findings.</p>` : `<p class="cp-none">No FinScope MSME survey for ${esc(c.name)} yet.</p>`) + `</article>`;
-    cards += `<article class="cp-survey"><span class="tag">Other data</span><h3>More datasets</h3>${c.other.length ? `<ul class="cp-list">${c.other.map(o => `<li><span>${esc(o.name)}</span><small>${esc(o.year)}</small></li>`).join('')}</ul>` : '<p class="cp-none">No other datasets listed.</p>'}</article>`;
+    cards += `<article class="cp-survey"><span class="tag">Other data</span><h3>More datasets</h3>${c.other.length ? `<ul class="cp-list">${c.other.map(o => `<li>${o.url ? `<a href="${esc(o.url)}">${esc(o.name)}</a>` : `<span>${esc(o.name)}</span>`}<small>${esc(o.year)}</small></li>`).join('')}</ul>` : '<p class="cp-none">No other datasets listed.</p>'}</article>`;
     $('cpSurveys').innerHTML = cards;
 
     renderContent(c);
@@ -274,13 +275,14 @@ a.cp-dot:hover{background:var(--navy)}
   }
 
   function renderContent(c) {
-    const pick = k => c[k].filter(i => st.regional || i.scope === 'country');
+    $('cpRegional').closest('label').hidden = c.sadc === false;
+    const pick = k => c[k].filter(i => st.regional || c.sadc === false || i.scope === 'country');
     $('nData').textContent = pick('data').length; $('nProg').textContent = pick('programmes').length;
     const items = pick(st.tab), show = st.all ? items : items.slice(0, 6);
     $('cpContent').innerHTML = items.length ? `<div class="cp-grid">${show.map(i => {
       const tag = i.url ? 'a' : 'div';
       return `<${tag} class="cp-item"${i.url ? ` href="${esc(i.url)}" target="_blank" rel="noopener"` : ''}><div class="meta"><span>${esc(i.type)}</span><time>${esc(i.date || '')}</time></div><h3>${esc(i.title)}</h3><div class="foot"><span class="cp-pill${i.scope === 'regional' ? ' regional' : ''}">${i.scope === 'regional' ? 'Regional' : esc(i.topic)}</span>${i.url ? '<span class="go">Open ↗</span>' : ''}</div></${tag}>`; }).join('')}</div>${items.length > 6 ? `<div class="cp-more"><button class="cp-btn ghost" type="button" id="cpAll">${st.all ? 'Show fewer' : `Show all ${items.length}`}</button></div>` : ''}`
-      : `<div class="cp-empty">No ${st.tab === 'data' ? 'data' : 'programme'} content tagged to ${esc(c.name)} yet.${st.regional ? '' : ' Try including regional SADC content.'}</div>`;
+      : `<div class="cp-empty">No ${st.tab === 'data' ? 'data' : 'programme'} content tagged to ${esc(c.name)} yet.${st.regional || c.sadc === false ? '' : ' Try including regional SADC content.'}</div>`;
     const b = $('cpAll'); if (b) b.onclick = () => { st.all = !st.all; renderContent(c); };
   }
 

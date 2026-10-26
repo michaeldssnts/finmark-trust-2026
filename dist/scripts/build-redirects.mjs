@@ -65,7 +65,8 @@ for (const x of SURVEYS) {
   if (x.s === 'msme') rule(`/data-portal/msm-enterprises/${x.iso}/${x.year}`, to);
   else rule(`/data-portal/${x.iso}/${x.year}`, to);
 }
-for (const iso of [...new Set(SURVEYS.map(x => x.iso))].filter(c => !SADC.includes(c))) { rule(`/data-portal/${iso}`, `/data/survey.html?d=consumer-${iso}`); rule(`/data-portal/${iso}/*`, `/data/survey.html?d=consumer-${iso}`); }
+// Every other FinScope country now has its own country page too
+for (const iso of [...new Set(SURVEYS.map(x => x.iso))].filter(c => !SADC.includes(c))) { rule(`/data-portal/${iso}`, `/data/country.html?country=${iso}`); rule(`/data-portal/${iso}/*`, `/data/country.html?country=${iso}`); }
 rule('/data-portal/msm-enterprises/*', '/data/survey.html?d=msme-ZAF');
 for (const c of SADC) { rule(`/data-portal/${c}`, `/data/country.html?country=${c}`); rule(`/data-portal/${c}/*`, `/data/country.html?country=${c}`); }
 for (const p of ['/data-portal', '/data-portal/*', '/region/*', '/national_surveys', '/financial_diaries', '/geospatial_data', '/data-for-financial-markets', '/data-and-analytics', '/datasets', '/datasets/*']) rule(p, '/countries/index.html');

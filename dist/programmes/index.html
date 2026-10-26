@@ -170,6 +170,25 @@
     @media(max-width:900px){.pp-hero-grid{grid-template-columns:1fr}.pp-hero-copy{padding:40px 20px 90px}.pp-hero-media{min-height:260px;order:-1}.pp-hero-media:after{background:linear-gradient(0deg,var(--navy-deep),rgba(20,32,68,.1) 60%)}.pp-hero .pp-diag{display:none}.pp-choose-grid{grid-template-columns:1fr}}
     @media(max-width:640px){.pp-grid,.pp-cross-grid,.za-grid,.pp-themes{grid-template-columns:1fr}.pp-sec{padding:60px 0}.pp-door{padding:24px}.pp-stats li{min-width:0}.pp-stats b{font-size:1.7rem}}
     @media(prefers-reduced-motion:reduce){.pp-door,.pp-tile,.za-card,.za-num,.pp-x,.pp-theme{transition:none}}
+    /* Programme heads (same card as the Data and Analytics contact on Explore Data) */
+    .da-contact{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;margin-top:40px;padding:36px 40px;background:var(--navy-deep,#142044);color:#fff;position:relative;overflow:hidden}
+    .da-contact:after{content:"";position:absolute;left:-40px;bottom:-110px;width:22px;height:220px;background:var(--teal);transform:rotate(45deg);opacity:.85}
+    .da-contact-copy{position:relative;z-index:1}
+    .da-contact-copy h3{margin:0 0 10px;font-size:1.4rem;color:#fff}
+    .da-contact-copy p{margin:0;color:#d5def0;line-height:1.65}
+    .da-person{position:relative;z-index:1;display:flex;gap:20px;align-items:center;padding:22px;background:#1d2c57;border:1px solid rgba(255,255,255,.14)}
+    .da-photo{flex:none;display:grid;place-items:center;width:86px;height:86px;border-radius:50%;overflow:hidden;background:var(--teal);color:#fff;font-weight:800;font-size:1.4rem}
+    .da-photo img{width:100%;height:100%;object-fit:cover}
+    .da-person h4{margin:0;font-size:1.12rem}
+    .da-person h4 a{color:#fff}
+    .da-person h4 a:hover{text-decoration:underline}
+    .da-role{margin:2px 0 10px;color:#61d7e2;font-size:.86rem;font-weight:700}
+    .da-lines{margin:0;display:grid;gap:4px;font-size:.9rem;color:#d5def0}
+    .da-lines b{color:#fff}
+    .da-lines a{color:#fff;word-break:break-word}
+    .da-lines a:hover{text-decoration:underline}
+    @media(max-width:1020px){.da-contact{grid-template-columns:1fr;gap:24px}}
+    @media(max-width:720px){.da-contact{padding:28px 22px}.da-person{flex-direction:column;align-items:flex-start;padding:18px}}
   </style>
 </head>
 <body data-page="programmes">
@@ -223,6 +242,20 @@
         <div><h2 id="sadcTitle"><span class="pp-num">01</span>SADC region</h2><p>Each programme links to its own site, where it has one, and to its research in the Knowledge Hub.</p></div>
       </div>
       <ul class="pp-grid" id="ppSadc"></ul>
+      <aside class="da-contact" aria-labelledby="sadcLeadTitle">
+        <div class="da-contact-copy">
+          <h3 id="sadcLeadTitle">Contact details for SADC programmes</h3>
+          <p>Feel free to contact us for more information on our regional work across SADC, including cross-border trade, remittances, financial integrity and financial inclusion monitoring.</p>
+        </div>
+        <div class="da-person">
+          <a class="da-photo" href="../about/index.html?member=damola-owolade" aria-hidden="true" tabindex="-1"><img src="https://finmark.org.za/system/members/images/000/000/077/original/Damola.jpg?1760681007" alt="" onerror="this.replaceWith(document.createTextNode('DO'))"></a>
+          <div>
+            <h4><a href="../about/index.html?member=damola-owolade">Damola Owolade</a></h4>
+            <p class="da-role">Head: SADC FI</p>
+            <p class="da-lines"><span><b>Tel:</b> <a href="tel:+27675949291">+27 (0) 67 594 9291</a></span><span><b>Email:</b> <a data-m="YXouZ3JvLmtyYW1uaWZAT2Fsb21hRA=="></a></span></p>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -232,6 +265,20 @@
         <div><h2 id="zaTitle"><span class="pp-num">02</span>South Africa</h2><p>Community programmes that connect people to livelihoods, payments and opportunity.</p></div>
       </div>
       <div class="za-grid" id="ppZa"></div>
+      <aside class="da-contact" aria-labelledby="zaLeadTitle">
+        <div class="da-contact-copy">
+          <h3 id="zaLeadTitle">Contact details for South Africa programmes</h3>
+          <p>Feel free to contact us for more information on our South African financial inclusion programme, which works to deepen inclusion, strengthen economic participation and support sustainable livelihoods.</p>
+        </div>
+        <div class="da-person">
+          <a class="da-photo" href="../about/index.html?member=lesego-mashigo" aria-hidden="true" tabindex="-1"><img src="https://finmark.org.za/system/members/images/000/000/085/original/lesego2.jpg?1747923067" alt="" onerror="this.replaceWith(document.createTextNode('LM'))"></a>
+          <div>
+            <h4><a href="../about/index.html?member=lesego-mashigo">Lesego Mashigo</a></h4>
+            <p class="da-role">Head: South Africa FI Programme</p>
+            <p class="da-lines"><span><b>Tel:</b> <a href="tel:+27675949291">+27 (0) 67 594 9291</a></span><span><b>Email:</b> <a data-m="YXouZ3JvLmtyYW1uaWZAb2ZuaQ=="></a></span></p>
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 
