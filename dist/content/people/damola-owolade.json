@@ -1,11 +1,11 @@
 {
+  "bio": "Damola leads the SADC financial inclusion programme at FinMark Trust. He is responsible for regional programmes that focus on the development of informal cross-border trade, regional cross-border remittances, and innovation in financial integrity to reduce the cost of consumer due diligence and KYC rules.\n\nThe monitoring and development of dashboards for the SADC, MSME social protection and supplier development also form part of his portfolio. Damola brings more than 10 years of experience in the field of financial inclusion.\n\nHis academic background combined with practical expertise gained from working in the financial sector equips him with a profound understanding of the trust network required to foster and promote financial inclusion effectively.\n\nHis skill set includes data analysis and measurement, grant implementation and administration, and capacity building. Damola holds a master’s degree in econometrics.",
   "name": "Damola Owolade",
   "slug": "damola-owolade",
-  "role": "Head: SADC FI",
-  "group": "team",
   "order": 4,
   "photo": "https://finmark.org.za/system/members/images/000/000/077/original/Damola.jpg?1760681007",
-  "bio": "Damola leads regional work on cross-border trade, remittances, financial integrity and financial inclusion monitoring. He brings more than a decade of sector experience and holds a master’s degree in econometrics.",
+  "role": "Head: SADC FI",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
