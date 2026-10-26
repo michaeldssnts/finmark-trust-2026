@@ -78,7 +78,10 @@ site_body() {
     location ^~ /api/admin/ { proxy_pass http://127.0.0.1:8788; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; client_max_body_size 64k; add_header Cache-Control "no-store"; }
 
     location ~ ^/knowledge-hub/(knowledge\.json|posts/) { add_header Cache-Control "no-cache"; try_files $uri =404; }
-    location ~* \.(css|js|svg|webp|jpg|jpeg|png|gif|woff2?)$ { add_header Cache-Control "public, max-age=604800"; try_files $uri =404; }
+    # Code and styles: browsers check for a newer copy each time (a quick "not changed" answer when nothing changed),
+    # so updates show straight away. Images and fonts are kept for a week.
+    location ~* \.(css|js)$ { add_header Cache-Control "no-cache"; try_files $uri =404; }
+    location ~* \.(svg|webp|jpg|jpeg|png|gif|woff2?)$ { add_header Cache-Control "public, max-age=604800"; try_files $uri =404; }
     location / { try_files $uri $uri/ $uri.html =404; }
 
     gzip on;
@@ -130,7 +133,7 @@ EOF
 write_nginx() {
   local n; n=$(names)
   {
-    echo "# FinMark Trust website. Written by 'finmark' — do not edit by hand (run: sudo finmark setup). conf v3"
+    echo "# FinMark Trust website. Written by 'finmark' — do not edit by hand (run: sudo finmark setup). conf v4"
     echo "proxy_cache_path /var/cache/finmark-portal levels=1:2 keys_zone=finmark_portal:20m max_size=3g inactive=3650d use_temp_path=off;"
     echo "map \$host \$finmark_robots { default \"\"; $TEST_HOST \"noindex, nofollow\"; }"
     echo
@@ -416,7 +419,7 @@ EOF
   fi
   systemctl is-enabled -q finmark-forms 2>/dev/null || systemctl enable -q finmark-forms
   systemctl is-active -q finmark-forms || systemctl restart finmark-forms
-  grep -q 'conf v3' "$SITE_CONF" 2>/dev/null || write_nginx
+  grep -q 'conf v4' "$SITE_CONF" 2>/dev/null || write_nginx
 }
 
 cmd_email_setup() {
