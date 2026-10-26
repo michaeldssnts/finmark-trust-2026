@@ -501,16 +501,16 @@ function renderTop(){
 function legend(sec, interactive){
   const items = sec.order.map((l,i)=>({l, v: i===sec.order.length-1 ? '--none' : STRAND_VARS[i]}));
   if(!interactive) return `<div class="legend static">${items.map(it=>`<span><i style="background:${colour(it.v)}"></i>${esc(it.l)}</span>`).join('')}</div>`;
-  const f = S.focus[sec.id] ?? sec.order[sec.order.length-1];
-  return `<div class="legend" role="group" aria-label="Choose a category to rank by district">${items.map(it=>`<button type="button" data-focus="${esc(it.l)}" aria-pressed="${it.l===f}"><i style="background:${colour(it.v)}"></i>${esc(it.l)}</button>`).join('')}</div>`;
+  const f = S.focus[sec.id] || '';
+  return `<div class="legend" role="group" aria-label="Show one category"><button type="button" data-focus="" aria-pressed="${!f}">All</button>${items.map(it=>`<button type="button" data-focus="${esc(it.l)}" aria-pressed="${it.l===f}"><i style="background:${colour(it.v)}"></i>${esc(it.l)}</button>`).join('')}</div>`;
 }
 function strandChart(sec, m){
-  const gs=groups(m), big=gs.length===1, f=S.focus[sec.id] ?? sec.order[sec.order.length-1];
+  const gs=groups(m), big=gs.length===1, f=S.focus[sec.id] || '';
   const rows = gs.map(g=>{
     const d=dist(g.m,sec.col);
     const segs = sec.order.map((l,i)=>{ const v=i===sec.order.length-1?'--none':STRAND_VARS[i], val=d.pct[idxOf(sec.col,l)]||0;
       return `<div class="seg-bar${LIGHT_VARS.has(v)?' light':''}${l===f?' focus':''}" style="flex-basis:${val}%;background:${colour(v)}" title="${esc(l)}: ${pct(val)} · ${people(d.w[idxOf(sec.col,l)]||0)} adults">${val>=6?pct(val,0):''}</div>`; }).join('');
-    return `<div class="srow${g.n<LOW_N?' low':''}"><div class="lab">${esc(g.label)}<small class="num">${people(g.w)} adults · n = ${g.n.toLocaleString('en-GB')}${g.n<LOW_N?' · small sample':''}</small></div><div class="stack${big?' big':''} dim">${segs}</div></div>`;
+    return `<div class="srow${g.n<LOW_N?' low':''}"><div class="lab">${esc(g.label)}<small class="num">${people(g.w)} adults · n = ${g.n.toLocaleString('en-GB')}${g.n<LOW_N?' · small sample':''}</small></div><div class="stack${big?' big':''}${f?' dim':''}">${segs}</div></div>`;
   }).join('');
   return `<div class="stack-rows">${rows}</div><div class="axis"><div></div><div class="num"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div></div>`;
 }
@@ -557,12 +557,21 @@ function distBlock(k, m){
 }
 function districtRank(sec){
   if(!has('Jurisdiction')) return '';
-  const m=mask('Jurisdiction'), f=S.focus[sec.id] ?? sec.order[sec.order.length-1];
+  const m=mask('Jurisdiction'), f=S.focus[sec.id] || '';
+  if(!f) return districtStacks(sec, m);
   const rows = cols.Jurisdiction.labels.map((l,ix)=>{ const gm=sub(m,'Jurisdiction',ix+1), b=base(gm); if(!b.n) return null; const s=share(gm,sec.col,f); return {l,pct:s.pct,n:b.n,w:b.w}; }).filter(Boolean).sort((a,b)=>b.pct-a.pct);
   const fi=sec.order.indexOf(f), v = fi===sec.order.length-1?'--none':STRAND_VARS[fi];
   const max=Math.max(...rows.map(r=>r.pct),1);
   if(S.view==='table') return `<div class="tablewrap"><table data-csv><thead><tr><th>District</th><th>${esc(f)}</th><th>Adults ('000)</th><th>n</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.l)}</td><td class="num">${pct(r.pct)}</td><td class="num">${thousands(r.w)}</td><td class="num">${r.n}</td></tr>`).join('')}</tbody></table></div>`;
   return `<div class="rank">${rows.map((r,i)=>`<div class="rrow${r.n<30?' low':''}${S.filters.Jurisdiction===r.l?' sel':''}" title="n = ${r.n}"><span class="pos num">${i+1}</span><span class="name">${esc(r.l)}${r.n<30?' <span class="fs-chip">n ${r.n}</span>':''}</span><div class="track"><div class="fill" style="width:${r.pct/max*100}%;background:${colour(v==='--none'?'--muted':v)}"></div></div><span class="val num">${pct(r.pct)}</span></div>`).join('')}</div>`;
+}
+// No category chosen: each district's whole strand, most included first
+function districtStacks(sec, m){
+  const last=sec.order[sec.order.length-1];
+  const rows=cols.Jurisdiction.labels.map((l,ix)=>{ const gm=sub(m,'Jurisdiction',ix+1), b=base(gm); if(!b.n) return null; return {l, d:dist(gm,sec.col), n:b.n, w:b.w}; }).filter(Boolean)
+    .sort((a,b)=>(a.d.pct[idxOf(sec.col,last)]||0)-(b.d.pct[idxOf(sec.col,last)]||0));
+  if(S.view==='table') return `<div class="tablewrap"><table data-csv><thead><tr><th>District</th>${sec.order.map(o=>`<th>${esc(o)}</th>`).join('')}<th>n</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r.l)}</td>${sec.order.map(o=>`<td class="num">${pct(r.d.pct[idxOf(sec.col,o)]||0)}</td>`).join('')}<td class="num">${r.n}</td></tr>`).join('')}</tbody></table></div>`;
+  return `<div class="stack-rows">${rows.map(r=>`<div class="srow${r.n<30?' low':''}"><div class="lab">${esc(r.l)}<small class="num">n = ${r.n.toLocaleString('en-GB')}</small></div><div class="stack">${sec.order.map((o,i)=>{ const v=i===sec.order.length-1?'--none':STRAND_VARS[i], val=r.d.pct[idxOf(sec.col,o)]||0; return `<div class="seg-bar${LIGHT_VARS.has(v)?' light':''}" style="flex-basis:${val}%;background:${colour(v)}" title="${esc(o)}: ${pct(val)}">${val>=12?pct(val,0):''}</div>`; }).join('')}</div></div>`).join('')}</div>`;
 }
 function copyBtn(){ return `<button class="btn ghost" type="button" data-copy>Copy as CSV</button>`; }
 
@@ -574,11 +583,11 @@ function renderPanel(){
   let html='';
   if(sec.col){
     if(!has(sec.col)){ P.innerHTML='<div class="card empty">This survey year does not include this topic.</div>'; return; }
-    html += `<div class="card"><div class="card-head"><div><h2>${sec.title}${cmp}</h2><p class="sub">${sec.sub}</p></div>${S.view==='table'?copyBtn():''}</div>${S.view==='table'?strandTable(sec,m):legend(sec,false)+strandChart(sec,m)}</div>`;
-    const f=S.focus[sec.id] ?? sec.order[sec.order.length-1];
+    html += `<div class="card"><div class="card-head"><div><h2>${sec.title}${cmp}</h2><p class="sub">${sec.sub}</p></div>${S.view==='table'?copyBtn():''}</div>${S.view==='table'?strandTable(sec,m):legend(sec,true)+strandChart(sec,m)}</div>`;
+    const f=S.focus[sec.id] || '';
     html += `<div class="twocol">`;
     html += `<div class="card"><div class="card-head"><div><h3>Usage</h3><p class="sub">Every channel adults use. One person can use several, so these do not add up to 100%.</p></div>${S.view==='table'?copyBtn():''}</div>${S.view==='table'?usageTable(sec.usage,m):usageBlock(sec.usage,m,'--s2')}</div>`;
-    html += `<div class="card"><div class="card-head"><div><h3>By district</h3><p class="sub">Share of adults in <b>${esc(f)}</b>, ranked. Choose another category to re-rank. The district filter is ignored here.</p></div>${S.view==='table'?copyBtn():''}</div>${legend(sec,true)}${districtRank(sec)}</div>`;
+    html += `<div class="card"><div class="card-head"><div><h3>By district</h3><p class="sub">${f?`Share of adults in <b>${esc(f)}</b>, ranked. Choose <b>All</b> to see every category again.`:'Every district, most included first. Choose a category to rank the districts by it.'} The district filter is ignored here.</p></div>${S.view==='table'?copyBtn():''}</div>${legend(sec,true)}${districtRank(sec)}</div>`;
     html += `</div>`;
   } else if(sec.kind==='wellbeing'){
     html += `<div class="card"><div class="card-head"><div><h2>${sec.title}${cmp}</h2><p class="sub">${sec.sub}</p></div>${S.view==='table'?copyBtn():''}</div>${S.view==='table'?usageTable(sec.usage,m):usageBlock(sec.usage,m,'--s3')}</div>`;
@@ -588,7 +597,7 @@ function renderPanel(){
     html += `<div class="twocol">${sec.dists.filter(has).map(k=>`<div class="card"><div class="card-head"><div><h3>${LABELS[k]}</h3></div>${S.view==='table'?copyBtn():''}</div>${distBlock(k,m)}</div>`).join('')}</div>`;
   }
   P.innerHTML = html;
-  P.querySelectorAll('[data-focus]').forEach(btn=>btn.onclick=()=>{ S.focus[sec.id]=btn.dataset.focus; renderPanel(); });
+  P.querySelectorAll('[data-focus]').forEach(btn=>btn.onclick=()=>{ const v=btn.dataset.focus; S.focus[sec.id] = (v && S.focus[sec.id]===v) ? '' : v; renderPanel(); });
   P.querySelectorAll('[data-copy]').forEach(btn=>btn.onclick=()=>copyCsv(btn.closest('.card').querySelector('table')));
   // highlight focused segment in strand chart
   P.querySelectorAll('.stack.dim').forEach(s=>{ if(!s.querySelector('.focus')) s.classList.remove('dim'); });
