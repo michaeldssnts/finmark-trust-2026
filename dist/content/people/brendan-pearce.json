@@ -1,11 +1,11 @@
 {
+  "bio": "As CEO of FinMark Trust, Brendan oversees the organisation's strategic direction and operations. His extensive experience includes advising the Managing Director of the Land and Agricultural Bank of South Africa, serving as CEO of MerSETA and LGSETA, and leading Umhlaba Development Services. He has also worked at Vodacom as Executive Head of international legal and regulatory affairs.\n\nBrendan is an advocate of the High Court in South Africa and holds a master’s in banking law from the University of South Africa, along with certificates in payment systems and digital payments. He currently serves as the Chair of the FSCA Consumer Advisory Panel, which focuses on shaping consumer protection policies within the sector.",
   "name": "Brendan Pearce",
   "slug": "brendan-pearce",
-  "role": "Chief Executive Officer",
-  "group": "team",
   "order": 1,
   "photo": "https://finmark.org.za/system/members/images/000/000/063/original/Brendan.jpg?1747923045",
-  "bio": "Brendan oversees FinMark Trust’s strategic direction and operations. His leadership experience spans development services, sector education and training, agricultural finance, and international legal and regulatory affairs.",
+  "role": "Chief Executive Officer",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
