@@ -241,15 +241,18 @@ a.cp-dot:hover{background:var(--navy)}
     $('cpSource').textContent = `Sources: ${P.sources.worldbank}, latest available year shown; financial inclusion from the latest FinScope survey. Adults 15+ is total population minus ages 0–14.`;
 
     // Timeline
-    const pts = [...c.consumer.map(x => ({ y: x.year, k: 'consumer', note: x.note })), ...c.msme.map(y => ({ y, k: 'msme' }))];
+    // CGAP smallholder household surveys (Bangladesh, Côte d'Ivoire, Uganda): shown alongside FinScope, credited to CGAP
+    const sh = c.other.filter(o => o.url);
+    const pts = [...c.consumer.map(x => ({ y: x.year, k: 'consumer', note: x.note })), ...c.msme.map(y => ({ y, k: 'msme' })), ...sh.map(o => ({ y: +o.year, k: 'sh', u: o.url }))];
     const years = pts.map(p => p.y);
     const lo = Math.min(2005, ...years), hi = Math.max(2026, ...years);
     const pos = y => ((y - lo) / (hi - lo) * 92 + 4).toFixed(2) + '%';
     const row = (label, k) => { const ps = pts.filter(p => p.k === k); return `<div class="cp-tl-row"><b>${label}</b><div class="cp-tl-track">${ps.length ? ps.map(p => k === 'consumer'
         ? `<a class="cp-dot" href="${explorer(c, p.y)}" style="left:${pos(p.y)}" title="Explore FinScope Consumer ${p.y}${p.note ? ' (' + p.note + ')' : ''}">${p.y}</a>`
+        : k === 'sh' ? `<a class="cp-dot other" href="${esc(p.u)}" style="left:${pos(p.y)}" title="CGAP smallholder household survey ${p.y}">${p.y}</a>`
         : `<a class="cp-dot msme" href="${msmePage(c, p.y)}" style="left:${pos(p.y)}" title="FinScope MSME ${p.y}">${p.y}</a>`).join('') : '<span class="cp-none" style="position:relative;top:4px">No survey yet</span>'}</div></div>`; };
     const ticks = []; for (let y = Math.ceil(lo / 5) * 5; y <= hi; y += 5) ticks.push(y);
-    $('cpTimeline').innerHTML = row('FinScope Consumer', 'consumer') + row('FinScope MSME', 'msme') + `<div class="cp-tl-axis"><div></div><div>${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div></div>`;
+    $('cpTimeline').innerHTML = row('FinScope Consumer', 'consumer') + row('FinScope MSME', 'msme') + (sh.length ? row('Smallholder (CGAP)', 'sh') : '') + `<div class="cp-tl-axis"><div></div><div>${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div></div>`;
     const n = c.consumer.length + c.msme.length + c.other.length;
     $('dataLede').textContent = `${n} dataset${n === 1 ? '' : 's'} for ${c.name}. Select a survey year to see its results.`;
 
@@ -257,6 +260,11 @@ a.cp-dot:hover{background:var(--navy)}
     const pubs = t => c.data.filter(d => d.topic === t && d.url).slice(0, 3);
     const pubList = t => { const p = pubs(t); return p.length ? `<ul class="cp-list">${p.map(d => `<li><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title)}</a><small>${esc(d.type)}</small></li>`).join('')}</ul>` : ''; };
     let cards = '';
+    if (!c.consumer.length && sh.length) { const l = sh[sh.length - 1];
+      cards += `<article class="cp-survey lead"><span class="tag">National survey</span><h3>Smallholder Household Survey</h3><p>CGAP's nationally representative survey of smallholder farming households in ${esc(c.name)}: how they save, borrow, send money and manage risk. Data supplied by CGAP. No national FinScope Consumer survey has been run in ${esc(c.name)} yet.</p>`
+        + `<div class="cp-years">${sh.map((o, i) => `<a href="${esc(o.url)}" class="${i === sh.length - 1 ? 'latest' : ''}">${esc(o.year)}</a>`).join('')}</div>`
+        + `<div class="cp-actions"><a class="cp-btn" href="${esc(l.url)}">Explore ${esc(l.year)} data</a><a class="cp-btn ghost" href="${esc(l.url)}#request">Request the dataset</a></div></article>`;
+    } else
     cards += `<article class="cp-survey lead"><span class="tag">Flagship survey</span><h3>FinScope Consumer</h3><p>Nationally representative survey of adults (16+) on how they access and use financial products and services. Results are weighted to the national population.</p>`
       + (c.consumer.length ? `<div class="cp-years">${c.consumer.map((x, i) => `<a href="${explorer(c, x.year)}" class="${i === c.consumer.length - 1 ? 'latest' : ''}" title="${x.note ? esc(x.note) : 'Explore ' + x.year}">${x.year}${x.note && x.note.includes('NFIS') ? ' <small>NFIS</small>' : ''}</a>`).join('')}</div>${pubList('FinScope Consumer')}
         <div class="cp-actions"><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a><a class="cp-btn ghost" href="${c.iso === 'MWI' && +latest === 2023 ? explorer(c, latest) + '-request' : explorer(c, latest) + '#request'}">Request the dataset</a></div>`
