@@ -14,29 +14,30 @@
 
   const TABS = {
     consumer: [
-      { id: 'access', tab: 'Access', title: 'Access to financial services', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each adult is placed in the most formal category they use: banked first, then other formal (non-bank), then informal only. Excluded adults use no financial products or services.' },
-      { id: 'savings', tab: 'Savings', title: 'Savings', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where adults keep their savings, placed in the most formal channel they use.' },
-      { id: 'credit', tab: 'Credit', title: 'Credit', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where adults borrow, placed in the most formal source they use.' },
-      { id: 'remittances', tab: 'Remittances', title: 'Sending and receiving money', strand: 'total_remittances_strand', usage: ['remittances_strand'], sub: 'How adults send or receive money, placed in the most formal channel they use.' },
-      { id: 'insurance', tab: 'Insurance', title: 'Insurance', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover, placed in the most formal source adults use.' },
-      { id: 'trend', tab: 'Over time', title: 'Change over time', trend: ['total_fas_strand', 'total_saving_strand', 'total_credit_strand', 'total_remittances_strand', 'total_insurance_strand'], sub: 'The same strands for each FinScope survey in this country.' },
-      { id: 'wellbeing', tab: 'Wellbeing', title: 'Wellbeing and the SDGs', usage: ['sdgs_strand'], dists: ['poverty_line'], sub: 'Signs of hardship and employment, linked to the Sustainable Development Goals.' },
-      { id: 'profile', tab: 'Profile', title: 'Who the adults are', dists: ['gender', 'geographic_area', 'age', 'i2i_Education', 'i2i_Marital_Status', 'i2i_Income_Sources'], sub: 'The demographic profile of the adult population.' },
-      { id: 'living', tab: 'Living conditions', title: 'Living conditions', dists: ['electricity_access_type', 'cooking_energy_type', 'water_source_type', 'toilet_type', 'dwelling_type', 'access_to_resources'], sub: 'Access to basic services at home.' }
+      { id: 'access', group: 'Financial services', tab: 'Access', title: 'Access to financial services', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each adult is placed in the most formal category they use: banked first, then other formal (non-bank), then informal only. Excluded adults use no financial products or services.' },
+      { id: 'savings', group: 'Financial services', tab: 'Savings', title: 'Savings', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where adults keep their savings, placed in the most formal channel they use.' },
+      { id: 'credit', group: 'Financial services', tab: 'Credit', title: 'Credit and borrowing', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where adults borrow, placed in the most formal source they use.' },
+      { id: 'remittances', group: 'Financial services', tab: 'Payments and remittances', title: 'Sending and receiving money', strand: 'total_remittances_strand', usage: ['remittances_strand'], sub: 'How adults send or receive money, placed in the most formal channel they use.' },
+      { id: 'insurance', group: 'Financial services', tab: 'Insurance', title: 'Insurance', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover, placed in the most formal source adults use.' },
+      { id: 'trend', group: 'Compare', tab: 'Over time', title: 'Change over time', trend: ['total_fas_strand', 'total_saving_strand', 'total_credit_strand', 'total_remittances_strand', 'total_insurance_strand'], sub: 'The same strands for each FinScope survey in this country.' },
+      { id: 'profile', group: 'People and households', tab: 'People profile', title: 'People and households', dists: ['gender', 'geographic_area', 'age', 'i2i_Education', 'i2i_Marital_Status', 'i2i_Income_Sources'], sub: 'Choose one common indicator to understand the adult population.' },
+      { id: 'wellbeing', group: 'People and households', tab: 'Income and wellbeing', title: 'Income, employment and wellbeing', usage: ['sdgs_strand'], dists: ['poverty_line'], sub: 'Signs of hardship and employment, linked to the Sustainable Development Goals.' },
+      { id: 'living', group: 'People and households', tab: 'Living conditions', title: 'Living conditions', dists: ['electricity_access_type', 'cooking_energy_type', 'water_source_type', 'toilet_type', 'dwelling_type', 'access_to_resources'], sub: 'Choose a household service or living-condition indicator.' }
     ],
     msme: [
-      { id: 'access', tab: 'Access', title: 'Access to financial services', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each business is placed in the most formal category it uses. Excluded businesses use no financial products or services.' },
-      { id: 'savings', tab: 'Savings', title: 'Savings', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where businesses keep their savings.' },
-      { id: 'credit', tab: 'Credit', title: 'Credit', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where businesses borrow.' },
-      { id: 'insurance', tab: 'Insurance', title: 'Insurance', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover for the business.' },
-      { id: 'transactions', tab: 'Payments', title: 'Payments and transactions', strand: 'total_transaction_strand', usage: ['transaction_strand'], sub: 'How businesses pay and get paid.' },
-      { id: 'business', tab: 'The businesses', title: 'About the businesses', dists: ['business_sector', 'business_size', 'n_of_employees', 'business_age', 'licensed_registered', 'financial_records', 'business_coaching', 'business_development_measure'], sub: 'Size, sector and formality of the businesses.' },
-      { id: 'owners', tab: 'The owners', title: 'Who runs them', dists: ['gender', 'age', 'geographic_area'], sub: 'The owners of the businesses.' },
-      { id: 'growth', tab: 'Growth and barriers', title: 'Growth, barriers and start-up', dists: ['total_barrier_strand', 'obstacle_to_growth', 'total_motive_strand', 'total_capital_source_strand', 'total_source_of_skills_strand'], usage: ['infrastructure_strand'], sub: 'What holds businesses back, why they started and how they were funded.' }
+      { id: 'access', group: 'Financial services', tab: 'Financial access', title: 'Access to financial services', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each business is placed in the most formal category it uses. Excluded businesses use no financial products or services.' },
+      { id: 'savings', group: 'Financial services', tab: 'Savings', title: 'Business savings', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where businesses keep their savings.' },
+      { id: 'credit', group: 'Financial services', tab: 'Credit', title: 'Business credit', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where businesses borrow.' },
+      { id: 'insurance', group: 'Financial services', tab: 'Insurance', title: 'Business insurance', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover for the business.' },
+      { id: 'transactions', group: 'Financial services', tab: 'Payments', title: 'Payments and transactions', strand: 'total_transaction_strand', usage: ['transaction_strand'], sub: 'How businesses pay and get paid.' },
+      { id: 'business', group: 'Business profile', tab: 'Business profile', title: 'About the businesses', dists: ['business_sector', 'business_size', 'n_of_employees', 'business_age', 'licensed_registered', 'financial_records'], sub: 'Choose a common indicator about the size, sector, age or formality of businesses.' },
+      { id: 'owners', group: 'Owner profile', tab: 'Owner profile', title: 'Business owners', dists: ['gender', 'age', 'geographic_area'], sub: 'Choose an indicator about the people who own and run the businesses.' },
+      { id: 'support', group: 'Business capability', tab: 'Advice and support', title: 'Business advice and development support', dists: ['business_coaching', 'business_development_measure', 'total_source_of_skills_strand'], usage: ['infrastructure_strand'], sub: 'Explore the support, skills, infrastructure and resources available to businesses.' },
+      { id: 'growth', group: 'Starting and growing', tab: 'Growth and barriers', title: 'Starting and growing a business', dists: ['total_barrier_strand', 'obstacle_to_growth', 'total_motive_strand', 'total_capital_source_strand'], sub: 'Explore barriers, growth constraints, start-up motives and sources of capital.' }
     ]
   };
 
-  let INDEX = [], D = null, SAME = [], S = { s: 'consumer', iso: '', year: 0, tab: 'access', view: 'chart' };
+  let INDEX = [], D = null, SAME = [], S = { s: 'consumer', iso: '', year: 0, tab: 'access', indicator: '', view: 'chart' };
   const fileOf = x => `surveys/${x.s}-${x.iso}-${x.year}.json`;
   const keyOf = x => `${x.s}-${x.iso}-${x.year}`;
   // Survey name and who owns the data (as credited on the old data portal)
@@ -62,6 +63,23 @@
 
   // ---------- data helpers ----------
   const ind = k => D && D.ind[k];
+  const INDICATOR_LABELS = {
+    gender: 'Owner gender', age: 'Owner age', geographic_area: 'Geographic area',
+    business_sector: 'Business sector', business_size: 'Business size', n_of_employees: 'Number of employees',
+    business_age: 'Business age', licensed_registered: 'Registration and licensing', financial_records: 'Keeps financial records',
+    business_coaching: 'Access to business advice', business_development_measure: 'Business development support',
+    total_barrier_strand: 'Barriers to starting a business', obstacle_to_growth: 'Biggest obstacle to growth',
+    total_motive_strand: 'Reasons for starting the business', total_capital_source_strand: 'Sources of capital',
+    total_source_of_skills_strand: 'Sources of business skills', infrastructure_strand: 'Infrastructure and access to resources',
+    i2i_Education: 'Level of education', i2i_Marital_Status: 'Marital status', i2i_Income_Sources: 'Sources of income',
+    electricity_access_type: 'Electricity access', cooking_energy_type: 'Cooking energy', water_source_type: 'Water source',
+    toilet_type: 'Toilet type', dwelling_type: 'Dwelling type', access_to_resources: 'Access to household resources',
+    poverty_line: 'Poverty line and income per day'
+  };
+  function indicatorLabel(k) {
+    if (S.s === 'consumer' && (k === 'gender' || k === 'age')) return k[0].toUpperCase() + k.slice(1);
+    return INDICATOR_LABELS[k] || (ind(k) && ind(k).t) || k.replace(/_/g, ' ');
+  }
   const row = (k, l) => { const i = ind(k); return i ? i.r.find(r => r[0] === l) : null; };
   const segs = r => r.map((x, i) => ({ l: x[0], v: x[1], n: x[2], w: x[3], c: /^(not |excluded|no )/i.test(x[0]) ? '--none' : STRAND[i % STRAND.length] }));
 
@@ -84,7 +102,18 @@
   function renderTabs() {
     const list = sections();
     if (!list.some(x => x.id === S.tab)) S.tab = list[0] ? list[0].id : '';
-    $('tabs').innerHTML = list.map(x => `<button role="tab" aria-selected="${x.id === S.tab}" tabindex="${x.id === S.tab ? 0 : -1}" data-tab="${x.id}">${x.tab}<small class="num">${x.strand && ind(x.strand) ? headline(x.strand) : ''}</small></button>`).join('');
+    const query = (($('indicatorSearch') && $('indicatorSearch').value) || '').trim().toLowerCase();
+    let group = '', shown = 0, html = '';
+    list.forEach(x => {
+      const keys = [...(x.dists || []), ...(x.usage || []), ...(x.extra || []), x.strand].filter(Boolean);
+      const keywords = [x.tab, x.title, x.group, ...keys.map(indicatorLabel), ...keys].join(' ').toLowerCase();
+      if (query && !keywords.includes(query)) return;
+      if (x.group !== group) { group = x.group; html += `<p class="tab-group">${esc(group)}</p>`; }
+      html += `<button role="tab" aria-selected="${x.id === S.tab}" tabindex="${x.id === S.tab ? 0 : -1}" data-tab="${x.id}">${esc(x.tab)}<small class="num">${x.strand && ind(x.strand) ? headline(x.strand) : ''}</small></button>`;
+      shown++;
+    });
+    $('tabs').innerHTML = html;
+    $('searchEmpty').hidden = shown > 0;
   }
   function headline(k) { const r = ind(k).r, none = r.find(x => /^(not |excluded)/i.test(x[0])); return none ? pct(100 - none[1], 0) : ''; }
   function renderTop() {
@@ -121,7 +150,12 @@
       const urows = use.flatMap(k => ind(k).r);
       if (urows.length) html += `<div class="card"><div class="card-head"><div><h2>${sec.strand ? 'Usage of each channel' : esc(sec.title)}</h2><p class="sub">${sec.strand ? `Share of ${unit()} using each channel. A person can use more than one, so these can add up to more than 100%.` : esc(sec.sub)}</p></div>${tbl ? copyBtn : ''}</div>${tbl ? table(urows, 'Channel') : bars(urows, '--s2')}</div>`;
       const ds = (sec.dists || []).filter(k => ind(k));
-      if (ds.length) html += `${!sec.strand && !urows.length ? `<div><h2 style="color:var(--navy);font-size:1.35rem">${esc(sec.title)}</h2><p class="sub" style="color:var(--muted);margin:4px 0 0">${esc(sec.sub)}</p></div>` : ''}<div class="dists">${ds.map(k => `<div class="card mini"><div class="card-head" style="margin-bottom:10px"><h3>${esc(ind(k).t)}</h3>${tbl ? copyBtn : ''}</div>${tbl ? table(ind(k).r) : bars(ind(k).r, '--s1')}</div>`).join('')}</div>`;
+      if (ds.length) {
+        if (!ds.includes(S.indicator)) S.indicator = ds[0];
+        const k = S.indicator, title = indicatorLabel(k);
+        html += `<section class="indicator-chooser" aria-labelledby="chooseIndicator"><div class="chooser-head"><div><h2 id="chooseIndicator">${esc(sec.title)}</h2><p>${esc(sec.sub)}</p></div></div><div class="indicator-options">${ds.map(key => `<button class="indicator-option" type="button" data-indicator="${esc(key)}" aria-pressed="${key === k}">${esc(indicatorLabel(key))}</button>`).join('')}</div></section>`;
+        html += `<div><p class="selected-label">Selected indicator</p><div class="card mini"><div class="card-head" style="margin-bottom:10px"><h2>${esc(title)}</h2>${tbl ? copyBtn : ''}</div>${tbl ? table(ind(k).r) : bars(ind(k).r, '--s1')}</div></div>`;
+      }
     }
     $('panel').innerHTML = html || '<div class="card empty">No figures for this topic in this survey.</div>';
   }
@@ -144,6 +178,7 @@
     const list = INDEX.filter(x => x.data && x.s === S.s);
     const countries = [...new Map(list.map(x => [x.iso, x.country])).entries()].sort((a, b) => a[1].localeCompare(b[1]));
     $('pickSurvey').value = S.s;
+    document.querySelectorAll('[data-audience]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.audience === S.s)));
     $('pickCountry').innerHTML = countries.map(([iso, n]) => `<option value="${iso}"${iso === S.iso ? ' selected' : ''}>${esc(n)}</option>`).join('');
     $('pickYear').innerHTML = SAME.slice().sort((a, b) => b.year - a.year).map(x => `<option${x.year === S.year ? ' selected' : ''}>${x.year}</option>`).join('');
     // dataset request
@@ -155,7 +190,9 @@
 
   async function go(want, push) {
     const x = pick(want); if (!x) return;
+    const surveyChanged = S.s !== x.s;
     S.s = x.s; S.iso = x.iso; S.year = x.year;
+    if (surveyChanged) { S.tab = 'access'; S.indicator = ''; if ($('indicatorSearch')) $('indicatorSearch').value = ''; }
     SAME = INDEX.filter(y => y.data && y.s === x.s && y.iso === x.iso);
     try { D = await fetch(fileOf(x)).then(r => r.json()); } catch (e) { $('panel').innerHTML = '<div class="card empty">These figures could not load. Refresh the page to try again.</div>'; return; }
     try { history[push ? 'pushState' : 'replaceState'](null, '', `?d=${keyOf(x)}` + (!push && location.hash === '#request' ? '#request' : '')); } catch (e) {}
@@ -165,14 +202,17 @@
   }
 
   // ---------- events ----------
-  $('tabs').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (!b) return; S.tab = b.dataset.tab; renderTabs(); renderPanel(); });
-  $('tabs').addEventListener('keydown', e => { const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (!d) return; e.preventDefault(); const all = [...$('tabs').querySelectorAll('button')], i = all.findIndex(b => b.dataset.tab === S.tab), n = all[(i + d + all.length) % all.length]; S.tab = n.dataset.tab; renderTabs(); renderPanel(); $('tabs').querySelector(`[data-tab="${S.tab}"]`).focus(); });
+  $('tabs').addEventListener('click', e => { const b = e.target.closest('[data-tab]'); if (!b) return; S.tab = b.dataset.tab; S.indicator = ''; renderTabs(); renderPanel(); });
+  $('tabs').addEventListener('keydown', e => { const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (!d) return; const all = [...$('tabs').querySelectorAll('button')]; if (!all.length) return; e.preventDefault(); const i = all.findIndex(b => b.dataset.tab === S.tab), n = all[((i < 0 ? 0 : i) + d + all.length) % all.length]; S.tab = n.dataset.tab; S.indicator = ''; renderTabs(); renderPanel(); $('tabs').querySelector(`[data-tab="${S.tab}"]`).focus(); });
   $('vChart').onclick = () => { S.view = 'chart'; $('vChart').setAttribute('aria-pressed', true); $('vTable').setAttribute('aria-pressed', false); renderPanel(); };
   $('vTable').onclick = () => { S.view = 'table'; $('vTable').setAttribute('aria-pressed', true); $('vChart').setAttribute('aria-pressed', false); renderPanel(); };
   $('pickSurvey').onchange = e => go({ s: e.target.value, iso: S.iso, year: 0 }, true);
+  document.querySelectorAll('[data-audience]').forEach(b => b.addEventListener('click', () => go({ s: b.dataset.audience, iso: S.iso, year: 0 }, true)));
+  $('indicatorSearch').addEventListener('input', renderTabs);
   $('pickCountry').onchange = e => go({ s: S.s, iso: e.target.value, year: 0 }, true);
   $('pickYear').onchange = e => go({ s: S.s, iso: S.iso, year: +e.target.value }, true);
   document.addEventListener('click', e => {
+    const indicator = e.target.closest('[data-indicator]'); if (indicator) { S.indicator = indicator.dataset.indicator; renderPanel(); return; }
     const a = e.target.closest('[data-go]'); if (a) { e.preventDefault(); const [s, iso, y] = a.dataset.go.split('-'); return go({ s, iso, year: +y }, true); }
     const c = e.target.closest('[data-copy]'); if (c) {
       const t = c.closest('.card').querySelector('table'); if (!t) return;
