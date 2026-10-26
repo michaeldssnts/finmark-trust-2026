@@ -254,7 +254,6 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
     <h1 id="countryName">Malawi</h1>
     <p class="lede">A nationally representative survey of adults aged 16 and over. Every figure on this page is weighted, so it describes the adult population of the country rather than only the people interviewed.</p>
     <a class="back" id="backLink" href="country.html#MWI">← <span id="backName">Malawi</span> country overview</a>
-    <div class="sample" id="sampleNote" hidden></div>
   </div>
   <div class="pickers">
     <div class="field"><label for="pickCountry">Country</label><select id="pickCountry"></select></div>
@@ -386,10 +385,10 @@ let D, cols, W, N;
 
 function load(){
   D = DATASETS[S.iso].years[S.year];
+  // Only surveys with respondent-level data open here; the rest have their real figures on the survey results page.
+  if (D.placeholder) { location.replace(`survey.html?d=consumer-${S.iso}-${S.year}`); throw new Error('redirecting'); }
   try { history.replaceState(null, '', '#' + S.iso + '-' + S.year); } catch (e) {}
-  const nm = DATASETS[S.iso].name, sn = $('sampleNote');
-  sn.hidden = !D.placeholder;
-  if (D.placeholder) sn.innerHTML = `<span><b>Sample data.</b> This is the ${esc(nm)} ${S.year} page${D.note ? ' (' + esc(D.note) + ')' : ''}, filled with Malawi 2023 figures so you can see how it works. The real ${esc(nm)} file loads here once it is added.</span>`;
+  const nm = DATASETS[S.iso].name;
   $('crumbCountryLink').href = $('backLink').href = 'country.html#' + S.iso; $('backName').textContent = nm;
   document.title = `${nm} ${S.year} — FinScope Consumer — FinMark Trust`;
   N = D.n; W = Float64Array.from(D.weights); cols = {};
