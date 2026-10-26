@@ -1,11 +1,11 @@
 {
+  "bio": "Lesego leads the financial inclusion programme in South Africa. She is responsible for directing the development and implementation of projects that align with FinMark Trust's financial inclusion 2.0 agenda in the country. Her focus is on improving and deepening financial inclusion, establishing linkages for greater economic inclusivity, and fostering sustainable livelihoods. This aligns with the priorities of the South African government to enhance economic activity.\n\nPrior to joining FinMark Trust, Lesego served as the Acting Director of Financial Inclusion and Deputy Director of Financial Sector Development at the National Treasury. With her extensive expertise in research and analysis, policy development and design, and risk management, Lesego brings a comprehensive skill set to her role. She holds a bachelor’s degree in economics and is currently pursuing a master’s degree in finance with a focus on financial sector management.",
   "name": "Lesego Mashigo",
   "slug": "lesego-mashigo",
-  "role": "Head: South Africa FI Programme",
-  "group": "team",
   "order": 3,
   "photo": "https://finmark.org.za/system/members/images/000/000/085/original/lesego2.jpg?1747923067",
-  "bio": "Lesego leads FinMark Trust’s South African financial inclusion programme, directing initiatives that deepen inclusion, strengthen economic participation and support sustainable livelihoods.",
+  "role": "Head: South Africa FI Programme",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
