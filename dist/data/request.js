@@ -32,13 +32,13 @@ window.FMTRequest = function (opts) {
       j = await res.json().catch(() => ({}));
     } catch (err) { return fail('We could not send your request. Check your connection and try again, or email info@finmark.org.za.'); }
     if (!res.ok) return fail(j.error || 'We could not send your request. Please try again, or email info@finmark.org.za.');
-    const label = `FinScope ${opts.survey === 'msme' ? 'MSME' : 'Consumer'} ${c.name} ${c.year}`;
+    const label = `${c.label || 'FinScope ' + (opts.survey === 'msme' ? 'MSME' : 'Consumer')} ${c.name} ${c.year}`;
     $('reqDone').innerHTML = `
       <div><p class="eyebrow">Request received</p><h3 style="color:var(--navy);font-size:1.3rem">${j.emailed === false ? 'Thank you' : 'Check your inbox'}, ${esc(first)}</h3>
       <p class="note" style="margin:6px 0 0">${j.emailed === false
         ? `Your request for the <b>${esc(label)}</b> dataset is logged. We will email the download link to <b>${esc(email)}</b> shortly.`
         : `We have sent the download link for the <b>${esc(label)}</b> dataset to <b>${esc(email)}</b>. It can take a few minutes to arrive, so check your junk folder too.`}</p></div>
-      <p>Please cite: FinMark Trust (${esc(c.year)}). ${esc(label)} survey.</p>
+      <p>Please cite: ${esc(c.cite || `FinMark Trust (${c.year}). ${label} survey.`)}</p>
       <button class="btn ghost" type="button" id="reqAgain">Request another dataset</button>`;
     form.hidden = true; $('reqDone').hidden = false;
     const h = $('reqDone').querySelector('h3'); h.setAttribute('tabindex', '-1'); h.focus();

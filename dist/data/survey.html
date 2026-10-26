@@ -245,6 +245,8 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
 
 /* survey summary page */
 [hidden]{display:none!important}
+.credit{font-size:.84rem;color:var(--muted);margin:10px 0 0;max-width:62ch}
+.credit a{color:var(--teal-ink);font-weight:700}
 .dists{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .dists .card{padding:20px}
 .dists h3{margin-bottom:12px}
@@ -265,6 +267,7 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
     <p class="eyebrow"><span id="surveyEyebrow">FinScope Consumer</span> <span id="yearEyebrow"></span></p>
     <h1 id="countryName">FinScope survey data</h1>
     <p class="lede" id="lede">Headline results from FinScope surveys. Every figure is weighted, so it describes the whole population rather than only the people interviewed.</p>
+    <p class="credit" id="credit"></p>
     <a class="back" id="backLink" href="../countries/index.html" hidden>← <span id="backName"></span> country overview</a>
     <div class="xlink" id="explorerLink" hidden></div>
   </div>
@@ -323,7 +326,7 @@ footer.foot .wrap{padding-block:20px;font-size:.78rem;color:var(--muted);display
       </div>
       <div class="field"><label for="rUse">How will you use the data?</label><textarea id="rUse" required placeholder="For example: a policy brief on women's access to savings in rural districts"></textarea><span class="err"></span></div>
       <div class="hp" aria-hidden="true"><label for="rWebsite">Website</label><input id="rWebsite" type="text" tabindex="-1" autocomplete="off"></div>
-      <label class="check"><input id="rTerms" type="checkbox" required><span>I agree to the FinMark Trust data terms of use and will cite FinScope <span id="reqSurvey">Consumer</span> <span class="yr"></span> in any work that uses this data.</span></label>
+      <label class="check"><input id="rTerms" type="checkbox" required><span>I agree to the FinMark Trust data terms of use and will credit <span id="reqSurvey">FinMark Trust, FinScope Consumer</span> <span class="yr"></span> in any work that uses this data.</span></label>
       <span class="err" id="termsErr"></span>
       
       <button class="btn" type="submit" id="rSubmit">Email me the download link</button>

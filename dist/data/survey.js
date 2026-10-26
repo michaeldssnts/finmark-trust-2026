@@ -39,7 +39,10 @@
   let INDEX = [], D = null, SAME = [], S = { s: 'consumer', iso: '', year: 0, tab: 'access', view: 'chart' };
   const fileOf = x => `surveys/${x.s}-${x.iso}-${x.year}.json`;
   const keyOf = x => `${x.s}-${x.iso}-${x.year}`;
-  const label = s => s === 'msme' ? 'FinScope MSME' : 'FinScope Consumer';
+  // Survey name and who owns the data (as credited on the old data portal)
+  const label = s => s === 'msme' ? 'FinScope MSME' : D && D.kind === 'smallholder' ? 'CGAP Smallholder Household Survey' : D && D.by && !D.by.some(b => /FinMark/.test(b.n)) ? 'National financial inclusion survey' : 'FinScope Consumer';
+  const owners = () => (D && D.by && D.by.length ? D.by : [{ n: 'FinMark Trust (FinScope)', u: 'https://finmark.org.za/' }]);
+  const citeOwner = () => owners().map(b => b.n.replace(/ \(FinScope\)$/, '')).join(' and ');
   const unit = () => S.s === 'msme' ? 'businesses' : 'adults';
 
   function parse() {
@@ -130,10 +133,12 @@
     $('backLink').hidden = !sadc; $('backLink').href = `country.html?country=${S.iso}`; $('backName').textContent = name;
     $('lede').textContent = S.s === 'msme'
       ? `Headline results from the FinScope MSME survey of micro, small and medium enterprises in ${name}, ${S.year}. Figures are weighted to all businesses in the survey's scope.`
-      : `Headline results from the FinScope Consumer survey of adults in ${name}, ${S.year}. Every figure is weighted, so it describes the adult population rather than only the people interviewed.`;
+      : `Headline results from ${label(S.s) === 'FinScope Consumer' ? 'the FinScope Consumer survey' : 'the national financial inclusion survey'} of adults in ${name}, ${S.year}. Every figure is weighted, so it describes the adult population rather than only the people interviewed.`;
     const ex = EXPLORER[k];
     $('explorerLink').hidden = !ex;
     if (ex) $('explorerLink').innerHTML = `<span><b>Go deeper:</b> filter by gender, area, age and district, and compare groups, in the full explorer.</span><a class="btn" href="${ex}">Open the explorer</a>`;
+    if (D.kind === 'smallholder') $('lede').textContent = `Results from the CGAP national survey of smallholder families in ${name}, ${S.year}. The figures are nationally representative of smallholder farming households, not of all adults.`;
+    $('credit').innerHTML = `${D.kind === 'partnership' ? 'Data developed in partnership by' : 'Data supplied by'} ${owners().map(b => `<a href="${esc(b.u)}" target="_blank" rel="noopener">${esc(b.n)}</a>`).join(' and ')}. Please credit ${esc(citeOwner())} when you use these figures.`;
     document.title = `${name} ${S.year} — ${label(S.s)} — FinMark Trust`;
     // pickers
     const list = INDEX.filter(x => x.data && x.s === S.s);
@@ -144,7 +149,7 @@
     // dataset request
     const entry = INDEX.find(x => keyOf(x) === k), dl = !!(entry && entry.dl);
     $('request').hidden = !dl; $('toRequest').hidden = !dl;
-    $('reqTitle').textContent = `${name} ${S.year}`; $('reqSurvey').textContent = S.s === 'msme' ? 'MSME' : 'Consumer';
+    $('reqTitle').textContent = `${name} ${S.year}`; $('reqSurvey').textContent = `${citeOwner()}, ${label(S.s)}`;
     document.querySelectorAll('.yr').forEach(e => (e.textContent = S.year));
   }
 
@@ -179,7 +184,7 @@
   window.addEventListener('popstate', () => { const w = parse(); if (w) go(w, false); });
   function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2400); }
 
-  window.FMTRequest && window.FMTRequest({ get survey() { return S.s; }, ctx: () => ({ iso: S.iso, year: S.year, name: D ? D.country : '' }) });
+  window.FMTRequest && window.FMTRequest({ get survey() { return S.s; }, ctx: () => ({ iso: S.iso, year: S.year, name: D ? D.country : '', label: label(S.s), cite: `${citeOwner()} (${S.year}). ${label(S.s)}, ${D ? D.country : ''} ${S.year}.` }) });
   fetch('surveys/index.json').then(r => r.json()).then(j => { INDEX = j.surveys; go(parse() || { s: 'consumer', iso: 'ZAF', year: 0 }, false); })
     .catch(() => { $('panel').innerHTML = '<div class="card empty">The survey list could not load. Refresh the page to try again.</div>'; });
 })();

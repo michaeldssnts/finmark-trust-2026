@@ -119,12 +119,12 @@ function start() {
         if (!ds || !ds.url) return send(res, 404, { error: 'That dataset is not available to download. Please contact us.' });
         row.country = ds.country;
         save(row);
-        const label = `FinScope ${ds.survey === 'msme' ? 'MSME' : 'Consumer'} ${ds.country} ${ds.year}`;
+        const label = `${ds.label || 'FinScope ' + (ds.survey === 'msme' ? 'MSME' : 'Consumer')} ${ds.country} ${ds.year}`, owner = ds.credit || 'FinMark Trust';
         try {
-          await sendMail(row.email, `Your ${label} dataset`, wrap(`<p>Dear ${esc(row.first)},</p><p>Thank you for your interest in FinScope. Your dataset is ready to download:</p>
+          await sendMail(row.email, `Your ${label} dataset`, wrap(`<p>Dear ${esc(row.first)},</p><p>Thank you for your interest. Your dataset is ready to download:</p>
             <p><a href="${esc(ds.url)}" style="display:inline-block;background:#0098ae;color:#fff;padding:10px 18px;text-decoration:none;font-weight:bold">Download ${esc(label)}</a></p>
             <p style="font-size:13px;color:#5b6b84">Or copy this link: ${esc(ds.url)}</p>
-            <p>Please cite: FinMark Trust (${esc(ds.year)}). ${esc(label)} survey.</p><p>Kind regards,<br>The FinMark Trust data team</p>`));
+            <p>This data is supplied by ${esc(owner)}. Please cite: ${esc(owner)} (${esc(ds.year)}). ${esc(label)}.</p><p>Kind regards,<br>The FinMark Trust data team</p>`));
           update(row.id, { emailed: true });
         } catch (e) { update(row.id, { emailed: false, emailError: e.message.slice(0, 200) }); console.error(e.message); }
         alert(row).catch(e => console.error('alert: ' + e.message));
