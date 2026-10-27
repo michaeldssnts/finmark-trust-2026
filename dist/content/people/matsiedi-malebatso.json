@@ -1,11 +1,11 @@
 {
+  "bio": "Matsiedi is the national business development manager consultant for the Generating Better Livelihoods for Grant Recipients Project at FinMark Trust. His role in the projects includes identifying new and existing opportunities at national, provincial and local levels, assessing the potential of identified opportunities, identifying opportunities for collaboration with other partners, supporting provincial teams in implementing the linkages strategies, and mapping and engaging stakeholders relevant to the project.\n\nWith over five years’ experience as a specialist in projects implementation in the public service, Matsiedi has extensive expertise in enterprise development, agrarian reform, skills development, cooperatives and community development. His academic background includes a postgraduate diploma in business management, a bachelor of arts degree in development and management studies, project management and small business consultancy.",
   "name": "Matsiedi Malebatso",
   "slug": "matsiedi-malebatso",
-  "role": "National Business Development Manager Consultant",
-  "group": "team",
   "order": 12,
   "photo": "https://finmark.org.za/system/members/images/000/000/114/original/Matsiedi.jpg?1747974100",
-  "bio": "Matsiedi identifies business and partnership opportunities for the Generating Better Livelihoods programme, drawing on experience in enterprise, skills and community development.",
+  "role": "National Business Development Manager Consultant",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
