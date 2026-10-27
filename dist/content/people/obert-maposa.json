@@ -1,11 +1,11 @@
 {
+  "bio": "Obert is a Senior SADC Financial Inclusion Specialist with over 12 years of experience in financial inclusion, primarily focused on research work on micro, small and medium-sized enterprises (MSMEs) across the region. He holds a master’s degree in international business (managerial economics), a BSc Honours in Financial Economics, and a BCom in Economics and Marketing from Monash University. He is currently pursuing a doctorate at the University of South Africa. Obert has also contributed to leadership development as a mentor and supervisor for the Mandela Washington Fellowship – Young African Leaders Initiative.\n\nHis experience at FinMark Trust includes the ideation and development of MSME360, a diagnostic tool designed to improve the role of financial inclusion in MSME development, which has been implemented in Eswatini and Malawi. He believes that the most significant contribution to MSME development is addressing issues of informalisation, establishing robust measurement frameworks for informal contributions to employment and GDP, and providing needs-based access to finance, markets, and productive technology.",
   "name": "Obert Maposa",
   "slug": "obert-maposa",
-  "role": "Senior SADC Financial Inclusion Specialist",
-  "group": "team",
   "order": 13,
   "photo": "https://finmark.org.za/system/members/images/000/000/074/original/obert.jpg?1747923375",
-  "bio": "Obert has more than 12 years’ experience in financial inclusion and MSME research. His work includes the development of MSME360, a diagnostic tool applied in Eswatini and Malawi.",
+  "role": "Senior SADC Financial Inclusion Specialist",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
