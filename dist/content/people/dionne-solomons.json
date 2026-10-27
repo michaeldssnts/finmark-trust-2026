@@ -1,11 +1,11 @@
 {
+  "bio": "Dionne is a Communications Specialist at FinMark Trust. She plays a role in developing and enhancing messaging through impactful written reports and digital content for the organisation.\n\nWith over 15 years of experience, she has worked across diverse industries, gaining expertise in various communications disciplines including corporate communications and strategy, reputation and crisis management, public relations, and content marketing and strategy.\n\nWith her comprehensive skill set and broad industry knowledge, Dionne is equipped to create compelling and engaging content that supports the organisation's communications efforts, ensuring that they are impactful and aligned with its objectives. She holds a bachelor of arts language practitioners degree from the University of Johannesburg.",
   "name": "Dionne Solomons",
   "slug": "dionne-solomons",
-  "role": "Writer and Digital Communications Specialist",
-  "group": "team",
   "order": 18,
   "photo": "https://finmark.org.za/system/members/images/000/000/110/original/Dionne.jpg?1747923689",
-  "bio": "Dionne develops written reports and digital content for FinMark Trust. Her communications experience spans strategy, reputation management, public relations and content marketing.",
+  "role": "Writer and Digital Communications Specialist",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
