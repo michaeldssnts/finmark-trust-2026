@@ -1,11 +1,11 @@
 {
+  "bio": "Tabitha is a Data and Analytics Specialist at FinMark Trust, and a researcher with keen interest in development finance, particularly on the nexus between financial sector development and economic growth. She possesses a diverse skill set, including data analysis, survey design, economic and credit analysis, problem-solving, and critical thinking. Tabitha has supported FinScope Consumer Survey studies in Mozambique, Eswatini, Rwanda, Lesotho, Botswana, South Africa and served as project lead in the implementation of the FinScope Consumer Zimbabwe 2022 Survey. Her responsibilities include playing a key role in stakeholder engagements, capacity building, questionnaire design, survey management, data cleaning, analysis, and report writing.\n\nTabitha holds a master’s degree in financial risk management, an honours degree in economics and a certificate in microfinance.",
   "name": "Tabitha Chamboko",
   "slug": "tabitha-chamboko",
-  "role": "Data and Analytics Specialist",
-  "group": "team",
   "order": 11,
   "photo": "https://finmark.org.za/system/members/images/000/000/076/original/tabitha.jpg?1747923552",
-  "bio": "Tabitha supports FinScope studies through stakeholder engagement, survey design, data cleaning, analysis and report writing. Her research interests include development finance and economic growth.",
+  "role": "Data and Analytics Specialist",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
