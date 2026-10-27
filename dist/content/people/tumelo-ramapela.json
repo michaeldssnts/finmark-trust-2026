@@ -1,11 +1,11 @@
 {
+  "bio": "Tumelo is an agricultural economist with a BSc in Agricultural Economics and Agribusiness Management. Her work experience focuses on economic and market research in areas like agricultural trade, commodity marketing, food security, and industry transformation. She has a particular interest in including and developing female, youth, and black-owned MSMEs in agriculture, alongside policy development. Tumelo is currently pursuing a master's degree in agricultural economics, specialising in policy development and market analysis. Her career goals are to increase financial inclusion for smallholder farmers in Africa, make agricultural activities profitable for women and youth, and contribute to the continent's economic development.",
   "name": "Tumelo Ramapela",
   "slug": "tumelo-ramapela",
-  "role": "Junior FI Specialist",
-  "group": "team",
   "order": 30,
   "photo": "https://finmark.org.za/system/members/images/000/000/117/original/Tumelo.jpg?1747971529",
-  "bio": "Tumelo is an agricultural economist focused on economic research, food security, industry transformation and inclusion for women-, youth- and black-owned agricultural MSMEs.",
+  "role": "Junior FI Specialist",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
