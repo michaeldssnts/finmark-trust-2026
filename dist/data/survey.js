@@ -150,14 +150,8 @@
       + `<details class="wmenu"><summary class="wbtn">Share</summary><div class="wpop share"><button type="button" data-share="link" data-w="${w.id}">Copy link to this chart</button><button type="button" data-share="email" data-w="${w.id}">Email</button><button type="button" data-share="linkedin" data-w="${w.id}">LinkedIn</button><button type="button" data-share="x" data-w="${w.id}">X (Twitter)</button><button type="button" data-share="whatsapp" data-w="${w.id}">WhatsApp</button><button type="button" data-share="csv" data-w="${w.id}">Download data (CSV)</button><button type="button" data-share="png" data-w="${w.id}">Download image (PNG)</button></div></details>`
       + `</div>`;
   }
-  // Say plainly what kind of chart this is: a strand (each person counted once, adds to 100%) or uptake (overlapping)
-  function badge(w) {
-    if (w.kind === 'strand' || w.kind === 'trend') return `<span class="wkind strand" title="Each ${unit().replace(/s$/, '')} is counted once, in the most formal category they use, so the strand adds up to 100%.">Strand · overall picture, adds up to 100%</span>`;
-    if (w.kind === 'usage' && /_strand$|mobile_money/.test(w.inds[0]) && w.inds[0] !== 'sdgs_strand' && !/^total_/.test(w.inds[0])) return `<span class="wkind uptake" title="Each figure is the share using that channel. People can use several, so the figures overlap.">Uptake · overlapping, can add up to more than 100%</span>`;
-    return '';
-  }
   function card(w) {
-    return `<div class="card${w.mini ? ' mini' : ''} widget" id="w-${w.id}" data-w="${w.id}"><div class="card-head"><div>${badge(w)}${w.mini ? `<h3>${esc(w.title)}</h3>` : `<h2>${esc(w.title)}</h2>`}${w.sub ? `<p class="sub">${esc(w.sub)}</p>` : ''}</div>${toolbar(w)}</div><div class="wbody"><p class="wload">Loading…</p></div><p class="wfoot"></p></div>`;
+    return `<div class="card${w.mini ? ' mini' : ''} widget" id="w-${w.id}" data-w="${w.id}"><div class="card-head"><div>${w.mini ? `<h3>${esc(w.title)}</h3>` : `<h2>${esc(w.title)}</h2>`}${w.sub ? `<p class="sub">${esc(w.sub)}</p>` : ''}</div>${toolbar(w)}</div><div class="wbody"><p class="wload">Loading…</p></div><p class="wfoot"></p></div>`;
   }
   async function fillWidget(w, el) {
     const body = el.querySelector('.wbody'), foot = el.querySelector('.wfoot'), tbl = S.view === 'table';
