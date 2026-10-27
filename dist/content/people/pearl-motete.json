@@ -1,11 +1,11 @@
 {
+  "bio": "Pearl is the Data Analyst at FinMark Trust who has a strong background in economic research and analysis. Passionate about data and its power to influence positive change, she brings a unique mix of research expertise and analytical skills to the data and analytics team.\n\nWith a natural aptitude for understanding complex data, Pearl supports the team in making informed decisions that drive impactful outcomes, and implementing FinScope surveys, survey design, data management, analysis and report writing.\n\nShe keeps an audit trail of the codes/syntaxes used to maintain data accuracy and quality. Pearl holds an honours degree in economics from the University of Johannesburg and a bachelor of arts degree in economics from the National University of Lesotho.",
   "name": "Pearl Motete",
   "slug": "pearl-motete",
-  "role": "Data Analyst",
-  "group": "team",
   "order": 29,
   "photo": "https://finmark.org.za/system/members/images/000/000/116/original/Pearl.jpg?1747925836",
-  "bio": "Pearl supports FinScope survey design, data management, analysis and reporting, using economic research and data to help drive informed decisions.",
+  "role": "Data Analyst",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
