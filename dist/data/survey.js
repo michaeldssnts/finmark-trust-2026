@@ -19,22 +19,22 @@
 
   const TABS = {
     consumer: [
-      { id: 'access', tab: 'Access', title: 'Access to financial services', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each adult is placed in the most formal category they use: banked first, then other formal (non-bank), then informal only. Excluded adults use no financial products or services.' },
-      { id: 'savings', tab: 'Savings', title: 'Savings', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where adults keep their savings, placed in the most formal channel they use.' },
-      { id: 'credit', tab: 'Credit', title: 'Credit', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where adults borrow, placed in the most formal source they use.' },
-      { id: 'remittances', tab: 'Remittances', title: 'Sending and receiving money', strand: 'total_remittances_strand', usage: ['remittances_strand'], sub: 'How adults send or receive money, placed in the most formal channel they use.' },
-      { id: 'insurance', tab: 'Insurance', title: 'Insurance', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover, placed in the most formal source adults use.' },
+      { id: 'access', tab: 'Access', title: 'Access to financial services', sTitle: 'Financial Access Strand', uTitle: 'Financial services uptake', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each adult is placed in the most formal category they use: banked first, then other formal (non-bank), then informal only. Excluded adults use no financial products or services.' },
+      { id: 'savings', tab: 'Savings', title: 'Savings', sTitle: 'Savings Strand', uTitle: 'Savings uptake', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where adults keep their savings, placed in the most formal channel they use.' },
+      { id: 'credit', tab: 'Credit', title: 'Credit', sTitle: 'Credit Strand', uTitle: 'Credit uptake', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where adults borrow, placed in the most formal source they use.' },
+      { id: 'remittances', tab: 'Remittances', title: 'Sending and receiving money', sTitle: 'Remittances Strand', uTitle: 'Remittances uptake', strand: 'total_remittances_strand', usage: ['remittances_strand'], sub: 'How adults send or receive money, placed in the most formal channel they use.' },
+      { id: 'insurance', tab: 'Insurance', title: 'Insurance', sTitle: 'Insurance Strand', uTitle: 'Insurance uptake', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover, placed in the most formal source adults use.' },
       { id: 'trend', tab: 'Over time', title: 'Change over time', trend: ['total_fas_strand', 'total_saving_strand', 'total_credit_strand', 'total_remittances_strand', 'total_insurance_strand'], sub: 'The same strand for each survey in this country.' },
       { id: 'wellbeing', tab: 'Wellbeing', title: 'Wellbeing and the SDGs', usage: ['sdgs_strand'], dists: ['poverty_line'], sub: 'Signs of hardship and employment, linked to the Sustainable Development Goals.' },
       { id: 'profile', tab: 'Profile', title: 'Who the adults are', dists: ['gender', 'geographic_area', 'age', 'i2i_Education', 'i2i_Marital_Status', 'i2i_Income_Sources'], sub: 'The demographic profile of the adult population.' },
       { id: 'living', tab: 'Living conditions', title: 'Living conditions', dists: ['electricity_access_type', 'cooking_energy_type', 'water_source_type', 'toilet_type', 'dwelling_type', 'access_to_resources'], sub: 'Access to basic services at home.' }
     ],
     msme: [
-      { id: 'access', tab: 'Access', title: 'Access to financial services', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each business is placed in the most formal category it uses. Excluded businesses use no financial products or services.' },
-      { id: 'savings', tab: 'Savings', title: 'Savings', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where businesses keep their savings.' },
-      { id: 'credit', tab: 'Credit', title: 'Credit', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where businesses borrow.' },
-      { id: 'insurance', tab: 'Insurance', title: 'Insurance', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover for the business.' },
-      { id: 'transactions', tab: 'Payments', title: 'Payments and transactions', strand: 'total_transaction_strand', usage: ['transaction_strand'], sub: 'How businesses pay and get paid.' },
+      { id: 'access', tab: 'Access', title: 'Access to financial services', sTitle: 'Financial Access Strand', uTitle: 'Financial services uptake', strand: 'total_fas_strand', usage: ['fas_strand'], extra: ['mobile_money'], sub: 'Each business is placed in the most formal category it uses. Excluded businesses use no financial products or services.' },
+      { id: 'savings', tab: 'Savings', title: 'Savings', sTitle: 'Savings Strand', uTitle: 'Savings uptake', strand: 'total_saving_strand', usage: ['savings_strand'], sub: 'Where businesses keep their savings.' },
+      { id: 'credit', tab: 'Credit', title: 'Credit', sTitle: 'Credit Strand', uTitle: 'Credit uptake', strand: 'total_credit_strand', usage: ['credit_strand'], sub: 'Where businesses borrow.' },
+      { id: 'insurance', tab: 'Insurance', title: 'Insurance', sTitle: 'Insurance Strand', uTitle: 'Insurance uptake', strand: 'total_insurance_strand', usage: ['insurance_strand'], sub: 'Insurance cover for the business.' },
+      { id: 'transactions', tab: 'Payments', title: 'Payments and transactions', sTitle: 'Payments Strand', uTitle: 'Payments uptake', strand: 'total_transaction_strand', usage: ['transaction_strand'], sub: 'How businesses pay and get paid.' },
       { id: 'trend', tab: 'Over time', title: 'Change over time', trend: ['total_fas_strand', 'total_saving_strand', 'total_credit_strand', 'total_insurance_strand'], sub: 'The same strand for each survey in this country.' },
       { id: 'business', tab: 'The businesses', title: 'About the businesses', dists: ['business_sector', 'business_size', 'n_of_employees', 'business_age', 'licensed_registered', 'financial_records', 'business_coaching', 'business_development_measure'], sub: 'Size, sector and formality of the businesses.' },
       { id: 'owners', tab: 'The owners', title: 'Who runs them', dists: ['gender', 'age', 'geographic_area'], sub: 'The owners of the businesses.' },
@@ -106,7 +106,7 @@
   const colourOf = (l, i) => /^(not |excluded$|no )/i.test(l) && !/^no (formal|toilet|cell|electric|internet|telephone)/i.test(l) ? '--none' : STRAND[i % STRAND.length];
   const cv = v => v.startsWith('--') ? `var(${v})` : v;
   function stackRow(lab, sub, rows, big, low) {
-    const parts = rows.map((x, i) => { const c = colourOf(x[0], i); return `<div class="seg-bar${LIGHT.has(c) ? ' light' : ''}" style="flex-basis:${x[1]}%;background:${cv(c)}" title="${esc(x[0])}: ${pct(x[1])}${x[3] ? ' · ' + people(x[3]) + ' ' + unit() : ''}">${x[1] >= 6 ? pct(x[1], 0) : ''}</div>`; }).join('');
+    const parts = rows.map((x, i) => { const c = colourOf(x[0], i); return `<div class="seg-bar${LIGHT.has(c) ? ' light' : ''}" style="flex-basis:${x[1]}%;background:${cv(c)}" data-tip="${esc(x[0])}|${pct(x[1])}${x[3] ? ' · ' + people(x[3]) + ' ' + unit() : ''}" tabindex="0">${x[1] >= 6 ? pct(x[1], 0) : ''}</div>`; }).join('');
     return `<div class="srow${low ? ' low' : ''}"><div class="lab">${esc(lab)}${sub ? `<small>${sub}</small>` : ''}</div><div class="stack${big ? ' big' : ''}">${parts}</div></div>`;
   }
   const legendStrand = rows => `<div class="legend static">${rows.map((x, i) => `<span><i style="background:${cv(colourOf(x[0], i))}"></i>${esc(x[0])}</span>`).join('')}</div>`;
@@ -115,7 +115,7 @@
   function groupedBars(labels, gs, single) {
     return `<div class="ind">${labels.map(l => {
       const bars = gs.map((g, gi) => { const r = g.rows && g.rows.find(x => x[0] === l), v = r ? r[1] : 0, n = r ? r[2] : 0;
-        return `<div class="ibar${n && n < LOW_N ? ' low' : ''}"><div class="track"><div class="fill" style="width:${Math.min(100, v)}%;background:${cv(gs.length > 1 ? GROUP[gi % GROUP.length] : single)}"></div></div><div class="val num">${r ? pct(v) : '–'} <small>${r && r[3] && gs.length === 1 ? people(r[3]) : ''}</small></div></div>`; }).join('');
+        return `<div class="ibar${n && n < LOW_N ? ' low' : ''}" tabindex="0" data-tip="${esc(l)}${gs.length > 1 ? ' · ' + esc(g.label) : ''}|${r ? pct(v) : 'No figure'}${r && r[3] ? ' · ' + people(r[3]) + ' ' + unit() : ''}${n ? ' · n = ' + n.toLocaleString('en-GB') : ''}"><div class="track"><div class="fill" style="width:${Math.min(100, v)}%;background:${cv(gs.length > 1 ? GROUP[gi % GROUP.length] : single)}"></div></div><div class="val num">${r ? pct(v) : '–'} <small>${r && r[3] && gs.length === 1 ? people(r[3]) : ''}</small></div></div>`; }).join('');
       return `<div class="irow"><div class="lab">${esc(l)}</div><div class="ibars">${bars}</div></div>`; }).join('')}</div>`;
   }
   function matrix(labels, gs, firstHead) {
@@ -130,9 +130,9 @@
   function widgetsFor(sec) {
     if (sec.trend) return sec.trend.filter(k => ind(k)).map(k => ({ id: 'trend-' + k, inds: [k], kind: 'trend', title: ind(k).t, sub: sec.sub }));
     const w = [];
-    if (sec.strand && ind(sec.strand)) w.push({ id: sec.strand, inds: [sec.strand], kind: 'strand', title: sec.title, sub: sec.sub });
+    if (sec.strand && ind(sec.strand)) w.push({ id: sec.strand, inds: [sec.strand], kind: 'strand', title: sec.sTitle || sec.title, sub: sec.sub });
     const use = (sec.usage || []).filter(k => ind(k)).concat((sec.extra || []).filter(k => ind(k) && ind(k).r.length === 1));
-    if (use.length) w.push({ id: use[0], inds: use, kind: 'usage', title: sec.strand ? 'Usage of each channel' : sec.title, sub: sec.strand ? `Share of ${unit()} using each channel. One person can use several, so these can add up to more than 100%.` : sec.sub });
+    if (use.length) w.push({ id: use[0], inds: use, kind: 'usage', title: sec.strand ? (sec.uTitle || 'Usage of each channel') : sec.title, sub: sec.strand ? `Share of ${unit()} using each channel. One person can use several, so these can add up to more than 100%.` : sec.sub });
     (sec.dists || []).filter(k => ind(k)).forEach(k => w.push({ id: k, inds: [k], kind: 'dist', title: ind(k).t, sub: '', mini: true }));
     return w;
   }
@@ -150,8 +150,14 @@
       + `<details class="wmenu"><summary class="wbtn">Share</summary><div class="wpop share"><button type="button" data-share="link" data-w="${w.id}">Copy link to this chart</button><button type="button" data-share="email" data-w="${w.id}">Email</button><button type="button" data-share="linkedin" data-w="${w.id}">LinkedIn</button><button type="button" data-share="x" data-w="${w.id}">X (Twitter)</button><button type="button" data-share="whatsapp" data-w="${w.id}">WhatsApp</button><button type="button" data-share="csv" data-w="${w.id}">Download data (CSV)</button><button type="button" data-share="png" data-w="${w.id}">Download image (PNG)</button></div></details>`
       + `</div>`;
   }
+  // Say plainly what kind of chart this is: a strand (each person counted once, adds to 100%) or uptake (overlapping)
+  function badge(w) {
+    if (w.kind === 'strand' || w.kind === 'trend') return `<span class="wkind strand" title="Each ${unit().replace(/s$/, '')} is counted once, in the most formal category they use, so the strand adds up to 100%.">Strand · overall picture, adds up to 100%</span>`;
+    if (w.kind === 'usage' && /_strand$|mobile_money/.test(w.inds[0]) && w.inds[0] !== 'sdgs_strand' && !/^total_/.test(w.inds[0])) return `<span class="wkind uptake" title="Each figure is the share using that channel. People can use several, so the figures overlap.">Uptake · overlapping, can add up to more than 100%</span>`;
+    return '';
+  }
   function card(w) {
-    return `<div class="card${w.mini ? ' mini' : ''} widget" id="w-${w.id}" data-w="${w.id}"><div class="card-head"><div>${w.mini ? `<h3>${esc(w.title)}</h3>` : `<h2>${esc(w.title)}</h2>`}${w.sub ? `<p class="sub">${esc(w.sub)}</p>` : ''}</div>${toolbar(w)}</div><div class="wbody"><p class="wload">Loading…</p></div><p class="wfoot"></p></div>`;
+    return `<div class="card${w.mini ? ' mini' : ''} widget" id="w-${w.id}" data-w="${w.id}"><div class="card-head"><div>${badge(w)}${w.mini ? `<h3>${esc(w.title)}</h3>` : `<h2>${esc(w.title)}</h2>`}${w.sub ? `<p class="sub">${esc(w.sub)}</p>` : ''}</div>${toolbar(w)}</div><div class="wbody"><p class="wload">Loading…</p></div><p class="wfoot"></p></div>`;
   }
   async function fillWidget(w, el) {
     const body = el.querySelector('.wbody'), foot = el.querySelector('.wfoot'), tbl = S.view === 'table';
@@ -394,6 +400,23 @@
   window.addEventListener('popstate', () => { const w = readUrl(); if (w) go(w, false, { keepState: true }); });
 
   window.FMTRequest && window.FMTRequest({ get survey() { return S.s; }, ctx: () => ({ iso: S.iso, year: S.year, name: D ? D.country : '', label: label(S.s), cite: `${citeOwner()} (${S.year}). ${label(S.s)}, ${D ? D.country : ''} ${S.year}.` }) });
+  // ---------- hover / tap tooltips on bars ----------
+  const tip = document.createElement('div'); tip.className = 'btip'; tip.hidden = true; tip.setAttribute('role', 'tooltip'); document.body.appendChild(tip);
+  function showTip(el, x, y) {
+    const [h, v] = el.dataset.tip.split('|');
+    tip.innerHTML = `<b>${h}</b><span>${v || ''}</span>`; tip.hidden = false;
+    const r = el.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight;
+    const px = x == null ? r.left + r.width / 2 : x, py = y == null ? r.top : y;
+    tip.style.left = Math.max(8, Math.min(window.innerWidth - tw - 8, px - tw / 2)) + 'px';
+    tip.style.top = (py - th - 12 < 8 ? py + 18 : py - th - 12) + 'px';
+  }
+  const hideTip = () => { tip.hidden = true; };
+  document.addEventListener('mousemove', e => { const el = e.target.closest && e.target.closest('[data-tip]'); el ? showTip(el, e.clientX, e.clientY) : hideTip(); });
+  document.addEventListener('focusin', e => { const el = e.target.closest && e.target.closest('[data-tip]'); el ? showTip(el) : hideTip(); });
+  document.addEventListener('focusout', hideTip);
+  document.addEventListener('click', e => { const el = e.target.closest && e.target.closest('[data-tip]'); if (el) showTip(el, e.clientX, e.clientY); else hideTip(); });
+  window.addEventListener('scroll', hideTip, { passive: true });
+
   fetch('surveys/index.json').then(r => r.json()).then(j => { INDEX = j.surveys; const w = readUrl(); go(w || { s: 'consumer', iso: 'ZAF', year: 0 }, false, { keepState: true }); })
     .catch(() => { $('panel').innerHTML = '<div class="card empty">The survey list could not load. Refresh the page to try again.</div>'; });
 })();
