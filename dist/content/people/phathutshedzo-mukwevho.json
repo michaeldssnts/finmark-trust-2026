@@ -1,11 +1,11 @@
 {
+  "bio": "Phathutshedzo is the Project Administrator for the SADC financial inclusion programme at FinMark Trust. With excellent organisational and scheduling skills, she ensures that deadlines are met, and efforts are effectively coordinated both within the organisation and with external consultants. Phathutshedzo's responsibilities extend to monitoring the budget, research and report writing and ensuring efficient resource utilisation.\n\nShe excels in building and maintaining relationships with stakeholders to support the achievement of divisional objectives. Phathutshedzo holds an honours degree in economics.",
   "name": "Phathutshedzo Mukwevho",
   "slug": "phathutshedzo-mukwevho",
-  "role": "Project Administrator: SADC FI",
-  "group": "team",
   "order": 19,
   "photo": "https://finmark.org.za/system/members/images/000/000/078/original/out_%2848%29.jpg?1747972312",
-  "bio": "Phathutshedzo coordinates schedules, budgets, resources and stakeholder relationships for the SADC financial inclusion programme. She holds an honours degree in economics.",
+  "role": "Project Administrator: SADC FI",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
