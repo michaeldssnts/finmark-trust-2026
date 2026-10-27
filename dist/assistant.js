@@ -8,7 +8,9 @@
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const asset = p => (p && p.startsWith('/uploads/') ? R + p.slice(1) : p);
   const fmt = d => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : '');
-  const COUNTRIES = { AGO: 'Angola', BWA: 'Botswana', COD: 'DR Congo|Democratic Republic of the Congo|DRC', SWZ: 'Eswatini|Swaziland', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa|SA|RSA', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe' };
+  const COUNTRIES = { AGO: 'Angola', BWA: 'Botswana', COD: 'DR Congo|Democratic Republic of the Congo|DRC', SWZ: 'Eswatini|Swaziland', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa|SA|RSA', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe',
+    BGD: 'Bangladesh', BEN: 'Benin', BFA: 'Burkina Faso', KHM: 'Cambodia', CMR: 'Cameroon', CIV: 'Côte d’Ivoire|Cote d Ivoire|Ivory Coast', GMB: 'Gambia', GHA: 'Ghana', HTI: 'Haiti', LAO: 'Laos|Lao PDR|Lao', MMR: 'Myanmar|Burma', NPL: 'Nepal', NGA: 'Nigeria', PAK: 'Pakistan', RWA: 'Rwanda', THA: 'Thailand', TGO: 'Togo', UGA: 'Uganda',
+    SADC: 'SADC|Southern African Development Community|Southern Africa' };
   const STOP = new Set('a an the and or of in on for to with about is are be i me my we our you your do does can could would should how what where which who find show give get looking look want need any some there please hi hello hey information info tell more on latest new recent'.split(' '));
   const PAGES = [
     { k: /donat|give|fund|endow|patron|support (fmt|finmark)|contribut/, t: 'Donate', d: 'Fund a small business through GBL, or become a founding patron of the Impact Endowment.', u: 'donate/index.html' },
@@ -24,7 +26,11 @@
     { k: /newsletter|subscribe|sign ?up|mailing/, t: 'FI Snapshot newsletter', d: 'Sign up from the bottom of any page.', u: '#footer' }
   ];
   let FEED = null, loading = null;
-  const load = () => loading || (loading = fetch(R + 'knowledge-hub/knowledge.json').then(r => r.json()).then(f => (FEED = f)).catch(() => (FEED = { items: [], themes: [], programmes: [], people: [] })));
+  let SURVEYS = [];
+  const load = () => loading || (loading = Promise.all([
+    fetch(R + 'knowledge-hub/knowledge.json').then(r => r.json()).then(f => (FEED = f)).catch(() => (FEED = { items: [], themes: [], programmes: [], people: [], tors: [] })),
+    fetch(R + 'data/surveys/index.json').then(r => r.json()).then(f => (SURVEYS = f.surveys || [])).catch(() => {})
+  ]));
 
   // ---------- UI ----------
   const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = R + 'assistant.css'; document.head.appendChild(css);
@@ -108,12 +114,28 @@
     };
     people.forEach(p => out.push(link(`${R}about/index.html?member=${encodeURIComponent(p.slug)}`, p.name, p.role)));
     progs.slice(0, 2).forEach(p => out.push(link(p.site || `${R}knowledge-hub/index.html?programme=${encodeURIComponent(p.slug)}`, p.name, p.site ? 'Programme site' : 'Programme research', /^https?:/.test(p.site || ''))));
-    cs.slice(0, 2).forEach(c => out.push(link(`${R}data/country.html#${c}`, `${COUNTRIES[c].split('|')[0]} data`, 'FinScope results and indicators')));
+    // Survey results: a country plus a year ("FinScope Ghana 2021") goes straight to that survey's results
+    const yr = (nq.match(/\b(19|20)\d{2}\b/) || [])[0];
+    const kind = /msme|small business|enterprise|sme/.test(nq) ? 'msme' : 'consumer';
+    cs.filter(c => c !== 'SADC').forEach(c => {
+      const sv = SURVEYS.filter(x => x.iso === c && (x.s === kind || !SURVEYS.some(y => y.iso === c && y.s === kind)));
+      const hit = yr && sv.find(x => String(x.year) === yr);
+      if (hit) out.push(link(`${R}data/survey.html?d=${hit.s}-${c}-${hit.year}`, `${hit.country} ${hit.year} survey results`, (hit.s === 'msme' ? 'FinScope MSME' : hit.kind === 'smallholder' ? 'CGAP smallholder survey' : 'FinScope Consumer') + ' · filter, compare and download'));
+    });
+    cs.slice(0, 2).forEach(c => out.push(c === 'SADC'
+      ? link(`${R}knowledge-hub/index.html?country=SADC`, 'SADC regional research', 'Reports, blogs and videos on the region')
+      : link(`${R}data/country.html#${c}`, `${COUNTRIES[c].split('|')[0]} data`, 'FinScope results, surveys and publications')));
+    // Open Terms of Reference that match
+    const today = new Date().toISOString().slice(0, 10);
+    const torPage = /terms of reference|\btors?\b|tender|expression of interest|\beoi\b|consultan|procure|rfp|proposal/.test(nq);
+    (FEED.tors || []).filter(t => !t.closing || t.closing >= today).filter(t => torPage || ws.some(w => w.length > 3 && norm(t.title).includes(w)))
+      .slice(0, 2).forEach(t => out.unshift(link(t.document || `${R}terms-of-reference/index.html`, t.title, `${t.type}${t.closing ? ' · closes ' + fmt(t.closing) : ''}`, /^https?:/.test(t.document || ''))));
     pages.slice(0, 2).forEach(p => out.push(link(p.u.startsWith('#') ? p.u : R + p.u, p.t, p.d)));
     const hubQ = new URLSearchParams();
     if (themes.length === 1) hubQ.set('theme', themes[0].slug); else if (ws.length) hubQ.set('q', q);
     if (cs.length === 1) hubQ.set('country', cs[0]);
 
+    if (torPage) items = [];  // a ToR question gets the open calls and the ToR page, not loosely matching research
     let html = '';
     if (items.length) html += `<p>${pages.length || cs.length || progs.length || people.length ? 'Here’s where to look:' : 'These look relevant:'}</p>` + out.slice(0, 3).join('') + items.map(itemLink).join('')
       + `<a class="fg-more" href="${R}knowledge-hub/index.html?${hubQ}">See more in the Knowledge Hub →</a>`;

@@ -4,7 +4,8 @@
   "type": "Report",
   "summary": "Exploring mobile surveys as a viable means of data collection.",
   "themes": [
-    "i2i"
+    "i2i",
+    "data-research-methods"
   ],
   "countries": [
     "ZWE",
@@ -19,5 +20,6 @@
   "review": true,
   "legacy_url": "https://finmark.org.za/system/documents/files/000/000/090/original/i2i_Innovative_and_sustainable_data_collection_note.pdf",
   "legacy_type": "Publications",
-  "legacy_id": 90
+  "legacy_id": 90,
+  "body": "[View the interactive version](https://indd.adobe.com/view/01d33cd1-2fe6-4045-ac14-97baed7f42fd)"
 }

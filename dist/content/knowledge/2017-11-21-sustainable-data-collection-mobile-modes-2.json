@@ -5,7 +5,8 @@
   "summary": "Discover new technologies that enable more sustainable data collection.",
   "themes": [
     "i2i",
-    "digitalisation"
+    "digitalisation",
+    "data-research-methods"
   ],
   "countries": [],
   "tags": [],
@@ -16,5 +17,6 @@
   "review": true,
   "legacy_url": "https://finmark.org.za/system/documents/files/000/000/043/original/Mobile_modes.pdf",
   "legacy_type": "Publications",
-  "legacy_id": 43
+  "legacy_id": 43,
+  "body": "[View the interactive version](https://indd.adobe.com/view/e28bf347-0e92-45cb-9f95-5d982d9ab930)"
 }

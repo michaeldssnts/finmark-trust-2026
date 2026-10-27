@@ -110,10 +110,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     const regN = count('country', it => (inPlace(it, 'SADC') ? ['x'] : [])).get('x') || 0;
     const sadcN = count('country', it => (it.c.some(c => SADC.includes(c)) ? ['x'] : [])).get('x') || 0;
     const opt = (v, l, n) => `<option value="${v}"${S.country === v ? ' selected' : ''}>${esc(l)}${n !== undefined ? ` (${n})` : ''}</option>`;
-    const others = Object.keys(PLACES).filter(c => !SADC.includes(c) && cc.get(c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b]));
     $('fCountry').innerHTML = opt('', 'All countries') + opt('SADC', 'SADC – regional view', regN) + opt('SADC-ALL', 'Any SADC country', sadcN)
-      + `<optgroup label="SADC">${SADC.filter(c => c !== 'SADC' && (cc.get(c) || S.country === c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b])).map(c => opt(c, PLACES[c], cc.get(c) || 0)).join('')}</optgroup>`
-      + (others.length ? `<optgroup label="Beyond SADC">${others.map(c => opt(c, PLACES[c], cc.get(c))).join('')}</optgroup>` : '');
+      + `<optgroup label="Countries">${Object.keys(PLACES).filter(c => c !== 'SADC' && (cc.get(c) || S.country === c)).sort((a, b) => PLACES[a].localeCompare(PLACES[b])).map(c => opt(c, PLACES[c], cc.get(c) || 0)).join('')}</optgroup>`;
     const prc = count('prog', it => it.pg);
     const popt = p => `<option value="${esc(p.slug)}"${S.prog === p.slug ? ' selected' : ''}>${esc(p.name)} (${prc.get(p.slug) || 0})</option>`;
     const GROUPS = [['sadc', 'SADC region'], ['za', 'South Africa'], ['cross', 'Cross-cutting']];

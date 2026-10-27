@@ -4,7 +4,8 @@
   "type": "Report",
   "summary": "The potential of alternative data to better serve MSMEs in Zambia",
   "themes": [
-    "i2i"
+    "i2i",
+    "credit-msme-finance"
   ],
   "countries": [
     "ZMB"
@@ -17,5 +18,6 @@
   "review": true,
   "legacy_url": "https://finmark.org.za/system/documents/files/000/000/081/original/ZPOS_case_study.pdf",
   "legacy_type": "Publications",
-  "legacy_id": 81
+  "legacy_id": 81,
+  "body": "[View the interactive version](https://indd.adobe.com/view/c3e801cc-f73d-4112-a764-0e9c32d008c6)"
 }

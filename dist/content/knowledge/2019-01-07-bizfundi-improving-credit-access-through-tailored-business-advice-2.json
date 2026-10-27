@@ -4,7 +4,8 @@
   "type": "Report",
   "summary": "Targeting small businesses with personalised business advice and predicting successful loan applications",
   "themes": [
-    "i2i"
+    "i2i",
+    "credit-msme-finance"
   ],
   "countries": [],
   "tags": [],
@@ -15,5 +16,6 @@
   "review": true,
   "legacy_url": "https://finmark.org.za/system/documents/files/000/000/077/original/i2i_Bizfundi_case_study.pdf",
   "legacy_type": "Publications",
-  "legacy_id": 77
+  "legacy_id": 77,
+  "body": "[View the interactive version](https://indd.adobe.com/view/92e44757-233e-4c1c-8143-a553fa97ca88)"
 }

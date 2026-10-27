@@ -4,7 +4,8 @@
   "type": "Report",
   "summary": "The application of an innovative approach to cognitive interviewing.",
   "themes": [
-    "remittances"
+    "remittances",
+    "data-research-methods"
   ],
   "countries": [
     "UGA",
@@ -18,5 +19,6 @@
   "review": true,
   "legacy_url": "https://finmark.org.za/system/documents/files/000/000/089/original/Bridging_the_gap.pdf",
   "legacy_type": "Publications",
-  "legacy_id": 89
+  "legacy_id": 89,
+  "body": "[View the interactive version](https://indd.adobe.com/view/02fd6747-8796-46d0-b9bf-e4ee17bd1984)"
 }
