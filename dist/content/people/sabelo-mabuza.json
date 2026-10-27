@@ -1,11 +1,11 @@
 {
+  "bio": "Sabelo is the Country Coordinator for Eswatini at FinMark Trust. He brings over 25 years of diverse finance sector experience to his role. With expertise in project appraisals and negotiations gained during his tenure at the Swaziland Investment Promotion Authority, Sabelo has extensive experience in investment facilitation and aftercare.\n\nIn his career, he has held senior roles at prominent institutions, including senior banking examiner at the Central Bank of Swaziland, and director of investment facilitation and aftercare at the Swaziland Investment Promotion Authority.\n\nHis academic background includes a bachelor of commerce degree in accounting and finance from the University of Swaziland and a master of science degree in finance and accounting from the University of Manchester Institute of Science and Technology (UK). He is also a part-qualified candidate of the Chartered Institute of Management Accountants.",
   "name": "Sabelo Mabuza",
   "slug": "sabelo-mabuza",
-  "role": "Eswatini Country Coordinator",
-  "group": "team",
   "order": 32,
   "photo": "https://finmark.org.za/system/members/images/000/000/101/original/Sabelo.jpg?1747972091",
-  "bio": "Sabelo brings more than 25 years’ finance-sector experience to financial inclusion work in Eswatini, including banking supervision, investment facilitation and project appraisal.",
+  "role": "Eswatini Country Coordinator",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
