@@ -1,11 +1,11 @@
 {
+  "bio": "Nqobile is FinMark Trust's Financial Inclusion Intern in the South Africa Financial Inclusion programme. By profession, she is a community development practitioner and holds a Bachelor of Social Science Honours in Community and Development Studies. Her experience includes working in the transformation field, where she advocated for the rights of people with disabilities, women, youth, LGBTQI+, children, the elderly and military veterans. She is passionate about fostering diversity, equity, and inclusion.",
   "name": "Nqobile Blose",
   "slug": "nqobile-blose",
-  "role": "Financial Inclusion Intern",
-  "group": "team",
   "order": 24,
   "photo": "https://finmark.org.za/system/members/images/000/000/123/original/Nqobile.jpg?1747923622",
-  "bio": "Nqobile is a community development practitioner with experience advocating for diversity, equity and inclusion across a range of underserved groups.",
+  "role": "Financial Inclusion Intern",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
