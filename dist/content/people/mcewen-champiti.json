@@ -1,11 +1,11 @@
 {
+  "bio": "McEwen joined FinMark Trust in March 2026 and leads the organisation’s country programme to advance financial inclusion, digital financial services and inclusive financial sector development. He brings fifteen years of professional experience spanning central banking, financial sector development and digital finance across Africa and the Pacific.\n\nThroughout his career, McEwen has worked with regulators, development institutions and private sector actors to design and implement initiatives that strengthen financial markets, expand access to finance and support innovation in digital financial ecosystems. Before joining FinMark Trust, he held roles with the Reserve Bank of Malawi and the United Nations, where he led research, policy advisory and ecosystem development initiatives across digital finance, financial inclusion and emerging technologies. McEwen holds an MBA in Finance and a master’s degree in economics, both awarded with first-class distinction.",
   "name": "McEwen Champiti",
   "slug": "mcewen-champiti",
-  "role": "Malawi Country Coordinator",
-  "group": "team",
   "order": 34,
   "photo": "https://finmark.org.za/system/members/images/000/000/127/original/macwian.jpg?1773714309",
-  "bio": "McEwen leads FinMark Trust’s Malawi country programme. His experience spans central banking, financial-sector development and digital finance across Africa and the Pacific.",
+  "role": "Malawi Country Coordinator",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
