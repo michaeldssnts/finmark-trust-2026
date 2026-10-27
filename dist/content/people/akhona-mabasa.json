@@ -1,11 +1,11 @@
 {
+  "bio": "Akhona is a Financial Inclusion Specialist in the South Africa Financial Inclusion programme at FinMark Trust. Her role involves conceptualising and implementing programmes steered towards financial inclusion in South Africa. Akhona brings valuable experience in research and programme implementation, particularly in rural South Africa.\n\nShe previously worked for an organisation that implemented an intervention aimed at enhancing education and health outcomes in rural areas in South Africa. Akhona holds an honours degree in psychology and a master's degree in critical diversity studies from the University of the Witwatersrand.",
   "name": "Akhona Mabasa",
   "slug": "akhona-mabasa",
-  "role": "Junior FI Specialist: South Africa FI Programme",
-  "group": "team",
   "order": 22,
   "photo": "https://finmark.org.za/system/members/images/000/000/106/original/akona_2026.jpg?1768225168",
-  "bio": "Akhona conceptualises and implements financial inclusion programmes in South Africa. Her background includes research and programme implementation in rural communities.",
+  "role": "Junior FI Specialist: South Africa FI Programme",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

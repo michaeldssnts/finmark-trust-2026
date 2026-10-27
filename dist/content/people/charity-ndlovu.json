@@ -1,11 +1,11 @@
 {
+  "bio": "Charity is the Office Assistant at FinMark Trust, dedicated to providing invaluable support to ensure our organisation runs smoothly. With her compassionate nature, she enhances the work we do in the office.\n\nBefore coming to South Africa, Charity pursued teaching while also serving as a community home-based carer with an NGO. She empowered individuals with HIV to lead fulfilling lives and take care of themselves. Charity has remained committed to making a positive impact in South Africa, especially in her rural hometown of Plumtree where she participates in a programme that collects and supplies sanitary towels for young women and girls in the community.\n\nShe also organises initiatives to support elderly individuals in need. Charity’s dedication contributes to our collective efforts at FinMark Trust.",
   "name": "Charity Ndlovu",
   "slug": "charity-ndlovu",
-  "role": "Office Assistant",
-  "group": "team",
   "order": 31,
   "photo": "https://finmark.org.za/system/members/images/000/000/107/original/Charity.jpg?1747925170",
-  "bio": "Charity provides essential support that keeps the organisation running smoothly. Her community work includes initiatives supporting women, girls and older people.",
+  "role": "Office Assistant",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

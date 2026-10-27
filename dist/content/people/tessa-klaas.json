@@ -1,11 +1,11 @@
 {
+  "bio": "Tessa is FinMark Trust’s Monitoring, Evaluation and Learning (MEL) Intern. She has a passion for uplifting marginalised communities and driving meaningful transformation. Tessa has held a key role in the Youth Programmes, South African Institute of International Affairs (Youth@SAIIA), where she served as the National Focal Points Person for the Youth Policy Committee. She is a dedicated advocate for social change and youth empowerment. Tessa is currently pursuing a master’s in development studies at the University of Johannesburg, while also a candidate in the ‘Rule of Law and Equal Access to Welfare’ programme at the Just Society, University of Southern Denmark. She has also been selected as a candidate in the South African Monitoring and Evaluation Association’s Emerging Evaluators programme.",
   "name": "Tessa Klaas",
   "slug": "tessa-klaas",
-  "role": "Junior MEL Specialist",
-  "group": "team",
   "order": 23,
   "photo": "https://finmark.org.za/system/members/images/000/000/121/original/tessa.jpg?1747925947",
-  "bio": "Tessa works in monitoring, evaluation and learning, with a focus on marginalised communities, youth empowerment and meaningful social transformation.",
+  "role": "Junior MEL Specialist",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

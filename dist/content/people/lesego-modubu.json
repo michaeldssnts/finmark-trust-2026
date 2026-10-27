@@ -1,11 +1,11 @@
 {
+  "bio": "Lesego is the Project Admin Intern at FinMark Trust with a background in programme monitoring and administration. She has worked with the National Treasury as an intern in the International Development Cooperation Unit, where she gained experience in financial compliance, stakeholder engagement, and administration. She holds a BCom degree in Economics and Econometrics from the University of Johannesburg and an Honours degree in Economics.\n\nLesego's responsibilities extend to providing project administration and coordination support to the FMT Programmes team, monitoring and coordinating the implementation of projects against project plans and maintaining relationships with various stakeholders.",
   "name": "Lesego Modubu",
   "slug": "lesego-modubu",
-  "role": "Project Admin Intern",
-  "group": "team",
   "order": 25,
   "photo": "https://finmark.org.za/system/members/images/000/000/125/original/lesego_Programmes.jpg?1760680604",
-  "bio": "Lesego supports programme administration and coordination, including implementation tracking, financial compliance and stakeholder engagement.",
+  "role": "Project Admin Intern",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

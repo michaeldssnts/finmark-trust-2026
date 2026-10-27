@@ -1,11 +1,11 @@
 {
+  "bio": "Helen is a seasoned Financial Accountant at FinMark Trust, responsible for delivering financial management and reporting to support the organisation's decision-making processes.\n\nWith expertise in financial management, budgeting development, and financial analysis and reporting, Helen plays a pivotal role in maintaining the financial integrity of FinMark Trust. She is entrusted with the task of preparing the organisation's financial reports for presentation to the board members.\n\nHelen's comprehensive understanding of financial principles and regulations allows her to effectively manage the organisation's financial operations and ensure accurate and transparent reporting. She holds a bachelor of commerce degree in accounting.",
   "name": "Helen Mosito",
   "slug": "helen-mosito",
-  "role": "Accounting Manager",
-  "group": "team",
   "order": 27,
   "photo": "https://finmark.org.za/system/members/images/000/000/092/original/Helen.jpg?1747923973",
-  "bio": "Helen delivers financial management, budgeting, analysis and reporting to support transparent decision-making and maintain FinMark Trust’s financial integrity.",
+  "role": "Accounting Manager",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

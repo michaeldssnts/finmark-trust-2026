@@ -1,11 +1,11 @@
 {
+  "bio": "Kholiswa is the Finance Officer at FinMark Trust, where she plays a vital role in supporting the COO and accounting manager to achieve strategic objectives in the finance department.\n\nHer responsibilities involve implementing integrated financial services in alignment with established policies and procedures, with a focus on demonstrating principles of value for money to contribute to the organisation's financial sustainability.\n\nPrior to joining FinMark Trust in 2022, Kholiswa started her career as a finance intern at Doctors Without Borders, where she gained valuable experience in handling day-to-day financial activities. Her academic background includes a bachelor of commerce degree in accounting from the University of Johannesburg.",
   "name": "Kholiswa Thobakgale",
   "slug": "kholiswa-thobakgale",
-  "role": "Finance Officer",
-  "group": "team",
   "order": 28,
   "photo": "https://finmark.org.za/system/members/images/000/000/113/original/Koliswa.jpg?1747923958",
-  "bio": "Kholiswa supports the finance team in delivering integrated financial services, applying value-for-money principles and established organisational policies.",
+  "role": "Finance Officer",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

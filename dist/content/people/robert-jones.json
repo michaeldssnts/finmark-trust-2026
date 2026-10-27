@@ -1,11 +1,11 @@
 {
+  "bio": "Robert is a seasoned programmes project manager at FinMark Trust, with extensive research and project management expertise.\n\nHe joined the organisation in 2017 as a member of the AppLab team within the insight2impact facility. Robert oversees and coordinates projects within the FinMark Trust programmes portfolio, including SADC Financial Inclusion, South Africa Financial Inclusion, gender and youth, and innovation initiatives.\n\nHe plays a vital role in project design, implementation, monitoring, and reporting. With a strong focus on project success, Robert ensures projects are delivered on time, within budget, and with high technical quality. Robert holds a master of science degree from Rhodes University.",
   "name": "Robert Jones",
   "slug": "robert-jones",
-  "role": "Programmes Project Manager",
-  "group": "team",
   "order": 20,
   "photo": "https://finmark.org.za/system/members/images/000/000/084/original/Rob.jpg?1747923178",
-  "bio": "Robert coordinates projects across the programmes portfolio, covering project design, implementation, monitoring and reporting across regional and thematic initiatives.",
+  "role": "Programmes Project Manager",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

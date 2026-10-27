@@ -1,11 +1,11 @@
 {
+  "bio": "Marlene is a skilled Contracts and Account Manager at FinMark Trust, providing essential project management, financial, and human resources leadership and support to the CEO, COO and thematic coordinators.\n\nShe ensures project deliverables are achieved and stakeholder expectations are met. Marlene’s responsibilities include building relationships with project funders, preparing payment runs, monitoring variances, and overseeing the complete project life cycle management, including contract drafting. She brings a wealth of experience from her previous roles in commercial and donor environments, where her responsibilities included establishing customer relations and communication with suppliers, clients and the respective banks. Her expertise includes identifying problem areas and implementing solutions.\n\nMarlene has a solid track record of engaging with practitioners across multiple African countries. She holds a master of education degree specialising in counselling and has earned a certificate in project management.",
   "name": "Marlene Ehmke",
   "slug": "marlene-ehmke",
-  "role": "Contracts and Account Manager",
-  "group": "team",
   "order": 26,
   "photo": "https://finmark.org.za/system/members/images/000/000/086/original/Marlene.jpg?1747923354",
-  "bio": "Marlene provides project management, financial and human resources support, managing contracts, funder relationships and project delivery across the organisation.",
+  "role": "Contracts and Account Manager",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

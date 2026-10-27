@@ -1,11 +1,11 @@
 {
+  "bio": "Michael is the interactive manager at FinMark Trust, bringing his expertise and experience to the team since 2016. He has been dedicated to enhancing user interactions with large datasets, employing visual cues to provide insights to decision-makers and developing digital strategies to improve financial inclusion.\n\nWith over 20 years of experience with web-based products, Michael is a problem solver who cares about crafting products and experiences that are not only useful but user-friendly and visually appealing.\n\nHis skillset involves user interactions, user experience, web-based product development, interface usability, interactive design, graphic design, multimedia design, and development. Michael holds a national diploma in graphic design from the Vaal University of Technology and multiple coding certifications.",
   "name": "Michael Dos Santos",
   "slug": "michael-dos-santos",
-  "role": "Interactive Manager",
-  "group": "team",
   "order": 14,
   "photo": "https://finmark.org.za/system/members/images/000/000/070/original/Michael.jpg?1747923446",
-  "bio": "Michael develops user-friendly digital products and visual experiences that make large datasets useful to decision-makers. He has more than 20 years’ experience with web-based products.",
+  "role": "Interactive Manager",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

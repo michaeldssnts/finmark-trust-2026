@@ -1,11 +1,11 @@
 {
+  "bio": "Dr Dladla is the national programme manager consultant for the Generating Better Livelihoods for Grant Recipients Project at FinMark Trust. His responsibilities include overall programme management, developing implementation plans, overseeing project implementation, managing staff and deliverables, stakeholder management, reporting, knowledge extraction, and identifying gaps.\n\nWith over 10 years of senior management experience in the public service, Dr Dladla has extensive expertise in public employment programmes, sustainable livelihoods, poverty alleviation, small business development, policy development, research and community development. Dr Dladla's academic background includes a PhD in public administration and governance with a background of academic achievement in the field of economics.",
   "name": "Dr Lungisani Dladla",
   "slug": "lungisani-dladla",
-  "role": "National Programme Manager Consultant",
-  "group": "team",
   "order": 9,
   "photo": "https://finmark.org.za/system/members/images/000/000/108/original/Lungisana.jpg?1747924101",
-  "bio": "Lungisani manages the Generating Better Livelihoods for Grant Recipients project. His experience includes public employment programmes, sustainable livelihoods, poverty alleviation and community development.",
+  "role": "National Programme Manager Consultant",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }

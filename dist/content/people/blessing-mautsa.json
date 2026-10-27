@@ -1,11 +1,11 @@
 {
+  "bio": "Blessing is the Zimbabwe Country Coordinator for FinMark Trust, leveraging his diverse background to contribute to financial inclusion initiatives in the country.\n\nHe adopts a multidisciplinary approach to effectively manage project implementation, coordination, and stakeholder engagement. With expertise in quantitative and qualitative data analysis and communication, Blessing brings a comprehensive skillset to his role. Prior to joining the organisation, he was the operations manager at Africa Corporate Advisors where he developed skills in investment deal identification, negotiation and execution.\n\nHe also worked as a research assistant at the Infrastructure Development Bank of Zimbabwe and Investments and Trade Officer at ZimTrade. Blessing holds a master of science degree in economics and has earned an executive certificate in investments and portfolio management, and a certificate in digital identity.",
   "name": "Blessing Mautsa",
   "slug": "blessing-mautsa",
-  "role": "Zimbabwe Country Coordinator",
-  "group": "team",
   "order": 35,
   "photo": "https://finmark.org.za/system/members/images/000/000/098/original/Blessing.jpg?1747923215",
-  "bio": "Blessing coordinates financial inclusion initiatives in Zimbabwe, combining project implementation, stakeholder engagement and quantitative and qualitative analysis.",
+  "role": "Zimbabwe Country Coordinator",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
