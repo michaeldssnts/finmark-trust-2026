@@ -192,30 +192,12 @@
   },
   {
    "survey": "consumer",
-   "iso": "BGD",
-   "country": "Bangladesh",
-   "year": 2016,
-   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/BGD/2016.zip",
-   "label": "CGAP Smallholder Household Survey",
-   "credit": "CGAP"
-  },
-  {
-   "survey": "consumer",
    "iso": "BFA",
    "country": "Burkina Faso",
    "year": 2016,
    "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/BFA/2016.zip",
    "label": "FinScope Consumer",
    "credit": "FinMark Trust"
-  },
-  {
-   "survey": "consumer",
-   "iso": "CIV",
-   "country": "Côte d'Ivoire",
-   "year": 2016,
-   "url": "https://s3-us-west-2.amazonaws.com/i2ifacility.org/CIV/2016.zip",
-   "label": "CGAP Smallholder Household Survey",
-   "credit": "CGAP"
   },
   {
    "survey": "consumer",

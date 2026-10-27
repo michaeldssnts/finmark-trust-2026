@@ -9,7 +9,7 @@
   const asset = p => (p && p.startsWith('/uploads/') ? R + p.slice(1) : p);
   const fmt = d => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : '');
   const COUNTRIES = { AGO: 'Angola', BWA: 'Botswana', COD: 'DR Congo|Democratic Republic of the Congo|DRC', SWZ: 'Eswatini|Swaziland', LSO: 'Lesotho', MDG: 'Madagascar', MWI: 'Malawi', MUS: 'Mauritius', MOZ: 'Mozambique', NAM: 'Namibia', SYC: 'Seychelles', ZAF: 'South Africa|SA|RSA', TZA: 'Tanzania', ZMB: 'Zambia', ZWE: 'Zimbabwe',
-    BGD: 'Bangladesh', BEN: 'Benin', BFA: 'Burkina Faso', KHM: 'Cambodia', CMR: 'Cameroon', CIV: 'Côte d’Ivoire|Cote d Ivoire|Ivory Coast', GMB: 'Gambia', GHA: 'Ghana', HTI: 'Haiti', LAO: 'Laos|Lao PDR|Lao', MMR: 'Myanmar|Burma', NPL: 'Nepal', NGA: 'Nigeria', PAK: 'Pakistan', RWA: 'Rwanda', THA: 'Thailand', TGO: 'Togo', UGA: 'Uganda',
+    BEN: 'Benin', BFA: 'Burkina Faso', KHM: 'Cambodia', CMR: 'Cameroon', GMB: 'Gambia', GHA: 'Ghana', HTI: 'Haiti', IND: 'India', LAO: 'Laos|Lao PDR|Lao', MMR: 'Myanmar|Burma', NPL: 'Nepal', NGA: 'Nigeria', PAK: 'Pakistan', RWA: 'Rwanda', THA: 'Thailand', TGO: 'Togo', UGA: 'Uganda',
     SADC: 'SADC|Southern African Development Community|Southern Africa' };
   const STOP = new Set('a an the and or of in on for to with about is are be i me my we our you your do does can could would should how what where which who find show give get looking look want need any some there please hi hello hey information info tell more on latest new recent'.split(' '));
   const PAGES = [

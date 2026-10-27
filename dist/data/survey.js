@@ -11,7 +11,7 @@
   const people = w => { if (!w) return '–'; if (w >= 1e6) return (w / 1e6).toFixed(w >= 1e7 ? 1 : 2) + ' million'; if (w >= 1e3) return Math.round(w / 1e3).toLocaleString('en-GB') + 'k'; return Math.round(w).toLocaleString('en-GB'); };
   const SADC = ['AGO', 'BWA', 'COD', 'SWZ', 'LSO', 'MDG', 'MWI', 'MUS', 'MOZ', 'NAM', 'SYC', 'ZAF', 'TZA', 'ZMB', 'ZWE'];
   // Countries with a country page (SADC plus the other FinScope countries)
-  const PAGES = SADC.concat(['BGD', 'BEN', 'BFA', 'KHM', 'CMR', 'CIV', 'GMB', 'GHA', 'HTI', 'LAO', 'MMR', 'NPL', 'NGA', 'PAK', 'RWA', 'THA', 'TGO', 'UGA']);
+  const PAGES = SADC.concat(['BEN', 'BFA', 'KHM', 'CMR', 'GMB', 'GHA', 'HTI', 'IND', 'LAO', 'MMR', 'NPL', 'NGA', 'PAK', 'RWA', 'THA', 'TGO', 'UGA']);
   const EXPLORER = { 'consumer-MWI-2023': 'finscope-consumer.html#MWI-2023' };   // surveys with the full explorer (respondent-level data)
   const STRAND = ['--s1', '--s2', '--s3', '--s4', '--c5', '--c6', '--c7', '--c8'], LIGHT = new Set(['--s4', '--c5', '--none']);
   const GROUP = ['--s1', '--s2', '--s3', '--c5', '--c7', '--c6', '--c8', '--s4', '#8b5a9e', '#b5534a', '#5f7d2e', '#2f6d8a', '#a07a1f', '#6a6f86', '#3d8f7a'];
@@ -51,7 +51,7 @@
   const keyOf = x => `${x.s}-${x.iso}-${x.year}`;
   const fileOf = k => `surveys/${k}.json`;
   const curKey = () => keyOf(S);
-  const label = s => s === 'msme' ? 'FinScope MSME' : D && D.kind === 'smallholder' ? 'CGAP Smallholder Household Survey' : D && D.by && !D.by.some(b => /FinMark/.test(b.n)) ? 'National financial inclusion survey' : 'FinScope Consumer';
+  const label = s => s === 'msme' ? 'FinScope MSME' : D && D.label ? D.label : D && D.kind === 'smallholder' ? 'CGAP Smallholder Household Survey' : D && D.by && !D.by.some(b => /FinMark/.test(b.n)) ? 'National financial inclusion survey' : 'FinScope Consumer';
   const owners = () => (D && D.by && D.by.length ? D.by : [{ n: 'FinMark Trust (FinScope)', u: 'https://finmark.org.za/' }]);
   const citeOwner = () => owners().map(b => b.n.replace(/ \(FinScope\)$/, '')).join(' and ');
   const unit = () => S.s === 'msme' ? 'businesses' : 'adults';
@@ -244,6 +244,7 @@
     $('lede').textContent = S.s === 'msme'
       ? `Results from the FinScope MSME survey of micro, small and medium enterprises in ${name}, ${S.year}. Figures are weighted to all businesses in the survey's scope.`
       : `Results from ${label(S.s) === 'FinScope Consumer' ? 'the FinScope Consumer survey' : 'the national financial inclusion survey'} of adults in ${name}, ${S.year}. Every figure is weighted, so it describes the adult population rather than only the people interviewed.`;
+    if (D.lede) $('lede').textContent = D.lede;
     if (D.kind === 'smallholder') $('lede').textContent = `Results from the CGAP national survey of smallholder families in ${name}, ${S.year}. The figures are nationally representative of smallholder farming households, not of all adults.`;
     const ex = EXPLORER[k];
     $('explorerLink').hidden = !ex;

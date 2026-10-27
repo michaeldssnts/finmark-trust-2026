@@ -222,7 +222,7 @@ a.cp-dot:hover{background:var(--navy)}
     $('cpKey').className = 'cp-key' + (c.key ? '' : ' empty');
     $('cpKey').innerHTML = c.key
       ? `<small>Headline finding</small><strong>${esc(c.key.value)}</strong><p>${esc(c.key.text)}</p><span>Source: ${esc(c.key.source)}</span>`
-      : latest ? `<small>Latest FinScope Consumer</small><strong>${latest} survey</strong><p>Explore how adults in ${esc(c.name)} save, borrow, send money and manage risk.</p><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a>`
+      : latest ? `<small>Latest ${esc(c.survey ? c.survey.short : 'FinScope Consumer')}</small><strong>${latest} survey</strong><p>Explore how adults in ${esc(c.name)} save, borrow, send money and manage risk.</p><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a>`
       : c.other.some(o => o.url) ? `<small>Latest survey</small><strong>${esc(c.other.filter(o => o.url).pop().year)} smallholder survey</strong><p>Explore how smallholder farming families in ${esc(c.name)} save, borrow, send money and manage risk.</p><a class="cp-btn" href="${esc(c.other.filter(o => o.url).pop().url)}">Explore the data</a>`
       : `<small>FinScope</small><strong>No national FinScope Consumer survey yet</strong><p>See the datasets and publications we hold for ${esc(c.name)} below.</p>`;
 
@@ -252,7 +252,7 @@ a.cp-dot:hover{background:var(--navy)}
         : k === 'sh' ? `<a class="cp-dot other" href="${esc(p.u)}" style="left:${pos(p.y)}" title="CGAP smallholder household survey ${p.y}">${p.y}</a>`
         : `<a class="cp-dot msme" href="${msmePage(c, p.y)}" style="left:${pos(p.y)}" title="FinScope MSME ${p.y}">${p.y}</a>`).join('') : '<span class="cp-none" style="position:relative;top:4px">No survey yet</span>'}</div></div>`; };
     const ticks = []; for (let y = Math.ceil(lo / 5) * 5; y <= hi; y += 5) ticks.push(y);
-    $('cpTimeline').innerHTML = row('FinScope Consumer', 'consumer') + row('FinScope MSME', 'msme') + (sh.length ? row('Smallholder (CGAP)', 'sh') : '') + `<div class="cp-tl-axis"><div></div><div>${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div></div>`;
+    $('cpTimeline').innerHTML = row(c.survey ? c.survey.short : 'FinScope Consumer', 'consumer') + row('FinScope MSME', 'msme') + (sh.length ? row('Smallholder (CGAP)', 'sh') : '') + `<div class="cp-tl-axis"><div></div><div>${ticks.map(t => `<span style="left:${pos(t)}">${t}</span>`).join('')}</div></div>`;
     const n = c.consumer.length + c.msme.length + c.other.length;
     $('dataLede').textContent = `${n} dataset${n === 1 ? '' : 's'} for ${c.name}. Select a survey year to see its results.`;
 
@@ -265,9 +265,9 @@ a.cp-dot:hover{background:var(--navy)}
         + `<div class="cp-years">${sh.map((o, i) => `<a href="${esc(o.url)}" class="${i === sh.length - 1 ? 'latest' : ''}">${esc(o.year)}</a>`).join('')}</div>`
         + `<div class="cp-actions"><a class="cp-btn" href="${esc(l.url)}">Explore ${esc(l.year)} data</a><a class="cp-btn ghost" href="${esc(l.url)}#request">Request the dataset</a></div></article>`;
     } else
-    cards += `<article class="cp-survey lead"><span class="tag">Flagship survey</span><h3>FinScope Consumer</h3><p>Nationally representative survey of adults (16+) on how they access and use financial products and services. Results are weighted to the national population.</p>`
+    cards += `<article class="cp-survey lead"><span class="tag">${c.survey ? 'Survey' : 'Flagship survey'}</span><h3>${esc(c.survey ? c.survey.title : 'FinScope Consumer')}</h3><p>${esc(c.survey ? c.survey.desc : 'Nationally representative survey of adults (16+) on how they access and use financial products and services. Results are weighted to the national population.')}</p>`
       + (c.consumer.length ? `<div class="cp-years">${c.consumer.map((x, i) => `<a href="${explorer(c, x.year)}" class="${i === c.consumer.length - 1 ? 'latest' : ''}" title="${x.note ? esc(x.note) : 'Explore ' + x.year}">${x.year}${x.note && x.note.includes('NFIS') ? ' <small>NFIS</small>' : ''}</a>`).join('')}</div>${pubList('FinScope Consumer')}
-        <div class="cp-actions"><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a><a class="cp-btn ghost" href="${c.iso === 'MWI' && +latest === 2023 ? explorer(c, latest) + '-request' : explorer(c, latest) + '#request'}">Request the dataset</a></div>`
+        <div class="cp-actions"><a class="cp-btn" href="${explorer(c, latest)}">Explore ${latest} data</a>${c.survey ? '' : `<a class="cp-btn ghost" href="${c.iso === 'MWI' && +latest === 2023 ? explorer(c, latest) + '-request' : explorer(c, latest) + '#request'}">Request the dataset</a>`}</div>`
         : `<p class="cp-none">No national FinScope Consumer survey has been run in ${esc(c.name)} yet.</p>`) + `</article>`;
     cards += `<article class="cp-survey msme"><span class="tag">Enterprise survey</span><h3>FinScope MSME</h3>`
       + (c.msme.length ? `<div class="cp-years">${c.msme.map(y => `<a href="${msmePage(c, y)}">${y}</a>`).join('')}</div>${pubList('FinScope MSME')}<p>Select a year to see the results that are online. Reports and pocket guides have the full findings.</p>` : `<p class="cp-none">No FinScope MSME survey for ${esc(c.name)} yet.</p>`) + `</article>`;
@@ -277,7 +277,7 @@ a.cp-dot:hover{background:var(--navy)}
     renderContent(c);
     $('cpPaths').innerHTML = [
       ['Knowledge Hub', `Search everything on ${c.name}`, 'Reports, blogs and videos across all topics.', '../knowledge-hub/index.html'],
-      latest ? ['FinScope Consumer', `Explore ${c.name} ${latest}`, 'Filter, compare and download weighted survey results.', explorer(c, latest)] : ['Explore Data', 'Choose another country', 'See FinScope data for every country.', '../countries/index.html'],
+      latest ? [c.survey ? c.survey.short : 'FinScope Consumer', `Explore ${c.name} ${latest}`, 'Filter, compare and download weighted survey results.', explorer(c, latest)] : ['Explore Data', 'Choose another country', 'See FinScope data for every country.', '../countries/index.html'],
       ['Programmes', 'Programme platforms', 'Gender, remittances, eKYC, GBL and the SADC FI Forum.', '../programmes/index.html']
     ].map(([k, t, d, h]) => `<a href="${h}"><small>${k}</small><strong>${esc(t)}</strong><span>${esc(d)}</span></a>`).join('');
   }

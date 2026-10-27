@@ -29,16 +29,15 @@
 /data-portal/AGO/2022                                                  /data/survey.html?d=consumer-AGO-2022                                                      301!
 /data-portal/BEN/2018                                                  /data/survey.html?d=consumer-BEN-2018                                                      301!
 /data-portal/BFA/2016                                                  /data/survey.html?d=consumer-BFA-2016                                                      301!
-/data-portal/BGD/2016                                                  /data/survey.html?d=consumer-BGD-2016                                                      301!
 /data-portal/BWA/2014                                                  /data/survey.html?d=consumer-BWA-2014                                                      301!
 /data-portal/BWA/2020                                                  /data/survey.html?d=consumer-BWA-2020                                                      301!
-/data-portal/CIV/2016                                                  /data/survey.html?d=consumer-CIV-2016                                                      301!
 /data-portal/CMR/2017                                                  /data/survey.html?d=consumer-CMR-2017                                                      301!
 /data-portal/COD/2014                                                  /data/survey.html?d=consumer-COD-2014                                                      301!
 /data-portal/GHA/2010                                                  /data/survey.html?d=consumer-GHA-2010                                                      301!
 /data-portal/GHA/2021                                                  /data/survey.html?d=consumer-GHA-2021                                                      301!
 /data-portal/GMB/2019                                                  /data/survey.html?d=consumer-GMB-2019                                                      301!
 /data-portal/HTI/2018                                                  /data/survey.html?d=consumer-HTI-2018                                                      301!
+/data-portal/IND/2015                                                  /data/survey.html?d=consumer-IND-2015                                                      301!
 /data-portal/KHM/2015                                                  /data/survey.html?d=consumer-KHM-2015                                                      301!
 /data-portal/LAO/2014                                                  /data/survey.html?d=consumer-LAO-2014                                                      301!
 /data-portal/LSO/2011                                                  /data/survey.html?d=consumer-LSO-2011                                                      301!
@@ -96,10 +95,6 @@
 /data-portal/BEN/*                                                     /data/country.html?country=BEN                                                             301!
 /data-portal/BFA                                                       /data/country.html?country=BFA                                                             301!
 /data-portal/BFA/*                                                     /data/country.html?country=BFA                                                             301!
-/data-portal/BGD                                                       /data/country.html?country=BGD                                                             301!
-/data-portal/BGD/*                                                     /data/country.html?country=BGD                                                             301!
-/data-portal/CIV                                                       /data/country.html?country=CIV                                                             301!
-/data-portal/CIV/*                                                     /data/country.html?country=CIV                                                             301!
 /data-portal/CMR                                                       /data/country.html?country=CMR                                                             301!
 /data-portal/CMR/*                                                     /data/country.html?country=CMR                                                             301!
 /data-portal/GHA                                                       /data/country.html?country=GHA                                                             301!
@@ -108,6 +103,8 @@
 /data-portal/GMB/*                                                     /data/country.html?country=GMB                                                             301!
 /data-portal/HTI                                                       /data/country.html?country=HTI                                                             301!
 /data-portal/HTI/*                                                     /data/country.html?country=HTI                                                             301!
+/data-portal/IND                                                       /data/country.html?country=IND                                                             301!
+/data-portal/IND/*                                                     /data/country.html?country=IND                                                             301!
 /data-portal/KHM                                                       /data/country.html?country=KHM                                                             301!
 /data-portal/KHM/*                                                     /data/country.html?country=KHM                                                             301!
 /data-portal/LAO                                                       /data/country.html?country=LAO                                                             301!
