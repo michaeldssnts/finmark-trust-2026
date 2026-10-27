@@ -1,11 +1,11 @@
 {
+  "bio": "Jabulani is a highly skilled senior data and analytics specialist at FinMark Trust, with more than 20 years of experience in research, conducting strategic ICT surveys in the SADC region and coordinating syndicated studies. In his role, Jabulani is responsible for implementing FinScope survey management and overseeing its implementation. He provides in-country technical support for financial inclusion demand-side surveys, facilitating access to finance information, utilisation and uptake. With his involvement in the strategic planning of FinScope, Jabulani has played a crucial role in leveraging data to improve the lives of vulnerable people. His skill set includes project scheduling, stakeholder management and strategic planning. Jabulani holds a national diploma in market research.",
   "name": "Jabulani Khumalo",
   "slug": "jabulani-khumalo",
-  "role": "Senior Data and Analytics Specialist",
-  "group": "team",
   "order": 7,
   "photo": "https://finmark.org.za/system/members/images/000/000/073/original/Jabu.jpg?1747923939",
-  "bio": "Jabulani has more than 20 years’ research experience and supports the design and implementation of FinScope surveys, providing technical assistance across the SADC region.",
+  "role": "Senior Data and Analytics Specialist",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
