@@ -21,12 +21,12 @@ import { guessSection, guessProgrammes } from './classify.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FEAT = join(ROOT, 'content/settings/featured.json');
-const K = join(ROOT, 'content/knowledge'), T = join(ROOT, 'content/themes'), P = join(ROOT, 'content/programmes'), PE = join(ROOT, 'content/people'), TOR = join(ROOT, 'content/tors'), OUT = join(ROOT, 'knowledge-hub/knowledge.json'), POSTS = join(ROOT, 'knowledge-hub/posts');
+const K = join(ROOT, 'content/knowledge'), T = join(ROOT, 'content/themes'), P = join(ROOT, 'content/programmes'), PE = join(ROOT, 'content/people'), TOR = join(ROOT, 'content/tors'), EV = join(ROOT, 'content/events'), OUT = join(ROOT, 'knowledge-hub/knowledge.json'), POSTS = join(ROOT, 'knowledge-hub/posts');
 
 // Small Markdown renderer for post bodies: ## / ### headings, paragraphs, - and 1. lists, > quotes, **bold**, *italic*, [links](url), line breaks.
 const escH = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const inline = s => escH(s)
-  .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, alt, u) => `<img src="${u.replace(/"/g, '%22')}" alt="${alt}" loading="lazy">`)
+  .replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g, (m, alt, u, cap) => `<img src="${u.replace(/"/g, '%22')}" alt="${alt}" loading="lazy">${cap ? `<span class="ps-cap">${cap}</span>` : ''}`)
   .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => `<a href="${u.replace(/"/g, '%22')}"${/^https?:/.test(u) ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`)
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*?)\*/g, '$1<em>$2</em>')
   .replace(/ {2,}\n/g, '<br>\n');
@@ -73,6 +73,9 @@ function build() {
   // Terms of Reference page: open calls first (soonest closing), then closed ones (newest first)
   const tors = readDir(TOR).filter(t => !t.draft && t.title).map(t => ({ id: t.id, title: t.title, type: t.type || 'Terms of reference', summary: t.summary || '', programme: t.programme || '', published: (t.published || '').slice(0, 10), closing: (t.closing || '').slice(0, 10), document: t.document || '', image: t.image || '', contact: hideMail(t.contact) }))
     .sort((a, b) => (b.closing || '9999').localeCompare(a.closing || '9999'));
+  // Events (webinars, launches, meetings): the homepage shows the ones still to come and hides the panel when there are none
+  const events = readDir(EV).filter(e => !e.draft && e.title && e.start).map(e => ({ id: e.id, title: e.title, type: e.type || 'Event', audience: e.audience || 'Open to the public', start: String(e.start).slice(0, 16), end: e.end ? String(e.end).slice(0, 16) : '', location: e.location || '', summary: e.summary || '', url: e.registration || '', cta: e.registration_label || 'Register', image: e.image || '', programme: e.programme || '' }))
+    .sort((a, b) => a.start.localeCompare(b.start));
   const items = readDir(K).filter(i => !i.draft && i.title).map(i => {
     const th = (i.themes || []).filter(s => known.has(s));
     const pg = (Array.isArray(i.programmes) ? i.programmes : guessProgrammes(i, progAll)).filter(s => knownP.has(s));
@@ -122,14 +125,14 @@ function build() {
     writeFileSync(join(POSTS, `${it.id}.json`), JSON.stringify({ ...meta, authors, html: md(_body), mins: Math.max(1, Math.round(words(_body) / 220)) }));
     delete it._body; posts++;
   }
-  writeFileSync(OUT, JSON.stringify({ built: new Date().toISOString(), themes, programmes, people, tors, featured, items }));
-  console.log(`knowledge.json: ${items.length} items, ${themes.length} themes, ${programmes.length} programmes, ${people.length} people, ${tors.length} calls, ${posts} post pages`);
+  writeFileSync(OUT, JSON.stringify({ built: new Date().toISOString(), themes, programmes, people, tors, events, featured, items }));
+  console.log(`knowledge.json: ${items.length} items, ${themes.length} themes, ${programmes.length} programmes, ${people.length} people, ${tors.length} calls, ${events.length} events, ${posts} post pages`);
 }
 
 build();
 if (process.argv.includes('--watch')) {
   let timer;
   const again = () => { clearTimeout(timer); timer = setTimeout(build, 300); };
-  [K, T, P, PE, TOR, dirname(FEAT)].forEach(d => { mkdirSync(d, { recursive: true }); watch(d, again); });
+  [K, T, P, PE, TOR, EV, dirname(FEAT)].forEach(d => { mkdirSync(d, { recursive: true }); watch(d, again); });
   console.log('Watching content/ for changes…');
 }

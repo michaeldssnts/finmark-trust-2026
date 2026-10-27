@@ -166,4 +166,5 @@ a.ps-tag.th:hover{background:color-mix(in srgb,var(--tc) 20%,#fff)}
 .ps-newshead .ps-avatars a,.ps-newshead .ps-avatars i{border-color:var(--navy-deep);box-shadow:none}
 @media(max-width:980px){.ps-layout.wide .ps-toc{display:none}}
 .ps-body img{max-width:100%;height:auto;display:block;margin:1.6em auto}
+.ps-body .ps-cap{display:block;margin:-.9em 0 1.6em;text-align:center;color:var(--muted,#5d6880);font-size:.86rem}
 .ps-tag.kw{background:#fff;border:1px solid #d5dee8;color:#45526a}a.ps-tag.kw:hover{border-color:#0098ae;color:#0b6e7d;background:#fff}

@@ -159,6 +159,12 @@
         </div>
       </div>
     </section>
+    <section class="section tight ev-section" id="events" aria-labelledby="evTitle" hidden>
+      <div class="container">
+        <div class="section-head"><div><p class="eyebrow">Upcoming events</p><h2 id="evTitle">Join us</h2></div><p>Webinars, launches and meetings hosted by FinMark Trust and our partners.</p></div>
+        <div class="ev-list" id="evList"></div>
+      </div>
+    </section>
     <section class="section">
       <div class="container">
         <div class="section-head"><div><p class="eyebrow">Latest evidence</p><h2>New in the<br>Knowledge Hub</h2></div><div class="rail-actions"><a class="text-link" href="knowledge-hub/index.html">Browse all knowledge</a><div class="rail-buttons"><button type="button" data-rail-direction="-1" aria-controls="knowledge-rail">Previous</button><button type="button" data-rail-direction="1" aria-controls="knowledge-rail">Next</button></div></div></div>
@@ -224,6 +230,33 @@
     <section class="section" id="about"><div class="container section-head"><div><p class="eyebrow">About FinMark Trust</p><h2>Financial inclusion<br>with real-world impact.</h2></div><p>FinMark Trust is an independent non-profit trust that uses data, research, policy support and market facilitation to advance inclusive financial systems and improve livelihoods across Southern Africa and beyond.</p></div></section>
   </main>
   <div id="site-footer"></div>
+  <script>
+  /* Upcoming events (added in the content manager under Events). The panel stays hidden when nothing is coming up. */
+  (function () {
+    var esc = function (v) { return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    var at = function (v) { return v ? new Date(v + ':00+02:00') : null; };   // times are entered in South African time
+    var fmt = function (d, o) { return d.toLocaleString('en-GB', Object.assign({ timeZone: 'Africa/Johannesburg' }, o)); };
+    fetch('knowledge-hub/knowledge.json').then(function (r) { return r.json(); }).then(function (feed) {
+      var now = new Date();
+      var list = (feed.events || []).map(function (e) { var s = at(e.start), en = at(e.end) || (s && new Date(s.getTime() + 2 * 36e5)); return Object.assign({}, e, { s: s, en: en }); })
+        .filter(function (e) { return e.s && !isNaN(e.s) && e.en > now; }).slice(0, 3);
+      if (!list.length) return;
+      document.getElementById('evList').innerHTML = list.map(function (e) {
+        var sameDay = e.end && fmt(e.s, { dateStyle: 'medium' }) === fmt(e.en, { dateStyle: 'medium' });
+        var when = fmt(e.s, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }) + ' · ' + fmt(e.s, { hour: '2-digit', minute: '2-digit', hour12: false })
+          + (e.end ? (sameDay ? '–' + fmt(e.en, { hour: '2-digit', minute: '2-digit', hour12: false }) : ' to ' + fmt(e.en, { day: 'numeric', month: 'short' })) : '') + ' SAST';
+        var live = e.s <= now;
+        return '<article class="ev-card"><div class="ev-date" aria-hidden="true"><b>' + fmt(e.s, { day: 'numeric' }) + '</b><span>' + fmt(e.s, { month: 'short' }) + '</span></div>'
+          + '<div class="ev-body"><div class="ev-tags"><span>' + esc(e.type) + '</span><span class="' + (/invitation/i.test(e.audience) ? 'priv' : 'pub') + '">' + esc(e.audience) + '</span>' + (live ? '<span class="live">Happening now</span>' : '') + '</div>'
+          + '<h3>' + esc(e.title) + '</h3>' + (e.summary ? '<p>' + esc(e.summary) + '</p>' : '')
+          + '<p class="ev-when"><time datetime="' + esc(e.start) + '">' + esc(when) + '</time>' + (e.location ? ' · ' + esc(e.location) : '') + '</p></div>'
+          + (e.url ? '<a class="primary-btn ev-btn" href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.cta || 'Register') + ' <span aria-hidden="true">&#8599;</span></a>' : '')
+          + '</article>';
+      }).join('');
+      document.getElementById('events').hidden = false;
+    }).catch(function () {});
+  })();
+  </script>
   <script src="site.js"></script>
   <script src="hero.js"></script>
 </body>

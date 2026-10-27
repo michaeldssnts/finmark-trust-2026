@@ -34,6 +34,7 @@
   var PFOLDER = mode === 'demo' ? 'programmes' : DIR + 'content/programmes';
   var PEFOLDER = mode === 'demo' ? 'people' : DIR + 'content/people';
   var TORFOLDER = mode === 'demo' ? 'tors' : DIR + 'content/tors';
+  var EVFOLDER = mode === 'demo' ? 'events' : DIR + 'content/events';
   var FEATFILE = mode === 'demo' ? 'settings/featured.json' : DIR + 'content/settings/featured.json';
   var pickItems = function (name, label, max, hint) {
     return { name: name, label: label, widget: 'relation', collection: 'knowledge', search_fields: ['title'], value_field: '{{slug}}', display_fields: ['{{title}} ({{date}})'], multiple: true, required: false, max: max, options_length: 30, hint: hint };
@@ -109,7 +110,7 @@
           { name: 'thumbnail', label: 'Thumbnail image', widget: 'image', required: false, hint: 'A wide banner, ideally 2114 × 744 px (about 2.85:1). The same image is used as the header of blogs and articles. Optional: without one, the site draws a branded cover.' },
           { name: 'authors', label: 'Written by (FinMark Trust staff)', widget: 'relation', collection: 'people', search_fields: ['name', 'role'], value_field: 'slug', display_fields: ['name'], multiple: true, required: false, max: 6, options_length: 60, hint: 'Pick the staff members who wrote this. Their names in the byline link to their profile, and the piece is listed on their profile page.' },
           { name: 'author', label: 'Other authors (not on staff)', widget: 'string', required: false, hint: 'Guest or partner authors, shown in the byline after the staff names, e.g. "Keneilwe Tsotsotso".' },
-          { name: 'body', label: 'Full text', widget: 'markdown', required: false, buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: [], hint: 'For blogs and articles. When filled in, the item gets its own page on the site (header image = the thumbnail above) instead of linking out. Use Heading 2 for section titles: they become the page\'s contents list.' },
+          { name: 'body', label: 'Full text', widget: 'markdown', required: false, buttons: ['bold', 'italic', 'link', 'heading-two', 'heading-three', 'quote', 'bulleted-list', 'numbered-list'], editor_components: ['image'], hint: 'For blogs and articles. When filled in, the item gets its own page on the site (header image = the thumbnail above) instead of linking out. Use Heading 2 for section titles: they become the page\'s contents list. To add a photo, click + (or the plus in the toolbar) and choose Image; the Title becomes the caption under the photo.' },
           { name: 'featured', label: 'Featured (old setting)', widget: 'hidden', required: false },
           { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false },
           { name: 'review', label: 'Needs editor review', widget: 'boolean', default: false, required: false, hint: 'Set on items imported from the old site whose themes were suggested automatically. Untick once checked.' },
@@ -118,6 +119,26 @@
           { name: 'legacy_thumbnail', label: 'Old site thumbnail', widget: 'hidden', required: false },
           { name: 'legacy_id', label: 'Old site record ID', widget: 'hidden', required: false },
           { name: 'legacy_slug', label: 'Old site slug', widget: 'hidden', required: false }
+        ]
+      },
+      {
+        name: 'events', label: 'Events', label_singular: 'Event',
+        description: 'Webinars, launches, workshops and meetings. Upcoming events show in a panel on the homepage; the panel disappears by itself when nothing is coming up.',
+        folder: EVFOLDER, create: true, format: 'json', extension: 'json',
+        identifier_field: 'title', slug: '{{year}}-{{month}}-{{slug}}', summary: '{{title}} — {{start}}',
+        sortable_fields: ['title', 'start', 'type'],
+        fields: [
+          { name: 'title', label: 'Event name', widget: 'string' },
+          { name: 'type', label: 'Type', widget: 'select', options: ['Webinar', 'Launch', 'Workshop', 'Conference', 'Meeting', 'Event'], default: 'Webinar' },
+          { name: 'audience', label: 'Who can attend', widget: 'select', options: ['Open to the public', 'By invitation only'], default: 'Open to the public' },
+          { name: 'start', label: 'Starts', widget: 'datetime', format: 'YYYY-MM-DDTHH:mm', date_format: 'DD MMM YYYY', time_format: 'HH:mm', picker_utc: false, hint: 'South African time (SAST).' },
+          { name: 'end', label: 'Ends', widget: 'datetime', format: 'YYYY-MM-DDTHH:mm', date_format: 'DD MMM YYYY', time_format: 'HH:mm', picker_utc: false, required: false, hint: 'Optional. The event leaves the homepage once it has ended (or two hours after it starts if no end time is set).' },
+          { name: 'location', label: 'Where', widget: 'string', default: 'Online (Microsoft Teams)', required: false, hint: 'E.g. Online (Microsoft Teams), or a venue and city.' },
+          { name: 'summary', label: 'Short description', widget: 'text', required: false, hint: 'One or two sentences.' },
+          { name: 'registration', label: 'Registration link', widget: 'string', required: false, hint: 'Paste the Microsoft Teams registration link or the address of a registration form.' },
+          { name: 'registration_label', label: 'Button text', widget: 'select', options: ['Register', 'Register on Microsoft Teams', 'Request an invitation', 'Join the meeting', 'Find out more'], default: 'Register' },
+          { name: 'programme', label: 'Programme', widget: 'relation', collection: 'programmes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], required: false, options_length: 40 },
+          { name: 'draft', label: 'Draft (hide from the site)', widget: 'boolean', default: false, required: false }
         ]
       },
       {
