@@ -1,11 +1,11 @@
 {
+  "bio": "Florence joined FinMark Trust in March 2026 as the Country Coordinator for Lesotho within the SADC Financial Inclusion programme. She brings over 24 years of experience in public sector development, including 15 years dedicated to advancing financial inclusion and financial sector development in Lesotho. Prior to joining FinMark Trust, she served as Financial Institutions Manager and Chief Coordinator of Financial Inclusion Projects and Programmes in the Financial Institutions Unit at the Ministry of Finance and Development Planning, where she led the development and implementation of three National Financial Inclusion Strategies (2012–2016, 2017–2021 and 2024–2028).\n\nFlorence has overseen key national studies including FinScope Consumer 2021, FinScope MSME 2023 and Making Access Possible, and has managed initiatives aimed at strengthening rural finance and MSME access to finance. She also served as Team Leader for the Financial Ecosystem Strengthening component of the Millennium Challenge Account Lesotho Compact II – Business Environment and Technical Assistance (BETA) project, supporting financial sector capacity building and the development of financing mechanisms for women- and youth-owned MSMEs. She holds a master’s degree in development studies and a BCom Honours in Business Management from the University of the Free State.",
   "name": "Florence Mohasoa",
   "slug": "florence-mohasoa",
-  "role": "Lesotho Country Coordinator",
-  "group": "team",
   "order": 33,
   "photo": "https://finmark.org.za/system/members/images/000/000/126/original/florence.jpg?1773714220",
-  "bio": "Florence brings more than 24 years’ public-sector development experience, including 15 years advancing financial inclusion and financial-sector development in Lesotho.",
+  "role": "Lesotho Country Coordinator",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
