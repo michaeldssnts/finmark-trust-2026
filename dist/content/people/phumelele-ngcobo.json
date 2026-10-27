@@ -1,11 +1,11 @@
 {
+  "bio": "Phumelele is a specialist in programme development and implementation at FinMark Trust. She leads the three-year pilot to enhance child support grant recipients' livelihoods through training, skills development, job creation, entrepreneurship, and social empowerment. Passionate about impact-driven initiatives centred on people's development, she draws from her experience in community development and implementing projects for vulnerable groups at a non-profit organisation.\n\nPreviously, Phumelele worked as a project manager at the National Treasury's Jobs Fund, focusing on grant funding investments, project implementation, and monitoring MSME support projects. She holds a bachelor of science degree in agribusiness from the University of KwaZulu-Natal and a master of philosophy in development policy and practice from the University of Cape Town.",
   "name": "Phumelele Ngcobo",
   "slug": "phumelele-ngcobo",
-  "role": "Specialist in Programme Development and Implementation",
-  "group": "team",
   "order": 15,
   "photo": "https://finmark.org.za/system/members/images/000/000/105/original/Phumelele.jpg?1747923243",
-  "bio": "Phumelele leads a pilot that supports child support grant recipients through training, skills development, job creation, entrepreneurship and social empowerment.",
+  "role": "Specialist in Programme Development and Implementation",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
