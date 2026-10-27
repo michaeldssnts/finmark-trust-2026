@@ -1,11 +1,11 @@
 {
+  "bio": "Nicola is an Innovation Specialist in the SADC financial inclusion programme's team at FinMark Trust. She has experience as a development economist at a global investment bank and management consultant. Nicola started at FinMark Trust in 2017 as a data science project manager in the insight2impact facility programme's AppLab.\n\nHer expertise includes project management, data analytics and modelling, qualitative and quantitative research, and reporting in South Africa and various sub-Saharan African countries. Nicola's responsibilities encompass project initiation, stakeholder management and technical oversight of projects. Notable projects under her management include technical assistance projects with FinTechs in Uganda and South Africa, DataHack4FI Innovation Challenges, technical assistance projects involving remittances in SADC and supporting the implementation of the CCBG’s Payments Systems Subcommittee’s strategic objectives.\n\nNicola holds a master of commerce degree in econometrics from the University of Pretoria.",
   "name": "Nicola Schoeman",
   "slug": "nicola-schoeman",
-  "role": "SADC FI Specialist: Innovation Programmes",
-  "group": "team",
   "order": 16,
   "photo": "https://finmark.org.za/system/members/images/000/000/102/original/Nicola.jpg?1747923339",
-  "bio": "Nicola manages innovation and technical assistance projects across the SADC region, with expertise in project management, data analytics, econometric modelling and applied research.",
+  "role": "SADC FI Specialist: Innovation Programmes",
   "email": "",
-  "linkedin": ""
+  "linkedin": "",
+  "group": "team"
 }
