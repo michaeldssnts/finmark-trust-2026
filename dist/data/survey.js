@@ -253,6 +253,10 @@
     document.title = `${name} ${S.year} — ${label(S.s)} — FinMark Trust`;
     const list = INDEX.filter(x => x.data && x.s === S.s);
     const countries = [...new Map(list.map(x => [x.iso, x.country])).entries()].sort((a, b) => a[1].localeCompare(b[1]));
+    // only offer the survey types this country has; hide the picker when there's just one
+    const kinds = [...new Set(INDEX.filter(x => x.data && x.iso === S.iso).map(x => x.s))];
+    [...$('pickSurvey').options].forEach(o => { o.hidden = o.disabled = !kinds.includes(o.value); });
+    $('pickSurvey').closest('.field').hidden = kinds.length < 2;
     $('pickSurvey').value = S.s;
     $('pickCountry').innerHTML = countries.map(([iso, n]) => `<option value="${iso}"${iso === S.iso ? ' selected' : ''}>${esc(n)}</option>`).join('');
     $('pickYear').innerHTML = SAME.slice().sort((a, b) => b.year - a.year).map(x => `<option${x.year === S.year ? ' selected' : ''}>${x.year}</option>`).join('');
@@ -363,7 +367,7 @@
   $('tabs').addEventListener('keydown', e => { const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (!d) return; e.preventDefault(); const all = [...$('tabs').querySelectorAll('button')], i = all.findIndex(b => b.dataset.tab === S.tab), n = all[(i + d + all.length) % all.length]; S.tab = n.dataset.tab; renderTabs(); renderPanel(); writeUrl(true); $('tabs').querySelector(`[data-tab="${S.tab}"]`).focus(); });
   $('vChart').onclick = () => { S.view = 'chart'; $('vChart').setAttribute('aria-pressed', true); $('vTable').setAttribute('aria-pressed', false); renderPanel(); writeUrl(true); };
   $('vTable').onclick = () => { S.view = 'table'; $('vTable').setAttribute('aria-pressed', true); $('vChart').setAttribute('aria-pressed', false); renderPanel(); writeUrl(true); };
-  $('pickSurvey').onchange = e => go({ s: e.target.value, iso: S.iso, year: 0 }, true);
+  $('pickSurvey').onchange = e => go({ s: e.target.value, iso: S.iso, year: 0 }, true, { keepCountry: true });
   $('pickCountry').onchange = e => go({ s: S.s, iso: e.target.value, year: 0 }, true);
   $('pickYear').onchange = e => go({ s: S.s, iso: S.iso, year: +e.target.value }, true, { keepState: true });
   document.addEventListener('change', e => {
