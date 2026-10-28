@@ -98,6 +98,9 @@ a.cp-dot:hover{background:var(--navy)}
 .cp-filter{display:flex;align-items:center;gap:10px;font-size:.86rem;margin-bottom:18px}
 .cp-filter input{width:18px;height:18px;accent-color:var(--teal)}
 .cp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.kh-results.cp-cards{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:1100px){.kh-results.cp-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.kh-results.cp-cards{grid-template-columns:1fr}}
 .cp-item{display:flex;flex-direction:column;gap:10px;background:#fff;border:1px solid var(--border);padding:20px 20px 18px;min-height:190px;transition:border-color .2s,transform .2s}
 .cp-item:hover{border-color:var(--teal);transform:translateY(-2px)}
 .cp-item .meta{display:flex;justify-content:space-between;gap:10px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
@@ -139,6 +142,7 @@ a.cp-dot:hover{background:var(--navy)}
   .cp-section{padding:44px 0}
 }
 </style>
+<link rel="stylesheet" href="../knowledge-hub/hub.css">
 </head>
 <body data-page="data" data-header="dark">
 <div id="site-header"></div>
@@ -191,6 +195,7 @@ a.cp-dot:hover{background:var(--navy)}
 </main>
 <div id="site-footer"></div>
 <script src="portal-data.js?v=20261028"></script>
+<script src="../knowledge-hub/cards.js"></script>
 <script>
 (() => {
   const P = window.FMT_PORTAL, list = P.countries;
@@ -216,7 +221,7 @@ a.cp-dot:hover{background:var(--navy)}
       const mine = it.c.includes(c.iso), reg = isRegional(it);
       const regionalForMe = SADC15.includes(c.iso) && reg && (mine || it.c.includes('SADC') || (it.th || []).includes('sadc'));
       if (!(mine || regionalForMe)) return;
-      const row = { title: it.t, date: fdate(it.d), sort: it.d || '', type: it.y, topic: TH[(it.th || [])[0]] || '', topics: (it.th || []).map(t => TH[t]), url: hrefOf(it), scope: mine && !reg ? 'country' : 'regional' };
+      const row = { it, title: it.t, date: fdate(it.d), sort: it.d || '', type: it.y, topic: TH[(it.th || [])[0]] || '', topics: (it.th || []).map(t => TH[t]), url: hrefOf(it), scope: mine && !reg ? 'country' : 'regional' };
       if (it.sec === 'data' || it.sec === 'both') out.data.push(row);
       if (it.sec !== 'data') out.programmes.push(row);
     });
@@ -314,9 +319,13 @@ a.cp-dot:hover{background:var(--navy)}
     const pick = k => contentFor(c)[k].filter(i => st.regional || c.sadc === false || i.scope === 'country');
     $('nData').textContent = pick('data').length; $('nProg').textContent = pick('programmes').length;
     const items = pick(st.tab), show = st.all ? items : items.slice(0, 6);
-    $('cpContent').innerHTML = items.length ? `<div class="cp-grid">${show.map(i => {
+    const TH = FEED && window.FMTCards ? (FEED._TH || (FEED._TH = FMTCards.themeMap(FEED.themes))) : null;
+    const grid = FEED && window.FMTCards
+      ? `<ul class="kh-results cp-cards">${show.map(i => `<li>${FMTCards.card(i.it, { TH, root: '..', base: '../knowledge-hub/', badge: i.scope === 'regional' ? 'Regional' : '' })}</li>`).join('')}</ul>`
+      : null;
+    $('cpContent').innerHTML = items.length ? (grid || `<div class="cp-grid">${show.map(i => {
       const tag = i.url ? 'a' : 'div';
-      return `<${tag} class="cp-item"${i.url ? ` href="${esc(i.url)}"${/^\.\.\//.test(i.url) ? '' : ' target="_blank" rel="noopener"'}` : ''}><div class="meta"><span>${esc(i.type)}</span><time>${esc(i.date || '')}</time></div><h3>${esc(i.title)}</h3><div class="foot"><span class="cp-pill${i.scope === 'regional' ? ' regional' : ''}">${i.scope === 'regional' ? 'Regional' : esc(i.topic)}</span>${i.url ? '<span class="go">Open ↗</span>' : ''}</div></${tag}>`; }).join('')}</div>${items.length > 6 ? `<div class="cp-more"><button class="cp-btn ghost" type="button" id="cpAll">${st.all ? 'Show fewer' : `Show all ${items.length}`}</button></div>` : ''}`
+      return `<${tag} class="cp-item"${i.url ? ` href="${esc(i.url)}"${/^\.\.\//.test(i.url) ? '' : ' target="_blank" rel="noopener"'}` : ''}><div class="meta"><span>${esc(i.type)}</span><time>${esc(i.date || '')}</time></div><h3>${esc(i.title)}</h3><div class="foot"><span class="cp-pill${i.scope === 'regional' ? ' regional' : ''}">${i.scope === 'regional' ? 'Regional' : esc(i.topic)}</span>${i.url ? '<span class="go">Open ↗</span>' : ''}</div></${tag}>`; }).join('')}</div>`) + `${items.length > 6 ? `<div class="cp-more"><button class="cp-btn ghost" type="button" id="cpAll">${st.all ? 'Show fewer' : `Show all ${items.length}`}</button></div>` : ''}`
       : `<div class="cp-empty">No ${st.tab === 'data' ? 'data' : 'programme'} content tagged to ${esc(c.name)} yet.${st.regional || c.sadc === false ? '' : ' Try including regional SADC content.'}</div>`;
     const b = $('cpAll'); if (b) b.onclick = () => { st.all = !st.all; renderContent(c); };
   }

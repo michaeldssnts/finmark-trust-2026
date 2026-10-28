@@ -142,20 +142,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     ts.forEach(t => { if (t.length < 3) return; out = out.replace(new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>'); });
     return out;
   }
-  function card(it, ts, featured) {
-    const [col, ic] = TYPE_LOOK[it.y] || TYPE_LOOK.Report;
-    const ext = /^https?:/.test(it.u) && !/^https?:\/\/(www\.)?finmark\.org\.za/.test(it.u);
-    const themes = it.th.slice(0, 2).map(s => TH[s] ? `<span class="kh-tag th ${TH[s].status === 'archived' ? 'archived' : TH[s].pathway}" style="--tc:${TH[s].colour}">${esc(TH[s].name)}</span>` : '').join('');
-    const places = it.c.filter(c => c !== 'SADC').slice(0, 2).map(c => `<span class="kh-tag place">${esc(PLACES[c] || c)}</span>`).join('') + (it.c.length > 3 ? `<span class="kh-tag place">+${it.c.length - 2}</span>` : '');
-    // Blogs and articles with full text open their own page on this site
-    const tag = it.p || it.u ? 'a' : 'div';
-    const attrs = it.p ? ` href="${typeof it.p === 'string' ? it.p + '/' : 'post.html?id=' + encodeURIComponent(it.id)}"` : it.u ? ` href="${esc(asset(it.u))}"${ext || /\.pdf/i.test(it.u) ? ' target="_blank" rel="noopener"' : ''}` : '';
-    const tc = it.th.map(s => TH[s]).find(Boolean);
-    return `<${tag} class="kh-card${featured ? ' kh-feat' : ''}${tc ? ' has-tc' : ''}"${tc ? ` style="--tc:${tc.colour}"` : ''}${attrs}>
-      <span class="kh-cover${it.isArch ? ' pt-arch' : ''}${it.img ? ' has-img' : ''}" style="--c:${col};background:${col}" aria-hidden="true">${it.img ? `<img class="bg" src="${esc(asset(it.img))}" alt="" loading="lazy"><img class="fg" src="${esc(asset(it.img))}" alt="" loading="lazy">` : ''}<span class="t">${esc(it.y)}</span><span class="ic">${ic}</span><span class="yr">${it.year}</span></span>
-      <span class="kh-cbody"><span class="kh-meta"><span>${esc(it.y)}</span><span>${fmtDate(it.d)}</span>${it.l && it.l !== 'en' ? `<span class="lang">${LANGS[it.l]}</span>` : ''}${it.isArch ? '<span>Archive</span>' : ''}</span>
-      <h3>${hl(it.t, ts)}</h3>${it.s ? `<p class="s">${hl(it.s, ts)}</p>` : ''}<span class="kh-tags">${themes}${places}</span></span></${tag}>`;
-  }
+  // The card design is shared with the country pages (cards.js)
+  function card(it, ts, featured) { return FMTCards.card(it, { TH, root: '..', base: '', hl: t => hl(t, ts), featured }); }
   function results() {
     const ts = terms();
     let list = ITEMS.filter(it => passes(it, null, ts));
