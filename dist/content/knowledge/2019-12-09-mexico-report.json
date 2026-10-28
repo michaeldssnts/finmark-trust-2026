@@ -7,7 +7,9 @@
     "i2i",
     "data-research-methods"
   ],
-  "countries": [],
+  "countries": [
+    "MEX"
+  ],
   "tags": [],
   "language": "en",
   "file": "https://www.gob.mx/cms/uploads/attachment/file/509595/Financial_needs_Mexico.pdf",

@@ -7,7 +7,9 @@
     "policy-regulation",
     "financial-inclusion"
   ],
-  "countries": [],
+  "countries": [
+    "ZAF"
+  ],
   "tags": [
     "AFI",
     "Financial inclusion"

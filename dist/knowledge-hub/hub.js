@@ -72,7 +72,8 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
   // 'SADC' is the regional view: work covering the SADC region as a whole, or tagged with the SADC theme (same as the old site's locations[]=SADC).
   const inPlace = (it, c) => c === 'SADC' ? (it.c.includes('SADC') || it.th.includes('sadc')) : it.c.includes(c);
   function passes(it, skip, ts) {
-    if (!S.archived && it.isArch) return false;
+    // Archived themes are tucked away on the main listing, but a country filter or a search shows everything (as the old site did)
+    if (!S.archived && it.isArch && !S.country && !S.q) return false;
     if (skip !== 'path' && S.path && !it.paths.has(S.path)) return false;
     if (skip !== 'prog' && S.prog && !it.pg.includes(S.prog)) return false;
     if (skip !== 'themes' && S.themes.size && !it.th.some(t => S.themes.has(t))) return false;
@@ -176,7 +177,7 @@ function asset(p){return p&&p.startsWith('/uploads/')?'..'+p:p}
     $('khResults').className = 'kh-results' + (S.view === 'list' ? ' list' : '');
     $('khResults').innerHTML = shown.length ? shown.map(i => `<li>${card(i, ts)}</li>`).join('')
       : `<li class="kh-empty"><b>No results match these filters.</b>Try fewer filters${S.archived ? '' : ', or include archived themes'}.<br><button type="button" class="kh-link" data-clear>Clear all filters</button></li>`;
-    const hidden = !S.archived ? ITEMS.filter(i => i.isArch && passes(Object.assign({}, i, { isArch: false }), null, ts)).length : 0;
+    const hidden = !S.archived && !S.country && !S.q ? ITEMS.filter(i => i.isArch && passes(Object.assign({}, i, { isArch: false }), null, ts)).length : 0;
     $('khCount').innerHTML = `<b>${list.length.toLocaleString('en-GB')}</b> result${list.length === 1 ? '' : 's'}${S.q ? ` for “${esc(S.q)}”` : ''}${hidden ? ` <span style="color:var(--muted)">· ${hidden} more in archived themes</span>` : ''}`;
     $('khMore').hidden = list.length <= S.shown;
     $('khMore').textContent = `Show ${Math.min(PAGE, list.length - S.shown)} more`;
