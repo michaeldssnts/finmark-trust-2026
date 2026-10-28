@@ -22,8 +22,6 @@
 .dn-option-art picture,.dn-option-art img{display:block;width:100%;height:100%}
 .dn-option-art img{object-fit:contain;object-position:center;transition:transform .6s}
 .dn-option:hover .dn-option-art img{transform:scale(1.04)}
-.dn-endow-banner{margin:0 auto 46px;max-width:800px;overflow:hidden;box-shadow:var(--shadow);background:#213265}
-.dn-endow-banner img{display:block;width:100%;height:auto}
 .dn-option-body{display:flex;flex-direction:column;padding:30px 34px 32px}
 .dn-num{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .dn-kicker{margin-top:10px;font-size:.82rem;font-weight:700;color:var(--teal)}
