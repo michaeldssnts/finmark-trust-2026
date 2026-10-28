@@ -4,12 +4,8 @@ hlengokuhle-cakes,Hlengokuhle Cakes,Hlengiwe Makhanya,Bakery and catering,"Madad
 nothile-early-learning-academy,Nothile Early Learning Academy,Snothile Kubheka,Early childhood development,"Madadeni, KwaZulu-Natal",Published programme story,,"Business support and funding helped Snothile improve her facilities, accommodate more children, create employment opportunities and strengthen the centre's operations.",images/msmes/nothile-early-learning-academy.jpg,,,,info@finmark.org.za,National Youth Development Agency (NYDA),,Equipment and enterprise support
 ntombenhle-fast-foods,Ntombenhle Fast Foods,Ntombenhle Ndlozi,Food services,KwaZulu-Natal,Published programme story,,"Training, coaching and productive equipment enabled Ntombenhle to grow from small-scale food sales into a catering enterprise serving larger events and community functions.",images/msmes/ntombenhle-fast-foods.jpg,,,,info@finmark.org.za,National Youth Development Agency (NYDA),,Equipment and enterprise support`;
 
-const APPROVED_FUNDERS=[
-  ['National Youth Development Agency (NYDA)','Equipment and enterprise support for Hlengokuhle Cakes, Nothile Early Childhood Development and Ntombenhle’s fast food and catering business.'],
-  ['Mukuru','Contributed a significant portion of the Thundafund crowdfunding target, which enabled support for an additional 15 participants also ready to grow their business.'],
-  ['SACRAA','One of the first corporate backers of the Thundafund crowdfunding campaign.'],
-  ['Thundafund individual backers','Francesco Di Salvo, Jaco Weideman and Justin Leach all supported the campaign to enable six entrepreneurs in urgent need of funding to get their business started.']
-];
+// Backers are listed here once confirmed: ['Name','What they supported'], one per line. Empty = a short holding message.
+const APPROVED_FUNDERS=[];
 
 function parseCsv(text){
   const rows=[];let row=[],cell='',quoted=false;
@@ -77,7 +73,7 @@ function render(query=''){
   }).join('')||'<p>No businesses match your search.</p>';
   status.textContent=`${businesses.length} enterprise profiles currently listed`;
 
-  fundersList.innerHTML=APPROVED_FUNDERS.map(([name,description])=>`<li><strong>${esc(name)}</strong><small>${esc(description)}</small></li>`).join('');
+  fundersList.innerHTML=APPROVED_FUNDERS.length?APPROVED_FUNDERS.map(([name,description])=>`<li><strong>${esc(name)}</strong><small>${esc(description)}</small></li>`).join(''):'<li class="backers-soon"><strong>Coming soon</strong><small>New backers will be recognised here once their support is confirmed.</small></li>';
 }
 
 search.addEventListener('input',()=>render(search.value));
