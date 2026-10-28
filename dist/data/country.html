@@ -190,13 +190,40 @@ a.cp-dot:hover{background:var(--navy)}
   </section>
 </main>
 <div id="site-footer"></div>
-<script src="portal-data.js?v=20261027"></script>
+<script src="portal-data.js?v=20261028"></script>
 <script>
 (() => {
   const P = window.FMT_PORTAL, list = P.countries;
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const st = { iso: 'MWI', tab: 'data', regional: true, all: false };
+
+  // ---- Content about each country: read live from the Knowledge Hub feed, so anything added in the CMS shows up here.
+  // Tagged with this country (and only a few countries) = country content; tagged SADC, or with most SADC countries = regional.
+  // If the feed can't load, the list built into portal-data.js is used instead.
+  const SADC15 = ['AGO','BWA','COD','SWZ','LSO','MDG','MWI','MUS','MOZ','NAM','SYC','ZAF','TZA','ZMB','ZWE'];
+  const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let FEED = null; const LIVE = new Map();
+  const fdate = d => { const [y, m, dd] = (d || '').split('-'); return y ? `${dd ? +dd + ' ' : ''}${m ? MON[+m - 1] + ' ' : ''}${y}` : ''; };
+  const hrefOf = it => it.p ? '../knowledge-hub/' + (typeof it.p === 'string' ? it.p + '/' : 'post.html?id=' + encodeURIComponent(it.id)) : (it.u || '');
+  const isRegional = it => it.c.includes('SADC') || it.c.filter(x => SADC15.includes(x)).length >= 5;
+  function contentFor(c) {
+    if (!FEED) return { data: c.data || [], programmes: c.programmes || [] };
+    if (LIVE.has(c.iso)) return LIVE.get(c.iso);
+    const TH = {}; (FEED.themes || []).forEach(t => { TH[t.slug] = t.name; });
+    const out = { data: [], programmes: [] };
+    FEED.items.forEach(it => {
+      const mine = it.c.includes(c.iso), reg = isRegional(it);
+      const regionalForMe = SADC15.includes(c.iso) && reg && (mine || it.c.includes('SADC') || (it.th || []).includes('sadc'));
+      if (!(mine || regionalForMe)) return;
+      const row = { title: it.t, date: fdate(it.d), sort: it.d || '', type: it.y, topic: TH[(it.th || [])[0]] || '', topics: (it.th || []).map(t => TH[t]), url: hrefOf(it), scope: mine && !reg ? 'country' : 'regional' };
+      if (it.sec === 'data' || it.sec === 'both') out.data.push(row);
+      if (it.sec !== 'data') out.programmes.push(row);
+    });
+    out.data.sort((a, b) => b.sort.localeCompare(a.sort)); out.programmes.sort((a, b) => b.sort.localeCompare(a.sort));
+    LIVE.set(c.iso, out); return out;
+  }
+  fetch('../knowledge-hub/knowledge.json').then(r => r.json()).then(j => { FEED = j; LIVE.clear(); render(); }).catch(() => {});
   const fmtPeople = v => v >= 1e6 ? (v/1e6).toFixed(v >= 1e7 ? 1 : 2) + ' million' : Math.round(v/1e3).toLocaleString('en-GB') + 'k';
   const fmtUsd = v => 'US$' + Math.round(v).toLocaleString('en-GB');
 
@@ -257,7 +284,7 @@ a.cp-dot:hover{background:var(--navy)}
     $('dataLede').textContent = `${n} dataset${n === 1 ? '' : 's'} for ${c.name}. Select a survey year to see its results.`;
 
     // Survey cards
-    const pubs = t => c.data.filter(d => d.topic === t && d.url).slice(0, 3);
+    const pubs = t => contentFor(c).data.filter(d => (d.topics ? d.topics.includes(t) : d.topic === t) && d.url && d.scope === 'country').slice(0, 3);
     const pubList = t => { const p = pubs(t); return p.length ? `<ul class="cp-list">${p.map(d => `<li><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title)}</a><small>${esc(d.type)}</small></li>`).join('')}</ul>` : ''; };
     let cards = '';
     if (!c.consumer.length && sh.length) { const l = sh[sh.length - 1];
@@ -284,12 +311,12 @@ a.cp-dot:hover{background:var(--navy)}
 
   function renderContent(c) {
     $('cpRegional').closest('label').hidden = c.sadc === false;
-    const pick = k => c[k].filter(i => st.regional || c.sadc === false || i.scope === 'country');
+    const pick = k => contentFor(c)[k].filter(i => st.regional || c.sadc === false || i.scope === 'country');
     $('nData').textContent = pick('data').length; $('nProg').textContent = pick('programmes').length;
     const items = pick(st.tab), show = st.all ? items : items.slice(0, 6);
     $('cpContent').innerHTML = items.length ? `<div class="cp-grid">${show.map(i => {
       const tag = i.url ? 'a' : 'div';
-      return `<${tag} class="cp-item"${i.url ? ` href="${esc(i.url)}" target="_blank" rel="noopener"` : ''}><div class="meta"><span>${esc(i.type)}</span><time>${esc(i.date || '')}</time></div><h3>${esc(i.title)}</h3><div class="foot"><span class="cp-pill${i.scope === 'regional' ? ' regional' : ''}">${i.scope === 'regional' ? 'Regional' : esc(i.topic)}</span>${i.url ? '<span class="go">Open ↗</span>' : ''}</div></${tag}>`; }).join('')}</div>${items.length > 6 ? `<div class="cp-more"><button class="cp-btn ghost" type="button" id="cpAll">${st.all ? 'Show fewer' : `Show all ${items.length}`}</button></div>` : ''}`
+      return `<${tag} class="cp-item"${i.url ? ` href="${esc(i.url)}"${/^\.\.\//.test(i.url) ? '' : ' target="_blank" rel="noopener"'}` : ''}><div class="meta"><span>${esc(i.type)}</span><time>${esc(i.date || '')}</time></div><h3>${esc(i.title)}</h3><div class="foot"><span class="cp-pill${i.scope === 'regional' ? ' regional' : ''}">${i.scope === 'regional' ? 'Regional' : esc(i.topic)}</span>${i.url ? '<span class="go">Open ↗</span>' : ''}</div></${tag}>`; }).join('')}</div>${items.length > 6 ? `<div class="cp-more"><button class="cp-btn ghost" type="button" id="cpAll">${st.all ? 'Show fewer' : `Show all ${items.length}`}</button></div>` : ''}`
       : `<div class="cp-empty">No ${st.tab === 'data' ? 'data' : 'programme'} content tagged to ${esc(c.name)} yet.${st.regional || c.sadc === false ? '' : ' Try including regional SADC content.'}</div>`;
     const b = $('cpAll'); if (b) b.onclick = () => { st.all = !st.all; renderContent(c); };
   }

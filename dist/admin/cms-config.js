@@ -20,8 +20,8 @@
   var COUNTRIES = [
     ['Angola', 'AGO'], ['Botswana', 'BWA'], ['DR Congo', 'COD'], ['Eswatini', 'SWZ'], ['Lesotho', 'LSO'], ['Madagascar', 'MDG'],
     ['Malawi', 'MWI'], ['Mauritius', 'MUS'], ['Mozambique', 'MOZ'], ['Namibia', 'NAM'], ['Seychelles', 'SYC'], ['South Africa', 'ZAF'],
-    ['Tanzania', 'TZA'], ['Zambia', 'ZMB'], ['Zimbabwe', 'ZWE'], ['SADC region', 'SADC'],
-    ['Benin', 'BEN'], ['Burkina Faso', 'BFA'], ['Cambodia', 'KHM'], ['Cameroon', 'CMR'], ['Gambia', 'GMB'], ['Ghana', 'GHA'], ['Haiti', 'HTI'],
+    ['Tanzania', 'TZA'], ['Zambia', 'ZMB'], ['Zimbabwe', 'ZWE'], ['SADC region (shows on every SADC country page)', 'SADC'],
+    ['Benin', 'BEN'], ['Burkina Faso', 'BFA'], ['Cambodia', 'KHM'], ['Cameroon', 'CMR'], ['Gambia', 'GMB'], ['Ghana', 'GHA'], ['Haiti', 'HTI'], ['India', 'IND'],
     ['Kenya', 'KEN'], ['Laos', 'LAO'], ['Mexico', 'MEX'], ['Myanmar', 'MMR'], ['Nepal', 'NPL'], ['Nigeria', 'NGA'], ['Rwanda', 'RWA'],
     ['Thailand', 'THA'], ['Togo', 'TGO'], ['Uganda', 'UGA']
   ].map(function (c) { return { label: c[0], value: c[1] }; });
@@ -102,7 +102,7 @@
           { name: 'section', label: 'Section', widget: 'select', default: 'programmes', options: [{ label: 'Programmes (programmatic research)', value: 'programmes' }, { label: 'Data (surveys, analytics, FinScope)', value: 'data' }, { label: 'Both', value: 'both' }], hint: 'Where this belongs on the site: the Knowledge Hub can be filtered to Data or Programmes, and programme research also feeds the Programmes page.' },
           { name: 'programmes', label: 'Programme', widget: 'relation', collection: 'programmes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], multiple: true, required: false, max: 3, options_length: 40, hint: 'Optional. The programme(s) this came out of, e.g. GBL or the SADC FI Forum. Leave empty for general research.' },
           { name: 'themes', label: 'Themes', widget: 'relation', collection: 'themes', search_fields: ['name', 'slug'], value_field: 'slug', display_fields: ['name'], multiple: true, min: 1, max: 4, options_length: 40, hint: 'Pick 1–4. Archived themes still work; their items are hidden by default on the site.' },
-          { name: 'countries', label: 'Countries', widget: 'select', multiple: true, required: false, options: COUNTRIES },
+          { name: 'countries', label: 'Countries', widget: 'select', multiple: true, required: false, options: COUNTRIES, hint: 'Tick every country this piece is about: it then appears on those country pages and under those countries in the Knowledge Hub. For a piece about the whole region, tick “SADC region” (add any countries it focuses on too): it shows on every SADC country page, marked Regional. Five or more SADC countries also counts as regional.' },
           { name: 'tags', label: 'Tags', widget: 'list', required: false, hint: 'Free keywords, kept from the old site (e.g. Mobile money, Survey design). Shown on the item and used by search.' },
           { name: 'archived', label: 'Archived', widget: 'boolean', required: false, default: false, hint: 'Hidden from the Knowledge Hub unless visitors tick "Include archived". Anything dated before 2016 is archived automatically.' },
           { name: 'language', label: 'Language', widget: 'select', options: [{ label: 'English', value: 'en' }, { label: 'Portuguese', value: 'pt' }, { label: 'French', value: 'fr' }], default: 'en' },
