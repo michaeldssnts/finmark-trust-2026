@@ -64,8 +64,9 @@
         files: [{
           name: 'featured', label: 'Homepage slider and Knowledge Hub features', file: FEATFILE, format: 'json',
           fields: [
-            pickItems('home_data', 'Homepage slider: Data slide (2 items)', 2, 'Shown under "Latest in Data & Analytics" on the first slide. Empty: the newest Data items.'),
-            pickItems('home_programmes', 'Homepage slider: Programmes slide (2 items)', 2, 'Shown under "Latest in Programmes & Research" on the second slide. Empty: the newest Programmes items.'),
+            pickItems('home_data', 'Homepage slider: Data slide (1 item)', 1, 'Shown under "Latest in Data & Analytics" on the first slide. Empty: the newest Data item.'),
+            pickItems('home_programmes', 'Homepage slider: Programmes slide (1 item)', 1, 'Shown under "Latest in Programmes & Research" on the second slide. Empty: the newest Programmes item.'),
+            pickItems('home_gbl', 'Homepage slider: GBL slide (1 item)', 1, 'Shown under "Latest from GBL" on the third slide. Empty: the newest GBL item with a thumbnail.'),
             pickItems('hub', 'Knowledge Hub: "Latest from FinMark Trust" (up to 3)', 3, 'The first one is shown as the large feature. Empty: the newest items.')
           ]
         }]

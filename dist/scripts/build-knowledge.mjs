@@ -103,7 +103,7 @@ function build() {
   try { picks = existsSync(FEAT) ? JSON.parse(readFileSync(FEAT, 'utf8')) : {}; } catch (e) { console.warn(`Skipped featured.json: ${e.message}`); }
   const ids = new Set(items.map(i => i.id));
   const pick = k => (Array.isArray(picks[k]) ? picks[k] : []).filter(id => ids.has(id));
-  const featured = { home_data: pick('home_data').slice(0, 2), home_programmes: pick('home_programmes').slice(0, 2), hub: pick('hub').slice(0, 3) };
+  const featured = { home_data: pick('home_data').slice(0, 1), home_programmes: pick('home_programmes').slice(0, 1), home_gbl: pick('home_gbl').slice(0, 1), hub: pick('hub').slice(0, 3) };
   mkdirSync(dirname(OUT), { recursive: true });
   // One JSON file per blog/article page
   rmSync(POSTS, { recursive: true, force: true }); mkdirSync(POSTS, { recursive: true });

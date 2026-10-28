@@ -171,7 +171,8 @@ updateRailButtons();
     // GBL slide: the newest GBL piece with a thumbnail
     if (asides.gbl) {
       const g = feed.items.filter((i) => (i.pg || []).includes('gbl'));
-      const picks = g.filter((i) => i.img).concat(g.filter((i) => !i.img)).slice(0, 1);
+      const chosen = (f.home_gbl || []).map((id) => byId.get(id)).filter(Boolean);
+      const picks = chosen.concat(g.filter((i) => i.img), g.filter((i) => !i.img)).slice(0, 1);
       const label = asides.gbl.querySelector('.hx-latest-label');
       if (picks.length) asides.gbl.innerHTML = (label ? label.outerHTML : '') + picks.map(card).join('');
     }
