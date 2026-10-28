@@ -130,7 +130,7 @@ if (slugTypes.length) ng.push('', '# Old Knowledge Hub items we have no record o
   `location ~ ^/knowledge-hub/(${slugTypes.join('|')})/([^/]+?)/?$ { set $khq $2; try_files /knowledge-hub/$1/$2/index.html @khsearch; }`,
   `location @khsearch { return 301 "${HUB}?q=$khq"; }`);
 ng.push('', '# Files and landing sites still kept by the old site: served from this server if present, otherwise fetched from the old server',
-  `location ~ ^/(${legacy.map(l => l.replace(/^\/|\/$/g, '').replace(/[.]/g, '\\.')).join('|')})/ { try_files $uri @legacy; }`);
+  `location ~ ^/(${legacy.map(l => l.replace(/^\/|\/$/g, '').replace(/[.]/g, '\\.')).join('|')})/ { try_files $uri $uri/index.html @legacy; }`);
 mkdirSync(join(ROOT, 'server'), { recursive: true });
 writeFileSync(join(ROOT, 'server/redirects.conf'), ng.join('\n').replace(/\$\{dollar\}/g, '$') + '\n');
 console.log(`_redirects: ${lines.filter(l => l && !l.startsWith('#')).length} rules (${n} old Knowledge Hub items)`);

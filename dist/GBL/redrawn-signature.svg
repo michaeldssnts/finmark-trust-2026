@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="807" height="482" viewBox="0 0 807 482"
+     role="img" aria-labelledby="title desc">
+  <title id="title">Redrawn handwritten signature</title>
+  <desc id="desc">A clean vector tracing of the supplied looping handwritten signature.</desc>
+
+  <g fill="none"
+     stroke="#202020"
+     stroke-width="5"
+     stroke-linecap="round"
+     stroke-linejoin="round"
+     vector-effect="non-scaling-stroke">
+
+    <!-- Large upper flourish -->
+    <path d="M 278,272
+             C 258,254 244,231 246,205
+             C 249,164 284,122 326,96
+             C 368,70 409,68 444,78
+             C 486,90 519,119 535,151
+             C 551,183 544,211 524,233
+             C 501,258 462,276 418,285
+             C 368,295 316,287 278,272"/>
+
+    <!-- Left entry stroke, knot, lower loop, and long finishing stroke -->
+    <path d="M 51,269
+             C 87,268 128,274 165,279
+             C 193,283 216,288 237,285
+             C 271,280 305,259 327,237
+             C 343,221 354,202 353,188
+             C 352,180 344,178 336,181
+             C 325,185 319,193 323,202
+             C 329,216 347,226 370,234
+             C 413,249 459,260 505,274
+             C 567,293 626,318 683,340
+             C 717,353 747,363 773,369"/>
+
+    <!-- Inner ribbon and small lower flourish -->
+    <path d="M 344,181
+             C 376,179 417,190 451,207
+             C 480,222 500,240 507,258
+             C 513,274 506,291 491,300
+             C 474,311 445,314 415,309
+             C 378,303 341,291 309,280
+             C 287,273 269,271 251,279
+             C 228,290 208,295 184,294
+             C 151,293 116,286 87,279
+             C 70,275 58,271 51,269"/>
+  </g>
+</svg>

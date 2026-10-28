@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Generating Better Livelihoods for Grant Recipients (GBL) — Participant Ecosystem Navigation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <span class="mark">GBL</span>
+    <span class="markline">Generating Better Livelihoods for Grant Recipients (GBL)</span>
+    <span class="spacer"></span>
+    <div class="section-finder">
+      <button class="find-toggle" id="findToggle" type="button" aria-expanded="false" aria-controls="sectionFinderPanel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 4 4"/></svg>
+        <span>Find a section</span>
+      </button>
+      <div class="find-panel" id="sectionFinderPanel" hidden>
+        <label for="sectionSearch">Find a section</label>
+        <input id="sectionSearch" type="search" placeholder="Search the GBL network" autocomplete="off">
+        <div class="find-results" id="sectionResults" role="listbox" aria-label="Matching sections"></div>
+      </div>
+    </div>
+    <a class="market-link" href="businesses.html">View and fund participant-run MSME businesses</a>
+
+    <nav class="rail" aria-label="Explore the participant ecosystem" id="rail">
+      <button class="railcore" type="button" data-go="CORE" data-full="A participant" data-short="Participant">
+        <span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M5.5 20c.4-4.1 2.5-6.2 6.5-6.2s6.1 2.1 6.5 6.2"/></svg></span>
+        <span class="navlabel">A participant</span>
+      </button>
+      <div class="railgroup" data-shell="journey">
+        <button class="railhead" type="button" aria-expanded="false" data-full="Participant journey" data-short="Journey">
+          <span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M7.8 17.1c2-1 2.2-2.9 2.7-4.7.6-2.3 1.7-4 5.6-5.3"/><path d="m14.8 5.7 3.3.3-.8 3"/></svg></span>
+          <span class="navlabel">Participant journey</span><span class="num">5</span>
+        </button>
+        <div class="railitems"></div>
+      </div>
+      <div class="railgroup" data-shell="network">
+        <button class="railhead" type="button" aria-expanded="false" data-full="Participant support network" data-short="Support network">
+          <span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.5"/><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="m10.8 8.2-3.5 6.5M13.2 8.2l3.5 6.5M8.5 17h7"/></svg></span>
+          <span class="navlabel">Participant support network</span><span class="num">10</span>
+        </button>
+        <div class="railitems"></div>
+      </div>
+      <div class="railgroup" data-shell="programme">
+        <button class="railhead" type="button" aria-expanded="false" data-full="About the programme" data-short="About">
+          <span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h14v15H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+          <span class="navlabel">About the programme</span><span class="num">8</span>
+        </button>
+        <div class="railitems"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="stage">
+    <canvas id="net" aria-label="Interactive three-dimensional map of the GBL participant ecosystem"></canvas>
+    <span class="hint">Drag to turn the network · click any point to open it</span>
+
+    <div class="tools">
+      <button id="recentre" type="button">Recentre</button>
+      <button class="zoom-button" id="zoomOut" type="button" aria-label="Zoom out" title="Zoom out">&minus;</button>
+      <button class="zoom-button" id="zoomIn" type="button" aria-label="Zoom in" title="Zoom in">+</button>
+      <button id="spin" type="button" aria-pressed="true">Pause rotation</button>
+    </div>
+
+    <aside class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="pTitle">
+      <button class="pclose" id="pClose" type="button" aria-label="Close">&times;</button>
+      <nav class="panel-breadcrumb" id="pBreadcrumb" aria-label="Breadcrumb"></nav>
+      <p class="ptag" id="pTag"></p>
+      <h2 id="pTitle"></h2>
+      <p class="prole" id="pRole"></p>
+      <hr class="prule">
+      <div class="pbody" id="pBody"></div>
+      <section class="feature-link-section" id="pFeatureLink" aria-label="Featured participant content"></section>
+      <section class="pathway-section" id="pPathways" aria-label="Employment and entrepreneurship pathways"></section>
+      <section class="partner-profile" id="pPartner" aria-label="Partner website"></section>
+      <section class="pillar-link-section" id="pPillars" aria-label="Explore the four pillars"></section>
+      <section class="infographic-section" id="pInfographic" aria-label="GBL Graduation Process"></section>
+      <div class="figs" id="pFigs"></div>
+      <section class="coach-section" id="pCoaches" aria-label="Linkages Facilitators and Community Development Practitioners"></section>
+      <section class="team-section" id="pTeam" aria-label="Core programme team"></section>
+      <section class="publication-section" id="pPublications" aria-label="Learning publications"></section>
+      <section class="training-section" id="pTraining" aria-label="Skills training and livelihood activity"></section>
+      <section class="impact-story-section" id="pImpactStories" aria-label="Participant impact stories"></section>
+      <section class="story-section" id="pStories" aria-label="Participant story videos"></section>
+      <section class="updates-section" id="pUpdates" aria-label="Latest GBL updates"></section>
+      <section class="marketplace-section" id="pMarketplace" aria-label="Participant-run MSME marketplace"></section>
+      <section class="contact-section" id="pContact" aria-label="Service provider enquiries"></section>
+      <button class="cta" id="pCta" type="button"></button>
+      <div class="plinks">
+        <h3 id="pLinksH">Continue exploring</h3>
+        <p class="plinks-intro">Related sections in the GBL network</p>
+        <div class="chips" id="pChips"></div>
+      </div>
+    </aside>
+
+    <div class="sr-index" id="srIndex" role="group" aria-label="Open a section of the network"></div>
+  </main>
+
+  <div class="legend" role="group" aria-label="Network key">
+    <span class="legend-title">Network key</span>
+    <div class="node-key"><span class="node-swatch swatch-tan" aria-hidden="true"></span>Participant &amp; journey</div>
+    <div class="node-key"><span class="node-swatch swatch-brown" aria-hidden="true"></span>Support network</div>
+    <div class="node-key"><span class="node-swatch swatch-white" aria-hidden="true"></span>Programme &amp; evidence</div>
+    <span class="legend-divider" aria-hidden="true"></span>
+    <div><svg width="30" height="6" aria-hidden="true"><line x1="1" y1="3" x2="29" y2="3" stroke="#c9a265" stroke-width="2.4"/></svg>Coaching relationship</div>
+    <div><svg width="30" height="6" aria-hidden="true"><line x1="1" y1="3" x2="29" y2="3" stroke="#c9a265" stroke-width="1.4" opacity=".75"/></svg>The four pillars</div>
+    <div><svg width="30" height="6" aria-hidden="true"><line x1="1" y1="3" x2="29" y2="3" stroke="#62400c" stroke-width="1.2" stroke-dasharray="4 4" opacity=".5"/></svg>Support and services</div>
+    <div><svg width="30" height="6" aria-hidden="true"><line x1="1" y1="3" x2="29" y2="3" stroke="#62400c" stroke-width="1.2" stroke-dasharray="1.5 4.5" opacity=".72"/></svg>Programme and evidence</div>
+  </div>
+
+  <footer class="partners">
+    <img src="images/partner-logos.jpg" alt="Partner logos: Department of Social Development, FinMark Trust, SASSA, NDA and BRAC" width="2494" height="290">
+    <a class="mis-link" href="https://www.gbl.finmark.org.za/" target="_blank" rel="noopener" title="Coach access to the GBL management information system">Coach MIS <span aria-hidden="true">↗</span></a>
+  </footer>
+
+</div>
+
+<script src="scripts/impact-data.js" defer></script>
+<script src="scripts/impact-stories.js" defer></script>
+<script src="scripts/xlsx.mini.min.js" defer></script>
+<script src="scripts/app.js" defer></script>
+</body>
+</html>

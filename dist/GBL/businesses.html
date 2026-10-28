@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GBL participant-run MSME directory</title>
+<meta name="description" content="View and support participant-run MSME businesses connected to Generating Better Livelihoods for Grant Recipients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&amp;display=swap">
+<link rel="stylesheet" href="styles/businesses.css">
+</head>
+<body>
+  <header class="business-header">
+    <a class="business-brand" href="index.html" aria-label="Return to the GBL participant ecosystem">
+      <strong>GBL</strong><span>Generating Better Livelihoods for Grant Recipients (GBL)</span>
+    </a>
+    <nav aria-label="Business directory navigation">
+      <a href="index.html">Participant ecosystem</a>
+      <a class="current" href="businesses.html" aria-current="page">MSME businesses</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="business-hero">
+      <div>
+        <p class="eyebrow">Participant enterprise directory</p>
+        <h1>View and fund participant-run MSME businesses</h1>
+        <p>Discover enterprises established and grown through the GBL programme, and explore ways to support their next stage of growth.</p>
+        <p>This directory showcases participant-run micro and small enterprises that have emerged through a combination of coaching, skills development, business support and access to productive assets. Each profile highlights the entrepreneur’s journey, business activities and current growth opportunities.</p>
+        <p>Whether you're an individual supporter, corporate partner, funder, or customer, you can support participant-led enterprises and strengthen sustainable livelihoods in many ways. Where available, verified support and donation links are provided. Enquiries can also be routed through the programme team.</p>
+      </div>
+      <div class="hero-shape" aria-hidden="true"><span></span><span></span><span></span></div>
+    </section>
+
+    <section class="directory" aria-labelledby="directoryTitle">
+      <div class="directory-heading">
+        <div><p class="eyebrow">Featured participant-run businesses</p><h2 id="directoryTitle">Participant-run enterprises</h2></div>
+        <label class="business-search">Search businesses<input id="businessSearch" type="search" placeholder="Name, owner, category or location"></label>
+      </div>
+      <p class="directory-status" id="directoryStatus" role="status">Loading businesses…</p>
+      <div class="business-list" id="businessList"></div>
+    </section>
+
+    <section class="funders-section" aria-labelledby="fundersTitle">
+      <div><p class="eyebrow">Enterprise support partners</p><h2 id="fundersTitle">Funders wall</h2><p>Recognising individuals, organisations and institutions that have contributed to the growth of participant-run enterprises.</p></div>
+      <ul id="fundersList"></ul>
+    </section>
+
+  </main>
+
+  <footer class="business-footer">
+    <img src="images/partner-logos.jpg" alt="Partner logos: Department of Social Development, FinMark Trust, SASSA, NDA and BRAC" width="2494" height="290">
+    <a href="index.html">Return to the participant ecosystem</a>
+  </footer>
+
+  <script src="scripts/xlsx.mini.min.js" defer></script>
+  <script src="scripts/businesses.js" defer></script>
+</body>
+</html>
